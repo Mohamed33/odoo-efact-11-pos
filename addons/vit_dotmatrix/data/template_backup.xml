@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="template_dotmatrix_guia_remision" model="mail.template">
+            <field name="name">Dot Matrix Guia Remision</field>
+            <field name="model_id" ref="efact.model_efact_guia_remision"/>
+            <field name="subject">Dot Matrix Template for Guía de Remisión Remitente</field>
+            <field name="body_html"><![CDATA[% set tramas = object.get_tramas()
+% set c_tramas = len(tramas)
+% set cnt = 0
+% for trama in tramas:
+% set cnt = cnt +1
+${''.rjust(80)}   
+${''.rjust(80)}   
+${''.rjust(10)}${object.fecha_emision}
+${''.rjust(16)}${object.lugar_partida_direccion}
+${''.rjust(20)}
+${''.rjust(13)}${object.destinatario_partner_id.name}
+${''.rjust(17)}${object.lugar_llegada_direccion}
+${''.rjust(7)}${object.destinatario_numero_documento_identidad.ljust(63)}${object.fecha_inicio_traslado or "-"}
+${''.rjust(80)}
+% for l in trama:
+% if l:
+${l.product_id.default_code.ljust(10)}${l.product_id.name[:55].ljust(55)}${l.uom_id.name.rjust(7)}${"{:4,.2f}".format(l.qty).rjust(8)}
+% endif
+% if l==False:
+${''.rjust(80)}
+% endif
+% endfor
+% if object.modalidad_transporte == '02':
+${''.rjust(16)}${object.vehiculo_privado_id.marca+" / "} ${object.vehiculo_privado_id.numero_placa}
+${''.rjust(15)}${object.conductor_privado_id.licencia}
+% endif
+% if object.modalidad_transporte == '01':
+${''.rjust(16)}${object.vehiculo_publico_id.marca+" / "} ${object.vehiculo_publico_id.numero_placa}
+${''.rjust(15)}${object.conductor_publico_id.licencia}
+${''.rjust(14)}${object.transporte_partner_id.name}
+${''.rjust(7)}${object.transporte_partner_id.vat}
+% endif
+${''.rjust(80)}   
+${''.rjust(80)}   
+% endfor]]></field>
+        </record>
+
+        <record id="template_dotmatrix_invoice" model="mail.template">
+            <field name="name">Dot Matrix Invoice</field>
+            <field name="model_id" ref="account.model_account_invoice"/>
+            <field name="subject">Dot Matrix Template for Invoice</field>
+            <field name="body_html"><![CDATA[% set tramas = object.get_tramas()
+% set c_tramas = len(tramas)
+% set cnt = 0
+% for trama in tramas:
+${''.rjust(80)}
+${''.rjust(80)}
+% set cnt = cnt +1
+% if object.number[0] == 'F':
+${'FACTURA ELECTRÓNICA'.rjust(80)}
+% endif 
+% if object.number[0] == 'B':
+${'BOLETA ELECTRÓNICA'.rjust(80)}
+% endif
+${''.rjust(5)} ${object.partner_id.name.ljust(57)} ${object.number}
+${''.rjust(7)} ${object.partner_id.street}
+${''.rjust(80)}
+${''.rjust(10)}${object.payment_term_id.name.rjust(18)}${object.date_invoice.rjust(12)}${object.date_due.rjust(12)}${''.ljust(2)}${object.user_id.name}${''.ljust(1)}  ${object.origin or '-'} 
+${''.rjust(80)}
+% for l in trama:
+% if l:
+${l.product_id.default_code.ljust(9)}${l.product_id.name[:34].ljust(35)}${"{:4,.0f}".format(l.quantity).ljust(4)+" "+l.uom_id.name}${"{:4,.2f}".format(l.price_unit).rjust(7)}${"{:4,.2f}".format(l.price_subtotal).rjust(7)}${"".rjust(6)}${"{:4,.2f}".format(l.price_total).rjust(7)}
+% endif
+% if l==False:
+${''.rjust(80)}
+% endif
+% endfor
+% if cnt == c_tramas:
+${"".rjust(10)}${object.monto_en_letras.ljust(50)}${ "{:20,.2f}".format(object.total_venta_gratuito).rjust(20)}
+${''.rjust(60)}${"{:20,.2f}".format(object.total_venta_gravado).rjust(20)}
+${''.rjust(80)}
+${object.digest_value.rjust(60)}${"{:20,.2f}".format(object.amount_tax).rjust(20)}
+${''.rjust(60)}${"{:20,.2f}".format(object.amount_total).rjust(20)}
+${''.rjust(60)}${"{:20,.2f}".format(object.total_descuentos).rjust(20)}
+% endif
+% if cnt < c_tramas:
+${''.rjust(80)}
+${''.rjust(80)}
+${''.rjust(80)}
+${object.digest_value.rjust(60)}
+${''.rjust(80)}
+${''.rjust(80)}
+% endif
+${'Representación impresa del Comprobante electrónico'}
+${'consulte su documento en http://gruponaomis.inex.business/consulta'}
+${''.rjust(80)}
+${''.rjust(80)}
+${''.rjust(80)}
+${''.rjust(80)}
+${''.rjust(80)}
+% endfor]]></field>
+</record>
+
+<!--
+<![CDATA[${'INVOICE'.rjust(30)} ${object.number}
+${''.rjust(80,'-')}
+${'Customer:'.rjust(20)} ${object.partner_id.display_name.ljust(20)} ${'Date:'.rjust(20)} ${object.date_invoice}
+${' '.rjust(20)} ${object.partner_id.street.ljust(20) if object.partner_id.street else ''.ljust(20)} ${'Salesperson:'.rjust(20)} ${object.user_id.name}
+${' '.rjust(20)} ${object.partner_id.street2.ljust(20) if object.partner_id.street2 else ''.ljust(20)} ${'Sales Team:'.rjust(20)} ${object.team_id.name}
+${' '.rjust(20)} ${object.partner_id.city.ljust(20) if object.partner_id.city else ''.ljust(20)} ${'Currency:'.rjust(20)} ${object.currency_id.name}
+${' '.rjust(20)} ${object.partner_id.country_id.name.ljust(20) if object.partner_id.country_id else ''.ljust(20)}
+${'Payment Term:'.rjust(20)} ${object.payment_term_id.name.ljust(20) if object.payment_term_id else ''.ljust(20)}
+
+Invoice Lines
+${''.rjust(80,'-')}
+${'Product'.ljust(28)} ${'Qty'.rjust(6)} ${'UoM'.ljust(4)} ${'Price Unit'.rjust(13)} ${'Taxes'.ljust(10)} ${'Sub Total'.rjust(14)}
+${''.rjust(80,'-')}
+% for l in object.invoice_line_ids:
+${l.product_id.name[:28].ljust(28)} ${"{:4,.0f}".format(l.quantity).rjust(6)} ${l.uom_id.name.ljust(4)} ${"{:4,.0f}".format(l.price_unit).rjust(13)} ${l.invoice_line_tax_ids.name.ljust(4) if l.invoice_line_tax_ids else ''.ljust(4)} ${"{:4,.0f}".format(l.price_subtotal).rjust(14)}
+% endfor
+${''.rjust(80,'-')}
+${'Total Before Tax:'.rjust(59)} ${ "{:20,.0f}".format(object.amount_untaxed).rjust(20)}
+${'Tax:'.rjust(59)} ${"{:20,.0f}".format(object.amount_tax).rjust(20)}
+${'Total:'.rjust(59)} ${"{:20,.0f}".format(object.amount_total).rjust(20)}
+${'Balance:'.rjust(59)} ${"{:20,.0f}".format(object.residual).rjust(20)}
+]]>-->
+
+        <record id="template_dotmatrix_po" model="mail.template">
+            <field name="name">Dot Matrix PO</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="subject">Dot Matrix Template for PO</field>
+            <field name="body_html"><![CDATA[
+${'PURCHASE ORDER'.rjust(30)} ${object.name}
+${''.rjust(80,'-')}
+${'Vendor:'.rjust(20)} ${object.partner_id.display_name.ljust(20)} ${'Order Date:'.rjust(18)} ${ object.date_order }
+${'Vendor Reference:'.rjust(20)} ${object.partner_ref.ljust(20) if object.partner_ref else ''.ljust(20)} ${'Currency:'.rjust(18)} ${object.currency_id.name}
+
+Products
+
+${''.rjust(80,'-')}
+${'Product'.ljust(24)} ${'Sched. Date'.ljust(11)} ${'Qty'.ljust(6)} ${'UoM'.ljust(4)} ${'Taxes'.ljust(7)} ${'Price Unit'.rjust(10)} ${'Subtotal'.rjust(12)}
+${''.rjust(80,'-')}
+
+% for l in object.order_line:
+${l.product_id.display_name[:24].ljust(24)} ${l.date_planned[:11].ljust(11)} ${"{:4,.0f}".format(l.product_qty).rjust(6)} ${l.product_uom.name.ljust(4)} ${l.taxes_id.name.ljust(7) if l.taxes_id else ''.ljust(7)} ${ "{:4,.0f}".format(l.price_unit).rjust(10)} ${ "{:4,.0f}".format(l.price_subtotal).rjust(12) }
+% endfor
+
+${''.rjust(80,'-')}
+
+${'Untaxed Amount:'.rjust(59)} ${ "{:20,.0f}".format(object.amount_untaxed).rjust(20) }
+${'Taxes:'.rjust(59)} ${ "{:20,.0f}".format(object.amount_tax).rjust(20) }
+
+]]></field>
+        </record>
+
+        <record id="template_dotmatrix_picking" model="mail.template">
+            <field name="name">Dot Matrix Picking</field>
+            <field name="model_id" ref="purchase.model_purchase_order"/>
+            <field name="subject">Dot Matrix Template for Picking</field>
+            <field name="body_html"><![CDATA[
+${object.picking_type_id.display_name.rjust(30) if object.picking_type_id else ''.rjust(30)} ${object.name}
+${''.rjust(80,'-')}
+${'Origin:'.rjust(20)} ${object.origin.ljust(20) if object.origin else ''.ljust(20)} ${'Commitment Date:'.rjust(18)} ${ object.date }
+${'State:'.rjust(20)} ${object.state.ljust(20) if object.state else ''.ljust(20)} ${'Scheduled Date:'.rjust(18)} ${ object.min_date }
+${'Partner:'.rjust(20)} ${object.partner_id.name.ljust(20) if object.partner_id else ''.ljust(20)}
+
+Products
+
+${''.rjust(80,'-')}
+${'Product'.ljust(30)} ${'Qty'.ljust(13)} ${'Barcode'.ljust(13)} ${'Destination'.ljust(20)}
+${''.rjust(80,'-')}
+% for l in object.move_lines:
+${l.product_id.display_name[:30].ljust(30)} ${"{:4,.0f}".format(l.product_uom_qty).rjust(4)} ${l.product_uom.name.ljust(8)} ${l.product_id.ean13.ljust(13) if l.product_id.ean13 else ''.ljust(13)} ${ l.location_dest_id.display_name.rjust(20)}
+% endfor
+
+${''.rjust(80,'-')}
+
+
+]]></field>
+        </record>
+
+        <record id="template_dotmatrix_so" model="mail.template">
+    <field name="name">Dot Matrix SO</field>
+    <field name="model_id" ref="purchase.model_purchase_order"/>
+    <field name="subject">Dot Matrix Template for PO</field>
+    <field name="body_html"><![CDATA[
+${'SALE ORDER'.rjust(30)} ${object.name}
+${''.rjust(80,'-')}
+${'Customer:'.rjust(20)} ${object.partner_id.display_name.ljust(20)} ${'Order Date:'.rjust(18)} ${ object.date_order }
+${'Customer Reference:'.rjust(20)} ${object.client_order_ref.ljust(20) if object.client_order_ref else ''.ljust(20)} ${'Currency:'.rjust(18)} ${object.currency_id.name}
+
+Products
+${''.rjust(80,'-')}
+${'Product'.ljust(25)} ${'Qty'.ljust(6)} ${'UoM'.ljust(7)} ${'Price Unit'.rjust(10)} ${'Taxes'.ljust(9)} ${'Subtotal'.rjust(18)}
+${''.rjust(80,'-')}
+% for l in object.order_line:
+${l.product_id.display_name[:25].ljust(25)} ${"{:4,.0f}".format(l.product_uom_qty).rjust(6)} ${l.product_uom.name.ljust(7)} ${"{:4,.0f}".format(l.price_unit).rjust(10)} ${l.tax_id.name.ljust(9) if l.tax_id else ''.ljust(9)} ${ "{:4,.0f}".format(l.price_subtotal).rjust(18) }
+% endfor
+${''.rjust(80,'-')}
+
+${'Untaxed Amount:'.rjust(59)} ${ "{:20,.0f}".format(object.amount_untaxed).rjust(20) }
+${'Taxes:'.rjust(59)} ${ "{:20,.0f}".format(object.amount_tax).rjust(20) }
+${'Total:'.rjust(59)} ${ "{:20,.0f}".format(object.amount_total).rjust(20) }
+
+]]></field>
+</record>
+
+    </data>
+</openerp>

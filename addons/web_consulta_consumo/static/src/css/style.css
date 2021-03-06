@@ -1,0 +1,116 @@
+.guia{
+ 	position: relative;
+ 	height: 22.7cm;
+ 	width: 21.6cm;
+	margin: 1.1cm;
+	border: solid;
+
+}
+h1{
+position: absolute;
+top:30mm;
+font-size:18px;
+}
+.f_emision{
+	position: absolute;
+	top: 48mm;
+	left: 27mm;
+	width:30mm;
+}
+.f_traslado{
+	position: absolute;
+	top: 48mm;
+	left: 80mm;
+	width:30mm ;
+}
+.d_partida{
+	position: absolute;
+	left: 13mm;
+	top: 58mm;
+	width: 90mm;
+}
+.d_llegada{
+	position: absolute;
+	left: 13mm;
+	top: 68mm;
+	width: 90mm;
+}
+.destinatario{
+	position: absolute;
+	left: 43mm;
+	top: 76mm;
+	width: 120mm;
+}
+.ruc{
+	position: absolute;
+	left: 22mm;
+	top: 83mm;
+	width: 60mm;
+}
+.t_documento{
+	position: absolute;
+	left: 140mm;
+	top: 83mm;
+	width:50mm;
+}
+.v_marca_placa{
+	position: absolute;
+	left: 13mm;
+	top: 90mm;
+	width:30mm;
+}
+.nro_constancia{
+	position: absolute;
+	left: 72mm;
+	top: 90mm;
+	width:30mm;
+}
+.nro_licencia{
+	position: absolute;
+	left: 140mm;
+	top: 90mm;
+	width:30mm;
+}
+
+.detalle-envio{
+	top:104mm;
+	left:15mm;
+	position: absolute;
+}
+.fila{
+	display: -webkit-inline-box;
+	flex-direction:1;
+	text-align: center;
+}
+.codigo{
+	width:7mm;
+	display: -webkit-inline-box;
+	flex:1;
+    padding: 7px 7px 0px 0px;
+}
+
+.cantidad{
+	width:10mm;
+	display: -webkit-inline-box;
+	flex:1;
+	padding: 7px 7px 0px 0px;
+}
+.unidad{
+	width:10mm;
+	display: -webkit-inline-box;
+	flex:1;
+	padding: 7px 7px 0px 0px;
+}
+.descripcion{
+	width: 130mm;
+	flex:1;
+	padding: 7px 7px 0px 0px;
+	text-align:center;
+}
+.total{
+	width:11mm ;
+	display: -webkit-inline-box;
+	flex:1;
+	text-align:right;
+	padding: 7px 7px 0px 43px;
+}

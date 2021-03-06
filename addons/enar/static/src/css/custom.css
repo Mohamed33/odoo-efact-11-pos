@@ -1,0 +1,86 @@
+/* Logo Size */
+header a.navbar-brand.logo img {
+  margin-top: 2px !important;
+}
+
+div.carousel div.carousel-content {
+	background: rgba(0, 0, 0, 0) !important;
+}
+
+.plan_price_block {
+	border: 1px solid;
+    background: white;
+}
+
+.plan_column1 .plan_price_block {
+	height: 100px !important;
+}
+
+.img {
+    height: 100% !important;
+    width: 100% !important;
+}
+
+.tree_curv{
+  z-index: -1;
+}
+
+.ken-burns {
+    width: 100%;
+    margin-right: -15%;
+    -webkit-animation: kenburns 30s infinite linear;
+    -moz-animation: kenburns 30s infinite linear;
+    animation: kenburns 30s infinite linear !important;
+    overflow: hidden;
+    background-size: cover;
+}
+
+@keyframes kenburns {
+    0% {
+        transform: scale(1) rotate(0deg) translate(0, 0);
+    }
+    50% {
+        transform: scale(1.4) translate(15%, 0);
+    }
+    100% {
+        transform: scale(1) rotate(0deg) translate(0, 0);
+    }
+}
+
+h2 span { 
+   color: white; 
+   font: bold 24px/45px Helvetica, Sans-Serif; 
+   letter-spacing: -1px;  
+   background: rgb(0, 0, 0);
+   background: rgba(0, 0, 0, 0.7);
+   padding: 10px; 
+}
+
+.navbar-brand{
+      padding: 0px 15px !important;
+}
+
+header.sticky {
+    top: 0;
+    z-index: 999999;
+    position: fixed;
+    width: 100%
+}
+
+#footer div.row{
+  margin-top: 15px !important;
+}
+
+.blog_detail{
+    max-width: 109px;
+    float: right;
+    min-width: 180px;
+    position: relative;
+    margin-right: 16px;
+    margin-top: -30px;
+}
+
+.btn-primary:hover {
+  background-color: #1ccdca !important;
+  border-color: #1ccdca !important;
+}

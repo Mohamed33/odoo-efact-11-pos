@@ -1,0 +1,300 @@
+// caret mixin
+//------------------------------------------------------------------------------
+._caret() {
+  content: "";
+  display: inline-block;
+  height: 0;
+  vertical-align: middle;
+  width: 0;
+}
+
+.o-caret-down(@caret-width: @caret-width-base) {
+  border-bottom: 0;
+  border-left: @caret-width solid transparent;
+  border-right: @caret-width solid transparent;
+  border-top: @caret-width solid;
+  -moz-transform: scale(0.9999); // Smooth the caret on firefox
+  ._caret();
+}
+
+.o-caret-up(@caret-width: @caret-width-base) {
+  border-bottom: @caret-width solid;
+  border-left: @caret-width solid transparent;
+  border-right: @caret-width solid transparent;
+  border-top: 0;
+  -moz-transform: scale(0.9999); // Smooth the caret on firefox
+  ._caret();
+}
+
+.o-caret-left(@caret-width: @caret-width-base) {
+  border-bottom: @caret-width solid transparent;
+  border-left: 0;
+  border-right: @caret-width solid;
+  border-top: @caret-width solid transparent;
+  -moz-transform: scale(0.9999); // Smooth the caret on firefox
+  ._caret();
+}
+
+.o-caret-right(@caret-width: @caret-width-base) {
+  border-bottom: @caret-width solid transparent;
+  border-left: @caret-width solid;
+  border-right: 0;
+  border-top: @caret-width solid transparent;
+  -moz-transform: scale(0.9999); // Smooth the caret on firefox
+  ._caret();
+}
+
+// Vendor prefixes
+//------------------------------------------------------------------------------
+
+.o-flex-display() {
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.o-inline-flex-display() {
+  display: -ms-inline-flexbox;
+  display: -moz-inline-box;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: inline-flex;
+}
+.o-flex-flow(@direction, @wrap) {
+  -ms-flex-flow: @direction @wrap;
+  -moz-flex-flow: @direction @wrap;
+  -webkit-flex-flow: @direction @wrap;
+  flex-flow: @direction @wrap;
+}
+
+.o-flex(@grow, @schrink, @basis) {
+  -webkit-box-flex: @grow;
+  -ms-flex: @grow @schrink @basis;
+  -moz-flex: @grow @schrink @basis;
+  -webkit-flex: @grow @schrink @basis;
+  flex: @grow @schrink @basis;
+}
+.o-justify-content(@justify) {
+  -moz-justify-content: @justify;
+  -webkit-justify-content: @justify;
+  justify-content: @justify;
+}
+
+.o-align-content(@align) {
+  -webkit-align-content: @align;
+  align-content: @align;
+}
+
+.o-align-items(@align) {
+  -webkit-align-items: @align;
+  align-items: @align;
+}
+
+.o-align-self(@align) {
+  -webkit-align-self: @align;
+  align-self: @align;
+}
+
+.o-background-size(@size) {
+  -webkit-background-size: @size;
+  -moz-background-size: @size;
+  -o-background-size: @size;
+  background-size: @size;
+}
+
+.o-appearance(@value) {
+  -webkit-appearance: @value;
+  -moz-appearance: @value;
+  appearance: @value;
+}
+
+.o-transform-origin(@x: 50%, @y: 50%, @z: 0) {
+  -ms-transform-origin: @x @y @z;
+  -webkit-transform-origin: @x @y @z;
+  -moz-transform-origin: @x @y @z;
+  transform-origin: @x @y @z;
+}
+
+.o-animation(@name: none, @duration: 0s, @timing-function: ease, @delay: 0s, @iteration-count: 1, @direction: normal, @fill-mode: none, @play-state: running) {
+  -webkit-animation: @name @duration @timing-function @delay @iteration-count @direction @fill-mode @play-state;
+  -moz-animation: @name @duration @timing-function @delay @iteration-count @direction @fill-mode @play-state;
+  -o-animation: @name @duration @timing-function @delay @iteration-count @direction @fill-mode @play-state;
+  animation: @name @duration @timing-function @delay @iteration-count @direction @fill-mode @play-state;
+}
+
+.o-transition(@property: all, @duration: 0s, @timing-function: ease, @transition-delay: 0s) {
+  -webkit-transition: @property @duration @timing-function @transition-delay;
+  -moz-transition: @property @duration @timing-function @transition-delay;
+  -o-transition: @property @duration @timing-function @transition-delay;
+  transition: @property @duration @timing-function @transition-delay;
+}
+
+.o-columns(@width: auto, @col: auto) {
+  -webkit-columns: @width @col;
+  -moz-columns: @width @col;
+  columns: @width @col;
+}
+
+.o-linear-gradient(@deg: 45deg, @start-color: #555, @end-color: #333) {
+  background-image: -webkit-linear-gradient(@deg, @start-color, @end-color);
+  background-image: -o-linear-gradient(@deg, @start-color, @end-color);
+  background-image: linear-gradient(@deg, @start-color, @end-color);
+  background-repeat: repeat-x;
+}
+
+.o-vertical-gradient(@startColor: #555, @endColor: #333) {
+  background-color: mix(@startColor, @endColor);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+  background-image: -webkit-linear-gradient(top, @startColor, @endColor);
+  background-image: -moz-linear-gradient(top, @startColor, @endColor);
+  background-image: -ms-linear-gradient(top, @startColor, @endColor);
+  background-image: -o-linear-gradient(top, @startColor, @endColor);
+  background-image: linear-gradient(to bottom, @startColor, @endColor);
+}
+
+.o-skew-gradient(@startColor: #555, @endColor: #333) {
+  background: -moz-linear-gradient(135deg, @endColor, @startColor);
+  background: -o-linear-gradient(135deg, @startColor, @endColor);
+  background: -webkit-gradient(linear, left top, right bottom, from(@startColor), to(@endColor));
+  background: -ms-linear-gradient(top, @startColor, @endColor);
+  background-color: @endColor;
+}
+
+.o-transform(@transform) {
+  -webkit-transform: @transform;
+  -moz-transform: @transform;
+  -ms-transform: @transform;
+  -o-transform: @transform;
+  transform: @transform;
+}
+
+.o-translate3d(@x, @y: 0, @z: 0) {
+  -webkit-transform: translate3d(@x, @y, @z);
+  -moz-transform: translate3d(@x, @y, @z);
+  -ms-transform: translate3d(@x, @y, @z);
+  -o-transform: translate3d(@x, @y, @z);
+}
+
+// Dropdowns
+//------------------------------------------------------------------------------
+
+.o-selected-li() {
+  li {
+    position: relative;
+
+    &.selected {
+      > a {
+        color: @adaptiv-brand-optional;
+
+        &::before {
+          content: "\f00c";
+          font-family: FontAwesome;
+          left: 4px;
+          position: absolute;
+        }
+      }
+    }
+  }
+}
+
+//
+//------------------------------------------------------------------------------
+
+.o-position-absolute(@top: auto, @right: auto, @bottom: auto, @left: auto) {
+  bottom: @bottom;
+  left: @left;
+  position: absolute;
+  right: @right;
+  top: @top;
+}
+
+.o-text-overflow(@display: inline-block, @max-width: 100%) {
+  display: @display;
+  max-width: @max-width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: top; // To update display context changed by overflow:hidden
+  white-space: nowrap;
+}
+
+// Shadow helpers
+//------------------------------------------------------------------------------
+
+.o-shadow-depth-1() {
+  box-shadow: 0 1px 3px fade(@_inverse, 12%), 0 1px 2px fade(@_inverse, 24%);
+}
+
+.o-shadow-depth-2() {
+  box-shadow: 0 3px 6px fade(@_inverse, 16%), 0 3px 6px fade(@_inverse, 23%);
+}
+
+.o-shadow-depth-3() {
+  box-shadow: 0 10px 20px fade(@_inverse, 19%), 0 6px 6px fade(@_inverse, 23%);
+}
+
+.o-shadow-depth-4() {
+  box-shadow: 0 14px 28px fade(@_inverse, 25%), 0 10px 10px fade(@_inverse, 22%);
+}
+
+.o-shadow-depth-5() {
+  box-shadow: 0 19px 38px fade(@_inverse, 30%), 0 15px 12px fade(@_inverse, 22%);
+}
+
+// Canvas mixin for shell
+//------------------------------------------------------------------------------
+.a-canvas {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99);
+  width: 100%;
+
+  .o-translate3d(0, 0, 0);
+
+  &.open-left {
+    .o-translate3d(@a-shell-pane-width, 0, 0);
+  }
+
+  &.open-right {
+    .o-translate3d(-@a-shell-pane-width, 0, 0);
+  }
+
+  &.open-sm {
+    &.open-left {
+      .o-translate3d(@a-shell-pane-sm-width, 0, 0);
+    }
+
+    &.open-right {
+      .o-translate3d(-@a-shell-pane-sm-width, 0, 0);
+    }
+  }
+
+  &.open-lg {
+    &.open-left {
+      .o-translate3d(@a-shell-pane-lg-width, 0, 0);
+    }
+
+    &.open-right {
+      .o-translate3d(-@a-shell-pane-lg-width, 0, 0);
+    }
+  }
+}
+// ------------------------------------------------------------------
+// Hovering effects
+// ------------------------------------------------------------------
+.o-hover-opacity(@default-opacity: 0.5, @hover-opacity: 1) {
+  opacity: @default-opacity;
+
+  &:hover, &:focus, &.focus {
+      opacity: @hover-opacity;
+  }
+}
+.o-hover-text-color(@default-color: @text-color, @hover-color: @link-color) {
+  color: @default-color;
+
+  &:hover, &:focus, &.focus {
+      color: @hover-color;
+  }
+}

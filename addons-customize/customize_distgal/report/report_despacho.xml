@@ -1,0 +1,297 @@
+<odoo>
+
+    <template id="customize_naomis.cn_liquidacion_despacho_report">
+        <t t-call="web.html_container"> 
+            <t t-foreach="registros" t-as="reg">
+                <div class="page">
+                    <t t-call="web.external_layout">
+                        <h4>
+                            <span class="pull-left"><t t-esc="company_name"/></span>
+                            <span class="pull-right">Fecha: <t t-esc="fecha_hoy"/></span>
+                        </h4>
+                        
+                        <h4 class="text-center"><b>LIQUIDACIÓN DE DESPACHO <t t-esc="fecha_inicio"/> DEL <t t-esc="fecha_fin"/></b></h4>
+                        
+                            <h6>Vendedor: <b><t t-esc="reg[0].name"/></b></h6>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th style="width:100px">Documento</th>
+                                        <!--<th style="width:80px">Código</th>-->
+                                        <th style="width:400px">Razón Social</th>
+                                        <th style="width:50px">Total</th>
+                                        <th style="text-align:center">Contado</th>
+                                        <th style="text-align:center">Crédito</th>
+                                        <th style="text-align:center">Devolución</th>
+                                        <th style="text-align:center">Observación</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="reg[1]" t-as="comp" style="pad">
+                                        <td style="font-size:14px;width:100px;padding:4px"><t t-esc="comp.move_name"/></td>
+                                        <!--<td style="font-size:14px;width:100px;padding:4px"><t t-esc="comp.partner_id.ref"/></td>-->
+                                        <td style="font-size:14px;width:200px;padding:4px">
+                                            <t t-esc="comp.partner_id.name"/><br/>
+                                            <span style="font-style : italic;"><t t-esc="comp.partner_id.street"/></span>
+                                        </td>
+                                        <td style="font-size:14px;width:50px;padding:4px"><span t-field="comp.amount_total" t-options="{'widget':'monetary'}"/></td>
+                                        <td style="border:solid black 1px !important;padding:4px"></td>
+                                        <td style="border:solid black 1px !important;padding:4px"></td>
+                                        <td style="border:solid black 1px !important;padding:4px"></td>
+                                        <td style="border:solid black 1px !important;padding:4px"></td>
+                                    </tr>
+                                    <tr>
+                                        <td  colspan="2">Documentos: <t t-esc="len(reg[1])"/></td>
+                                        <td  colspan="2" style="text-align: end;">Total: S/.<t t-esc="sum([r.amount_total for r in reg[1]])" /></td>
+                                        <td  colspan="4"/>
+                                    </tr>
+                                </tbody>
+                            </table> 
+                        
+                    </t>
+                </div>
+            </t>   
+        </t>
+    </template>
+
+    <template id="customize_naomis.cn_consolidado_despacho_report">
+        <t t-call="web.html_container"> 
+            <div class="page">
+                <t t-call="web.external_layout">
+                    <h4>
+                        <span class="pull-left"><t t-esc="company_name"/></span>
+                        <span class="pull-right">Fecha: <t t-esc="fecha_hoy"/></span>
+                    </h4>
+                    
+                    <h4 class="text-center"><b>CONSOLIDADO DE DESPACHO <t t-esc="fecha_inicio"/> DEL <t t-esc="fecha_fin"/></b></h4>
+                    <h6>Transportista: 
+                        <b> 
+                            <t t-esc="data['transportista']"/>    
+                        </b>
+                    </h6>
+                    <h6>Vendedor: 
+                        <b>
+                            <t t-if="data['seleccion_vendedor'] == 'seleccionar_vendedor'">
+                                <t t-esc="data['vendedores']"/>
+                            </t>
+                            <t t-if="data['seleccion_vendedor'] == 'todos_vendedores'">
+                                Todos los Vendedores
+                            </t>
+                        </b>
+                    </h6>
+                    
+                        <table class="table ">
+                            <thead>
+                                <tr>
+                                    <th style="width:100px">Código</th>
+                                    <th style="width:400px">Descripción</th>
+                                    <!--
+                                    <th>Peso</th>
+                                    <th>Unidad Mayor</th>
+                                    -->
+                                    <th>Unidad menor</th>
+                                    <th>Unidades</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr t-foreach="productos_ordenados" t-as="rec"
+                                        t-attf-class="'table-active' if rec.get('combo',False) else ''"
+                                        style="backgroud-color:white">
+                                        <t t-if="rec.get('combo_line',False)==False">
+                                            <th style="padding:2px;width:100px;font-size:14px;"><t t-esc="rec['product'].default_code"/></th>
+                                            <th style="padding:2px;width:400px;font-size:14px;"><t t-esc="rec['product'].name"/></th>
+                                            <!--
+                                            <th style="padding:2px;font-size:14px;"><t t-esc="rec['product'].weight"/></th>
+                                            <th style="padding:2px;font-size:14px;"><t t-esc="round(rec['unidad_mayor'],2)"/> <t t-esc="rec['product'].uom_po_id.name"/></th>
+                                            -->
+                                            <th style="padding:2px;font-size:14px;"><t t-esc="round(rec['unidad_menor'],2)"/> <t t-esc="rec['product'].uom_id.name"/></th>
+                                            <th style="padding:2px;font-size:14px;"><t t-esc="round(rec['unidad'],2)"/> <t t-esc="rec['product'].uom_id.category_id.name"/></th>
+                                            <th style="padding:2px;font-size:14px;">
+                                                <t t-if="rec.get('total',False)">
+                                                    <t t-esc="round(rec['total'],2)"/>
+                                                </t>
+                                            </th>
+                                        </t>
+                                        <t t-if="rec.get('combo_line',False)">
+                                            <th style="padding:2px;width:100px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                                <t t-esc="rec['product'].default_code"/>
+                                            </th>
+                                            <th style="padding:2px;width:400px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                                <t t-esc="rec['product'].name"/>
+                                            </th>
+                                            <!--
+                                            <th style="padding:2px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                                <t t-esc="rec['product'].weight"/>
+                                            </th>
+                                            <th style="padding:2px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                                <t t-esc="round(rec['unidad_mayor'],2)"/> 
+                                                <t t-esc="rec['product'].uom_po_id.name"/>
+                                            </th>
+                                            -->
+                                            <th style="padding:2px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                                <t t-esc="round(rec['unidad_menor'],2)"/> 
+                                                <t t-esc="rec['product'].uom_id.name"/>
+                                            </th>
+                                            <th style="padding:2px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                                <t t-esc="round(rec['unidad'],2)"/> 
+                                                <t t-esc="rec['product'].uom_id.category_id.name"/>
+                                            </th>
+                                            <th style="padding:2px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                                <t t-if="rec.get('total',False)">
+                                                    <t t-esc="round(rec['total'],2)"/>
+                                                </t>
+                                            </th>
+                                        </t>
+                                    </tr>
+                            </tbody>
+                        </table> 
+                    
+                    <!--COMBOS-->
+                    <h5>COMBOS</h5>
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th style="width:100px">Código</th>
+                                <th style="width:400px">Descripción</th>
+                                <!--
+                                <th>Peso</th>
+                                <th>Unidad Mayor</th>
+                                -->
+                                <th>Unidad menor</th>
+                                <th>Unidades</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                            <tr t-foreach="combos" t-as="rec" 
+                                t-attf-class="'table-active' if rec.get('combo',False) else ''"
+                                style="backgroud-color:white">
+                                <t t-if="rec.get('combo_line',False)==False">
+                                    <th style="padding:2px;width:100px;font-size:14px;"><t t-esc="rec['product'].default_code"/></th>
+                                    <th style="padding:2px;width:400px;font-size:14px;"><t t-esc="rec['product'].name"/></th>
+                                    <!--
+                                    <th style="padding:2px;font-size:14px;"><t t-esc="rec['product'].weight"/></th>
+                                    <th style="padding:2px;font-size:14px;"><t t-esc="round(rec['unidad_mayor'],2)"/> <t t-esc="rec['product'].uom_po_id.name"/></th>
+                                    -->
+                                    <th style="padding:2px;font-size:14px;"><t t-esc="round(rec['unidad_menor'],2)"/> <t t-esc="rec['product'].uom_id.name"/></th>
+                                    <th style="padding:2px;font-size:14px;"><t t-esc="round(rec['unidad'],2)"/> <t t-esc="rec['product'].uom_id.category_id.name"/></th>
+                                    <th style="padding:2px;font-size:14px;">
+                                        <t t-if="rec.get('total',False)">
+                                            <t t-esc="round(rec['total'],2)"/>
+                                        </t>
+                                    </th>
+                                </t>
+                                <t t-if="rec.get('combo_line',False)">
+                                    <th style="padding:2px;width:100px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                        <t t-esc="rec['product'].default_code"/>
+                                    </th>
+                                    <th style="padding:2px;width:400px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                        <t t-esc="rec['product'].name"/>
+                                    </th>
+                                    <!--
+                                    <th style="padding:2px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                        <t t-esc="rec['product'].weight"/>
+                                    </th>
+                                    <th style="padding:2px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                        <t t-esc="round(rec['unidad_mayor'],2)"/> 
+                                        <t t-esc="rec['product'].uom_po_id.name"/>
+                                    </th>
+                                    -->
+                                    <th style="padding:2px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                        <t t-esc="round(rec['unidad_menor'],2)"/> 
+                                        <t t-esc="rec['product'].uom_id.name"/>
+                                    </th>
+                                    <th style="padding:2px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                        <t t-esc="round(rec['unidad'],2)"/> 
+                                        <t t-esc="rec['product'].uom_id.category_id.name"/>
+                                    </th>
+                                    <th style="padding:2px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                        <t t-if="rec.get('total',False)">
+                                            <t t-esc="round(rec['total'],2)"/>
+                                        </t>
+                                    </th>
+                                </t>
+                            </tr>
+                            
+                        </tbody>
+                    </table> 
+                    <!--BONIFICACIONES-->
+                    <h5>BONIFICACIONES</h5>
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th style="width:100px">Código</th>
+                                <th style="width:400px">Descripción</th>
+                                <!--
+                                <th>Peso</th>
+                                <th>Unidad Mayor</th>
+                                <th>Unidad menor</th>
+                                -->
+                                <th>Unidades</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                            <tr t-foreach="bonificaciones" t-as="rec" 
+                                t-attf-class="'table-active' if rec.get('combo',False) else ''"
+                                style="backgroud-color:white">
+                                <t t-if="rec.get('combo_line',False)==False">
+                                    <th style="padding:2px;width:100px;font-size:14px;"><t t-esc="rec['product'].default_code"/></th>
+                                    <th style="padding:2px;width:400px;font-size:14px;"><t t-esc="rec['product'].name"/></th>
+                                    <!--
+                                    <th style="padding:2px;font-size:14px;"><t t-esc="rec['product'].weight"/></th>
+                                    <th style="padding:2px;font-size:14px;"><t t-esc="round(rec['unidad_mayor'],2)"/> <t t-esc="rec['product'].uom_po_id.name"/></th>
+                                    -->
+                                    <th style="padding:2px;font-size:14px;"><t t-esc="round(rec['unidad_menor'],2)"/> <t t-esc="rec['product'].uom_id.name"/></th>
+                                    <th style="padding:2px;font-size:14px;"><t t-esc="round(rec['unidad'],2)"/> <t t-esc="rec['product'].uom_id.category_id.name"/></th>
+                                    <th style="padding:2px;font-size:14px;">
+                                        <t t-if="rec.get('total',False)">
+                                            <t t-esc="round(rec['total'],2)"/>
+                                        </t>
+                                    </th>
+                                </t>
+                                <t t-if="rec.get('combo_line',False)">
+                                    <th style="padding:2px;width:100px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                        <t t-esc="rec['product'].default_code"/>
+                                    </th>
+                                    <th style="padding:2px;width:400px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                        <t t-esc="rec['product'].name"/>
+                                    </th>
+                                    <!--
+                                    <th style="padding:2px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                        <t t-esc="rec['product'].weight"/>
+                                    </th>
+                                    <th style="padding:2px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                        <t t-esc="round(rec['unidad_mayor'],2)"/> 
+                                        <t t-esc="rec['product'].uom_po_id.name"/>
+                                    </th>
+                                    -->
+                                    <th style="padding:2px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                        <t t-esc="round(rec['unidad_menor'],2)"/> 
+                                        <t t-esc="rec['product'].uom_id.name"/>
+                                    </th>
+                                    <th style="padding:2px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                        <t t-esc="round(rec['unidad'],2)"/> 
+                                        <t t-esc="rec['product'].uom_id.category_id.name"/>
+                                    </th>
+                                    <th style="padding:2px;font-size:14px;font-weight:inherit; font-style : italic;">
+                                        <t t-if="rec.get('total',False)">
+                                            <t t-esc="round(rec['total'],2)"/>
+                                        </t>
+                                    </th>
+                                </t>
+                            </tr>
+                            
+                        </tbody>
+                    </table> 
+                    <span><b>Nro. Documentos: </b> <t t-esc="nro_documentos"/></span><br/>
+                    <span><b>Nro. Artículos: </b> <t t-esc="nro_articulos"/></span><br/>
+                    <span><b>Monto Total: </b> <t t-esc="monto_total"/></span><br/>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>

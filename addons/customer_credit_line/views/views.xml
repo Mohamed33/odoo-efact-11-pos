@@ -1,0 +1,67 @@
+<odoo>
+  <data>
+    <record id="customer_credit_line.view_form_add_page_linea_credito" model="ir.ui.view">
+        <field name="name">view.form.line.page.field.credito</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales_purchases']" position="after">
+              <page string="Línea de crédito">
+                <group>
+                  <field name="linea_credito"/>
+                  <field name="total_credito"/>
+                  <button name="view_form_por_cobrar" 
+                          string="Facturas por Cobrar" 
+                          type="object"/>
+                </group>
+              </page>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="customer_credit_line.view_kanban_cuentas_por_cobrar" model="ir.ui.view">
+        <field name="name">view.kanban.cuentas.por.cobrar</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.res_partner_kanban_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='oe_kanban_details']" position="inside">
+              <button name="view_form_por_cobrar" 
+                          class="btn btn-primary" 
+                          string="Facturas por Cobrar" 
+                          type="object">Ver Facturas por Cobrar</button>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="customer_credit_line.view_add_msg_sale_order" model="ir.ui.view">
+        <field name="name">view.add.msg.sale.order</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="before">
+              <field name="limite_credito_excedido" invisible="1"/>
+              <div class="alert alert-warning" attrs="{'invisible':[['limite_credito_excedido','!=',True]]}">
+                <strong>Límite de crédito excedido</strong> <field name="alerta_limite_credito_excedido" readonly="1"/>
+              </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id ="customer_credit_line.view_tree_sale_order" model="ir.ui.view">
+      <field name="name">view.tree.sale.order</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_quotation_tree"/>
+      <field name="arch" type="xml">
+        <xpath expr="//tree"  position="inside">
+          <field name="limite_credito_excedido" invisible="1"/>
+          <field name="alerta_limite_credito_excedido" />
+        </xpath>
+        <xpath expr="//tree"  position="attributes">
+          <attribute name="decoration-danger">limite_credito_excedido==True</attribute>
+        </xpath>
+      </field>
+    </record>
+
+
+  </data>
+</odoo>

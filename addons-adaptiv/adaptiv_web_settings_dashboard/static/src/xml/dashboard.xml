@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+  <t t-name="DashboardMain">
+    <div class="container-fluid o_web_settings_dashboard">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 o_web_settings_dashboard_col">
+          <div class="text-center o_web_settings_dashboard_apps"></div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 o_web_settings_dashboard_col">
+          <div class="text-center o_web_settings_dashboard_invitations"></div>
+        </div>
+      </div>
+    </div>
+  </t>
+
+  <t t-name="DashboardApps">
+    <div class="text-center o_web_settings_dashboard_apps">
+      <i class="fa fa-cog fa-4x text-muted o_browse_apps" style="cursor: pointer;"></i>
+      <div class="o_web_settings_dashboard_header">
+        <t t-set="installed_apps" t-value="widget.data.installed_apps"/>
+        <t t-if="installed_apps">
+          <t t-esc="installed_apps"></t>
+          <t t-if="installed_apps == 1">Installed App</t>
+          <t t-if="installed_apps > 1">Installed Apps</t>
+        </t>
+        <t t-if="! installed_apps">
+          No app installed
+        </t>
+      </div>
+      <div>
+        <a class="btn btn-primary btn-block o_browse_apps" role="button">
+          <strong>Browse Apps</strong>
+        </a>
+      </div>
+      <div class="clearfix"/>
+    </div>
+  </t>
+</templates>

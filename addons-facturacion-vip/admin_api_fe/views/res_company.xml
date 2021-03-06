@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="admin_api_fe.view_form_admin_api_fe" model="ir.ui.view">
+            <field name="name">view.form.admin.api.fe</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page string="Credenciales API ADMIN FE">
+                        <group>
+                            <button name="sync_clientes" 
+                                    string="Sync Clientes" 
+                                    type="object" 
+                                    class="oe_highlight"/>
+                            <field name="api_fe_admin_endpoint"/>                                
+                            <field name="api_fe_admin_login"/>
+                            <field name="api_fe_admin_password"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

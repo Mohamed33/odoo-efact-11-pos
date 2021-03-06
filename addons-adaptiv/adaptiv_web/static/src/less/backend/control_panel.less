@@ -1,0 +1,220 @@
+.o_control_panel {
+  background-color: @o-control-panel-bg;
+  border-bottom: 1px solid @o-control-panel-border-color;
+  .o-flex-display();
+  .o-flex-flow(row, wrap);
+
+  .breadcrumb {
+    width: 50%;
+    .o-flex-flow(row, nowrap);
+    .o-flex(1, 1, auto);
+    .h4;
+
+    > li {
+      .o-flex(0, 1, auto);
+      .o-text-overflow(@max-width: 90%);
+
+      &.active {
+        .o-flex(0, 0, auto);
+      }
+
+      > a {
+        color: @o-control-panel-breadcrumb-color;
+        cursor: pointer;
+
+        &:hover {
+          color: @o-control-panel-breadcrumb-hover-color;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  .a_cp_top {
+    padding: @o-control-panel-padding-y @o-control-panel-padding-x 0 @o-control-panel-padding-x;
+  }
+
+  .a_cp_bottom {
+    padding: 0 @o-control-panel-padding-x @o-control-panel-padding-y @_grid-half-gutter-width;
+  }
+
+  .breadcrumb,
+  .o_cp_searchview {
+    max-width: 70%;
+    width: auto;
+    .o-flex-display();
+  }
+
+  .o_cp_searchview {
+    margin-top: @o-control-panel-item-margin;
+    .o-flex-flow(row, wrap);
+    .o-flex(1, 0, auto);
+  }
+
+  .a_cp_bottom,
+  .a_cp_top {
+    max-width: 100%;
+    width: 100%;
+    .o-flex-display();
+    .o-flex-flow(row, wrap);
+  }
+
+  .o_searchview {
+    padding: 0;
+    .o-flex(1, 0, auto);
+  }
+
+  .o_cp_buttons {
+    margin: @o-control-panel-item-margin auto 0 0;
+    .o-flex(0, 0, auto);
+  }
+
+  .o_cp_sidebar {
+    margin: @o-control-panel-item-margin auto 0;
+    padding-right: @o-control-panel-item-margin;
+    .o-flex(0, 0, auto);
+
+    // Attachments
+    .o_hidden_input_file {
+      position: relative;
+
+      input.o_input_file {
+        height: 26px;
+        opacity: 0;
+        position: absolute;
+        top: 1px;
+        width: 100%;
+      }
+
+      .o_form_binary_form {
+        cursor: pointer;
+        
+        span {
+          color: @btn-default-color;
+          padding: 3px 25px;
+        }
+
+        &:hover {
+          color: @dropdown-link-hover-color;
+          background-color: @dropdown-link-hover-bg;
+        }
+      }
+    }
+
+    .o_sidebar_delete_attachment {
+      padding: 0;
+      position: absolute;
+      right: 10px;
+      top: @o-control-panel-item-margin;
+    }
+  }
+
+  .o_cp_pager,
+  .o_cp_switch_buttons,
+  .o_search_options {
+    margin: @o-control-panel-item-margin 0 0 auto;
+    padding-left: 0;
+    text-align: left;
+    .o-flex(0, 0, auto);
+  }
+
+  &.o_breadcrumb_full > .breadcrumb {
+    width: 100%;
+  }
+
+  > .o_cp_searchview {
+    width: 50%;
+  }
+
+  .btn.o_enable_searchview {
+    margin-left: 2%;
+    padding: 0;
+    width: 10%;
+  }
+
+  > .o_cp_left {
+    margin-top: @o-control-panel-item-margin;
+    width: 50%;
+    .o-flex-display();
+    .o-justify-content(space-between);
+  }
+
+  > .o_cp_right {
+    margin-top: @o-control-panel-item-margin;
+    width: 50%;
+    .o-flex-display();
+
+    > .o_cp_pager {
+      margin: auto 0 auto auto;
+      padding-left: @o-control-panel-item-margin;
+      text-align: center;
+      .user-select(none);
+    }
+
+    > .o_cp_switch_buttons {
+      padding-left: @o-control-panel-item-margin;
+    }
+  }
+
+  @media (min-width: @screen-sm) {
+    .o_cp_switch_buttons {
+      margin-left: @o-control-panel-item-margin;
+    }
+  }
+
+  @media (max-width: @screen-xs) {
+    .breadcrumb,
+    .o_cp_searchview {
+      max-width: 100%;
+      width: 100%;
+    }
+
+    .o_cp_pager,
+    .o_cp_sidebar {
+      margin-left: 0;
+    }
+  }
+}
+
+.o_x2m_control_panel {
+  .o-flex-display();
+  .o-flex-flow(row, wrap);
+
+  .o_cp_buttons,
+  .o_cp_pager {
+    margin-right: auto;
+    .o-flex-display();
+  }
+
+  .o_cp_buttons > div {
+    margin: @o-control-panel-item-margin 0;
+  }
+}
+
+.o_pager_value > input {
+  display: inline-block;
+  text-align: right;
+  width: 60px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.o_modal_header {
+  .o_searchview {
+    .o-flex(1, 1, 0);
+  }
+  .o_search_options {
+    margin: 0 @o-control-panel-item-margin;
+  }
+  .o_pager {
+    order: 3;
+  }
+}
+
+@media print {
+  .o_control_panel {
+    display: none;
+  }
+}

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gestor_concesionario_gestor_concesionario,gestor_concesionario.gestor_concesionario,model_gestor_concesionario_gestor_concesionario,,1,0,0,0

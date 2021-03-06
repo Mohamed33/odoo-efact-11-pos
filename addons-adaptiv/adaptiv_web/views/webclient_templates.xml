@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <template id="less_helpers" name="Adaptiv Backend Theme" inherit_id="web.less_helpers">
+
+    <!-- Remove all Odoo stylesheets -->
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/variables.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/utils.less" position="replace"/>
+
+    <!-- Add new stylesheets -->
+    <xpath expr="link[last()]" position="after">
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/variables.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/helpers.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/compatibility.less"/>
+      <style t-if="theme" type="text/less">
+        <t t-if="'color_primary' in theme">@adaptiv-brand-primary: <t t-raw="theme['color_primary']" />;</t>
+        <t t-if="'color_optional' in theme">@adaptiv-brand-optional: <t t-raw="theme['color_optional']" />;</t>
+        <t t-if="'color_success' in theme">@adaptiv-brand-success: <t t-raw="theme['color_success']" />;</t>
+        <t t-if="'color_warning' in theme">@adaptiv-brand-warning: <t t-raw="theme['color_warning']" />;</t>
+        <t t-if="'color_danger' in theme">@adaptiv-brand-danger: <t t-raw="theme['color_danger']" />;</t>
+        <t t-if="'color_info' in theme">@adaptiv-brand-info: <t t-raw="theme['color_info']" />;</t>
+        <t t-if="'color_shade' in theme">@adaptiv-brand-shade: <t t-raw="theme['color_shade']" />;</t>
+        <t t-if="'color_inverse' in theme">@adaptiv-brand-inverse: <t t-raw="theme['color_inverse']" />;</t>
+        <t t-if="'shade_mix' in theme">@adaptiv-shade-mix: <t t-raw="theme['shade_mix']" />;</t>
+      </style>
+    </xpath>
+  </template>
+
+  <template id="assets_common" name="Adaptiv Backend Theme" inherit_id="web.assets_common">
+
+    <!-- Remove all Odoo stylesheets -->
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/navbar.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/fonts.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/mimetypes.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/animation.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/datepicker.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/modal.less" position="replace"/>
+
+    <xpath expr="link[last()]" position="after">
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/common/fonts.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/common/navbar.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/common/modal.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/common/shell.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/common/datepicker.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/common/sidebar.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/common/dialog.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/common/mimetypes.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/common/animation.less"/>
+    </xpath>
+
+    <xpath expr="script[last()]" position="after">
+      <script type="application/javascript" src="/adaptiv_web/static/src/js/shell.js"/>
+      <script type="application/javascript" src="/adaptiv_web/static/src/js/widgets/app_menu.js"/>
+    </xpath>
+  </template>
+
+  <template id="assets_backend" name="Adaptiv Backend Theme" inherit_id="web.assets_backend">
+
+    <!-- Remove all Odoo stylesheets -->
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/bootstrap_overridden.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/webclient_extra.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/webclient_layout.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/webclient.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/progress_bar.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/dropdown.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/dropdown_extra.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/tooltip.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/debug_manager.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/control_panel.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/fields.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/fields_extra.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/views.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/views_extra.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/pivot_view.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/graph_view.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/form_view.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/form_view_extra.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/list_view.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/list_view_extra.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/data_export.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/kanban_view.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/kanban_view_mobile.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/kanban_dashboard.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/kanban_column_progressbar.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/web_calendar.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/search_view.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/search_view_extra.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/domain_selector.less" position="replace"/>
+    <link rel="stylesheet" type="text/less" href="/web/static/src/less/base_settings.less" position="replace"/>
+
+    <xpath expr="link[last()]" position="after">
+      <link rel="stylesheet" type="text/css" href="/adaptiv_web/static/lib/css/nprogress.css"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/webclient.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/view.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/fields.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/tooltip.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/progress_bar.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/checkbox.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/dropdown.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/data_export.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/control_panel.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/domain_selector.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/settings.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/bootstrap_overrides.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/views/form_view.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/views/list_view.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/views/graph_view.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/views/pivot_view.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/views/search_view.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/views/kanban_view.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/views/calendar_view.less"/>
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/module_tweaks.less"/>
+    </xpath>
+
+    <xpath expr="script[last()]" position="after">
+      <script type="application/javascript" src="/adaptiv_web/static/lib/js/nprogress.js"/>
+      <script type="application/javascript" src="/adaptiv_web/static/src/js/shell_dialog.js"/>
+      <script type="application/javascript" src="/adaptiv_web/static/src/js/widgets/loading.js"/>
+      <script type="application/javascript" src="/adaptiv_web/static/src/js/widgets/systray_menu.js"/>
+      <script type="application/javascript" src="/adaptiv_web/static/src/js/widgets/app_title.js"/>
+      <script type="application/javascript" src="/adaptiv_web/static/src/js/widgets/control_panel.js"/>
+      <script type="application/javascript" src="/adaptiv_web/static/src/js/views/calendar/calendar_renderer.js"/>
+      <script type="application/javascript" src="/adaptiv_web/static/src/js/renderers/form_view.js"/>
+      <script type="application/javascript" src="/adaptiv_web/static/src/js/renderers/res_config_settings.js"/>
+      <script type="application/javascript" src="/adaptiv_web/static/src/js/debrand.js"/>
+    </xpath>
+    <xpath expr="script[@src='/web/static/src/js/chrome/web_client.js']" position="replace">
+      <script type="application/javascript" src="/adaptiv_web/static/src/js/web_client.js"/>
+    </xpath>
+    <xpath expr="script[@src='/web/static/src/js/chrome/menu.js']" position="replace">
+      <script type="application/javascript" src="/adaptiv_web/static/src/js/widgets/menu.js"/>
+    </xpath>
+  </template>
+
+  <template id="web_diagram_inherit" name="Adaptiv Backend Theme" inherit_id="web_diagram.assets_backend">
+    <!-- Remove all Odoo stylesheets -->
+    <link rel="stylesheet" href="/web_diagram/static/src/less/diagram_view.less" position="replace"/>
+    <xpath expr="link[last()]" position="after">
+      <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/views/diagram_view.less"/>
+    </xpath>
+  </template>
+
+  <template id="web_layout" inherit_id="web.layout" name="Adaptiv Theme Debrand">
+    <xpath expr="//title" position="replace">
+      <title t-esc="title or debrand['title']"/>
+    </xpath>
+    <xpath expr="//link[@type='image/x-icon']" position="replace">
+      <link type="image/x-icon" rel="shortcut icon" t-att-href="x_icon or debrand['favicon_url'] or '/web/static/src/img/favicon.ico'"/>
+    </xpath>
+  </template>
+
+  <template id="webclient_bootstrap" inherit_id="web.webclient_bootstrap" name="Adaptiv Theme Webclient">
+    <xpath expr="//t[@t-set='head_web']" position="inside">
+      <meta charset="utf-8"/>
+      <meta http-equiv="cleartype" content="on"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"/>
+      <meta name="apple-mobile-web-app-capable" content="yes"/>
+      <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    </xpath>
+    <xpath expr="//nav[@id='oe_main_menu_navbar']" position="replace"/>
+    <xpath expr="//div[hasclass('o_main')]" position="replace">
+      <!-- Shell canvas -->
+      <div class="a_canvas">
+        <nav class="a_navbar" role="navigation" groups="base.group_user,base.group_portal">
+          <button type="button" class="a_app_menu_toggler">
+            <span class="sr-only">Toggle App Menu</span>
+            <i class="fa fa-th fa-lg app-drawer-icon-open"/>
+          </button>
+          <div class="a_menu_placeholder"></div>
+          <button type="button" class="a_menu_toggler">
+            <span class="sr-only">Toggle Menu</span>
+            <i class="fa fa-bars fa-lg"/>
+          </button>
+        </nav>
+        <div class="o_main">
+          <!-- Regular Odoo content -->
+          <div class="o_main_content"/>
+        </div>
+      </div>
+    </xpath>
+  </template>
+
+</odoo>

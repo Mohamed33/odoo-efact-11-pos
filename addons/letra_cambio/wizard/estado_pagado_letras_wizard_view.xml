@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+        <record id="estado_pagar_letras_view" model="ir.ui.view">
+            <field name="name">Pagar letras</field>
+            <field name="model">pagar_letras_wizard</field>
+            <field name="arch" type="xml">
+                <form string="Pagar letras">
+                    <p class="oe_grey">
+                        Pagar las siguientes letras
+                    </p>
+                    <separator string="LETRAS" colspan="4" />
+
+                    <field name="letra_ids" widget="many2many_tags" readonly="1" />
+
+                    <group>
+                        <field name="currency_id"/>
+                        <field name="gastos" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    </group>
+
+
+                    <footer>
+                        <button string="Pagar" name="pagar_letras" type="object" default_focus="1" class="oe_highlight" />
+                        <button string="Cancelar" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <act_window id="action_pagar_letra" multi="True"
+            name="Pagar Letras" res_model="pagar_letras_wizard" src_model="letra_cambio.letra"
+            view_mode="form" target="new" view_type="form" />
+
+
+
+
+
+    </data>
+</odoo>

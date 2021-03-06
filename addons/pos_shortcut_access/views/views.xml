@@ -1,0 +1,167 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="pos_config_view_form">
+            <field name="name">pos.config.form.view</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form" />
+            <field name="arch" type="xml">
+                <sheet position='inside'>
+                    <h2>POS Keyboard Shortcuts</h2>
+                    <div class="row mt16 o_settings_container" id="inventory_location">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="payment_sc"/>
+                                <div class="text-muted">
+                                </div>
+                                <div>
+                                    <field name="payment_sc"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="change_user_sc"/>
+                                <div class="text-muted">
+                                </div>
+                                <div>
+                                    <field name="change_user_sc"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="change_customer_sc"/>
+                                <div class="text-muted">
+                                </div>
+                                <div>
+                                    <field name="change_customer_sc"/>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="select_search_box_sc"/>
+                                <div class="text-muted">
+                                </div>
+                                <div>
+                                    <field name="select_search_box_sc"/>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="add_new_order_sc"/>
+                                <div class="text-muted">
+                                </div>
+                                <div>
+                                    <field name="add_new_order_sc"/>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="remove_order_sc"/>
+                                <div class="text-muted">
+                                </div>
+                                <div>
+                                    <field name="remove_order_sc"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="set_customer_sc"/>
+                                <div class="text-muted">
+                                </div>
+                                <div>
+                                    <field name="set_customer_sc"/>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="qty_select_sc"/>
+                                <div class="text-muted">
+                                </div>
+                                <div>
+                                    <field name="qty_select_sc"/>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="dis_select_sc"/>
+                                <div class="text-muted">
+                                </div>
+                                <div>
+                                    <field name="dis_select_sc"/>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="price_select_sc"/>
+                                <div class="text-muted">
+                                </div>
+                                <div>
+                                    <field name="price_select_sc"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="back_button_sc"/>
+                                <div class="text-muted">
+                                </div>
+                                <div>
+                                    <field name="back_button_sc"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="cancel_button_sc"/>
+                                <div class="text-muted">
+                                </div>
+                                <div>
+                                    <field name="cancel_button_sc"/>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="next_order_sc"/>
+                                <div class="text-muted">
+                                </div>
+                                <div>
+                                    <field name="next_order_sc"/>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="remove_order_line_sc"/>
+                                <div class="text-muted">
+                                </div>
+                                <div>
+                                    <field name="remove_order_line_sc"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </sheet>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="view_account_journal_form">
+            <field name="name">account.journal.form.view</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="point_of_sale.view_account_journal_pos_user_form" />
+            <field name="arch" type="xml">
+                <field name="amount_authorized_diff" position="after">
+                    <field name='payment_meth_sc'/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

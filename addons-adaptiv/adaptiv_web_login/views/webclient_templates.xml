@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="assets_login" name="Adaptiv Login Layout Assets">
+    <t t-call="web.assets_frontend" t-theme="theme" />
+    <link rel="stylesheet" type="text/less" href="/adaptiv_web/static/src/less/backend/bootstrap_overrides.less"/>
+    <link rel="stylesheet" type="text/less" href="/adaptiv_web_login/static/src/less/login_layout.less"/>
+  </template>
+  <template id="login_layout_inherit" inherit_id="web.login_layout" name="Adaptiv Login Layout">
+    <t t-set="body_classname" t-value="'container'"/>
+    <xpath expr="//t[@t-set='body_classname']" position="replace">
+      <t t-set="body_classname" t-value="'a_login'"/>
+    </xpath>
+    <xpath expr="//t[@t-set='head']" position="replace">
+      <t t-call-assets="web.assets_common" t-js="false" t-theme="adaptiv_get_theme()"/>
+      <t t-call-assets="adaptiv_web_login.assets_login" t-js="false" t-theme="adaptiv_get_theme()"/>
+      <t t-call-assets="web.assets_common" t-css="false"/>
+      <t t-call-assets="adaptiv_web_login.assets_login" t-css="false"/>
+    </xpath>
+    <xpath expr="//div[hasclass('row')]" position="replace">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-lg-4 col-lg-offset-4">
+            <div class="a_login_card">
+              <div class="header">
+                <img t-attf-src="/web/binary/logo{{ '_inverse' if adaptiv_get_theme()['inversed'] else '' }}{{ '?dbname='+db if db else '' }}"/>
+              </div>
+              <div class="content">
+                <t t-raw="0"/>
+              </div>
+              <div class="footer" t-if="not disable_footer">
+                <t t-if="not disable_database_manager">
+                  <a class="" href="/web/database/manager">Manage Databases</a>
+                </t>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </xpath>
+  </template>
+</odoo>

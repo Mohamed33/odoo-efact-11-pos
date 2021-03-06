@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="assets_common" name="tour assets" inherit_id="web_tour.assets_common">
+			<xpath expr="link[@href='/web_tour/static/src/less/tip.less']" position="replace">
+				<link rel="stylesheet" type="text/less" href="/adaptiv_web_tour/static/src/less/re/tip.less"/>
+			</xpath>
+		</template>
+	</data>
+</odoo>

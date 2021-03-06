@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<odoo>
+
+        <report
+            id="mrp_line_export_xlsx"
+            model="mrp.line.export.wizard"
+            string="Requerimiento_de_Insumos"
+            report_type="xlsx"
+            name="mrp_line_export.stock_report"
+            file="mrp_line_export.line_report_xls.xlsx"
+            menu="False"
+            attachment_use="False"/>
+
+
+</odoo>
+

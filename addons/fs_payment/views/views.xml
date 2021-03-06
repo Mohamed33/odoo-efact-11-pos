@@ -1,0 +1,135 @@
+<odoo>
+  <data>
+    
+    <record id="fs_payment.view_pago_tree" model="ir.ui.view">
+        <field name="name">view.pagoculqi.tree</field>
+        <field name="model">fs_payment.pagoculqi</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="partner_id"/>
+                <field name="create_date"/>
+                <field name="name" />
+                <field name="monto"/>  
+                <field name="moneda"/>
+                
+            </tree>
+        </field>
+    </record>
+
+    <record id="fs_payment.view_pago_form" model="ir.ui.view">
+        <field name="name">view.pagoculqi.form</field>
+        <field name="model">fs_payment.pagoculqi</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form>
+              <header>
+                <button type="object" name="enviado" string="Enviar"/>
+                <field name="state" widget="statusbar" />
+              </header>
+              <sheet>
+                <group>
+                    <field name="partner_id"/>
+                    <field name="name" />
+                    <field name="sale_order_id"/>
+                    <field name="cuentaculqi_id"/>
+                    <field name="description"/>
+                    <field name="monto"/>  
+                    <field name="moneda"/>
+                    <field name="email_from"/>
+                    <field name="mobile"/>
+                    <field name="fecha_expiracion"/>
+                    <field name="fecha_pago" />
+                    <field name="url" widget="url"/>
+                    <field name="token" readonly="1"/>
+                    <field name="log_response_success" readonly="1"/>
+                    <field name="log_response_error" readonly="1"/>
+                </group>
+              </sheet>
+              <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_partner_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+    
+    <record id="fs_payment.view_cuenta_culqi_tree" model="ir.ui.view">
+      <field name="name">view.configuracion.pago.tree</field>
+      <field name="model">fs_payment.cuentaculqi</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>      
+        </tree>
+      </field>
+    </record>
+
+    <record id="fs_payment.view_cuenta_culqi_form" model="ir.ui.view">
+      <field name="name">view.configuracion.pago.form</field>
+      <field name="model">fs_payment.cuentaculqi</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="tipo"/>
+              <field name="public_key"/>
+              <field name="secret_key"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="fs_payment.action_view_cuenta_culqi_tree" model="ir.actions.act_window">
+      <field name="name">Cuentas de Culqi</field>
+      <field name="res_model">fs_payment.cuentaculqi</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="fs_payment.action_view_pagos_tree" model="ir.actions.act_window">
+        <field name="name">Pagos</field>
+        <field name="res_model">fs_payment.pagoculqi</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <record id="fs_payment.view_res_config_settings_cuenta_culqi" model="ir.ui.view">
+      <field name="name">fs_payment.settings.cuenta.culqi</field>
+      <field name="model">res.config.settings</field>
+      <field name="inherit_id" ref="website.res_config_settings_view_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//div[@id='webmaster_settings']" position="inside">
+          <div class="col-xs-12 col-md-6 o_setting_box">
+              <h2>Cuenta Culqi</h2>
+              <div class="o_setting_right_pane">
+                  <div class="text-muted">
+                    Seleccionar la cuenta que deseas usar para los pagos
+                  </div>
+                  <label for="default_cuentaculqi_id"/>
+                  <field name="default_cuentaculqi_id"/>
+              </div>
+          </div>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="fs_payment.sale_order_add_btn_culqi" model="ir.ui.view">
+      <field name="name">fs_paymente.sale_order.add_btn_culqi</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//header" position="inside">
+          <button name="btn_list_pagos_culqi" 
+                  type="object" 
+                  string="Pagos en Culqi" 
+                  class="oe_highlight"/>
+        </xpath>
+      </field>
+    </record>
+
+    <menuitem name="Pagos Culqi" id="fs_payment.menu_pago_culqi" parent="" />
+    <menuitem name="Pagos" id="fs_payment.pagos" parent="fs_payment.menu_pago_culqi" action="fs_payment.action_view_pagos_tree"/>
+    <menuitem name="Configuración" id="fs_payment.configuracion" parent="fs_payment.menu_pago_culqi" action="fs_payment.action_view_cuenta_culqi_tree"/>
+  </data>
+</odoo>

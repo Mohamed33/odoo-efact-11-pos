@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <template id="efact.report_assets_common" 
+                    name="Report Assets Common - Efact Customize" 
+                    inherit_id="web.report_assets_common">
+            <xpath expr="//link[@href='/web/static/src/less/layout_background.less']" position="replace">
+                <link href="/report_number_to_letter/static/src/less/layout_background.less" rel="stylesheet" type="text/less"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

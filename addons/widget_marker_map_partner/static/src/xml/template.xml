@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="widget_marker_map_partner">
+        <div>
+            <!-- <script t-attr-src="https://maps.googleapis.com/maps/api/js?key={widget.api_key}&amp;callback=initMap&amp;libraries=&amp;v=weekly"/> -->
+            <span>Google Maps</span>
+            <input name="geolocation" class="d-none"    />
+            <span class="message"/>
+            <button class="marker_maps btn btn-primary"><i class="fa fa-map-marker"/> Geolocalizar</button>
+            <div class="map" style="width:100%;height:500px"></div>
+        </div>
+    </t>
+</templates>

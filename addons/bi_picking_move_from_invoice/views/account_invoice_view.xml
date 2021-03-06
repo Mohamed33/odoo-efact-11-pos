@@ -1,0 +1,94 @@
+<odoo>
+	<data>
+		<record id="bi_account_invoice_form_config_inherit" model="ir.ui.view">
+			<field name="name">bi.account.invoice.form.config.inherit</field>
+			<field name="model">res.config.settings</field>
+			<field name="inherit_id" ref="account.res_config_settings_view_form" />
+			<field name="arch" type="xml">
+			
+				<div id="recommended_apps" position="after">
+					<h2>Picking And Move Create From Invoice</h2>
+					<div class="row mt16 o_settings_container">
+						<div class="col-xs-12 col-md-6 o_setting_box">
+							<div class="o_setting_left_pane">
+								<field name="create_move" />
+							</div>
+							<div class="o_setting_right_pane">
+								<label for="create_move" />
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-6 o_setting_box">
+							<div class="o_setting_left_pane">
+								<field name="create_picking" />
+							</div>
+							<div class="o_setting_right_pane">
+								<label for="create_picking" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</field>
+		</record>
+
+		<record id="customer_invoice_stock_move_view" model="ir.ui.view">
+			<field name="name">Move Name</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='date_due']" position="after">
+					<field name="picking_transfer_id" 
+							required="1"
+							domain="[('code', '=', 'outgoing')]" 
+							string="Operación de transferencia"
+							attrs="{'invisible':[('origin', '!=', False)]}"/>
+
+					<field name="invoice_picking_id" invisible="1" />
+				</xpath>
+				<xpath expr="//field[@name='number']" position="before">
+					<div class="oe_button_box" name="button_box">
+						<button type="object" name="action_view_picking" states="open,paid"
+							class="oe_stat_button" attrs="{'invisible':[('origin', '!=', False)]}"
+							icon="fa-truck">
+							<field name="picking_count" string="Picking" widget="statinfo" />
+						</button>
+						<button type="object" name="action_view_move" states="open,paid"
+							class="oe_stat_button" attrs="{'invisible':[('origin', '!=', False)]}"
+							icon="fa-truck">
+							<field name="move_count" string="Stock Move" widget="statinfo" />
+						</button>
+					</div>
+				</xpath>
+			</field>
+		</record>
+
+		<record id="supplier_invoice_stock_move_view" model="ir.ui.view">
+			<field name="name">Move Name</field>
+			<field name="model">account.invoice</field>
+			<field name="inherit_id" ref="account.invoice_supplier_form" />
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='date_due']" position="after">
+					<field name="picking_type_id" 
+							required="1"
+							domain="[('code', '=', 'incoming')]" 
+							attrs="{'invisible':[('origin', '!=', False)]}"/>
+					<field name="invoice_picking_id" invisible="1" />
+				</xpath>
+				<xpath expr="//field[@name='number']" position="before">
+					<div class="oe_button_box" name="button_box">
+						<button type="object" name="action_view_picking" class="oe_stat_button"
+							attrs="{'invisible':[('origin', '!=', False)]}" icon="fa-truck">
+							<field name="picking_count" string="Shipment" widget="statinfo" />
+						</button>
+						<button type="object" name="action_view_move" states="open,paid"
+							class="oe_stat_button" attrs="{'invisible':[('origin', '!=', False)]}"
+							icon="fa-truck">
+							<field name="move_count" string="Stock Move" widget="statinfo" />
+						</button>
+
+					</div>
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</odoo>

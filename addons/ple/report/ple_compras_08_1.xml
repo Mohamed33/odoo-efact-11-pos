@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="paperformat_euro_landscape" model="report.paperformat">
+            <field name="name">European A4 Landscape</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">40</field>
+            <field name="margin_bottom">23</field>
+            <field name="margin_left">7</field>
+            <field name="margin_right">7</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <template id="ple_template_compras_08_1">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <h1>FORMATO 08.1: REGISTRO DE COMPRAS</h1>
+                            <div class="row">
+                                <table>
+                                    <tr class="border-black">
+                                            <td><strong>PERIODO</strong></td>
+                                            <td>
+                                                <span t-esc="doc.period_id.name"/>
+                                            </td>
+                                    </tr>
+                                    <tr class="border-black">
+                                            <td><strong>RUC</strong></td>
+                                            <td>
+                                                <span t-esc="doc.company_id.vat"/>
+                                            </td>
+                                    </tr>
+                                    <tr class="border-black">
+                                            <td><strong>APELLIDOS Y NOMBRES, DENOMINACION O RAZON SOCIAL</strong></td>
+                                            <td>
+                                                <span t-esc="doc.company_id.name"/>
+                                            </td>
+                                    </tr>
+                                </table>
+
+
+                            </div>
+                                <table class="table table-condensed" >
+                                        <thead>
+                                            <tr>
+
+                                                <th>FECHA EMISION</th>
+                                                <th>FECHA VENCIMIENTO</th>
+                                                <th>TIPO COMPROBANTE</th>
+                                                <th>SERIE</th>
+                                                <th>CORRELATIVO</th>
+                                                <th>TIPO DOCUMENTO</th>
+                                                <th>NUMERO DOC</th>
+                                                <th>NOMBRE O RAZON SOCIAL</th>
+                                                <th>BASE IMPONIBLE</th>
+                                                <th>IGV</th>
+                                                <th>IMPORTE TOTAL</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-foreach="doc.linea" t-as="det">
+                                                <tr style="border:solid grey 4px">
+                                                    <td><span t-esc="det.date_invoice"/></td>
+                                                    <td><span t-esc="det.date_due"/></td>
+                                                    <td><span t-esc="det.journal_code_name"/></td>
+                                                    <td><span t-esc="det.serie"/></td>
+                                                    <td><span t-esc="det.correlativo"/></td>
+                                                    <td><span t-esc="det.partner_id_code"/></td>
+                                                    <td><span t-esc="det.partner_vat"/></td>
+                                                    <td><span t-esc="det.partner_name"/></td>
+                                                    <td><span t-esc="det.amount_untaxed"/></td>
+                                                    <td><span t-esc="det.amount_tax"/></td>
+                                                    <td><span t-esc="det.amount_total"/></td>
+
+
+
+
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <report id="ple.report_compras_08_1"
+                model="ple.compras"
+                name="ple.ple_template_compras_08_1"
+                report_type="qweb-pdf"
+                string="PLE COMPRAS"
+                paperformat="ple.paperformat_euro_landscape"
+                />
+
+    </data>
+</odoo>

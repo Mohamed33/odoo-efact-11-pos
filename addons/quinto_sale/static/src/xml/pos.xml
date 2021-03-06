@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="orderline" inherit_id="point_of_sale.template"  xml:space="preserve">
+    <t t-name="Orderline">
+        <li t-attf-class="orderline #{ line.selected ? 'selected' : '' }"  style="display:flex;font-weight: bolder;color: black;">
+            <span style="width:10%;color:blue;">
+                    <t t-esc="line.get_quantity_str()" />
+                    <t t-esc="line.get_unit().name" />
+            </span>
+            <span style="width:20%;color:green;">
+                    <t t-esc="widget.format_currency(line.get_unit_display_price(),'Product Price')" />
+            </span>
+            <span class="product-name" style="width:55%">
+                <t t-esc="line.get_product().display_name"/>
+                <t t-if="line.get_product().tracking!=='none'">
+                    <i t-attf-class="oe_link_icon fa fa-list oe_icon line-lot-icon #{line.has_valid_product_lot() ? 'oe_green' : 'oe_red' }"/>
+                </t>
+            </span>
+            <!--
+            <span style="width:10%">
+                <t t-esc="line.get_discount_str()" />%
+            </span>
+            -->
+            
+            <span class="price" style="width:25%;text-align:end;padding-right:15px">
+                <t t-esc="widget.format_currency(line.get_display_price(),'Product Price')"/>
+            </span>
+
+            <ul class="info-list" style="display:none">
+                <t t-if="line.get_quantity_str() !== '1' || line.selected ">
+                    <li class="info">
+                        <em>
+                            <t t-esc="line.get_quantity_str()" />
+                        </em>
+                        <t t-esc="line.get_unit().name" />
+                        at
+                        <t t-esc="widget.format_currency(line.get_unit_display_price(),'Product Price')" />
+                        /
+                        <t t-esc="line.get_unit().name" />
+                    </li>
+                </t>
+                <t t-if="line.get_discount_str() !== '0'">
+                    <li class="info">
+                        With a 
+                        <em>
+                            <t t-esc="line.get_discount_str()" />%
+                        </em>
+                        discount
+                    </li>
+                </t>
+            </ul>
+        </li>
+    </t>
+</templates>

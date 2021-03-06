@@ -1,0 +1,230 @@
+
+.curso_card{
+    padding: 15px;
+    .curso_image{
+        .image{
+            height: 100%;
+        }
+    }
+    .curso_body{
+        .title{
+            height: 70px;
+            font-size: 1rem;
+            padding:15px 0px 0px 0px;
+        }
+        .description{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            .precios{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                .precio_ahora{
+                    font-size: 24px;
+                    font-weight: bold;
+                    padding-right: 10px;
+                    color: #ff9800;
+                }
+                .precio_normal{
+                    font-size: 20px;
+                    font-weight: bold;
+                    padding-right: 10px;
+                }
+                .precio_normal_tachado{
+                    font-size: 16px;
+                    padding-right: 10px;
+                    text-decoration: black;
+                    text-decoration-line: line-through;
+                }
+            }
+            .info_adicional{
+                font-size: 0.8rem;
+                color:black;
+                
+            }
+            
+        }
+    }
+    .btn_aniadir_al_carrito{
+        width: 100%;
+        font-weight: bold;
+        background-color: white;
+        color: #ff9800;
+        border: solid #ff9800 1px;
+        &:hover{
+            background-color: #ff9800;
+            color: white;    
+        }
+    }
+    .btn_quitar_del_carrito{
+        width: 100%;
+        font-weight: bold;
+        border: solid #ff9800 1px
+    }
+    .btn_quitar_del_carrito:hover{
+        background-color: white;
+        border: solid gray 1px;
+        color:#ff9800
+    }
+    .btn_aniadido_al_carrito{
+        width: 100%;
+        color:gray;
+        font-weight: bold;
+        border: solid gray 1px 
+    }
+    
+    .duracion{
+        position: absolute;
+        top: 30px;
+        background-color: rgba(255,152,0,0.95);
+        left: 25px;
+        padding: 0px 10px;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+    }
+    @media (max-width:400px) {
+        display: flex;
+        flex-direction: "row";
+        flex-grow: 1;
+        .curso_body{
+            display: flex;
+            flex-direction: column;
+            padding-left: 8px;
+            .title{
+                height: 100%;
+                font-size: 1.2rem;
+                padding:5px 0px 0px 0px;
+            }
+            .description{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                .precios{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    .precio_ahora{
+                        font-size: 1.2rem;
+                        font-weight: bold;
+                        padding-right: 10px;
+                        color: #ff9800;
+                    }
+                    .precio_normal{
+                        font-size: 1rem;
+                        font-weight: bold;
+                        padding-right: 10px;
+                    }
+                    .precio_normal_tachado{
+                        font-size: 1rem;
+                        padding-right: 10px;
+                        text-decoration: black;
+                        text-decoration-line: line-through;
+                    }
+                }
+                .descuento{
+                    font-size: 0.8rem;
+                }
+            }
+        }
+        .curso_image{
+            flex: 2
+        }
+        .curso_body{
+            flex: 3
+        }
+        .duracion{
+            display: none   ;
+        }
+        .btn_aniadir_al_carrito,.btn_aniadido_al_carrito,.btn_quitar_del_carrito{
+            font-size: 1rem;
+        }
+    }
+}
+
+.modal_curso{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex:1;
+    .curso_imagen{
+        flex:3;
+        padding:10px
+    }
+    .curso_body{
+        flex:2;
+        .curso_titulo{
+            font-weight: bold;
+        }
+        .curso_content{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            .precios{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                .precio_ahora{
+                    font-size: 1.2rem;
+                    font-weight: bold;
+                    padding-right: 10px;
+                    color: #ff9800;
+                }
+                .precio_normal{
+                    font-size: 1rem;
+                    font-weight: bold;
+                    padding-right: 10px;
+                }
+                .precio_normal_tachado{
+                    font-size: 1rem;
+                    padding-right: 10px;
+                    text-decoration: black;
+                    text-decoration-line: line-through;
+                }
+            }
+            .info_adicional{
+    
+            }
+        }
+
+        .acciones{
+            display: flex;
+            flex-direction: row;
+            .btn_accion{
+                padding:8px;
+            }
+            .btn_comprar_ahora{
+                background-color: #ff9800;
+                color: white;
+                font-weight: bold;
+                &:hover{
+                    background-color: white;
+                    border:solid #ff9800 1px;
+                    color:#ff9800;
+                }
+            }
+        }
+    }
+    
+    
+}
+#wrap{
+    .nav-tabs{
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        .nav-item{
+            flex:1 !important;
+            color: black !important;
+        }
+        li.nav-item.active{
+            background-color: #ff9800 !important;
+            color: white !important
+        }
+    }
+
+}

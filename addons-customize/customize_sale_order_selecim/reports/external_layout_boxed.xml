@@ -1,0 +1,27 @@
+<odoo>
+    <data>
+        <template id="web.external_layout_boxed">
+            
+
+            <div class="article o_report_layout_boxed">
+              <t t-raw="0"/>
+            </div>
+
+            <div class="footer o_boxed_footer">
+                <div class="text-center">
+                    <ul class="list-inline">
+
+                        <li t-if="company.phone">Tel: <span t-field="company.phone"/></li>
+                        <li t-if="company.email">Coreo: <span t-field="company.email"/></li>
+                        <li t-if="company.website">Web: <span t-field="company.website"/></li>
+                        <li t-if="company.vat">RUC: <span t-field="company.vat"/></li>
+                    </ul>
+                    <div t-field="company.report_footer"/>
+                    <div>
+                        Page: <span class="page"/> / <span class="topage"/>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>

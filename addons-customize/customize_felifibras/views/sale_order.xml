@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+         <record id="customize_felifibras.view_sale_order_line" model="ir.ui.view">
+            <field name="name">view.sale.order.line</field>
+            <field name="model">sale.order.line</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="order_id" invisible="1"/>
+                        <field name="product_id" readonly="1"/>
+                        <field name="detail_html"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="customize_felifibras.view_sale_order_extend_html_detail" model="ir.ui.view">
+            <field name="name">view.sale.order.extend.html.detail</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="editable">bottom</attribute>
+                </xpath>
+                <xpath expr="//tree/field[@name='product_id']" position="before">
+                    <button name="edit_sale_order_line" type="object" icon="fa-edit" />
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="customize_felifibras.add_detail_sale_order" model="ir.ui.view">
+            <field name="name">add.detail.sale.order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//tree/field[@name='product_id']" position="after">
+                    <field name="detail_html" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+        
+        
+
+    </data>
+</odoo>

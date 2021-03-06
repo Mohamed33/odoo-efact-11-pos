@@ -1,0 +1,83 @@
+<odoo>
+    <data>
+
+        <template id="opt_snippet_popupform_button" inherit_id="website.assets_editor" name="Options Snippets">
+            <xpath expr="script[last()]" position="after">
+                <script type="text/javascript" src="/snippet_popupform_button/static/src/js/editor.js"></script>
+            </xpath>
+        </template>
+
+        <template id="inscribete" name="Inscríbete Aquí">
+            <section class="inscribete">
+                <div class="row">
+                    <div style="text-align:center">
+                        <a href="#"
+                            id="inscribete_aqui"
+                            data-toggle="modal"
+                            data-target="#inscribeteAqui"
+                            class="btn"
+                            style="border: 2px solid rgb(8, 82, 148);color:  rgb(8, 82, 148)">
+                            Inscríbete Aquí</a>
+                        <div id="inscribeteAqui" class="modal fade" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                                    <div class="modal-content" >
+                                        <div class="modal-header">
+                                            <h3 class="modal-title">Regístrate</h3>
+                                            <h5 class="modal-title">Te enviaremos más información al correo</h5>
+                                            <button type="button" class="close" data-dismiss="modal">x</button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div id="msg-html"/>
+
+                                            <input class="form-control hidden" type="text" name="curso_id" id="curso_id" value=""/>
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" name="name" id="name" placeholder="Nombres"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" type="email" name="email" id="email" placeholder="Correo"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" type="phone" name="mobile" id="mobile" placeholder="Teléfono"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <input class="form-control" type="text" name="departamento" id="departamento" placeholder="Departamento"/>
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-block"
+                                                    id="submit"
+                                                    disabled="true" style="background-color:blue;color:white">Enviar</button>
+                                        </div>
+
+                                    </div>
+                                <script src="/snippet_popupform_button/static/src/js/formulario.js" type="text/javascript"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </template>
+
+        <template id="snippet_inscribete" inherit_id="website.snippets" name="Popup Inscríbete">
+            <xpath expr="//div[@id='snippet_content']/div[@class='o_panel_body']">
+                <t t-snippet="snippet_popupform_button.inscribete"
+                    t-thumbnail="/snippet_popupform_button/static/src/img/icon-inscribete.png"/>
+            </xpath>
+        </template>
+
+        <template id="snippet_style_options" 
+                inherit_id="website.snippet_options" 
+                name="Snippets Options">
+            <xpath expr="//div[@data-js='background']" position="after">
+                <div data-js="snippet_inscribete_opt" 
+                    data-selector=".inscribete" >
+                    <li id="curso-selection">
+                        <a><i class="fa fa-code"/>Curso</a>
+                    </li>
+                </div>
+            </xpath>
+
+        </template>
+    </data>
+</odoo>

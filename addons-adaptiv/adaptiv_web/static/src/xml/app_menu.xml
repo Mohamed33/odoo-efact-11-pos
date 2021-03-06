@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+  <ul t-name="AppMenu" class="nav sidebar-nav">
+    <li t-foreach="widget.menu_tree['children']" t-as="child">
+      <t t-call="Menu.menu_link">
+        <t t-set="display_icon" t-value="true"/>
+        <t t-set="menu" t-value="child"/>
+      </t>
+    </li>
+  </ul>
+
+</templates>

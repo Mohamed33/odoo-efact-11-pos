@@ -1,0 +1,23 @@
+.o_graph {
+  .o-flex-display();
+  .o-flex-flow(column, nowrap);
+
+  .o_graph_svg_container {
+    .o-flex(1, 0, 0);
+    .o-flex-display();
+    .o-flex-flow(column, nowrap);
+
+    svg {
+      background-color: @o-graph-bg;
+      .o-flex(1, 0, 0);
+    }
+  }
+}
+
+.nvtooltip thead {
+  background-color: transparent;
+}
+
+.o_graph_measures_list {
+  .o-selected-li();
+}

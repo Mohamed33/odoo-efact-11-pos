@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="admin_api_fe.view_tree_consulta_comprobantes" model="ir.ui.view">
+            <field name="name">view.tree.consulta.comprobantes</field>
+            <field name="model">aafe.consultacomprobante</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="create_date"/>
+                    <field name="cliente_id"/>
+                    <field name="tipo_consulta"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="admin_api_fe.view_consulta_comprobantes" model="ir.ui.view">
+            <field name="name">view.consulta.comprobantes</field>
+            <field name="model">aafe.consultacomprobante</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                    </header>
+                    <sheet>
+                        <field name="cliente_id" domain="[['cliente_api_fe','=',True]]"/>
+                        <field name="tipo_consulta" widget="radio"/>
+                        <group string="Consulta de Comprobantes">
+                            <field name="numero_comprobantes"/>
+                        </group>
+                        <group string="Consulta Avanzada">
+                            <field name="fecha_inicio"/>
+                            <field name="fecha_finalizacion"/>
+                            <field name="tipo_comprobante_ids"  
+                                    widget="many2many_checkboxes"   
+                                    domain="[['code','in',['01','03','07','08']]]"/>
+                            <field name="cliente_rucs"/>
+                            <field name="series"/>
+                        </group>                                                  
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="admin_api_fe.action_view_consulta_comprobante" model="ir.actions.act_window">
+            <field name="name">Consulta de Comprobantes</field>
+            <field name="res_model">aafe.consultacomprobante</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+    </data>
+</odoo>

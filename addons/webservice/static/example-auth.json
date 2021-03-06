@@ -1,0 +1,17 @@
+{
+	"jsonrpc": "2.0",
+	"method": "call",
+	"params": {
+		"model": "res.partner",
+		"method": "search_read",
+		"args": [],
+		"kwargs": {
+			"fields": ["name", "street"],
+			"domain": [
+				["id", "=", "$id"],
+				["vat", "=", "$vat"]
+			],
+			"limit": 10
+		}
+	}
+}

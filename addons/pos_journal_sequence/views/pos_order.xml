@@ -1,0 +1,22 @@
+<odoo>
+    <record id="pos_journal_sequence.view_tipo_documento_pos_order" model="ir.ui.view">
+        <field name="name">view.tipo.documento.pos.order</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <button name="action_pos_order_invoice" position="replace">
+                <button name="action_pos_order_invoice_factura" 
+                        string="Factura" 
+                        type="object" 
+                        states="paid" 
+                        attrs="{'readonly':[['partner_id','=',False]],'invisible':[['state','not in',['paid']]]}" />
+                <button name="action_pos_order_invoice_boleta" 
+                        string="Boleta" 
+                        type="object" 
+                        states="paid" 
+                        attrs="{'readonly':[['partner_id','=',False]],'invisible':[['state','not in',['paid']]]}" />
+            </button>
+        </field>
+    </record>
+
+</odoo>

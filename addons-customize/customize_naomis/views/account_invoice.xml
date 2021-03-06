@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="customize_naomis.view_form_account_invoice_payment_term">
+            <field name="name">Plazo de Pago Obligatorio</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="efact.view_account_invoice_events"/>
+            <field name="arch" type="xml">
+                <field name="payment_term_id" position="attributes">
+                    <attribute name="attrs">{'required':[('invoice_type_code','in',['01','03'])],'invisible':[('invoice_type_code','not in',['01','03'])]}</attribute>
+                </field>
+                <field name="payment_term_id" position="after">
+                    <field name="referencia_nota_ids" widget="many2many_tags" string="Nota Crédito/Débito Asociado"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

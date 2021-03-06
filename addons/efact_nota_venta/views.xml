@@ -1,0 +1,21 @@
+<odoo>
+    <data>
+        <record id="view_nota_venta" model="ir.ui.view">
+            <field name="name">Nota de Venta</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='invoice_print']" position="after">
+                    <button name="generar_nota_credito"
+                            groups="account.group_account_invoice"
+                            string="Generar nota de crédito"
+                            class="oe_highlight"
+                            type='action'
+                            attrs="{'invisible': ['|','|',('invoice_type_code','in',['00']),('state','not in',('open','paid')),('type','=','out_invoice')]}"
+                        />
+                </xpath>
+                
+            </field>
+        </record>
+    </data>
+</odoo>

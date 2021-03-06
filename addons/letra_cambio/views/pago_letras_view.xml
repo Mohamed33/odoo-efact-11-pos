@@ -1,0 +1,40 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="letra_cambio.pago_letra_tree">
+            <field name="name">Pago de letras</field>
+            <field name="model">letra_cambio.letra</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="number"/>
+                    <field name="partner_id"/>
+                    <field name="date_doc"/>
+                    <field name="date_due"/>
+                    <field name="amount_total"/>
+                    <field name="state"/>
+                    <field name="cuenta_banco"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_pago_letra_cambio_view" model="ir.actions.act_window">
+            <field name="name">Pago de letras</field>
+            <field name="res_model">letra_cambio.letra</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">['|','|','|',("state","=","COB"),("state","=","ACE"),("state","=","PRO"),("state","=","DEA")]</field>
+
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_pago_letra_cambio_view2">
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="pago_letra_tree"/>
+            <field name="act_window_id" ref="action_pago_letra_cambio_view"/>
+        </record>
+
+
+        <menuitem  parent="letra_cambio.letra_cambio_menu" name="Pago de letras" id="letra_cambio_menu_pago_letra" action="action_pago_letra_cambio_view"/>
+
+    </data>
+</odoo>

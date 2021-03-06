@@ -1,0 +1,183 @@
+
+
+.o_chat_window {
+  background-color: @o-mail-chat-window-bg;
+  border: 1px solid @o-mail-chat-window-border-color;
+  border-radius: @border-radius-small;
+  font-size: @font-size-small;
+  height: @o-mail-chat-window-height;
+  position: fixed;
+  width: @o-mail-chat-window-width;
+  z-index: @zindex-modal - 1;
+  .o-flex-display();
+  .o-flex-flow(column, nowrap);
+
+  .o_chat_header {
+    background-color: @o-mail-chat-window-header-bg;
+    color: @o-mail-chat-window-header-color;
+    padding: @o-mail-chat-window-padding-y @o-mail-chat-window-padding-x;
+    .o-flex-display();
+    .o-flex(0, 0, auto);
+
+    .o_chat_title {
+      cursor: pointer;
+      .o-flex(1, 1, auto);
+      .o-text-overflow();
+    }
+
+    .o_chat_window_buttons {
+      a {
+        color: @o-mail-chat-window-header-color;
+        margin: -@padding-small-vertical -@padding-small-horizontal -@padding-small-vertical 0;
+        padding: @padding-small-vertical @padding-small-horizontal;
+      }
+    }
+  }
+
+  .o_mail_thread {
+    background-color: @o-mail-chat-window-bg;
+    overflow: auto;
+    .o-flex(1, 1, auto);
+
+    .o_thread_date_separator {
+      margin-bottom: @o-mail-thread-date-seperator-margin-bottom / 2;
+      margin-top: @o-mail-thread-date-seperator-margin-top / 4;
+
+      .o_thread_date {
+        background-color: @o-mail-chat-window-bg;
+      }
+    }
+
+    .o_thread_message {
+      padding-left: @o-mail-chat-window-padding-x;
+      padding-right: @o-mail-chat-window-padding-x;
+      .o_thread_message_sidebar {
+        margin-right: @o-mail-chat-window-padding-x;
+      }
+    }
+  }
+
+  .o_chat_composer {
+    .o-flex(0, 0, auto);
+    border-top: 1px solid @o-mail-chat-window-border-color;
+  }
+
+  &.o_thread_less {
+    .o_chat_search_input {
+      padding: @o-mail-chat-window-padding-y @o-mail-chat-window-padding-x;
+      .o-flex-display();
+      .o-align-items(center);
+
+      > span {
+        .o-flex(0, 0, auto);
+      }
+
+      > input {
+        margin-left: @o-mail-chat-window-padding-x;
+        .o-flex(1, 1, 100%);
+      }
+    }
+
+    .o_mail_thread {
+      background-color: @o-mail-chat-window-threadless-bg
+    }
+
+    .o_chat_composer {
+      display: none;
+    }
+  }
+
+  @media (max-width: @screen-xs-max) {
+    height: 100%!important;
+    width: 100%;
+
+    &.o_folded {
+      display: none;
+    }
+  }
+
+  @media print {
+    display: none;
+  }
+}
+
+.o_chat_window_dropdown {
+  background-color: @o-mail-chat-window-header-bg;
+  border-bottom: none;
+  color: @o-mail-chat-window-header-color;
+  cursor: pointer;
+  width: auto;
+  height: auto;
+
+  .o_chat_window_dropdown_toggler {
+    padding: @o-mail-chat-window-padding-y @o-mail-chat-window-padding-x;
+
+    .o_total_unread_counter {
+      // Do not apply a padding since it doesnt hide correctly
+      color: @o-mail-chat-window-unread-counter-color;
+      font-weight: bold
+    }
+  }
+
+  &.open .o_chat_window_dropdown_toggler .o_total_unread_counter {
+    display: none;
+  }
+
+  > ul {
+    max-width: @o-mail-chat-window-width;
+    border: none;
+    padding: 0;
+
+    > li.o_chat_header {
+      padding: @o-mail-chat-window-padding-y @o-mail-chat-window-padding-x;
+      border:  1px solid @o-mail-chat-window-border-color;
+
+      &:hover {
+        background-color: @o-mail-chat-window-header-hover-bg;
+        color: @o-mail-chat-window-header-hover-color;
+      }
+
+      &~li.o_chat_header {
+        border-top: none;
+      }
+    }
+  }
+  @media (max-width: @screen-xs-max) {
+    display: none;
+  }
+}
+
+@media (min-width: @screen-sm-min) {
+  .o_chat_window {
+    .o-shadow-depth-3();
+  }
+}
+
+@media (max-width: @screen-xs-max) {
+  .o_chat_window {
+    .o_chat_header {
+      min-height: @a-navbar-height;
+      max-height: @a-navbar-height;
+      padding: 0 10px;
+      .o_chat_title,
+      .o_chat_window_close,
+      .o_chat_window_expand {
+        color: @a-navbar-color;
+        font-size: @_font-size-h3;
+        font-weight: @headings-font-weight;
+        height: @a-navbar-height;
+        line-height: floor((@_font-size-h3 * @_line-height-base));
+        padding: ((@a-navbar-height - floor((@_font-size-h3 * @_line-height-base))) / 2) 0;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.o_ui_blocked .o_chat_window {
+  z-index: 1101; // blockUI's z-index is 1100
+}
+
+.o_no_chat_window .o_chat_window {
+  display: none;
+}

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_customize_grupo_rhinn_customize_grupo_rhinn,customize_grupo_rhinn.customize_grupo_rhinn,model_customize_grupo_rhinn_customize_grupo_rhinn,,1,0,0,0

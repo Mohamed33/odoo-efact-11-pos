@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="PosTicket">
+        <t t-jquery=".receipt-total" t-operation="after">
+            <t t-if="widget.pos.config.enable_rounding">
+                <table>
+                    <t t-if="order.get_rounding()">
+                        <tr style="font-size: 20px;"><td>Rounding:</td><td class="pos-right-align">
+                            <t t-esc="widget.format_currency(order.get_rounding())"/>
+                            </td></tr>
+                     </t>
+                    <tr style="font-size: 20px;"><td>Net Total:</td><td class="pos-right-align">
+                        <t t-esc="widget.format_currency(order.getNetTotalTaxIncluded())"/>
+                        </td></tr>
+                </table>
+            </t>
+            <br />
+        </t>
+    </t>
+
+</templates>

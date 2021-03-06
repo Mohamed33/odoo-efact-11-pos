@@ -1,0 +1,17 @@
+wheel
+num2words
+xlwt
+phonenumbers
+pandas
+culqipy
+pyOpenSSL
+pyjwt
+boto
+boto3
+requests
+xlrd
+rsa
+slugify
+py3o.template
+genshi
+

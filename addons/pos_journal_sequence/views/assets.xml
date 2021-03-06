@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <template id="pos_journal_sequence.assets_backend_extras" name="pos_journal_sequence.static_resources_demo assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/pos_journal_sequence/static/src/js/jquery.qrcode.min.js"/>
+                <script type="text/javascript" src="/pos_journal_sequence/static/src/js/NumeroALetras.js"/>
+            </xpath>
+        </template>
+
+        <template id="pos_journal_sequence.pos_assets_backend" name="pos_journal_sequence.pos_assets_backend" inherit_id="point_of_sale.assets">
+            <xpath expr="." position="inside">
+                
+            </xpath>
+        </template>
+    </data>
+</odoo>

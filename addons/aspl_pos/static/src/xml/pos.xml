@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="Product">
+        <t t-jquery="img" t-operation="before">
+            <span class="remaining-qty-tag" style="display:none;">
+            </span>
+        </t>
+    </t>
+
+    <!--Return-->
+    <t t-name="ShowOrderList">
+        <div class="control-button show_order_list">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            All Orders
+        </div>
+    </t>
+    
+    <t t-extend="PackLotLinePopupWidget">
+        <t t-jquery="[t-att-cid='lot_line.cid']" t-operation="replace">
+            <t t-if="widget.pos.config.enable_pos_serial">
+                <input type="text" t-att-cid="lot_line.cid"
+                    t-att-value="lot_line.get('lot_name')"
+                    t-att-autofocus="lot_line === focus_lot_line ? 'autofocus': undefined"
+                    class="popup-input packlot-line-input"
+                    placeholder="Serial/Lot Number" readonly='true'/>
+            </t>
+            <t t-if="!widget.pos.config.enable_pos_serial">
+                <input type="text" t-att-cid="lot_line.cid"
+                    t-att-value="lot_line.get('lot_name')"
+                    t-att-autofocus="lot_line === focus_lot_line ? 'autofocus': undefined"
+                    class="popup-input packlot-line-input"
+                    placeholder="Serial/Lot Number"/>
+            </t>
+        </t>
+    </t>
+    
+    
+    <t t-extend="PosTicket">
+    	<t t-jquery="table:last" t-operation="after">
+            <br/><table style="margin-left: 54px;"><tbody><tr id="barcode1"></tr></tbody></table>
+		</t>
+        <t t-jquery="[t-esc='order.name']" t-operation="replace">
+			<t t-esc="order.get_sale_order_name() || order.name" />
+		</t>
+		<t t-jquery=".receipt-orderlines" t-operation="replace">
+            <table class='receipt-orderlines'>
+                <colgroup>
+                    <col width='50%' />
+                    <col width='25%' />
+                    <col width='25%' />
+                </colgroup>
+                <tr t-foreach="orderlines" t-as="orderline">
+                    <td>
+                        <t t-esc="orderline.get_product().display_name"/>
+                        <t t-if="orderline.get_discount() > 0">
+                            <div class="pos-disc-font">
+                                With a <t t-esc="orderline.get_discount()"/>% discount
+                            </div>
+                        </t>
+                        <t t-if="orderline.get_serial() != null">
+                            <div class="pos-disc-font">
+                                Serial No: <t t-esc="orderline.get_serial()"/>
+                            </div>
+                        </t>
+                    </td>
+                    <td class="pos-right-align">
+                        <t t-esc="orderline.get_quantity_str_with_unit()"/>
+                    </td>
+                    <td class="pos-right-align">
+                        <t t-esc="widget.format_currency(orderline.get_display_price())"/>
+                    </td>
+                </tr>
+            </table>
+        </t>
+        <t t-jquery="table.receipt-total tr.emph" t-operation="replace">
+            <tr class="emph">
+                <td>
+                    <t t-if="order.get_return_order()">Total Refund:</t>
+                    <t t-if="!order.get_return_order()">Total:</t>
+                </td>
+                <td class="pos-right-align">
+                    <t t-esc="widget.format_currency(order.get_total_with_tax())"/>
+                </td>
+            </tr>
+        </t>
+	</t>
+
+    <t t-extend="XmlReceipt">
+    	<t t-jquery="receipt" t-operation="append">
+    	 	<br/>
+            <t t-if='receipt.order_no'>
+                <br/>
+                    <barcode encoding="CODE39">*<t t-esc='receipt.order_no' />*</barcode>
+                <br/>
+            </t>
+        </t>
+        <t t-jquery="[t-esc='receipt.name']" t-operation="replace">
+			<t t-esc="receipt.sale_order_name || receipt.name" />
+		</t>
+        <t t-jquery="line.total" t-operation="replace">
+            <line class='total' size='double-height'>
+                <left><pre>
+                    <t t-if="order.get_return_order()">        Total Refund:</t>
+                    <t t-if="!order.get_return_order()">        Total:</t>
+                </pre></left>
+                <right><value><t t-esc='receipt.total_with_tax' /></value></right>
+            </line>
+        </t>
+    </t>
+
+    <t t-name="ConfirmButton">
+        <div class='control-button js_confirm_order'>
+            <i class='fa fa-tag' /> Create Sales Order
+        </div>
+    </t>
+
+    <t t-name="QuotationButton">
+        <div class='control-button js_quotation_order'>
+            <i class='fa fa-tag' /> Create Quotation
+        </div>
+    </t>
+
+    <t t-name="SaleOrderPopupWidget">
+        <div class="modal-dialog">
+            <div class="popup popup-textinput" style="height: 203px;">
+                <p class="title">Confirmation</p>
+                <t t-if="widget.options.operation == 'confirm'">
+                    Sales Order Created:
+                </t>
+                <t t-if="widget.options.operation == 'draft'">
+                    Quotation Created:
+                </t>
+                <a style= "color:blue;" target="blank" t-att-href="widget.options.url"><t t-esc="widget.options.name"/></a>
+                <div class="footer">
+                    <div class="button cancel">
+                        OK
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-extend="PaymentScreenWidget">
+        <t t-jquery="div.payment-buttons" t-operation="append">
+            <t t-if="widget.pos.config.so_operation_paid and !widget.pos.get_order().get_return_order() and !widget.pos.get_order().get_from_product_operation()">
+                <div class='button create_so' id= "btn_so">
+                	<i class='fa fa-angle-double-right'></i>
+                    <span>
+                    	Create Sale Order
+                    </span>
+                </div>
+            </t>
+        </t>
+    </t>
+
+    <t t-name="AddProductButton">
+        <div class="control-button js_add_product">
+            Product Operations
+        </div>
+    </t>
+
+    <t t-name="ProductListScreenWidget">
+        <div class="productlist-screen screen">
+            <div class="screen-content">
+                <div class="heading_product" style="margin:20px;margin-left:388px;">
+                    <span style="font-size:20px;font-weight:bold;">Product Operations</span>
+                </div>
+                <section class="top-content">
+                    <span class='button back'>
+                        <i class='fa fa-angle-double-left'></i>
+                        Cancel
+                    </span>
+
+                     <span class='searchbox'>
+                        <input id= "search" placeholder='Search Product'/>
+                        <span class='search-clear'></span>
+                    </span>
+                     <span class='searchbox'></span>
+                </section>
+                <section class="full-content">
+                    <div class='window'>
+                        <section class='subwindow'>
+                            <div class='subwindow-container'>
+                                <div class='subwindow-container-fix touch-scrollable scrollable-y order-list-scroll' style="height:auto;max-height: 490px !important;">
+                                    <div>
+                                        <table class="product-input-table" style="margin: 35px auto;">
+                                            <tr>
+                                                <td ><label>Product Name </label></td>
+                                                <td><input type="text" id="name" class="name" placeholder="Product name"/></td>
+                                                <td><label>Barcode</label></td>
+                                                <td><input style="height: 32px;" type="text" id="ean13" class="ean13" placeholder="EAN13 Barcode"/></td>
+                                            </tr>
+                                            <tr>
+                                                <!--<td><label>Cost Price</label></td>-->
+                                                <!--<td><input style="height: 32px;" type="text" id="cost_price" class="cost_price" placeholder="Cost Price"/></td>-->
+                                                <td><label>Sale price</label></td>
+                                                <td><input style="height: 32px;"  type="text" id="sale_price" class="sale_price" placeholder="Sale Price"/></td>
+                                                <td><label>Internal Reference</label></td>
+                                                <td><input style="height: 32px;" type="text" id="internal_reference" class="internal_reference" placeholder="Internal Reference"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Codigo Battery</label></td>
+                                                <td><input  style="height: 32px;"  type="text" id="codigo_battery" class="codigo_battery" placeholder="Codigo Battery" /></td>
+                                                <td><label>POS category</label></td>
+                                                <td><select  style="width: 222px;font-size: 14px;" class="pos_category"></select></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Product Type</label></td>
+                                                <td>
+                                                    <select  style="width: 222px;font-size: 14px;" class="product_type">
+                                                        <option selected='True'  value="consu">Consumable</option>
+                                                        <option value="service">Service</option>
+                                                        <option value="product">Stockable Poroduct</option>
+                                                    </select>
+                                                </td>
+                                                <td><label>Internal category</label></td>
+                                                <td><select style="width: 222px;font-size: 14px;" class="internal_category"></select></td>
+                                            </tr>
+                                            <tr>
+                                                <td><label>Exchange</label></td>
+                                                <td><input type="checkbox" class="exchange_product" /></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <section class="bottom-content" style="align:center;margin-left: 320px;">
+                                        <button class="button saveclose" style="width:150px !important">Save
+                                        </button>
+                                        <button class="button clear" style="width:150px !important">Clear
+                                        </button>
+                                    </section>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="pos-assign_serial">
+        <table align="center">
+            <tr>
+                <td>Serial No. </td>
+                <td style="padding-left: 5px;">
+                    <input type="text" autofocus="autofocus" name="pos_serial" id="pos_serial" value="" style="width: 180px;"/>
+                </td>
+            </tr>
+        </table>
+    </t>
+
+    <t t-extend="Orderline">
+        <t t-jquery="ul.info-list li:first" t-operation="append">
+            <t t-if="line.get_serial() != null">
+                <li class="info">
+                    Serial No: 
+                    <em>
+                        <t t-esc="line.get_serial()" />
+                    </em>
+                </li>
+            </t>
+        </t>
+    </t>
+
+    <t t-name="ProductSerialListPopup">
+        <div class="modal-dialog">
+            <style>
+            .loader2 {
+                border: 16px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 16px solid #3498db;
+                width: 120px;
+                height: 120px;
+                -webkit-animation: spin 2s linear infinite; /* Safari */
+                animation: spin 2s linear infinite;
+            }
+
+            /* Safari */
+            @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+            }
+
+            @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+            }
+            </style>
+            <div class="popup popup-textinput serial_list">
+                <p class="title">Lista de Series</p>
+                <div class="popup_container">
+                        <div class="o_loading"/>    
+                    
+                    <div class="serial_header">
+                        <div class="serial_search_box">
+                            <input type="text" class="txt_serial_input" placeholder="Search Serial"/>
+                            <span class="serial-search-clear"><i class="fa fa-search" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="serail_contains">
+                        <table class="serial_list_table">
+                            <colgroup>
+                                <col width='30%' />
+                                <col width='20%' />
+                                <col width='30%' />
+                                <col width='20%' />
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>Número de Serie</th>
+                                    <th>Internal Reference</th>
+                                    <th>Producto</th>
+                                    <th>Remaining Qty</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-if="widget.serials">
+                                    <t t-foreach="widget.serials" t-as="serial">
+                                        <t t-if="serial.remaining_qty > 0 and widget.validate_serial(serial)">
+                                            <tr t-att-data-id="serial.id">
+                                                <td><t t-esc="serial.name or '-'" /></td>
+                                                <td><t t-esc="serial.ref or '-'" /></td>
+                                                <td><t t-if="serial.product_id" ><t t-esc="serial.product_id[1]" /></t></td>
+                                                <td><t t-esc="serial.remaining_qty" /></td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- <div class="serial_footer"> -->
+                        <div id="pagination">
+                             <div><button class="btn btn-danger" id="first"><i class="fa fa-angle-double-left fa-lg"></i></button></div>
+                             <div><button class="btn btn-danger" id="previous"></button></div>
+                             <div><span class="text" id="text"></span></div>
+                             <div><button class="btn btn-danger" id="next"></button></div>
+                             <div><button class="btn btn-danger" id="last"><i class="fa fa-angle-double-right fa-lg"></i></button></div>
+                         </div>
+                    <!-- </div> -->
+                </div>
+                <div class="footer">
+                    <div class="button cancel">
+                        Cancel
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!--Return-->
+    <t t-name="OrderListScreenWidget">
+        <div class="orderlist-screen screen">
+            <div class="screen-content">
+                <section class="top-content">
+                    <span class='button back'>
+                        <i class='fa fa-angle-double-left'></i>
+                        Cancel
+                    </span>
+                    <span class='searchbox'>
+                        <input placeholder='Search Orders' />
+                        <span class='search-clear'></span>
+                    </span>
+                    <span class='searchbox'></span>
+                    <span class='button reload'>
+                        <i class="fa fa-refresh" aria-hidden="true"></i>
+                        Reload
+                    </span>
+                </section>
+                <section class="full-content">
+                    <div class='window'>
+                        <section class='subwindow collapsed'>
+                            <div class='subwindow-container collapsed'>
+                                <div class='subwindow-container-fix order-details-contents'>
+                                </div>
+                            </div>
+                        </section>
+                        <section class='subwindow'>
+                            <div class='subwindow-container'>
+                                <div class='subwindow-container-fix touch-scrollable scrollable-y'>
+                                    <table class='order-list'>
+                                        <thead>
+                                            <tr>
+                                                <th>Order Ref</th>
+                                                <th>Receipt Ref</th>
+                                                <th>Customer</th>
+                                                <th>Order Date</th>
+                                                <th>Return Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class='order-list-contents'>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+                <div id="pagination">
+                     <div><button class="btn btn-danger" id="first"><i
+    class="fa fa-angle-double-left fa-lg"></i></button></div>
+                    <div><button class="btn btn-danger" id="previous"></button></div>
+                    <div><span class="text" id="text"></span></div>
+                    <div><button class="btn btn-danger" id="next"></button></div>
+                    <div><button class="btn btn-danger" id="last"><i
+    class="fa fa-angle-double-right fa-lg"></i></button></div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="OrderLine">
+        <tr class='order-line' t-att-data-id='order.id'>
+            <td><t t-esc='order.name' /></td>
+            <td><t t-esc='order.pos_reference' /></td>
+            <td><t t-esc='order.partner_id ? order.partner_id[1] : ""' /></td>
+            <td><t t-esc='order.date_order or ""' /></td>
+            <td>
+                <t t-if="order.return_status == 'nothing'"> - </t>
+                <t t-if="order.return_status == 'partial'"> Partially Returned </t>
+                <t t-if="order.return_status == 'full'"> Fully Returned </t>
+            </td>
+        </tr>
+    </t>
+
+    <t t-name="OrderDetails">
+        <section class='order-details'>
+            <div class='order-name'>Order Details</div>
+            <div class='close-buttons'>
+                <div class='button close'><i class="fa fa-times" aria-hidden="true"></i></div>
+            </div>
+            <div class='return-buttons'>
+                <div class='button return highlight'>Refund/Return</div>
+            </div>
+            <div class='order-details-box clearfix'>
+                <div class='order-details-left'>
+                    <div class='order-detail'>
+                        <span class='label'>Name</span>
+                        <t t-if='order.name'>
+                            <span class='detail order_name'><t t-esc='order.name' /></span>
+                        </t>
+                        <t t-if='!order.name'>
+                            <span class='detail order_name empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='order-detail'>
+                        <span class='label'>Customer</span>
+                        <t t-if='order.partner_id'>
+                            <span class='detail order-customer'><t t-esc='order.partner_id[1]' /></span>
+                        </t>
+                        <t t-if='!order.partner_id'>
+                            <span class='detail order-customer empty'>N/A</span>
+                        </t>
+                    </div>
+                </div>
+                <div class='order-details-right'>
+                    <div class='order-detail'>
+                        <span class='label'>Date</span>
+                        <t t-if='order.date_order'>
+                            <span class='detail date_order'><t t-esc='order.date_order'/></span>
+                        </t>
+                        <t t-if='!order.date_order'>
+                            <span class='detail date_order empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='order-detail'>
+                        <span class='label'>Status</span>
+                        <span class="detail return_status">
+                            <t t-if="order.return_status == 'nothing'"> - </t>
+                            <t t-if="order.return_status == 'partial'"> Partially Returned </t>
+                            <t t-if="order.return_status == 'full'"> Fully Returned </t>
+                        </span>
+                    </div>
+                </div>
+                <t t-if="orderlines">
+                    <div class="orderline-detail">
+                        <table class="line-table">
+                            <colgroup>
+                                <col width='30%' align="left"/>
+                                <col width='11%' align="center"/>
+                                <col width='11%' align="center"/>
+                                <col width='11%' align="center"/>
+                                <col width='11%' align="center"/>
+                                <col width='11%' align="center"/>
+                                <col width='11%' align="center"/>
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Quantity</th>
+                                    <th>Returns</th>
+                                    <th>Unit Price</th>
+                                    <th>Tax</th>
+                                    <th>Discount(%)</th>
+                                    <th>Price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="orderlines" t-as="orderline">
+                                    <t t-set="non_refundable"
+                                       t-value="widget.pos.db.get_product_by_id(orderline.product_id[0]).non_refundable" />
+                                    <tr>
+                                        <td><t t-esc="orderline.product_id ? orderline.product_id[1]: ''" />
+                                            <t t-if="non_refundable"><span style="color:red;">(None Refundable)</span> </t>
+                                        </td>
+                                        <td><t t-esc="widget.format_pr(orderline.qty, widget.pos.currency.rounding) or ''" /></td>
+                                        <td><t t-esc="widget.format_pr(orderline.qty - orderline.return_qty, widget.pos.currency.rounding) or ''" /></td>
+                                        <td><t t-esc="widget.format_currency(orderline.price_unit) or ''" /></td>
+                                        <td><t t-esc="widget.get_tax_by_id(orderline) or ''" /></td>
+                                        <td><t t-esc="widget.format_pr(orderline.discount, widget.pos.currency.rounding) or ''" /></td>
+                                        <td><t t-esc="widget.format_currency(orderline.price_subtotal_incl) or ''" /></td>
+                                    </tr>
+                                </t>
+                                <tr class="order-total">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total</td>
+                                    <td class="amount_total"><t t-esc="widget.format_currency(order.amount_total) or 0.00" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+                <t t-if="widget.statement_ids">
+                    <div class='order-details-left'>
+                        <span class="order_payment">Payment Modes</span>
+                        <t t-foreach="widget.statement_ids" t-as="statement_id">
+                            <div class='order-detail'>
+                                <span class='label' style="width: auto;"><t t-esc="statement_id.journal_id ? statement_id.journal_id[1] : ''" /></span>
+                                <t t-if='statement_id.journal_id and statement_id.amount'>
+                                    <span class='detail payment_amount'><t t-esc='widget.format_currency(statement_id.amount or 0.00)' /></span>
+                                </t>
+                                <t t-if='!statement_id.journal_id and !statement_id.amount'>
+                                    <span class='detail payment_amount empty'>0.00</span>
+                                </t>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </div>
+        </section>
+    </t>
+
+    <t t-name="LineReturnPopup">
+        <div class="modal-dialog">
+            <div class="popup popup_return_line">
+                <div class="btn button complete_return">
+                    Complete Return
+                </div>
+                <p class="title">Return Products</p>
+                <div class="return_orderline">
+                    <table class="popup-orderline-list">
+                        <colgroup>
+                            <col width="10%" />
+                            <col width="40%" />
+                            <col width="30%" />
+                            <col width="20%" />
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Product</th>
+                                <th>Lot/Serial</th>
+                                <th>Return Quantity</th>
+                            </tr>
+                        </thead>
+                        <tbody class="popup-orderline-list-contents">
+                            <t t-if="widget.lines">
+                                <t t-foreach="widget.lines" t-as="orderline">
+                                    <t t-set="non_refundable"
+                                       t-value="widget.pos.db.get_product_by_id(orderline.product_id[0]).non_refundable" />
+                                    <t t-if="orderline.return_qty &gt; 0 and !non_refundable">
+                                        <tr t-att-data-line-id="orderline.id">
+                                            <td><input type="checkbox" class="check_return" t-att-data-line-id="orderline.id"/></td>
+                                            <td><t t-esc="orderline.product_id ? orderline.product_id[1] : ''" />(<t t-esc="orderline.return_qty" />)</td>
+                                            <td><t t-esc="orderline.prodlot_id ? orderline.prodlot_id[1] : ' - '" /></td>
+                                            <td><input type="text" class="return_qty" t-att-data-line-id="orderline.id"/></td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="footer">
+                    <div class="button confirm">
+                        Return
+                    </div>
+                    <div class="button cancel">
+                        Cancel
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+</templates>

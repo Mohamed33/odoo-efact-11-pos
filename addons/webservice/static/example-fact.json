@@ -1,0 +1,34 @@
+{
+	"jsonrpc": "2.0",
+	"method": "call",
+	"params": {
+		"data": {
+			"cliente_id": "$cliente_id",
+			"lines": [
+				{
+					"id": "$id",
+					"descripción": "$descripcion",
+					"cantidad": "$q",
+					"precio": "$precio",
+					"descuento": "$descuento"
+				},
+				{
+					"id": "$id2"
+				},
+				{
+					"id": "$id3",
+					"descricion": "$description3"
+				}
+			],
+			"moneda": "$moneda",
+			"pago": [
+				{
+					"monto": 399,
+					"procedencia": "$procedencia",
+					"detalle": "$detalle",
+					"id_transaccion": "$id_transaccion"
+				}
+			]
+		}
+	}
+}

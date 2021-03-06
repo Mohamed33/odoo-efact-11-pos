@@ -1,0 +1,14 @@
+<template>
+  <t t-name="KanbanView.ColumnQuickCreate">
+    <div class="o_column_quick_create">
+      <div class="o_column_header">
+        <span class="o_kanban_add_column"><i class="fa fa-plus"/></span>
+        <span class="o_kanban_title">Add new Column</span>
+      </div>
+      <div class="o_kanban_quick_create">
+        <input type="text" class="o_input" placeholder="Column title"/>
+        <button class="btn btn-primary o_kanban_add" type="button">Add</button>
+      </div>
+    </div>
+  </t>
+</template>

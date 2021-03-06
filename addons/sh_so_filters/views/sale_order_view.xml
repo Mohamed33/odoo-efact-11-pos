@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data> 
+
+	<!-- PUT FILTER IN SALE ORDER -->
+	<record id="sh_inherit_so_filters" model="ir.ui.view">
+		<field name="name">sh.inherit.so.filters</field>
+		<field name="model">sale.order</field>
+		<field name="inherit_id" ref="sale.view_sales_order_filter"/>
+		<field name="arch" type="xml">
+			<xpath expr="//filter" position="before">		
+				
+				<filter string="Hoy" name="today" 
+					domain="[('date_order', '&gt;=', datetime.datetime.now().strftime('%m/%d/%Y 00:00:00')),('date_order', '&lt;=', datetime.datetime.now().strftime('%m/%d/%Y 23:23:59'))]"/>
+			
+			     <filter string="Ayer"  name="Yesterday" 
+                         domain="[('date_order','&gt;=', ((context_today()+datetime.timedelta(days=-1)).strftime('%Y-%m-%d'))), ('date_order','&lt;=', ((context_today()+datetime.timedelta(days=-1)).strftime('%Y-%m-%d')))]"
+                           help="Yesterday"/>				
+
+				<filter 
+			        string="Esta Semana"
+			        name="this_week"
+			        domain="[('date_order', '&gt;=', ((context_today()+ relativedelta(weeks=-1,weekday=0)).strftime('%Y-%m-%d'))), ('date_order', '&lt;=', ((context_today()+ relativedelta(weeks=-1,days=5,weekday=6)).strftime('%Y-%m-%d')))]"
+			       /> 				
+
+				
+				<filter string="Semana Pasada" name="prev_week"
+				domain="[('date_order', '&gt;=', ((context_today()+relativedelta(weeks=-2, weekday=0)).strftime('%Y-%m-%d'))),('date_order', '&lt;=', ((context_today()+relativedelta(weeks=-1,weekday=6)).strftime('%Y-%m-%d')))]"/>
+	
+				<filter string="Este Mes" name="this_month" 
+				domain="[('date_order','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')), ('date_order','&gt;=',time.strftime('%%Y-%%m-01'))]"/>				
+	
+				<filter string="Mes Anterior" name="prev_month" domain="[('date_order','&gt;=',(context_today()-relativedelta(months=1)).strftime('%%Y-%%m-01')),('date_order','&lt;',time.strftime('%%Y-%%m-01'))]"/>
+
+			    <filter string="Este Año" name="year" domain="[('date_order','&lt;=', time.strftime('%%Y-12-31')),('date_order','&gt;=',time.strftime('%%Y-01-01'))]"/>
+
+				<filter string="Año Anterior"
+                	domain="[('date_order', '&gt;=' ,(context_today()-relativedelta(years=1)).strftime('%Y-01-01')),('date_order','&lt;=',time.strftime('%Y-01-01'))]" help="last year"/>
+
+<!--
+				<filter string="Expire Yesterday" domain="[('validity_date','&gt;=', ((context_today()-datetime.timedelta(days=1)).strftime('%Y-%m-%d 00:00:00'))), ('validity_date','&lt;=', ((context_today()+datetime.timedelta(days=0)).strftime('%Y-%m-%d 00:00:00')))]"/>
+
+			    <filter string="Expire Tomorrow" domain="[('validity_date','&gt;=', ((context_today()+datetime.timedelta(days=0)).strftime('%Y-%m-%d 23:59:59'))), ('validity_date','&lt;=', ((context_today()+datetime.timedelta(days=1)).strftime('%Y-%m-%d 23:59:59')))]"/>
+	-->		       
+			 </xpath>
+		</field>
+	</record>    
+	
+	<!-- TO ADD FILTER IN SALE.REPORT VIEW -->
+	<record id="sh_inherit_sale_report_filters" model="ir.ui.view">
+		<field name="name">sh.inherit.sale.report.filters</field>
+		<field name="model">sale.report</field>
+		<field name="inherit_id" ref="sale.view_order_product_search"/>
+		<field name="arch" type="xml">
+			<xpath expr="//filter" position="before">		
+				
+				<filter string="Hoy" name="today" 
+					domain="[('date', '&gt;=', datetime.datetime.now().strftime('%m/%d/%Y 00:00:00')),('date', '&lt;=', datetime.datetime.now().strftime('%m/%d/%Y 23:23:59'))]"/>
+			
+			     <filter string="Ayer"  name="Yesterday" 
+                         domain="[('date','&gt;=', ((context_today()+datetime.timedelta(days=-1)).strftime('%Y-%m-%d'))), ('date','&lt;=', ((context_today()+datetime.timedelta(days=-1)).strftime('%Y-%m-%d')))]"
+                           help="Yesterday"/>				
+
+				<filter 
+			        string="Este Mes"
+			        name="this_week"
+			        domain="[('date', '&gt;=', ((context_today()+ relativedelta(weeks=-1,weekday=0)).strftime('%Y-%m-%d'))), ('date', '&lt;=', ((context_today()+ relativedelta(weeks=-1,days=5,weekday=6)).strftime('%Y-%m-%d')))]"
+			       /> 				
+
+				
+				<filter string="Semana Pasada" name="prev_week"
+				domain="[('date', '&gt;=', ((context_today()+relativedelta(weeks=-2, weekday=0)).strftime('%Y-%m-%d'))),('date', '&lt;=', ((context_today()+relativedelta(weeks=-1,weekday=6)).strftime('%Y-%m-%d')))]"/>
+	
+				<filter string="Este Mes" name="this_month" 
+				domain="[('date','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')), ('date','&gt;=',time.strftime('%%Y-%%m-01'))]"/>				
+	
+				<filter string="Mes Anterior" name="prev_month" domain="[('date','&gt;=',(context_today()-relativedelta(months=1)).strftime('%%Y-%%m-01')),('date','&lt;',time.strftime('%%Y-%%m-01'))]"/>
+
+			    <filter string="Este Año" name="year" domain="[('date','&lt;=', time.strftime('%%Y-12-31')),('date','&gt;=',time.strftime('%%Y-01-01'))]"/>
+
+				<filter string="Año Anterior"
+                	domain="[('date', '&gt;=' ,(context_today()-relativedelta(years=1)).strftime('%Y-01-01')),('date','&lt;=',time.strftime('%Y-01-01'))]" help="last year"/>
+
+
+			 </xpath>
+		</field>
+	</record>  	
+	
+	
+	
+	
+	<!-- TO ADD FILTER IN report.all.channels.sales VIEW -->
+	<record id="sh_inherit_report_all_channels_sale_filters" model="ir.ui.view">
+		<field name="name">sh.inherit.report.all.channels.sale.filters</field>
+		<field name="model">report.all.channels.sales</field>
+		<field name="inherit_id" ref="sale.report_all_channels_sales_view_search"/>
+		<field name="arch" type="xml">
+			<xpath expr="//filter" position="before">		
+				
+				
+				<filter string="Today" name="today" 
+					domain="[('date_order', '&gt;=', datetime.datetime.now().strftime('%m/%d/%Y 00:00:00')),('date_order', '&lt;=', datetime.datetime.now().strftime('%m/%d/%Y 23:23:59'))]"/>
+			
+			     <filter string="Yesterday"  name="Yesterday" 
+                         domain="[('date_order','&gt;=', ((context_today()+datetime.timedelta(days=-1)).strftime('%Y-%m-%d'))), ('date_order','&lt;=', ((context_today()+datetime.timedelta(days=-1)).strftime('%Y-%m-%d')))]"
+                           help="Yesterday"/>				
+
+				<filter 
+			        string="Current Week"
+			        name="this_week"
+			        domain="[('date_order', '&gt;=', ((context_today()+ relativedelta(weeks=-1,weekday=0)).strftime('%Y-%m-%d'))), ('date_order', '&lt;=', ((context_today()+ relativedelta(weeks=-1,days=5,weekday=6)).strftime('%Y-%m-%d')))]"
+			       /> 				
+
+				
+				<filter string="Previous Week" name="prev_week"
+				domain="[('date_order', '&gt;=', ((context_today()+relativedelta(weeks=-2, weekday=0)).strftime('%Y-%m-%d'))),('date_order', '&lt;=', ((context_today()+relativedelta(weeks=-1,weekday=6)).strftime('%Y-%m-%d')))]"/>
+	
+				<filter string="Current Month" name="this_month" 
+				domain="[('date_order','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')), ('date_order','&gt;=',time.strftime('%%Y-%%m-01'))]"/>				
+	
+				<filter string="Previous Month" name="prev_month" domain="[('date_order','&gt;=',(context_today()-relativedelta(months=1)).strftime('%%Y-%%m-01')),('date_order','&lt;',time.strftime('%%Y-%%m-01'))]"/>
+
+			    <filter string="Current Year" name="year" domain="[('date_order','&lt;=', time.strftime('%%Y-12-31')),('date_order','&gt;=',time.strftime('%%Y-01-01'))]"/>
+
+				<filter string="Previous Year"
+                	domain="[('date_order', '&gt;=' ,(context_today()-relativedelta(years=1)).strftime('%Y-01-01')),('date_order','&lt;=',time.strftime('%Y-01-01'))]" help="last year"/>
+                	
+
+			 </xpath>
+		</field>
+	</record>  	
+	
+	
+		
+	
+	
+	
+	
+</data>
+</odoo>

@@ -1,0 +1,47 @@
+.a_dialogs {
+  .o-flex-display();
+  .o-flex-flow(column, nowrap);
+  .o-flex(1, 0, 0);
+}
+
+.a_dialog,
+.a_dialog.modal {
+  .o-flex-display();
+  .o-flex-flow(column, nowrap);
+  .o-flex(1, 0, 0);
+  position: static; // Override modal styles
+
+  .a_navbar + * {
+    .o-flex(1, 1, 0);
+
+    overflow: auto;
+  }
+
+  .a_footer_content,
+  .o_modal_header {
+    .o-flex-display();
+    .o-flex-flow(row, wrap);
+    padding-left: @_grid-half-gutter-width;
+    padding-right: @_grid-half-gutter-width;
+  }
+
+  .a_footer_content {
+    background-color: @a-dialog-footer-bg;
+
+    button {
+      margin-bottom: 8px;
+      margin-top: 8px;
+
+      + button {
+        margin-left: 4px;
+      }
+    }
+  }
+
+  .o_modal_header {
+    background-color: @a-dialog-header-bg;
+    border-bottom: 1px solid @a-dialog-header-border-color;
+    padding-bottom: 8px;
+    padding-top: 8px;
+  }
+}

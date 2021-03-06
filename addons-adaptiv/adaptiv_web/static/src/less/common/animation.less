@@ -1,0 +1,209 @@
+/************** DEFINITION of ANIMATIONS **************/
+// 'marked' effects
+@keyframes markAnim {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.5) scaleY(0.5);
+  }
+
+  30% {
+    opacity: 1;
+    transform: scaleX(1) scaleY(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scaleX(1) scaleY(1);
+  }
+}
+
+@-moz-keyframes markAnim {
+  0% {
+    opacity: 0;
+    -moz-transform: scaleX(0.5) scaleY(0.5);
+  }
+
+  30% {
+    opacity: 1;
+    -moz-transform: scaleX(1) scaleY(1);
+  }
+
+  100% {
+    opacity: 0;
+    -moz-transform: scaleX(1) scaleY(1);
+  }
+}
+
+@-webkit-keyframes markAnim {
+  0% {
+    opacity: 0;
+    -webkit-transform: scaleX(0.5) scaleY(0.5);
+  }
+
+  30% {
+    opacity: 1;
+    -webkit-transform: scaleX(1) scaleY(1);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform: scaleX(1) scaleY(1);
+  }
+}
+
+@-o-keyframes markAnim {
+  0% {
+    opacity: 0;
+    -o-transform: scaleX(0.5) scaleY(0.5);
+  }
+
+  30% {
+    opacity: 1;
+    -o-transform: scaleX(1) scaleY(1);
+  }
+
+  100% {
+    opacity: 0;
+    -o-transform: scaleX(1) scaleY(1);
+  }
+}
+
+@-ms-keyframes markAnim {
+  0% {
+    opacity: 0;
+    -ms-transform: scaleX(0.5) scaleY(0.5);
+  }
+
+  30% {
+    opacity: 1;
+    -ms-transform: scaleX(1) scaleY(1);
+  }
+
+  100% {
+    opacity: 0;
+    -ms-transform: scaleX(1) scaleY(1);
+  }
+}
+
+// 'bounce' effect
+@-webkit-keyframes bounceIn {
+  0%,
+  20%,
+  40%,
+  60%,
+  80%,
+  100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes bounceIn {
+  0%,
+  20%,
+  40%,
+  60%,
+  80%,
+  100% {
+    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  0% {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  20% {
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  40% {
+    -webkit-transform: scale3d(0.9, 0.9, 0.9);
+    transform: scale3d(0.9, 0.9, 0.9);
+  }
+
+  60% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.03, 1.03, 1.03);
+    transform: scale3d(1.03, 1.03, 1.03);
+  }
+
+  80% {
+    -webkit-transform: scale3d(0.97, 0.97, 0.97);
+    transform: scale3d(0.97, 0.97, 0.97);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+/************** MIXINS for ANIMATIONS **************/
+.o-display-marked(@content, @top, @left, @color) {
+  color: @color;
+  content: @content;
+  font-family: "FontAwesome";
+  font-size: 300px;
+  .o-position-absolute(@top: @top, @left: @left);
+  .o-transform-origin();
+  .o-animation(markAnim, 1s, ease-in-out, 0s, 1, normal, forwards);
+
+  @media (max-width: @screen-sm-max) {
+    font-size: 30vw;
+    left: 40%;
+  }
+}
+
+/************** USAGE of ANIMATIONS **************/
+// Animation on wow button
+// TODO the only difference here is the "content" property, just make an
+// 'o_wow' class for the other properties to avoid generating useless CSS
+.o_wow_thumbs::after {
+  .o-display-marked("\f164", 20%, 40%, @odoo-brand-optional);
+}
+
+.o_wow_peace::after {
+  .o-display-marked("\f118", 20%, 40%, @odoo-brand-optional);
+}
+
+.o_wow_heart::after {
+  .o-display-marked("\f004", 20%, 40%, @odoo-brand-optional);
+}

@@ -1,0 +1,9 @@
+<odoo>
+    <template id="assets_backend_widget_marker_map_js" inherit_id="web.assets_backend">
+        <xpath expr="//script[last()]" position="after">
+            <script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=default"/>
+            <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtnbrGx_5rheKCMGanDEAQZ6sQsL2YCuQ&amp;libraries=&amp;v=weekly"/>
+            <script type="text/javascript" src="/widget_marker_map_partner/static/src/js/marker.js"/>
+        </xpath>
+    </template>
+</odoo>

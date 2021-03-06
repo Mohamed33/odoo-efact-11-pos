@@ -1,0 +1,29 @@
+<odoo>
+
+    <record id ="customize_distgal.view_inherit_order_tree_district" model="ir.ui.view">
+      <field name="name">order.tree.district</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_tree"/>
+      <field name="arch" type="xml">
+        <field name="partner_id" position="after">
+          <field name="street"/>
+        </field>  
+      </field>
+    </record>
+
+    <record id ="customize_distgal.view_inherit_order_form_restrict_price_unit" model="ir.ui.view">
+      <field name="name">sale.order.form</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//tree/field[@name='price_unit']" position="replace">
+          <!--Solo visible para Responsable-->
+          <field name="price_unit"
+                groups="sales_team.group_sale_salesman_all_leads"/>
+          <!--Solo visible para Vendedores-->
+          <field name="price_unit" readonly="1" force_save="1"
+                groups="sales_team.group_sale_salesman"/>
+        </xpath>
+      </field>
+    </record>
+</odoo>

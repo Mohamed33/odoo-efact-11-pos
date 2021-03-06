@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record model="ir.actions.act_window" id="servers_list_action">
+        <field name="name">Oim Servers</field>
+        <field name="res_model">oimadmin.servers</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Create first Server
+            </p>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="db_servers_list_action">
+        <field name="name">Db Servers</field>
+        <field name="res_model">oimadmin.dbservers</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Add Db Server
+            </p>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="odoo_instances_list_action">
+        <field name="name">Odoo instancias</field>
+        <field name="res_model">oimadmin.odooinstances</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Add first instance
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="oimadmin_main_menu" name="Oim Admin"/>
+    <menuitem id="oimadmin_server" name="Oim Servers" parent="oimadmin_main_menu" action="servers_list_action"/>
+    <menuitem id="oimadmin_db_server" name="Db Servers" parent="oimadmin_main_menu" action="db_servers_list_action"/>
+    <menuitem id="oimadmin_instancias" name="Odoo Instancias" parent="oimadmin_main_menu" action="odoo_instances_list_action" />
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="customize_multilogistica.view_form_partner_conductor" model="ir.ui.view">
+            <field name="name">view.form.partner.conductor</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="es_conductor" invisible="1"/>
+                            <field name="name"/>
+                            <field name="tipo_documento" string="Tipo de Documento"/>
+                            <field name="vat" string="Número de Comprobante"/>
+                            <field name="brevete" string="Brevete"/>
+                            <field name="country_id" invisible="1"/>
+                            <field name="state_id" invisible="1"/>
+                            <field name="province_id" invisible="1"/>
+                            <field name="district_id" 
+                                    context="{'ubigeo_search':True}" 
+                                    domain="[
+                                        ('country_id','=',country_id),
+                                        ('state_id','!=',False),
+                                        ('province_id','!=',False)]"
+                                    />
+                            <field name="zip"/>
+                        </group>
+                    </sheet>
+                </form>                
+            </field>
+        </record>
+        
+        
+
+    </data>
+</odoo>

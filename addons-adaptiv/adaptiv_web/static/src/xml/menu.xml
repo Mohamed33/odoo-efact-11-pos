@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+  <ul t-name="Menu" t-attf-class="nav #{widget.mobile ? 'sidebar-nav' : 'navbar-nav'} a_menu">
+    <t t-if="widget.active_menu">
+      <li t-foreach="widget.active_menu['children']" t-as="child">
+        <t t-if="child['children'].length">
+          <t t-call="Menu.dropdown_menu">
+            <t t-set="menu" t-value="child"/>
+          </t>
+        </t>
+        <t t-if="!child['children'].length">
+          <t t-call="Menu.menu_link">
+            <t t-set="menu" t-value="child"/>
+          </t>
+        </t>
+      </li>
+    </t>
+  </ul>
+
+  <t t-name="Menu.dropdown_menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+      <t t-esc="menu['name']"/>
+      <span class="caret"/>
+    </a>
+    <ul class="dropdown-menu dropdown-scrollable">
+      <t t-foreach="menu['children']" t-as="child">
+        <t t-call="Menu.menu">
+          <t t-set="menu" t-value="child"/>
+        </t>
+      </t>
+    </ul>
+  </t>
+
+  <t t-name="Menu.menu">
+    <t t-if="menu['children'].length">
+      <li class="dropdown-header"><t t-esc="menu.name"/></li>
+      <t t-foreach="menu['children']" t-as="child">
+        <t t-call="Menu.menu">
+          <t t-set="menu" t-value="child"/>
+        </t>
+      </t>
+    </t>
+    <t t-if="!menu['children'].length">
+      <li>
+        <t t-call="Menu.menu_link" />
+      </li>
+    </t>
+  </t>
+
+  <a t-name="Menu.menu_link"
+     t-att-data-action-id="menu.action ? menu.action.split(',')[1] : ''"
+     t-att-data-action-model="menu.action ? menu.action.split(',')[0] : ''"
+     t-att-data-menu="menu.id"
+     t-att-data-menu-xmlid="menu.xmlid"
+     t-attf-href="#menu_id=#{menu.id}&amp;action=#{menu.action ? menu.action.split(',')[1] : ''}">
+      <img t-if="display_icon &amp;&amp; menu.web_icon_data" t-attf-src="data:image/png;base64,#{menu.web_icon_data}" class="img" t-att-alt="menu.name" t-att-title="menu.name"/>
+      <t t-esc="menu.name"/>
+  </a>
+
+</templates>

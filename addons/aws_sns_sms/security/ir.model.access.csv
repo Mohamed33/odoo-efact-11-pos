@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_aws_sns_sms_aws_sns_sms,aws_sns_sms.aws_sns_sms,model_aws_sns_sms_aws_sns_sms,,1,0,0,0

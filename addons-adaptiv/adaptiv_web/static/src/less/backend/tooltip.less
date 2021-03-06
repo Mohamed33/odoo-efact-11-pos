@@ -1,0 +1,59 @@
+.tooltip {
+  margin: 0;
+  opacity: 1;
+  padding: 0;
+
+  .tooltip-inner {
+    background-color: @o-tooltip-bg;
+    border-radius: @border-radius-base;
+    color: @o-tooltip-color;
+    max-width: 50vw;
+    padding: @o-tooltip-padding;
+    text-align: left;
+
+    .o-shadow-depth-3();
+
+    .oe_tooltip_string:not(:empty) {
+      font-weight: bold;
+    }
+
+    .oe_tooltip_help {
+      padding: 5px 5px 0;
+      white-space: pre-line;
+    }
+
+    .oe_tooltip_technical {
+      list-style-type: circle;
+      margin: 5px 0 5px 20px;
+      padding: 0;
+
+      .oe_tooltip_technical_title {
+        font-weight: bold;
+      }
+    }
+  }
+
+  &.top,
+  &.top-left,
+  &.top-right {
+    .tooltip-arrow {
+      border-top-color: @o-tooltip-bg;
+    }
+  }
+
+  &.bottom,
+  &.bottom-left,
+  &.bottom-right {
+    .tooltip-arrow {
+      border-bottom-color: @o-tooltip-bg;
+    }
+  }
+
+  &.left .tooltip-arrow {
+    border-left-color: @o-tooltip-bg;
+  }
+
+  &.right .tooltip-arrow {
+    border-right-color: @o-tooltip-bg;
+  }
+}

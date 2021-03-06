@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+        <record id="customize_naomis.reporte_naomis" model="ir.ui.menu" >
+            <field name="name">Reporte de Naomi</field>
+            <field name="sequence" eval="100" />
+            <field name="parent_id" ref="account.menu_finance_reports" />
+        </record>
+        
+        <!-- <record id="customize_naomis.reporte_supervisor" model="ir.ui.menu" >
+            <field name="name">Reporte de Supervisor</field>
+            <field name="parent_id" ref="customize_naomis.reporte_naomis" />
+            <field name="sequence" eval="101" />
+            <field name="action" ref="customize_naomis.wizard_view_form_reporte_supervisor"/>
+        </record> -->
+        <record id="customize_naomis.liquidacion_despacho" model="ir.ui.menu" >
+            <field name="name">2. Liquidación de Despachi</field>
+            <field name="parent_id" ref="customize_naomis.reporte_naomis" />
+            <field name="sequence" eval="102" />
+        </record>
+        <record id="customize_naomis.consolidado_despacho" model="ir.ui.menu" >
+            <field name="name">3. Consolidado de Despacho</field>
+            <field name="parent_id" ref="customize_naomis.reporte_naomis" />
+            <field name="sequence" eval="104" />
+        </record>
+        <record id="customize_naomis.4_reporte_por_proveedor" model="ir.ui.menu" >
+            <field name="name">4. Reporte por Proveedor</field>
+            <field name="parent_id" ref="customize_naomis.reporte_naomis" />
+            <field name="sequence" eval="105" />
+        </record>
+    </data>
+</odoo>

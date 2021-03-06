@@ -1,0 +1,29 @@
+// Contains minor tweaks for Odoo module compatibility
+
+.o_project_kanban {
+  .o_kanban_record {
+    .o_favorite {
+      color: inherit;
+      position: absolute;
+      left: @o-kanban-record-padding-x;
+      top: @o-kanban-record-padding-y;
+    }
+  }
+}
+
+.o_reconciliation {
+
+  .statement_name {
+    padding-left: 0 !important;
+  }
+
+  .progress {
+    margin-right: 0 !important;
+    margin-bottom: @line-height-computed !important;
+  }
+
+  .o_reconciliation_line thead td {
+    background-color: @_shade-1 !important;
+    border-top: 1px solid @_shade-3 !important;
+  }
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="user_navbar" inherit_id="website.user_navbar">
+    <xpath expr="//nav[@id='oe_main_menu_navbar']" position="attributes">
+      <attribute name="class">a_navbar</attribute>
+    </xpath>
+
+    <xpath expr="//ul[hasclass('o_menu_sections')]" position="before">
+      <button type="button" class="a_app_menu_toggler">
+        <span class="sr-only">Toggle App Menu</span>
+        <i class="fa fa-th fa-lg app-drawer-icon-open"/>
+      </button>
+      <span class="navbar-title">Website</span>
+      <button type="button" class="a_menu_toggler">
+        <span class="sr-only">Toggle Menu</span>
+        <i class="fa fa-bars fa-lg"/>
+      </button>
+    </xpath>
+
+    <xpath expr="//button" position="replace" />
+    <xpath expr="//ul[@id='oe_applications']" position="replace" />
+    <xpath expr="//ul[hasclass('o_menu_sections')]" position="attributes">
+      <attribute name="class">o_menu_sections nav navbar-nav</attribute>
+    </xpath>
+    <xpath expr="//ul[hasclass('o_menu_systray')]" position="attributes">
+      <attribute name="class">o_menu_systray hidden-xs nav navbar-nav navbar-right</attribute>
+    </xpath>
+  </template>
+</odoo>

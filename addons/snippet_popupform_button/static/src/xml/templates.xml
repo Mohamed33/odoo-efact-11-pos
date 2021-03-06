@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <div t-name="snippet_popupform_button.elegir_curso">
+        <form role="form">
+            <div class="form-group">
+                <div class="form-group">
+                  <label for="sel1">Seleccionar un Curso</label>
+                  <select class="form-control" id="curso_seleccionado">
+                      <t t-foreach="cursos" t-as="curso">
+                            <option t-att-value="curso.id"><t t-esc="curso.name"/></option>
+                      </t>
+                  </select>
+                </div>
+            </div>
+        </form>
+    </div>
+</templates>

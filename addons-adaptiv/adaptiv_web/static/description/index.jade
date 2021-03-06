@@ -1,0 +1,60 @@
+link(rel="stylesheet" type="text/css" href="../../../../gulpfile.js/build/styles.css")
+
+div(class="adaptiv-description-wrap")
+  section(class="row")
+    div(class="col-xs-12")
+      h2(class="title") Looks do matter
+      h3(class="subtitle") A carefully crafted experience. Customizable by you.
+      div(class="unwrap")
+        img(src=images['dist/splash.png'], class="img")
+      p Completely rewritten backend theme for Odoo. The Adaptiv backend theme is dedicated to providing the best Odoo experience possible.
+
+  section(class="row")
+    div(class="col-xs-12")
+      h2(class="title") Make it yours
+      h3(class="subtitle") Multi company branding
+      div(class="unwrap")
+        img(src=images['dist/themes.png'], class="img")
+      p You know which colors you love the most. That's why the Adaptiv backend theme gives you full control over it's color palette.
+      ul
+        li Create your own color palette from the settings panel.
+        li Support for light and dark versions of your logo.
+        li Support for both SVG and PNG file formats.
+        li
+          b New
+          |  optional debrand features (including custom favicon).
+      each opts, theme in themes
+        div(class="col-xs-4 col-sm-3")
+          a(href=images['dist/login_' + theme + '.png'] target="_blank" class="thumbnail")
+            img(src=images['dist/login_' + theme + '_thumb.png'], alt=theme)
+
+  section(class="row")
+    div(class="col-xs-12")
+      h2(class="title") Get the most out of your screen area
+      h3(class="subtitle") Meet the shell overlay.
+      div(class="unwrap")
+        img(src=images['dist/shell.png'], class="img")
+      p The shell overlay replaces every large dialog found in Odoo and displays content on the side for an optimized experience. At small screen sizes the shell panes will completely cover the screen.
+
+  section(class="row")
+    div(class="xol-xs-12")
+      h2(class="title") Screenshots
+    each opts, theme in themes
+      each screen, index in screens
+        div(class="col-xs-4 col-sm-3")
+          a(href=images['dist/' + theme + '_screen_' + (index + 1) + '.png'] target="_blank" class="thumbnail")
+            img(src=images['dist/' + theme + '_screen_' + (index + 1) + '_thumb.png'], alt=screen.name)
+
+  section(class="row")
+    div(class="col-xs-12")
+      h2(class="title") Installation and compatibility
+      p See the documentation tab above, for full installation instructions and compatibility notes.
+
+  section(class="row")
+    div(class="col-xs-12")
+      h2(class="title") Get in touch
+      p For any issues, help or questions, feel free to contact me using these methods:
+      ul
+        li Email: raymond@adaptiv.nl
+        li Skype: raymondreggers
+

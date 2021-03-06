@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:-->
+<odoo>
+    <data>
+        <template id="index" name="sun_pos_rounding_amount index" inherit_id="point_of_sale.index">
+            <xpath expr="." position="inside">
+                <t t-call="sun_pos_rounding_amount.assets_gmaps"/>
+                <script type="text/javascript" src="/sun_pos_rounding_amount/static/src/js/screens.js"></script>
+                <script type="text/javascript" src="/sun_pos_rounding_amount/static/src/js/models.js"></script>
+                <link rel="stylesheet" type="text/css" href="/sun_pos_rounding_amount/static/src/css/pos_theme.css"/>
+                <script type="text/javascript" src="/sun_pos_rounding_amount/static/src/js/lib/jquery.timepicker.js"></script>
+
+            </xpath>
+        </template>
+
+        <template id="sun_pos_rounding_amount.assets_gmaps">
+            <t t-set="google_maps_api_key" t-value="request.env['ir.config_parameter'].sudo().get_param('google_api_key')"/>
+            <script type="text/javascript" src="/sun_pos_rounding_amount/static/src/js/lib/markerclusterer.js"/>
+            <script t-att-async="1" t-att-defer="1" t-attf-src="//maps.googleapis.com/maps/api/js?key=#{google_maps_api_key}&amp;libraries=places"></script>
+        </template>
+
+    </data>
+</odoo>

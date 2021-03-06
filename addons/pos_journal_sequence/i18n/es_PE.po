@@ -1,0 +1,104 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* pos_journal_sequence
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-13 05:50+0000\n"
+"PO-Revision-Date: 2018-01-13 00:53-0500\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es_PE\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#. module: pos_journal_sequence
+#. openerp-web
+#: code:addons/pos_journal_sequence/static/src/js/pos_journal_sequence.js:238
+#, python-format
+msgid "An anonymous order cannot be invoiced"
+msgstr "Una orden anónima no puede ser facturada"
+
+#. module: pos_journal_sequence
+#: model:ir.model.fields,field_description:pos_journal_sequence.field_pos_config_anonymous_id
+msgid "Anonymous Partner"
+msgstr "Cliente Anónimo"
+
+#. module: pos_journal_sequence
+#: model:ir.model.fields,help:pos_journal_sequence.field_pos_config_iface_journals
+msgid "Enables the use of journals from the Point of Sale"
+msgstr "Permite el uso de diarios desde el Punto de Venta"
+
+#. module: pos_journal_sequence
+#: model:ir.model.fields,field_description:pos_journal_sequence.field_ir_sequence_interpolated_prefix
+msgid "Interpolated Prefix"
+msgstr "Interpolated Prefix"
+
+#. module: pos_journal_sequence
+#: model:ir.model.fields,field_description:pos_journal_sequence.field_ir_sequence_interpolated_suffix
+msgid "Interpolated Suffix"
+msgstr "Interpolated Suffix"
+
+#. module: pos_journal_sequence
+#: code:addons/pos_journal_sequence/models/ir_sequence.py:43
+#, python-format
+msgid "Invalid prefix or suffix for sequence '%s'"
+msgstr "Invalid prefix or suffix for sequence '%s'"
+
+#. module: pos_journal_sequence
+#: model:ir.model.fields,field_description:pos_journal_sequence.field_pos_order_invoice_journal
+msgid "Invoice Journal"
+msgstr "Diario de factura"
+
+#. module: pos_journal_sequence
+#: model:ir.model.fields,field_description:pos_journal_sequence.field_pos_config_invoice_journal_ids
+#: model:ir.ui.view,arch_db:pos_journal_sequence.view_pos_config_form
+msgid "Invoice Sale Journals"
+msgstr "Diario de Facturas de Venta"
+
+#. module: pos_journal_sequence
+#: model:ir.ui.view,arch_db:pos_journal_sequence.view_pos_config_form
+msgid "Journals"
+msgstr "Diarios"
+
+#. module: pos_journal_sequence
+#: model:ir.model.fields,field_description:pos_journal_sequence.field_pos_order_number
+msgid "Number"
+msgstr "Número"
+
+#. module: pos_journal_sequence
+#: model:ir.model.fields,field_description:pos_journal_sequence.field_ir_sequence_all_number_increment
+msgid "Number Increment"
+msgstr "Number Increment"
+
+#. module: pos_journal_sequence
+#: model:ir.model,name:pos_journal_sequence.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "Pedidos de Punto de Venta"
+
+#. module: pos_journal_sequence
+#: model:ir.model.fields,field_description:pos_journal_sequence.field_pos_config_iface_journals
+msgid "Show Sale Journals"
+msgstr "Mostrar Diarios de Venta"
+
+#. module: pos_journal_sequence
+#. openerp-web
+#: code:addons/pos_journal_sequence/static/src/js/pos_journal_sequence.js:239
+#, python-format
+msgid "You need to select the customer before you can invoice an order."
+msgstr "Debe seleccionar al cliente antes de poder facturar un pedido."
+
+#. module: pos_journal_sequence
+#: model:ir.model,name:pos_journal_sequence.model_ir_sequence
+msgid "ir.sequence"
+msgstr "ir.sequence"
+
+#. module: pos_journal_sequence
+#: model:ir.model,name:pos_journal_sequence.model_pos_config
+msgid "pos.config"
+msgstr "pos.config"

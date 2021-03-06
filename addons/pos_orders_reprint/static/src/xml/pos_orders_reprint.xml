@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <templates id="pos_orders_reprint_template" inherit_id="point_of_sale.template" xml:space="preserve">
+
+
+
+ <!-- SeeAllOrdersScreenWidget -->
+    <t t-extend="SeeAllOrdersScreenWidget">
+        <!-- -->
+        <t t-jquery="tr" t-operation="append">
+        	<th colspan="2" style="text-align:center">Recibo</th>
+        </t>
+
+    </t>
+    
+    <!--Enviar Mail-->
+    <t t-name="SeeFormSendMailInvoice">
+        <div class="modal-dialog">
+            <div class="popup popup-confirm" style="width:700px">
+                <p class="title" style="background-color: #7f82ac; color: #fff;height: 10px;">Enviar Comprobante</p>
+                <div class="body" style="height: 300px;">
+                    <input type="text" id="email" placeholder="Correo"/>
+                </div>
+                <div class="footer" style="background-color: #7f82ac; color: #fff;">
+                    <div class="button send_mail" style="background-color: #E0E0E0; color: black;">
+                        Enviar Comprobante
+                    </div>
+                    <div class="button cancel" style="background-color: #E0E0E0; color: black;">
+                        Cancelar
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <!-- OrdersLine -->
+    <t t-extend="OrdersLine">
+        <!-- -->
+        <t t-jquery="tr" t-operation="append">
+			 <td>
+		        <button class="print-order" t-att-id='order.id' style="cursor: pointer; color: #fff; background-color: #7F82AC;"><i class="fa fa-print"></i> Print</button>
+		    </td>
+            <td>
+		        <button class="send-email-order" t-att-id='order.id' style="cursor: pointer; color: #fff; background-color: #7F82AC;"><i class="fa fa-print"></i> Enviar al correo</button>
+		    </td>
+        </t>
+
+    </t>
+
+    <t t-name="ReceiptScreenWidgetNew">
+        <div class='receipt-screen screen'>
+            <div class='screen-content'>
+                <div class='top-content'>
+                    <span class='button back'>
+                        <i class='fa fa-angle-double-left'></i>
+                        Atrás
+                    </span>
+                </div>
+                <div class="centered-content">
+                    <div class="button print ayaz">
+                        <i class='fa fa-print'></i> Imprimir Recibo
+                    </div>
+                    <div class="pos-receipt-container2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+
+    <t t-name="PosTicket1">
+        <t t-jquery='div[class="pos-sale-ticket"]' t-operation="replace">
+			<div class="pos-sale-ticket">
+                <div class="logo">
+                    <div class="pos-center-align">
+                        <!--
+                        <img src="/web/image/res.company/1/logo" class="img img-responsive"  style="height:120px"/>
+                        -->
+                        <img t-att-src='widget.pos.company_logo_base64' />
+                    </div>
+                </div>
+				<div class="pos-center-align"><b><t t-esc="widget.pos.company.name"/></b></div>
+				<div class="pos-center-align">Dirección: <t t-esc="widget.pos.company.street || ''"/></div>
+				<div class="pos-center-align">Telefono: <t t-esc="widget.pos.company.phone || ''"/></div>
+				<t t-if="comprobante.tipo"><div class="pos-center-align"><b>FACTURA ELECTRONICA</b></div></t>
+				
+                
+                <div class="pos-center-align">
+                    RUC: <t t-esc="widget.pos.company.vat || ''"/>
+
+					<h3>
+						<t t-if="comprobante.tipo=='03'">
+							<b> BOLETA DE VENTA ELECTRÓNICA</b><tr/>
+						</t>
+						<t t-if="comprobante.tipo=='01'">
+							<b> FACTURA DE VENTA ELECTRÓNICA </b><tr/>
+						</t>
+
+						<t t-if="comprobante.tipo == False">
+							<b>Nro:<t t-esc="comprobante.numero" /></b>
+						</t>
+						<t t-else="">
+							<b>Nro:<t t-esc="comprobante.numero" /></b>
+						</t>
+						
+					</h3>
+
+                </div>
+                
+				<div class="pos-center-align"><b>Fecha y hora: <t t-esc="fecha_emision"/></b></div>
+				<br />
+                <div class="section-customer">
+                    <t t-if="cliente">
+                        <div class="receipt-user">
+                            SEÑOR(ES): <t t-esc="cliente.name"/>
+                        </div>
+                        <div class="receipt-user">
+                            <t t-if="cliente.vat.length==8">
+                                DNI: <t t-esc="cliente.vat"/>
+                            </t>
+                            <t t-if="cliente.vat.length==11">
+                                RUC: <t t-esc="cliente.vat"/>
+                            </t>
+                        </div>
+                        <t t-if="cliente.street">
+                            <div class="receipt-user">
+                                DIRECCIÓN: <t t-esc="cliente.street"/>
+                            </div>
+                        </t>
+                    </t>
+                </div>
+				<br/>
+				<div class="pos-center-align">
+                    -----------------------------------------
+				</div>
+                <!--
+				<t t-if="widget.pos.receipt.header">
+					<div style='text-align:center'>
+						<t t-esc="widget.pos.receipt.header" />
+					</div>
+					<br />
+				</t>
+                -->
+                
+				<table class='receipt-orderlines'>
+					<colgroup>
+						<col width='15%' />
+						<col width='55%' />
+						<col width='15%' />
+						<col width='15%' />
+					</colgroup>
+					<tr>
+						<th><b>Cant.</b></th>
+						<th><b>Descripción</b></th>
+						<th><b>P.U.</b></th>
+						<th><b>Importe</b></th>
+					</tr>
+					<tr t-foreach="orderlines" t-as="orderline" style="border-bottom: 1px black dotted">
+						<td class="pos-left-align">
+							<t t-esc="orderline.qty"/>
+						</td>
+
+						<td>
+							<t t-esc="orderline.product_id"/>
+							<t t-if="orderline.discount > 0">
+                                <div class="pos-disc-font">
+                                    Con un <t t-esc="orderline.discount"/>% descuento
+                                </div>
+                            </t>
+						</td>
+						<td class="pos-center-align">
+							<t t-esc="widget.format_currency(orderline.price_unit)"/>
+						</td>
+						<td class="pos-right-align">
+							<t t-esc="widget.format_currency(orderline.price_unit*orderline.qty)"/>
+						</td>
+					</tr>
+				</table>
+                
+				<div class="pos-center-align">
+                    -----------------------------------------
+				</div>
+                
+				<table class='receipt-total'>
+                    <!--
+					<t t-if="comprobante.tipo">
+						<tr>
+							<td>Subtotal:</td>
+							<td class="pos-right-align">
+								<t t-esc="widget.format_currency(subtotal,0.01,'total',1)"/>
+							</td>
+						</tr>
+					</t>
+                    -->
+					<tr>
+						<t t-if="discount_total > 0">
+							<td>Descuento:</td>
+							<td class="pos-right-align">
+								<t t-esc="widget.format_currency(discount_total,0.01,'total',1)"/>
+							</td>
+						</t>
+					</tr>
+                    <t t-if="comprobante.tipo=='03' || comprobante.tipo=='01'">
+                        <tr>
+                            <td>OP. GRAVADA</td>
+                            <td class="pos-right-align">
+                                <t t-esc="widget.format_currency(gravado,0.01,'total',1)" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>OP. INAFECTA</td>
+                            <td class="pos-right-align">
+                                <t t-esc="widget.format_currency(inafecto,0.01,'total',1)" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>OP. EXONERADA</td>
+                            <td class="pos-right-align">
+                                <t t-esc="widget.format_currency(exonerado,0.01,'total',1)" />
+                            </td>
+                        </tr>
+                        <!--
+                        <tr>
+                            <td>OP. GRATUITA</td>
+                            <td class="pos-right-align">
+                                <t t-esc="widget.format_currency(gratuito,0.01,'total',1)" />
+                            </td>
+                        </tr>
+                        -->
+                    </t>
+
+					<t t-if="comprobante.tipo">
+                        <t t-foreach="taxes" t-as="tx">
+                            <tr>
+                                <td><t t-esc="tx[0]"/></td>
+                                <td class="pos-right-align">
+                                    <t t-esc="widget.format_currency(tx[1],0.01,'total',1)" />
+                                </td>
+                            </tr>
+                        </t>
+					</t>
+
+					<tr class="emph">
+						<td>IMPORTE TOTAL:</td>
+						<td class="pos-right-align">
+							<t t-esc="widget.format_currency(subtotal+discount_total+tax,0.0001,'total',1)"/>
+						</td>
+					</tr>
+				</table>
+                
+				<br />
+				<table class='receipt-paymentlines'>
+					<t t-foreach="paymentlines" t-as="line">
+					  <tr>
+						  <td>
+							  <t t-esc="line.name"/>
+						  </td>
+						  <td class="pos-right-align">
+							  <t t-esc="widget.format_currency(line.amount,0.0001,'total',1)"/>
+						  </td>
+					  </tr>
+					</t>
+				</table>
+				<br />
+
+				<table class='receipt-change'>
+					<tr><td>Cambio:</td><td class="pos-right-align">
+						<t t-esc="widget.format_currency(change,0.00001,'total',1)"/>
+						</td></tr>
+				</table>
+                
+                <!--
+				<t t-if="receipt.footer">
+					<br />
+					<div style='text-align:center'>
+						<t t-esc="receipt.footer" />
+					</div>
+				</t>
+                -->
+
+                
+				<div class="receipt-user">
+					SON: <t t-esc="monto_letras"/><br />
+				</div>
+				<div class="receipt-user">
+					Vendedor: <t t-esc="widget.pos.cashier ? widget.pos.cashier.name : widget.pos.user.name"/><br />
+				</div>
+				<br/>
+                <!-- <t t-if="qr">
+                    <img t-att-src="'/report/barcode/QR/%s' % 'My text in qr code'"/>
+                    <img t-att-src="'/report/barcode/QR/%s' % qr"/>
+                </t> -->
+
+                <!--<img t-att-src="'/report/barcode/?type=%s&value=%s&width=%s&height=%s'%('QR', texto_qr, 100, 100)"/>-->
+                <div style="font-size:9px">
+                    <br/>
+                        <div class="pos-center-align"><span style="font-size:14px" id="digestvalue"></span></div>
+                    <br/>
+                        <div class="pos-center-align"><div id="qrcode2"></div></div>
+                    <br/>
+                </div>
+
+                <br/>
+				<t t-if="comprobante.tipo and footer">
+					<br />
+					<div style='text-align:center'>
+						<t t-esc="footer" />
+					</div>
+				</t>
+			</div>
+		</t>
+
+    </t>
+
+
+
+
+
+  	</templates>
+
+

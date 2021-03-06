@@ -1,0 +1,14 @@
+<odoo>
+    <record id="customize_grupoblas.cron_cancelar_y_convertir_a_borrador" model="ir.cron">
+        <field name="name">CRON Cancelar venta y convertir a borrador</field>
+        <field name="model_id" ref="sale.model_sale_order"/>
+        <field name="state">code</field>
+        <field name="numbercall">-1</field>
+        <field name="interval_number">6</field>
+        <field name="interval_type">hours</field>
+        <field name="code">model.cron_cancelar_y_convertir_a_borrador()</field>
+        <field name="doall">1</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="nextcall" eval="(datetime.strptime(datetime.now().strftime('%Y-%m-%d %H:00:00'),'%Y-%m-%d %X') + timedelta(hours=7) ).strftime('%Y-%m-%d %X')"/>
+    </record>
+</odoo>

@@ -1,0 +1,75 @@
+<odoo>
+    <data>
+
+        <record id="ple.compras_08_1_tree" model="ir.ui.view">
+            <field name="name">ple.compras.tree</field>
+            <field name="model">ple.compras</field>
+            <field name="arch" type="xml">
+                <tree string="Invoice">
+                    <field name="company_id"/>
+                    <field name="period_id"/>
+                    <field name="state"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="ple.compras_08_1_form">
+            <field name="name">SUNAT: 08.1 REGISTRO DE COMPRAS</field>
+            <field name="model">ple.compras</field>
+            <field name="arch" type="xml">
+                <form>
+                <header>
+                    <button name="imprimir" string="Imprimir" type="object" class="oe_highlight"/>
+                    <button name="recargar" string="Recargar" type="object" class="oe_highlight"/>
+                    <button name="exportar" string="Exportar al PLE" type="object" class="oe_highlight"/>
+                    <field name ="state" widget="statusbar"/>
+                </header>
+                <sheet>
+
+                        <label string="SUNAT: 08.1 REGISTRO DE COMPRAS"/>
+                    <group>
+                        <field name ="company_id" string="compañia"/>
+                        <field name = "period_id"/>
+                    </group>
+
+                    <label string="Detalle"/>
+                    <field colspan="4" name="linea" nolabel="1" widget="one2many_list" mode="tree">
+                        <tree>
+
+                            <field name="cuo"/>
+                            <field name="date_invoice"/>
+                            <field name="date_due"/>
+                            <field name="serie"/>
+                            <field name="correlativo"/>
+                            <field name="partner_vat"/>
+                            <field name="partner_name"/>
+                            <field name="amount_untaxed"/>
+                            <field name="amount_tax"/>
+                            <field name="amount_total"/>
+                            <field name="currency_id_name"/>
+                            <field name="refund_invoice_date"/>
+                            <field name="refund_invoice_journal_code"/>
+                            <field name="refund_invoice_serie"/>
+                            <field name="refund_invoice_correlativo"/>
+
+                        </tree>
+                    </field>
+
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_ple_compras_view" model="ir.actions.act_window">
+            <field name="name">Ple de compras</field>
+            <field name="res_model">ple.compras</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem  parent="ple.sunat_ple_menu" name="08.1 REGISTRO DE COMPRAS" id="sunat_ple_menu_compras" action="action_ple_compras_view"/>
+
+
+    </data>
+</odoo>

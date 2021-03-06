@@ -1,0 +1,328 @@
+<odoo>
+    <data>
+        <!--Responsable de Ventas-->
+        <record id="customize_naomis.ir_model_access_cn_zona_responsable" model="ir.model.access">
+            <field name="name">access_cn_zona_responsable_ventas</field>
+            <field name="model_id" ref="customize_naomis.model_cn_zona"/>
+            <field name="group_id" ref="sales_team.group_sale_manager"/>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_unlink" eval="True" />
+            <field name="active" eval="True" />
+        </record>
+        
+        <record id="customize_naomis.ir_model_access_cn_ruta_responsable" model="ir.model.access">
+            <field name="name">access_cn_ruta_responsable_ventas</field>
+            <field name="model_id" ref="customize_naomis.model_cn_ruta"/>
+            <field name="group_id" ref="sales_team.group_sale_manager"/>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_unlink" eval="True" />
+            <field name="active" eval="True" />
+        </record>
+
+        <record id="customize_naomis.ir_model_access_cn_tipo_establecimiento_responsable" model="ir.model.access">
+            <field name="name">access_cn_tipo_establecimiento_responsable_ventas</field>
+            <field name="model_id" ref="customize_naomis.model_cn_tipo_establecimiento"/>
+            <field name="group_id" ref="sales_team.group_sale_manager"/>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_unlink" eval="True" />
+            <field name="active" eval="True" />
+        </record>
+
+        <record id="customize_naomis.ir_model_access_view_guia_remision_consolidado" model="ir.model.access">
+            <field name="name">access_view_guia_remision_consolidado</field>
+            <field name="model_id" ref="customize_naomis.model_view_guia_remision_consolidado"/>
+            <field name="group_id" ref="sales_team.group_sale_manager"/>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_unlink" eval="True" />
+            <field name="active" eval="True" />
+        </record>
+        
+        <record id="customize_naomis.ir_model_access_cn_programacion_ruta_responsable" model="ir.model.access">
+            <field name="name">access_cn_programacion_ruta_responsable_ventas</field>
+            <field name="model_id" ref="customize_naomis.model_cn_programacion_ruta"/>
+            <field name="group_id" ref="sales_team.group_sale_manager"/>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_unlink" eval="True" />
+            <field name="active" eval="True" />
+        </record>
+
+        <!--Reglas Responsable-->
+        <record id="customize_naomis.rule_cn_ruta_responsable" model="ir.rule">
+            <field name="name">Acceso a las rutas por compañia - Responsable</field>
+            <field name="model_id" ref="customize_naomis.model_cn_ruta"/>
+            <field name="domain_force">
+                [('company_id','=',user.company_id.id)]
+            </field>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_unlink" eval="False" />
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_manager'))]"/>
+        </record>
+
+
+        <record id="customize_naomis.rule_cn_programacion_ruta_responsable" model="ir.rule">
+            <field name="name">Acceso a la programación de rutas por compañia - Responsable</field>
+            <field name="model_id" ref="customize_naomis.model_cn_programacion_ruta"/>
+            <field name="domain_force">
+                [('company_id','=',user.company_id.id)]
+            </field>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_unlink" eval="False" />
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_manager'))]"/>
+        </record>
+
+        <record id="customize_naomis.rule_cn_zona_responsable" model="ir.rule">
+            <field name="name">Acceso a la programación de zona por compañia - Responsable</field>
+            <field name="model_id" ref="customize_naomis.model_cn_zona"/>
+            <field name="domain_force">
+                [('company_id','=',user.company_id.id)]
+            </field>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_unlink" eval="False" />
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_manager'))]"/>
+        </record>
+
+        <record id="customize_naomis.rule_cn_tipo_establecimiento_responsable" model="ir.rule">
+            <field name="name">Acceso a las tipos de establecimiento por compañia - Responsable</field>
+            <field name="model_id" ref="customize_naomis.model_cn_tipo_establecimiento"/>
+            <field name="domain_force">
+                [('company_id','=',user.company_id.id)]
+            </field>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_unlink" eval="False" />
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_manager'))]"/>
+        </record>
+
+        <record id="customize_naomis.rule_sale_order_responsable" model="ir.rule">
+            <field name="name">Acceso a órdenes de venta - Responsable</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="domain_force">
+                [('company_id','=',user.company_id.id)]
+            </field>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_unlink" eval="False" />
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_manager'))]"/>
+        </record>
+        <!--Vendedor-->
+        <record id="customize_naomis.ir_model_access_cn_zona_vendedor" model="ir.model.access">
+            <field name="name">access_cn_zona_vendedor_ventas</field>
+            <field name="model_id" ref="customize_naomis.model_cn_zona"/>
+            <field name="group_id" ref="sales_team.group_sale_salesman"/>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="active" eval="True" />
+        </record>
+        
+        <record id="customize_naomis.ir_model_access_cn_ruta_vendedor" model="ir.model.access">
+            <field name="name">access_cn_ruta_vendedor_ventas</field>
+            <field name="model_id" ref="customize_naomis.model_cn_ruta"/>
+            <field name="group_id" ref="sales_team.group_sale_salesman"/>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="active" eval="True" />
+        </record>
+
+        <record id="customize_naomis.ir_model_access_cn_tipo_establecimiento_vendedor" model="ir.model.access">
+            <field name="name">access_cn_tipo_establecimiento_vendedor_ventas</field>
+            <field name="model_id" ref="customize_naomis.model_cn_tipo_establecimiento"/>
+            <field name="group_id" ref="sales_team.group_sale_salesman"/>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="active" eval="True" />
+        </record>
+        
+        <record id="customize_naomis.ir_model_access_cn_programacion_ruta_vendedor" model="ir.model.access">
+            <field name="name">access_cn_programacion_ruta_vendedor_ventas</field>
+            <field name="model_id" ref="customize_naomis.model_cn_programacion_ruta"/>
+            <field name="group_id" ref="sales_team.group_sale_salesman"/>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="active" eval="True" />
+        </record>
+
+        <!--Reglas Vendedor-->
+        <record id="customize_naomis.rule_cn_zona_vendedor" model="ir.rule">
+            <field name="name">Acceso a las Zonas por compañia - Vendedor</field>
+            <field name="model_id" ref="customize_naomis.model_cn_zona"/>
+            <field name="domain_force">
+                [('company_id','=',user.company_id.id),('branch_id','=',user.branch_id.id)]
+            </field>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_salesman'))]"/>
+        </record>
+
+        <record id="customize_naomis.rule_cn_ruta_vendedor" model="ir.rule">
+            <field name="name">Acceso a las rutas por compañia - Vendedor</field>
+            <field name="model_id" ref="customize_naomis.model_cn_ruta"/>
+            <field name="domain_force">
+                [('company_id','=',user.company_id.id),('branch_id','=',user.branch_id.id)]
+            </field>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_salesman'))]"/>
+        </record>
+
+        <record id="customize_naomis.rule_cn_ruta_programacion_responsable" model="ir.rule">
+            <field name="name">Acceso a la programación de rutas por compañia - Vendedor</field>
+            <field name="model_id" ref="customize_naomis.model_cn_programacion_ruta"/>
+            <field name="domain_force">
+                [('company_id','=',user.company_id.id),('user_id','=',user.id)]
+            </field>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_salesman'))]"/>
+        </record>
+
+        <record id="customize_naomis.rule_cn_tipo_establecimiento_vendedor" model="ir.rule">
+            <field name="name">Acceso a las tipos de establecimiento por compañia - Vendedor</field>
+            <field name="model_id" ref="customize_naomis.model_cn_tipo_establecimiento"/>
+            <field name="domain_force">
+                [('company_id','=',user.company_id.id),('branch_id','=',user.branch_id.id)]
+            </field>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_salesman'))]"/>
+        </record>
+
+
+        <!--Permisos de acceso a sucursales -->
+        <record id="customize_naomis.ir_model_access_cn_res_branch_vendedor" model="ir.model.access">
+            <field name="name">access_res_branch_vendedor_ventas</field>
+            <field name="model_id" ref="customize_naomis.model_res_branch"/>
+            <field name="group_id" ref="sales_team.group_sale_salesman"/>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="active" eval="True" />
+        </record>
+
+        <record id="customize_naomis.ir_model_access_cn_res_branch_supervisor" model="ir.model.access">
+            <field name="name">access_res_branch_supervisor_ventas</field>
+            <field name="model_id" ref="customize_naomis.model_res_branch"/>
+            <field name="group_id" ref="sales_team.group_sale_manager"/>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="True" />
+            <field name="perm_write" eval="True" />
+            <field name="perm_unlink" eval="True" />
+            <field name="active" eval="True" />
+        </record>
+
+        <!--Reglas Vendedor por Surcursal-->
+<!-- 
+        <record id="customize_naomis.rule_cn_zona_vendedor_por_sucursal" model="ir.rule">
+            <field name="name">Acceso a las Zonas por sucursal - Vendedor</field>
+            <field name="model_id" ref="customize_naomis.model_cn_zona"/>
+            <field name="domain_force">
+                [('branch_id','=',user.branch_id.id)]
+            </field>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_salesman'))]"/>
+        </record>
+
+        <record id="customize_naomis.rule_cn_ruta_vendedor_por_sucursal" model="ir.rule">
+            <field name="name">Acceso a las rutas por sucursal - Vendedor</field>
+            <field name="model_id" ref="customize_naomis.model_cn_ruta"/>
+            <field name="domain_force">
+                [('branch_id','=',user.branch_id.id)]
+            </field>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_salesman'))]"/>
+        </record>
+
+        <record id="customize_naomis.rule_cn_ruta_programacion_responsable_por_sucursal" model="ir.rule">
+            <field name="name">Acceso a la programación de rutas por Sucursal - Vendedor</field>
+            <field name="model_id" ref="customize_naomis.model_cn_programacion_ruta"/>
+            <field name="domain_force">
+                [('branch_id','=',user.branch_id.id)]
+            </field>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_salesman'))]"/>
+        </record>
+
+        <record id="customize_naomis.rule_cn_tipo_establecimiento_vendedor_por_sucursal" model="ir.rule">
+            <field name="name">Acceso a las tipos de establecimiento por Sucursal- Vendedor</field>
+            <field name="model_id" ref="customize_naomis.model_cn_tipo_establecimiento"/>
+            <field name="domain_force">
+                [('branch_id','=',user.branch_id.id)]
+            </field>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_salesman'))]"/>
+        </record> -->
+
+        <!--Reglas de productos-->
+        <record id="customize_naomis.rule_product_template_por_proveedor" model="ir.rule">
+            <field name="name">Acceso a Product Template por Sucursal- Vendedor</field>
+            <field name="model_id" ref="customize_naomis.model_product_template"/>
+            <field name="domain_force">
+                [('supplier_id','child_of',user.supplier_ids.ids)]
+            </field>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_salesman'))]"/>
+        </record>
+
+        <record id="customize_naomis.rule_product_product_por_proveedor" model="ir.rule">
+            <field name="name">Acceso a Product Product por Sucursal- Vendedor</field>
+            <field name="model_id" ref="customize_naomis.model_product_product"/>
+            <field name="domain_force">
+                [('supplier_id','child_of',user.supplier_ids.ids)]
+            </field>
+            <field name="perm_read" eval="True" />
+            <field name="perm_create" eval="False" />
+            <field name="perm_write" eval="False" />
+            <field name="perm_unlink" eval="False" />
+            <field name="groups" eval="[(4,ref('sales_team.group_sale_salesman'))]"/>
+        </record>
+    </data>
+</odoo>

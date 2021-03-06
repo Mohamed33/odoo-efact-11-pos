@@ -1,0 +1,193 @@
+.o_base_settings {
+  .o-flex-display();
+  .o-flex-flow(column, nowrap);
+  .o-flex(1, 0, 0);
+
+  &.o_form_view.o_form_nosheet {
+    padding: 0;
+  }
+
+  .o_control_panel {
+    // Counteract control_panel.less
+    border-bottom: none;
+    display: block;
+
+    .o_form_statusbar {
+      top: initial !important;
+      margin: 0 !important;
+    }
+
+    .o_panel {
+      .o-flex-display();
+      .o-flex-flow(row, wrap);
+      .o-align-items(center);
+      border-bottom: 1px solid @o-control-panel-border-color;
+      padding: @o-control-panel-padding-y @o-control-panel-padding-x;
+
+      .title {
+        .o-flex(1, 1, 50%);
+        .h4;
+        color: @breadcrumb-active-color;
+        // Override annoying use of mt and mb classes
+        margin-top: (@_line-height-computed / 2) !important;
+        margin-bottom: (@_line-height-computed / 2) !important;
+      }
+      
+      .o_setting_search {
+        .o-flex(1, 1, 50%);
+        .o-flex-display();
+        border-bottom: 1px solid @input-border;
+        position: relative;
+
+        .searchInput {
+          background-color: transparent;
+          border: none;
+          outline: none;
+          padding: 4px 0 0;
+          .o-flex(1, 0, auto);
+        }
+
+        .searchIcon {
+          .o-position-absolute(4px, 0);
+        }
+      }
+    }
+  }
+
+  .o_setting_container {
+    .o-flex-display();
+    .o-flex(1, 1, auto);
+    .o-flex-flow(row, wrap);
+
+    .settings_tab {
+      .o-flex-display();
+      .o-flex-flow(column, nowrap);
+      background: @o-settings-tab-bg;
+      border-right: 1px solid @o-settings-tab-border-color;
+      overflow-y: auto;
+      padding: @o-settings-tab-padding-y 0;
+      width: @o-settings-tab-width;
+
+      .tab {
+        .o-flex-display();
+        .o-align-items(center);
+        color: @o-settings-tab-item-color;
+        cursor: pointer;
+        padding: @o-settings-tab-item-padding-y @o-settings-tab-item-padding-x;
+
+        &.selected {
+          background: @o-settings-tab-item-selected-bg;
+          color: @o-settings-tab-item-selected-color;
+        }
+
+        .icon {
+          height: @o-settings-icon-size;
+          width: @o-settings-icon-size;
+          margin-right: @_grid-half-gutter-width / 2;
+        }
+      }
+    }
+
+    .settings {
+      .o-flex(1, 0, 0);
+      position: relative;
+      padding: @o-form-sheet-padding-y @o-form-sheet-padding-x;
+      background-color: @o-form-bg;
+      overflow: auto;
+
+      .app_settings_block h2,
+      .settingSearchHeader .appName {
+        .h4;
+      }
+
+      .o_settings_container {
+        margin-top: 0 !important; // Counteract mt16
+        max-width: @screen-md-min; // Provide a maximum container size to ensure readability
+      }
+
+      .settingSearchHeader {
+        .o-flex-display();
+        .o-align-items(center);
+
+        .icon {
+          height: @o-settings-icon-size;
+          width: @o-settings-icon-size;
+          margin-right: @_grid-half-gutter-width / 2;
+        }
+      }
+
+      .notFound {
+        .h4;
+        color : @text-muted;
+        text-align: center;
+      }
+
+      .highlighter {
+        background: @o-settings-highlighter-bg;
+      }
+    }
+
+    .d-block {
+      display: block !important;
+    }
+  }
+}
+
+// Also used by POS 
+.o_settings_container {
+  .o_setting_box:visible:nth-child(odd) {
+    clear: left;
+  }
+
+  .o_setting_box {
+    margin-bottom: @o-settings-box-margin-y;
+    margin-top: @o-settings-box-margin-y;
+
+    .o_setting_left_pane {
+      width: @o-checkbox-size;
+      float: left;
+      .o_enterprise_label {
+        position: absolute;
+        top: 0px;
+        right: 40px;
+      }
+    }
+
+    .o_setting_right_pane {
+      margin-left: @o-checkbox-size + @_grid-half-gutter-width;
+      border-left: 1px solid @o-settings-box-border-color;
+      padding-left: @_grid-half-gutter-width;
+      .o_input_dropdown > .o_input {
+        width: 100%;
+      }
+      .o_field_widget {
+        width: 50%;
+      }
+      button.btn-link {
+        padding: 0;
+      }
+      a.oe-link {
+        font-size: @_font-size-small;
+      }
+    }
+  }
+}
+
+@media (max-width: @screen-xs-max) {
+  .o_base_settings {
+    .o_setting_container {
+      .o-flex-flow(column, nowrap);
+      .settings_tab {
+        .o-flex(0, 0, @o-settings-mobile-tab-height);
+        .o-flex-flow(row, nowrap);
+        position: relative;
+        overflow-y: hidden;
+        overflow-x: auto;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid @o-settings-tab-border-color;
+        padding: 0;
+      }
+    }
+  }
+}

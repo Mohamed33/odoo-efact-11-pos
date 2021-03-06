@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="admin_api_fe.view_tree_credenciales_admin_api" model="ir.ui.view">
+            <field name="name">view.tree.clientes.api.fe</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="vat"/>
+                    <field name="id_api_cliente"/>
+                </tree>
+            </field>
+        </record>
+
+        
+        <record id="admin_api_fe.view_button_crear_usuario_fe" model="ir.ui.view">
+            <field name="name">view.button.crear.usuario.fe</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="sunat_get_data.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <field name="id_api_cliente" readonly="1"/>
+                    <button name="create_user_api_fe" 
+                            type="object" 
+                            string="Crear Usuario FE" 
+                            attrs="{'invisible':[['id_api_cliente','!=',False]]}"
+                            class="oe_highlight"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="admin_api_fe.view_credenciales_admin_api" model="ir.ui.view">
+            <field name="name">view.credenciales.clientes.api.fe</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='email']" position="attributes">
+                    <attribute name="email" required="1"/>
+                </xpath>
+                <xpath expr="//field[@name='email']" position="after">
+                    <field name="cliente_api_fe"/>
+                    <field name="password" required="1"/>
+                </xpath>
+                <xpath expr="//notebook" position="inside">
+                    <page name="certificado_digital" 
+                            string="Certificado Digital" 
+                            attrs="{'invisible':[['id_api_cliente','=',False]]}">
+                        <group>
+                            <button name="actualizar_credenciales_sunat" 
+                                    type="object" 
+                                    string="Actualizar Cred. Sunat" 
+                                    class="oe_highlight"/>
+                            <field name="id_api_cliente" readonly="1"/>
+                            <field name="has_certificate"/>
+                            <field name="ose"/>
+                            <field name="cliente_sunat_user" attrs="{'invisible':[('ose','!=','sunat')]}"/>
+                            <field name="cliente_sunat_password"  attrs="{'invisible':[('ose','!=','sunat')]}"/>
+                            
+                            <field name="ose_efact_password" attrs="{'invisible':[('ose','!=','efact')]}"/>
+                            <field name="ose_efact_access_key" attrs="{'invisible':[('ose','!=','efact')]}"/>
+
+                            <field name="ose_nubefact_user" attrs="{'invisible':[('ose','!=','nubefact')]}"/>
+                            <field name="ose_nubefact_password" attrs="{'invisible':[('ose','!=','nubefact')]}"/>
+
+                            <field name="clave_publica"  attrs="{'invisible':[('has_certificate','=',False)]}"/>                        
+                            <field name="clave_privada"  attrs="{'invisible':[('has_certificate','=',False)]}"/>                        
+                        </group>
+                    </page>
+                    <page name="credenciales_api" 
+                            string="Credenciales API"
+                            attrs="{'invisible':[['id_api_cliente','=',False]]}">
+                        <group>
+                            <button name="generar_credencial_api" 
+                                    type="object" 
+                                    string="Generar Cred. API" 
+                                    class="oe_highlight"/>
+                            <field name="id_api_cliente" readonly="1"/>
+                            <field name="api_key_fe" readonly="1"/>                        
+                            <field name="api_secret_fe" readonly="1"/>                         
+                        </group>
+                    </page>
+                    
+                </xpath>
+            </field>
+        </record>
+
+        <record id="admin_api_fe.action_view_res_partner_cliente" model="ir.actions.act_window">
+            <field name="name">Clientes FE</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[['cliente_api_fe','=',True]]</field>
+            <field name="context">{'default_cliente_api_fe':True}</field>
+        </record>
+
+        <record id="admin_api_fe.action_view_res_partner_form" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="admin_api_fe.action_view_res_partner_cliente" />
+            <field name="view_id" ref="admin_api_fe.view_credenciales_admin_api" />
+            <field name="view_mode">form</field>
+            <field name="sequence" eval="2" />
+        </record>
+
+        <record id="admin_api_fe.action_view_res_partner_tree" model="ir.actions.act_window.view">
+            <field name="act_window_id" ref="admin_api_fe.action_view_res_partner_cliente" />
+            <field name="view_id" ref="admin_api_fe.view_tree_credenciales_admin_api" />
+            <field name="view_mode">tree</field>
+            <field name="sequence" eval="1" />
+        </record>
+    </data>
+</odoo>

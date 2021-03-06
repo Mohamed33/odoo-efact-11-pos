@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!--<div class="button control-button show-vehicle" >
+                <i class="fa fa-car"></i> Vehículos 
+            </div>-->
+
+    <t t-name="VehicleDetailsEdit">
+        <section class='vehicle-details edit'>
+            <input class='detail vehicle-placa' name='placa' t-att-value='vehicle.placa' placeholder='Placa'></input>
+            <div class='edit-buttons'>
+                <div class='button undo'><i class='fa fa-undo' /></div>
+                <div class='button save'><i class='fa fa-floppy-o' /></div>
+            </div>
+            <div class='vehicle-details-box clearfix'>
+                <div class='vehicle-details-left'>
+                <!--
+                    <div class='vehicle-detail'>
+                        <span class='label'>Placa</span>
+                        <input class='detail vehicle-placa' name='placa'       t-att-value='vehicle.placa || ""' placeholder='Placa'></input>
+                    </div>
+                    -->
+                    <div class='vehicle-detail'>
+                        <span class='label'>Marca</span>
+                        <input class='detail vehicle-marca' name='marca'       t-att-value='vehicle.marca || ""' placeholder='Marca'></input>
+                    </div>
+                    <div class='vehicle-detail'>
+                        <span class='label'>Modelo</span>
+                        <input class='detail vehicle-modelo'   name='modelo'         t-att-value='vehicle.modelo || ""' placeholder='Modelo'></input>
+                    </div>
+                    <div class='vehicle-detail'>
+                        <span class='label'>Año de fabricación</span>
+                        <input class='detail vehicle-anio_fabricacion'    name='anio_fabricacion'          t-att-value='vehicle.anio_fabricacion || ""' placeholder='Año de Fabricación'></input>
+                    </div>
+                </div>
+                <div class='vehicle-details-right'>
+                    <div class='vehicle-detail'>
+                        <span class='label'>KM</span>
+                        <input class='detail vehicle-km'  name='km'    t-att-value='vehicle.km || ""'></input>
+                    </div>
+                    <div class='vehicle-detail'>
+                        <span class='label'>Fecha de último servicio</span>
+                        <input class='detail vehicle-fecha_ultimo_servicio' 
+                                    id="fecha_ultimo_servicio"
+                                    name='fecha_ultimo_servicio' 
+                                    t-att-value='vehicle.fecha_ultimo_servicio || ""'></input>
+                    </div>
+                    <div class='vehicle-detail'>
+                        <span class='label'>Km de último servicio</span>
+                        <input class='detail km_ultimo_servicio'       name='km_ultimo_servicio'    t-att-value='vehicle.km_ultimo_servicio || ""'></input>
+                    </div> 
+                    
+                </div>
+            </div>
+        </section>
+    </t>
+
+    <t t-name="VehicleDetails">
+        <section class='vehicle-details'>
+            <div class='vehicle-placa'><t t-esc='vehicle.placa' /></div>
+            <div class='edit-buttons'>
+                <div class='button edit'><i class='fa fa-pencil-square' /></div>
+            </div>
+            <div class='vehicle-details-box clearfix'>
+                <div class='vehicle-details-left'>
+                    <div class='vehicle-detail'>
+                        <span class='label'>Marca</span>
+                        <t t-if='vehicle.marca'>
+                            <span class='detail vehicle-marca'><t t-esc='vehicle.marca' /></span>
+                        </t>
+                        <t t-if='!vehicle.marca'>
+                            <span class='detail vehicle-marca empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='vehicle-detail'>
+                        <span class='label'>Modelo</span>
+                        <t t-if='vehicle.modelo'>
+                            <span class='detail vehicle-modelo'><t t-esc='vehicle.modelo' /></span>
+                        </t>
+                        <t t-if='!vehicle.modelo'>
+                            <span class='detail vehicle-modelo empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='vehicle-detail'>
+                        <span class='label'>Año de fabricación</span>
+                        <t t-if='vehicle.anio_fabricacion'>
+                            <span class='detail vehicle-anio_fabricacion'><t t-esc='vehicle.anio_fabricacion' /></span>
+                        </t>
+                        <t t-if='!vehicle.anio_fabricacion'>
+                            <span class='detail vehicle-anio_fabricacion empty'>N/A</span>
+                        </t>
+                    </div>
+                </div>
+                <div class='vehicle-details-right'>
+                    <div class='vehicle-detail'>
+                        <span class='label'>km</span>
+                        <t t-if='vehicle.km'>
+                            <span class='detail vehicle-km'><t t-esc='vehicle.km'/></span>
+                        </t>
+                        <t t-if='!vehicle.km'>
+                            <span class='detail vehicle-km empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='vehicle-detail'>
+                        <span class='label'>Fecha de último servicio</span>
+                        <t t-if='vehicle.fecha_ultimo_servicio'>
+                            <span class='detail fecha_ultimo_servicio'><t t-esc='vehicle.fecha_ultimo_servicio'/></span>
+                        </t>
+                        <t t-if='!vehicle.fecha_ultimo_servicio'>
+                            <span class='detail fecha_ultimo_servicio empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='vehicle-detail'>
+                        <span class='label'>Km de último servicio</span>
+                        <t t-if='vehicle.km_ultimo_servicio'>
+                            <span class='detail km_ultimo_servicio'><t t-esc='vehicle.km_ultimo_servicio'/></span>
+                        </t>
+                        <t t-if='!vehicle.km_ultimo_servicio'>
+                            <span class='detail km_ultimo_servicio empty'>N/A</span>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </t>
+    
+    <t t-name="VehicleScreenWidget">
+         <div class="vehiclelist-screen screen">
+            <div class="screen-content">
+                <section class="top-content">
+                    <span class='button back'>
+                        <i class='fa fa-angle-double-left'></i>
+                        Cancelar
+                    </span>
+                    <span class='searchbox search-vehicle'>
+                        <input placeholder='Buscar vehículo' />
+                        <span class='search-clear'></span>
+                    </span>
+                    <span class='searchbox'></span>
+                    <span class='button new-vehicle'>
+                        <i class='fa fa-car'></i>
+                        <i class='fa fa-plus'></i>
+                    </span>
+                    <span class='button next oe_hidden highlight'>
+                        Establecer vehículo
+                        <i class='fa fa-angle-double-right'></i>
+                    </span>
+                </section>
+                <section class="full-content">
+                    <div class='window touch-scrollable scrollable-y'>
+                        <section class='subwindow collapsed'>
+                            <div class='subwindow-container'>
+                                <div class='subwindow-container-fix vehicle-details-contents' >
+                                </div>
+                            </div>
+                        </section>
+                        <section class='subwindow'>
+                            <div class='subwindow-container'>
+                                <div class='subwindow-container-fix touch-scrollable scrollable-y' style="height:260px">
+                                    <table class='vehicle-list'>
+                                        <thead>
+                                            <tr style="background-color: #7f82ac; color: #fff;">
+                                                <th>Placa</th>
+                                                <th>Marca</th>
+                                                <th>Modelo</th>
+                                                <th>Año de fabricación</th>
+                                                <th>KM</th>
+                                                <th>Fecha de último servicio</th>
+                                                <th>KM. de último servicio</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class='vehicle-list-contents'>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                        
+                    </div>
+                </section>
+                
+            </div>
+        </div>
+    </t>
+
+    <t t-name="VehicleLine">
+        <tr class="vehicles-line"  t-att-data-id='vehicle.id'>
+            <td class='vehicles-line-placa' t-att-data-id='vehicle.id' style="cursor: pointer;"><t t-esc='vehicle.placa or "-"' /></td>
+            <td class='vehicles-line-marca' t-att-data-id='vehicle.id' style="cursor: pointer;"><t t-esc='vehicle.marca or "-"' /></td>
+            <td class='vehicles-line-modelo' t-att-data-id='vehicle.id' style="cursor: pointer;"><t t-esc='vehicle.model or "-"' /></td>
+            <td class='vehicles-line-anio_fabricacion' t-att-data-id='vehicle.id' style="cursor: pointer;"><t t-esc='vehicle.anio_fabricacion or "-"' /></td>
+            <td class='vehicles-line-km' t-att-data-id='vehicle.id' style="cursor: pointer;"><t t-esc='vehicle.km or "-"' /></td>
+            <td class='vehicles-line-fecha_ultimo_servicio' t-att-data-id='vehicle.id' style="cursor: pointer;"><t t-esc='vehicle.fecha_ultimo_servicio or "-"' /></td>
+            <td class='vehicles-line-km_ultimo_servicio' t-att-data-id='vehicle.id' style="cursor: pointer;"><t t-esc='vehicle.km_ultimo_servicio or "-"' /></td>
+        </tr>
+    </t>
+
+
+    <t t-name="VehicleControlButtonWidget">
+        <button t-attf-class='button control-button set-vehicle' >
+            <i class='fa fa-car' /> 
+            <t t-if="widget.pos.get_vehicle()">
+                <t t-esc="widget.pos.get_vehicle().placa" />
+            </t>
+            <t t-if="!widget.pos.get_vehicle()">
+                Vehículo
+            </t>
+        </button>
+    </t>
+    <t t-name="CustomerControlButtonsWidget">
+        <button t-attf-class='button control-button set-customer #{ ( widget.pos.get_client() and widget.pos.get_client().name.length > 10) ? "decentered" : "" }' >
+            <i class='fa fa-user' /> 
+            <t t-if="widget.pos.get_client()">
+                <t t-esc="widget.pos.get_client().name" />
+            </t>
+            <t t-if="!widget.pos.get_client()">
+                Cliente
+            </t>
+        </button>
+    </t>
+
+    <t t-extend="ProductScreenWidget">
+        <t t-jquery='.control-buttons' t-operation="prepend">
+            <div class="placeholder-CustomerControlButtonsWidget"/>
+            <div class="placeholder-VehicleControlButtonWidget"/>
+        </t>
+    </t>
+
+    <t t-extend="ActionpadWidget">
+        <t t-jquery=".actionpad" t-operation="replace">
+            <div class="actionpad">
+            <!--
+                <button t-attf-class='button set-customer #{ ( widget.pos.get_client() and widget.pos.get_client().name.length > 10) ? "decentered" : "" }' >
+                    <i class='fa fa-user' /> 
+                    <t t-if="widget.pos.get_client()">
+                        <t t-esc="widget.pos.get_client().name" />
+                    </t>
+                    <t t-if="!widget.pos.get_client()">
+                        Customer
+                    </t>
+                </button>
+                -->
+                <button class='button pay' style="height:216px">
+                    <div class='pay-circle'>
+                        <i class='fa fa-chevron-right' /> 
+                    </div>
+                    Payment
+                </button>
+            </div>
+        </t>
+    </t>
+
+    
+</templates>
+
+<!---
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template"  inherit_id="point_of_sale.template" xml:space="preserve">
+    <t t-name="ButtonVehicleScreenWidget">
+        <div class="control-button">
+            <div class="button" >
+                <i class="fa fa-university"></i> Vehículos 
+            </div>
+        </div>
+    </t>
+
+</templates>-->

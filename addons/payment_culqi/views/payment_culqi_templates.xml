@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <template id="culqi_acquirer_button">
+            <!--
+            <form t-if="pk" t-att-action="tx_url" method="post" target="_self">
+            -->
+                <input type="hidden" name="data_set" t-att-data-action-url="tx_url" data-remove-me=""/>
+                <input type="hidden" name="pk" t-att-value="pk"/>
+                <input type="hidden" name="item_name" t-att-value="item_name"/>
+                <input type="hidden" name="item_number" t-att-value="item_number"/>
+                <input type="hidden" name="amount" t-att-value="amount"/>
+                <input t-if="handling" type="hidden" name="handling"
+                    t-att-value="handling"/>
+                <input type="hidden" name="currency_code" t-att-value="currency_code"/>
+                <!-- partner / address data -->
+                <input type="hidden" name="address1" t-att-value="address1"/>
+                <input type="hidden" name="city" t-att-value="city"/>
+                <input type="hidden" name="country" t-att-value="country"/>
+                <input type="hidden" name="email" t-att-value="email"/>
+                <input type="hidden" name="first_name" t-att-value="first_name"/>
+                <input type="hidden" name="last_name" t-att-value="last_name"/>
+                <input type="hidden" name="partner_id" t-att-value="partner_id"/>
+                <input type="hidden" name="zip" t-att-value="zip_code"/>
+                <input t-if='state' type='hidden' name="state"
+                    t-att-value='state'/>
+                <!-- after payment parameters -->
+                <input t-if='custom' type='hidden' name="custom"
+                    t-att-value='custom'/>
+                <!-- URLs
+                <input t-if="paypal_return" type='hidden' name='return'
+                    t-att-value="paypal_return"/>
+                <input t-if="acquirer.paypal_use_ipn" type='hidden' name='notify_url'
+                    t-att-value="notify_url"/>
+                <input t-if="cancel_return" type="hidden" name="cancel_return"
+                    t-att-value="cancel_return"/>-->
+                <!-- submit -->
+                <!--
+                <button type="submit" width="100px"
+                    t-att-class="submit_class">
+                    <img t-if="not submit_txt" src="/payment_culqi/static/src/img/culqi_icon.png"/>
+                    <span t-if="submit_txt"><t t-esc="submit_txt"/> <span class="fa fa-long-arrow-right"/></span>
+                </button>
+                
+            </form>
+            -->
+        </template>
+
+        <template id="test">
+            <t t-call="website.layout">
+            <meta name="robots" content="noindex"/>
+            <meta name="googlebot" content="noindex"/>
+            <style>
+                .list-tarjetas ul{
+                    list-style: none;
+                    padding:0px;
+                    display:flex;
+                    align-items: center;
+                }
+                .list-tarjetas ul li{
+                    flex-grow: 1;
+                    text-align: center;
+                }
+                .list-tarjetas ul img{
+                    height: 20px;
+                }
+                #content-loader{
+                    position:absolute;
+                    bottom:0px;
+                    left:0px;
+                    width:100%;
+                    height:350px;
+                    background:rgba(220,220,220,0.5);
+                    border-radius:20px;
+                }
+                .loader {
+                border: 16px solid #f3f3f3;
+                border-radius: 50%;
+                border-top: 16px solid #3498db;
+                border-bottom: 16px solid #3498db;
+                width: 120px;
+                height: 120px;
+                -webkit-animation: spin 2s linear infinite;
+                animation: spin 1s linear infinite;
+                position:absolute;
+                left:40%;
+                bottom:100px
+                }
+
+                @-webkit-keyframes spin {
+                0% { -webkit-transform: rotate(0deg); }
+                100% { -webkit-transform: rotate(360deg); }
+                }
+
+                @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+                }
+            </style>
+              <script src="https://checkout.culqi.com/v2"></script>
+
+
+
+              <script>
+                    Culqi.publicKey ='<t t-esc="public_key"/>' ;
+                    Culqi.init();
+
+                    Culqi.settings({
+                        title: 'Escuela FULLSTACK',
+                        currency: '<t t-esc="moneda"/>',
+                        description:'<t t-esc="name_pago"/>',
+                        amount:<t t-esc="monto"/>
+                    });
+              </script>
+              <div class="container">
+                <div class="row">
+
+                    <div class="col-md-offset-3 col-md-6 col-xs-12">
+                        <h3 class="text-primary">
+                            <i class="fa fa-lock" aria-hidden="true"></i> Pago Seguro
+                        </h3>
+                        <span>
+                            Estimado <b><t t-esc="name_partner"/></b>, usted puede realizar su pago del curso en esta pasarela de pago. Este enlace estará disponible por 72 horas, pasado este tiempo ya no podrá visualizar este formulario.
+                        </span>
+
+                        <div id="culqi-card-form">
+                            <div class="form-group list-tarjetas">
+                                <ul>
+                                    <li>
+                                        <img class="" src="/payment_culqi/static/src/img/visa.png"/>
+                                    </li>
+                                    <li>
+                                        <img src="/payment_culqi/static/src/img/dinersclub.png"/>
+                                    </li>
+                                    <li>
+                                        <img src="/payment_culqi/static/src/img/mastercard.png"/>
+                                    </li>
+                                    <li>
+                                        <img src="/payment_culqi/static/src/img/americanexpress.png"/>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Correo Electrónico</label>
+                                <input class="form-control" type="text" data-culqi="card[email]" id="card[email]"/>
+                            </div>
+
+                            <div class="form-group" >
+                                <label for="number_card">Número de tarjeta</label>
+                                <input class="form-control" type="text"  data-culqi="card[number]"  id="card[number]" />
+                            </div>
+
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <label for="cvv">CVV</label>
+                                        <input class="form-control" type="text"  data-culqi="card[cvv]" id="card[cvv]" placeholder="123"/>
+                                    </div>
+                                    <div class="col-xs-9">
+                                        <label for="exp_month">Fecha de expiración</label>
+                                        <div style="display:flex">
+                                            <div style="padding-right:10px">
+                                                <input class="form-control" type="text"  data-culqi="card[exp_month]" id="card[exp_month]"   placeholder="09"/>
+                                            </div>
+                                            <div>
+                                                <input class="form-control" type="text" data-culqi="card[exp_year]" id="card[exp_year]" placeholder="2050" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="content-loader" class="hidden" >
+                                <div class="loader"/>
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-success btn-lg " id="realizarpago" style="margin-bottom:10px" >
+                                    <span>PAGAR  <t t-esc="monto"/> <t t-esc="moneda"/></span>
+                                </button>
+                            </div>
+
+                            <div id="resultado_pago"/>
+
+                            <script>
+                                    $("#realizarpago").on("click",function(){
+                                        $("#content-loader").removeClass("hidden");
+                                        $("#resultado_pago").addClass("hidden");
+                                        //Culqi.open()
+                                        Culqi.createToken();
+                                    })
+                                    function culqi() {
+
+                                            if(Culqi.token) {
+                                                var token = Culqi.token.id;
+                                                var data={
+                                                    "token_id":token,
+                                                    "token_pago":'<t t-esc="token"/>',
+                                                    "payment_id":'<t t-esc="id_payment"/>',
+                                                    "return_url": '<t t-esc="return_url"/>'
+                                                    };
+                                                $.ajax({
+                                                        data:  data, //datos que se envian a traves de ajax
+                                                        url:   '/payment/culqi/pagar', //archivo que recibe la peticion
+                                                        type:  'post', //método de envio
+                                                        
+                                                        success:  function (data) { //una vez que el archivo recibe el request lo procesa y lo devuelve
+                                                                $("#resultado_pago").html(data);
+                                                                $("#resultado_pago").removeClass("hidden");
+                                                                $("#content-loader").addClass("hidden");
+                                                        },
+                                                        error: funcion(error){
+                                                             $("#content-loader").addClass("hidden");
+                                                            console.log("error");
+                                                        },
+                                                });
+                                            }else{ // ¡Hubo algún problema!
+                                                $("#resultado_pago").html('<div class="alert alert-warning">'+Culqi.error.user_message+'</div>');
+                                                $("#resultado_pago").removeClass("hidden");
+                                                $("#content-loader").addClass("hidden");
+                                            }
+                                    };
+
+                            </script>
+                        </div>
+
+                    </div>
+                </div>
+              </div>
+
+              </t>
+        </template>
+
+
+        <template id="culqi_form_pay">
+            <t t-call="website.layout">
+                <t t-set="additional_title">Shop - Confirmed</t>
+                <div id="wrap">
+                    <div class="container oe_website_sale">
+                        <t t-call="website_sale.wizard_checkout">
+                            <t t-set="step" t-value="40" />
+                        </t>
+                        <h1 class="mb32">Pay of Order <em t-field="order.name" /></h1>
+                        <div class="row">
+                            <div class="col-lg-8 col-sm-9">
+                                <style>
+                                    .list-tarjetas ul{
+                                        list-style: none;
+                                        padding:0px;
+                                        display:flex;
+                                        align-items: center;
+                                    }
+                                    .list-tarjetas ul li{
+                                        flex-grow: 1;
+                                        text-align: center;
+                                    }
+                                    .list-tarjetas ul img{
+                                        height: 20px;
+                                    }
+                                    #content-loader{
+                                        position:absolute;
+                                        bottom:0px;
+                                        left:0px;
+                                        width:100%;
+                                        height:350px;
+                                        background:rgba(220,220,220,0.5);
+                                        border-radius:20px;
+                                    }
+                                    .loader {
+                                    border: 16px solid #f3f3f3;
+                                    border-radius: 50%;
+                                    border-top: 16px solid #3498db;
+                                    border-bottom: 16px solid #3498db;
+                                    width: 120px;
+                                    height: 120px;
+                                    -webkit-animation: spin 2s linear infinite;
+                                    animation: spin 1s linear infinite;
+                                    position:absolute;
+                                    left:40%;
+                                    bottom:100px
+                                    }
+
+                                    @-webkit-keyframes spin {
+                                    0% { -webkit-transform: rotate(0deg); }
+                                    100% { -webkit-transform: rotate(360deg); }
+                                    }
+
+                                    @keyframes spin {
+                                    0% { transform: rotate(0deg); }
+                                    100% { transform: rotate(360deg); }
+                                    }
+                                </style>
+                                <script src="https://checkout.culqi.com/v2"></script>
+                                <script>
+                                    Culqi.publicKey ='<t t-esc="public_key"/>' ;
+                                    Culqi.init();
+                                    Culqi.settings({
+                                        title: 'Escuela FULLSTACK',
+                                        currency: '<t t-esc="moneda"/>',
+                                        description:'<t t-esc="name_pago"/>',
+                                        amount:<t t-esc="monto"/>
+                                    });
+                                </script>
+
+                                    <div id="culqi-card-form">
+                                        <div id="form-culqi">
+                                            <h3 class="text-primary">
+                                                <i class="fa fa-lock" aria-hidden="true"></i> Pago Seguro
+                                            </h3>
+                                            <span>
+                                                Estimado <b><t t-esc="name_partner"/></b>, usted puede realizar su pago del curso en esta pasarela de pago. Este enlace estará disponible por 72 horas, pasado este tiempo ya no podrá visualizar este formulario.
+                                            </span>
+                                            <div class="form-group list-tarjetas">
+                                                <ul>
+                                                    <li>
+                                                        <img class="" src="/payment_culqi/static/src/img/visa.png"/>
+                                                    </li>
+                                                    <li>
+                                                        <img src="/payment_culqi/static/src/img/dinersclub.png"/>
+                                                    </li>
+                                                    <li>
+                                                        <img src="/payment_culqi/static/src/img/mastercard.png"/>
+                                                    </li>
+                                                    <li>
+                                                        <img src="/payment_culqi/static/src/img/americanexpress.png"/>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Correo Electrónico</label>
+                                                <input class="form-control" type="text" data-culqi="card[email]" id="card[email]"/>
+                                            </div>
+                                            <div class="form-group" >
+                                                <label for="number_card">Número de tarjeta</label>
+                                                <input class="form-control" type="text"  data-culqi="card[number]"  id="card[number]" />
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-xs-3">
+                                                        <label for="cvv">CVV</label>
+                                                        <input class="form-control" type="text"  data-culqi="card[cvv]" id="card[cvv]" placeholder="123"/>
+                                                    </div>
+                                                    <div class="col-xs-9">
+                                                        <label for="exp_month">Fecha de expiración</label>
+                                                        <div style="display:flex">
+                                                            <div style="padding-right:10px">
+                                                                <input class="form-control" type="text"  data-culqi="card[exp_month]" id="card[exp_month]"   placeholder="09"/>
+                                                            </div>
+                                                            <div>
+                                                                <input class="form-control" type="text" data-culqi="card[exp_year]" id="card[exp_year]" placeholder="2050" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="content-loader" class="hidden" >
+                                                <div class="loader"/>
+                                            </div>
+                                            <div class="text-center">
+                                                <button class="btn btn-success btn-lg " id="realizarpago" style="margin-bottom:10px" >
+                                                    <span>PAGAR  <t t-esc="monto"/> <t t-esc="moneda"/></span>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div id="msg_pending" class="alert alert-info hidden" role="alert">
+                                            <t t-raw="order.payment_acquirer_id.pending_msg" />
+                                        </div>
+                                        <div id="msg_done" class="alert alert-success hidden" role="alert">
+                                            <t t-raw="order.payment_acquirer_id.done_msg" />
+                                        </div>
+                                        <div id="msg_cancel" class="alert alert-danger hidden" role="alert">
+                                            <t t-raw="order.payment_acquirer_id.cancel_msg" />
+                                        </div>
+                                        <div id="msg_error" class="alert alert-danger hidden" role="alert">
+                                            <t t-raw="order.payment_acquirer_id.error_msg" /><br/>
+                                            <div id="result_response" />
+                                        </div>
+                                        <div class="text-center">
+                                            <a id="btn_redirect" class="btn btn-success btn-lg hidden" href="/shop/confirmation">Continuar...</a>
+                                        </div>
+                                        <div id="resultado_pago"/>
+                                        <script>
+                                    $("#realizarpago").on("click",function(){
+                                        $("#content-loader").removeClass("hidden");
+                                        $("#resultado_pago").addClass("hidden");
+                                        //Culqi.open()
+                                        Culqi.createToken();
+                                    })
+                                    function culqi() {
+
+                                            if(Culqi.token) {
+                                                var token = Culqi.token.id;
+                                                var data={
+                                                    "token_id":token,
+                                                    "token_pago":'<t t-esc="token"/>',
+                                                    "payment_id":'<t t-esc="id_payment"/>'
+                                                    };
+                                                $.ajax({
+                                                        data:  data,
+                                                        url:   '<t t-esc="action_url"/>',
+                                                        type:  'post',
+
+                                                        success:  function (data) {
+                                                                var data = JSON.parse(data);
+                                                                $("#content-loader").addClass("hidden");
+                                                                if(data.code_response==0){
+                                                                    $("#form-culqi").addClass("hidden");
+                                                                    $("#msg_pending").addClass("hidden");
+                                                                    $("#msg_cancel").addClass("hidden");
+                                                                    $("#msg_error").addClass("hidden");
+                                                                    $("#msg_done").removeClass("hidden");
+                                                                    $("#btn_redirect").removeClass("hidden");
+                                                                }else{
+                                                                    $("#result_response").html(data.msg_response);
+                                                                    $("#msg_error").removeClass("hidden");
+                                                                }
+
+
+
+                                                        },
+                                                        error: function(error){
+                                                             $("#content-loader").addClass("hidden");
+                                                            console.log("error");
+                                                        },
+                                                });
+                                            }else{ // ¡Hubo algún problema!
+                                                $("#resultado_pago").html('<div class="alert alert-warning">'+Culqi.error.user_message+'</div>');
+
+                                                $("#content-loader").addClass("hidden");
+                                            }
+                                    };
+                                        </script>
+                                    </div>
+                            </div>
+                            <div class="col-lg-3 col-lg-offset-1 col-sm-3 text-muted">
+                                <t t-call='website_sale.bill_to'>
+                                    <t t-set="order" t-value= "order"/>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oe_structure" />
+                </div>
+
+            </t>
+        </template>
+
+        <template id="culqi_form_load">
+            <t t-call="website.layout">
+                <t t-set="additional_title">Shop - Confirmed</t>
+                <div id="wrap">
+                    <div class="container oe_website_sale">
+                        <t t-call="website_sale.wizard_checkout">
+                            <t t-set="step" t-value="40" />
+                        </t>
+                        <h1 class="mb32">Pay of Order <em t-field="order.name" /></h1>
+                        <div class="row">
+                            <div class="col-lg-8 col-sm-9">
+                                <form t-if="sucess" t-att-action="url" method="post" target="_self">
+                                    <h1>Éxito</h1>
+                                     <input type="hidden" name="return_url" t-att-value="return_url"/>
+                                    <button type="submit" width="100px"
+                                        t-att-class="submit_class">
+                                        <span>Continue...<span class="fa fa-long-arrow-right"/></span>
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-lg-3 col-lg-offset-1 col-sm-3 text-muted">
+                                <t t-call='website_sale.bill_to'>
+                                    <t t-set="order" t-value= "order"/>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oe_structure" />
+                </div>
+
+            </t>
+        </template>
+    </data>
+</odoo>

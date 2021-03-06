@@ -1,0 +1,126 @@
+.o_web_client .o_export {
+  min-height: 0;
+  .o-flex(1, 1, auto);
+  .o-flex-display();
+  .o-flex-flow(column, nowrap);
+
+  > .row,
+  > p {
+    .o-flex(0, 0, auto);
+  }
+
+  label {
+    vertical-align: top;
+  }
+
+  .o_export_format,
+  .o_import_compat {
+    display: inline-block;
+
+    > div {
+      .o-inline-flex-display();
+      .o-align-items(center);
+
+      > input,
+      > label {
+        margin: 0 0 0 4px;
+      }
+    }
+  }
+
+  .o_export_panel {
+    .o-flex-display();
+    .o-flex(1, 1, auto);
+
+    > div {
+      .o-flex-display();
+      .o-flex-flow(column, nowrap);
+      .o-justify-content(center);
+
+      &.o_left_panel {
+        .o-flex(1, 0, 0);
+      }
+
+      &.o_center_panel {
+        .o-flex(0, 0, auto);
+      }
+
+      &.o_right_panel {
+        .o-flex(1, 0, 0);
+      }
+
+      > div,
+      > h4 {
+        .o-flex(0, 0, auto);
+      }
+
+      > button {
+        margin: 4px 8px;
+        .o-flex(0, 0, auto);
+      }
+
+      .o_fields_list,
+      .o_left_field_panel {
+        border: 1px solid @o-export-panel-border-color;
+        min-height: 0;
+        overflow: auto;
+        .o-flex(1, 1, auto);
+      }
+
+      select.o_fields_list {
+        > option {
+          padding-left: @o-export-item-padding-left;
+        }
+      }
+
+      .o_export_tree_item {
+        cursor: pointer;
+        position: relative;
+        padding-left: @o-export-item-padding-left;
+        .user-select(none);
+
+        &.o_selected > .o_tree_column {
+          background-color: @o-export-item-selected-bg;
+          color: @o-export-item-selected-color;
+        }
+
+        .o_expand_parent {
+          display: inline-block;
+        }
+
+        .o_tree_column {
+          display: inline-block;
+
+          &.o_required {
+            border-bottom: 1px solid @adaptiv-brand-danger;
+          }
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      .o_exported_lists,
+      .o_save_list {
+        .o-flex-display();
+        .o-align-items(baseline);
+
+        > button,
+        > label {
+          .o-flex(0, 0, auto);
+        }
+
+        > select,
+        > input {
+          width: 0;
+          .o-flex(1, 0, auto);
+        }
+      }
+    }
+  }
+}
+
+.a_shell_pane .o_export {
+  padding: @_grid-half-gutter-width;
+}

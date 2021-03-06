@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record id="gestor_concesionario.view_form_report_ventas" model="ir.ui.view">
+      <field name="name">view.form.report.venta</field>
+      <field name="model">view_report_venta</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <field name="empresa_id" readonly="1"/>
+            <field name="fecha_inicio"/>
+            <field name="fecha_fin"/>
+          </group>
+          <footer>
+            <button type="object" name="button_generar_reporte" string="Generar Reporte" class="oe_highlight"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    <record id="gestor_concesionario.view_empresas_tree" model="ir.ui.view">
+      <field name="name">view.empresas.tree</field>
+      <field name="model">res.partner</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="vat"/>
+          <field name="total_comensales"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="gestor_concesionario.view_empresas_form" model="ir.ui.view">
+      <field name="name">view.empresas.form</field>
+      <field name="model">res.partner</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+            <button name="btn_view_reporte_ventas" string="Reporte de Ventas" type="object"></button>
+          </header>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="tipo_documento" required="1" string="Tipo de Documento"/>
+              <field name="vat" string="Número de documento"/>
+              <field name="registration_name" placeholder="Razón social"/>
+              <field name="street"/>
+              <field name="country_id"/>
+              <field name="state_id"/>
+              <field name="province_id"/>
+              <field name="district_id"/>
+              <field name="zip"/>
+            </group>
+            <notebook>
+              <page string="Comensales">
+                <field name="comensal_ids" mode="tree" domain="[('activo','=',True)]">
+                  <tree>
+                    <field name="vat" string="DNI"/>
+                    <field name="codigo" string="Código"/>
+                    <field name="name" string="Nombre"/>
+                    <field name="tipo_comensal" string="Tipo de Comensal"/>
+                    <field name="cargo" string="Cargo"/>
+                    <field name="area" string="Área"/>
+                    <field name="tipo" string="Tipo Comensal"/>
+                  </tree>
+                </field>
+              </page>
+              <page string="Carga Masiva" groups="base.group_user">
+                <span> <b> Descargar aquí </b></span><a href="/csv/download/plantilla">Plantilla de Comensales</a>
+                <group>
+                  <field name="filename" invisible="1"/>
+                  <field name="comensales_csv" filename="filename" widget="binary"/>
+                  <t t-if="comensales_csv">
+                    <button type="object"
+                            name="cargar_comensales"
+                            string="Cargar Comensales"
+                    />
+                  </t>
+                </group>
+              </page>
+              <page string="Programación de Menú">
+                  <field name="programacion_ids" mode="tree">
+                    <tree editable="top" string="Menú del día">
+                      <field name="fecha"/>
+                      <field name="product_ids" string="Menús del día" widget="many2many_tags" domain="[('es_menu','=',True)]"/>
+                    </tree>
+                  </field>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="gestor_concesionario.action_window_empresas" model="ir.actions.act_window">
+      <field name="name">Empresas</field>
+      <field name="res_model">res.partner</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">
+        [('es_empresa','=',True)]
+      </field>
+      <field name="context">
+        {
+          'default_es_empresa':True,
+        }
+      </field>
+    </record>
+
+
+    <record id="gestor_concesionario.action_view_empresas_tree" model="ir.actions.act_window.view">
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="gestor_concesionario.view_empresas_tree"/>
+      <field name="act_window_id" ref="gestor_concesionario.action_window_empresas"/>
+    </record>
+
+    <record id="gestor_concesionario.action_view_empresas_form" model="ir.actions.act_window.view">
+      <field name="view_mode">form</field>
+      <field name="view_id" ref="gestor_concesionario.view_empresas_form"/>
+      <field name="act_window_id" ref="gestor_concesionario.action_window_empresas"/>
+    </record>
+
+
+    <record id="gestor_concesionario.view_menus_tree" model="ir.ui.view">
+      <field name="name">view.menus.tree</field>
+      <field name="model">product.product</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="lst_price"/>
+          <field name="standard_price"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="gestor_concesionario.action_menu" model="ir.actions.act_window">
+      <field name="name">Menús</field>
+      <field name="res_model">product.product</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">
+        [("es_menu","=",True)]
+      </field>
+      <field name="context">
+        {'default_es_menu':True}
+      </field>
+    </record>
+
+    <record id="gestor_concesionario.action_view_menus_tree" model="ir.actions.act_window.view">
+      <field name="view_mode">tree</field>
+      <field name="view_id" ref="gestor_concesionario.view_menus_tree"/>
+      <field name="act_window_id" ref="gestor_concesionario.action_menu"/>
+    </record>
+
+
+    <record id="gestor_concesionario.action_productos_adicionales" model="ir.actions.act_window">
+      <field name="name">Productos Adiconales</field>
+      <field name="res_model">product.product</field>
+      <field name="view_mode">tree,form</field>
+      <field name="domain">
+        [("es_menu","=",False)]
+      </field>
+      <field name="context">
+        {'default_es_menu':False}
+      </field>
+    </record>
+
+
+    <menuitem id="gestor_concesionario.menu_principal_concesionario"
+              name="Concesionario Alimenticio"
+              web_icon="gestor_concesionario,static/src/img/logo.png"
+              parent=""/>
+
+    <menuitem id="menu_empresas_cliente"
+              name="Empresas"
+              parent="gestor_concesionario.menu_principal_concesionario"
+              action="gestor_concesionario.action_window_empresas"/>
+
+    <menuitem id="productos"
+              name="Productos"
+              parent="gestor_concesionario.menu_principal_concesionario"/>
+
+    <menuitem id="productos_adicionales"
+              name="Productos Adicionales"
+              parent="gestor_concesionario.productos"
+              action="gestor_concesionario.action_productos_adicionales"/>
+
+    <menuitem id="menu_menu"
+              name="Menús"
+              parent="gestor_concesionario.productos"
+              action="gestor_concesionario.action_menu"/>
+  </data>
+</odoo>

@@ -1,0 +1,84 @@
+<odoo>
+    <!-- BOLETA DE VENTA BEGIN -->
+        <record id="customize_naomis.action_nota_de_pedido" model="ir.actions.act_window">
+            <field name="name">* Nota de Venta *</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_id" ref="account.invoice_tree" />
+            <field name="view_mode">tree,kanban,form,calendar,pivot,graph</field>
+            <field name="context">
+				{
+				'type':'out_invoice',
+				'journal_type': 'sale',
+				'default_invoice_type_code':'00',
+				}
+            </field>
+            <field name="domain">
+				[('type','in',['out_invoice']),('journal_id.invoice_type_code_id','=','00')]
+            </field>
+            <field name="search_view_id" ref="account.view_account_invoice_filter" />
+        </record>
+
+        <record id="action_invoice_tree_nota_de_pedido" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="account.invoice_tree" />
+            <field name="act_window_id" ref="customize_naomis.action_nota_de_pedido" />
+        </record>
+
+        <record id="action_invoice_form_nota_de_pedido" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence" />
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account.invoice_form" />
+            <field name="act_window_id" ref="customize_naomis.action_nota_de_pedido" />
+        </record>
+
+        <menuitem name="* Nota de Venta *" 
+                    id="menu_nota_de_pedido" 
+                    action="customize_naomis.action_nota_de_pedido" 
+                    parent="account.menu_finance_receivables_documents" sequence="3" />
+        <!-- BOLETA DE VENTA START -->
+
+         <!--SEQUENCE BEGIN-->
+
+        <record id="ef_sequence_nota_de_venta" model="ir.sequence">
+            <field name="name">NOTA DE VENTA - SEQ - PV1</field>
+            <field name="implementation">no_gap</field>
+            <field name="prefix">PV1-</field>
+            <field name="padding">8</field>
+            <field name="use_date_range" eval="False"/>
+            <field name="number_increment">1</field>
+        </record>
+
+          <!--DIARIOS BEGIN-->
+        <record id="sales_journal_nota_de_Venta" model="account.journal">
+            <field name="name">NOTA DE VENTA - PV1</field>
+            <field name="refund_sequence" eval="True"/>
+            <field name="type">sale</field>
+            <field name="invoice_type_code_id">00</field>
+            <field name="code">PV1</field>
+            <field name="tipo_envio">0</field>
+            <field name="tipo_comprobante_a_rectificar">00</field>
+            <field name="sequence_id" ref="ef_sequence_nota_de_venta"/>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_account_customize_nota_de_venta">
+            <field name="name">Personalización para nota de venta</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="efact.view_account_invoice_events"/>
+            <field name="arch" type="xml">
+                <field name="sustento_nota" position="replace">
+                    <field name="sustento_nota" attrs="{'invisible': [('invoice_type_code','!=','07'),('invoice_type_code','!=','08')],'required':[('invoice_type_code','not in',['00','01','03'])]}"/>
+                </field>
+                <field name="refund_invoice_id" position="replace">
+                    <field name="refund_invoice_id" 
+                            string="Comprobante a rectificar"
+                            domain="[('state','not in',['draft','cancel']),('invoice_type_code','in',['00','07','08'])]"
+                            attrs="{'readonly':[['state','!=','draft']],'invisible': ['|',('formato_comprobante_ref','!=','electronico'),('invoice_type_code','not in',['07','08'])],'required':[('formato_comprobante_ref','=','electronico'),('invoice_type_code','not in',['00','01','03'])]}"
+                            options="{'no_create': True,'no_create_edit':True}"
+                            />
+                </field>
+                
+            </field>
+        </record>
+</odoo>

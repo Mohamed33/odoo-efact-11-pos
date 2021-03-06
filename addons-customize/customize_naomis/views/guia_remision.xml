@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="customize_naomis.view_form_guia_remision" model="ir.ui.view" >
+            <field name="model">efact.guia_remision</field>
+            <field name="inherit_id" ref="efact.view_form_guia_remision"/>
+            <field name="arch" type="xml">
+                <field name="movimiento_stock_ids" position="attributes">
+                    <attribute name="domain">[('partner_id','!=',False),('state','!=','draft')]</attribute>
+                </field>
+                <field name="comprobante_pago_ids" position="attributes">
+                    <attribute name="domain">[('partner_id','!=',False),('state','!=','draft')]</attribute>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

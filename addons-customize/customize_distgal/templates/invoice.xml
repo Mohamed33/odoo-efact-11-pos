@@ -1,0 +1,53 @@
+<odoo>
+            <record id="vit_dotmatrix.template_dotmatrix_invoice" model="mail.template">
+            <field name="name">Dot Matrix Invoice</field>
+            <field name="model_id" ref="account.model_account_invoice"/>
+            <field name="subject">Dot Matrix Template for Invoice</field>
+            <field name="body_html"><![CDATA[
+${'DISTGAL S.A.C.'.center(32)}
+${'R.U.C. : 20602244343'.center(32)}
+${'CAL. B MZA. A4 LOTE.27'.center(32)}
+${'URB. CEDROS DE LA VILLA'.center(32)}
+${'CHORRILLOS LIMA LIMA'.center(32)}
+${'TELEFONO 954712277'.center(32)}
+${''.center(32,'-')}
+% if object.number[0] == 'F':
+${'FACTURA ELECTRÓNICA'.center(32)}
+% endif 
+% if object.number[0] == 'B':
+${'BOLETA ELECTRÓNICA'.center(32)}
+% endif
+${'Serie : '}${(object.number or "")}
+${'Cliente : '}${((object.partner_id.name or "")+" - "+ (object.partner_id.vat or ""))}
+${'Dirección : '}${(object.partner_id.street or "")}
+${''.center(32,'-')}
+${'Fecha : '}${(object.date_invoice or "")}
+${''.center(32,'-')}
+${'Codigo      Articulo'}
+${'Cant.        Unidad        Total'}
+${''.center(32,'-')}
+% for l in object.invoice_line_ids:
+${((l.product_id.default_code or '') +" "+l.product_id.name)[:32]}
+${"{:4,.0f}".format(l.quantity).ljust(5)}${(l.uom_id.name or "").ljust(15)} ${"{:4,.2f}".format(l.price_total).rjust(12)}
+% endfor
+${''.center(32,'-')}
+${"Monto Gratuito".rjust(20)}${"{:12,.2f}".format(object.total_venta_gratuito).rjust(12)}
+${"Monto Gravado".rjust(20)}${"{:12,.2f}".format(object.total_venta_gravado).rjust(12)}
+${"Monto Impuesto".rjust(20)}${"{:12,.2f}".format(object.amount_tax).rjust(12)}
+${"Monto Total".rjust(20)}${"{:12,.2f}".format(object.amount_total).rjust(12)}
+${"Total Descuentos".rjust(20)}${"{:12,.2f}".format(object.total_descuentos).rjust(12)}
+
+${'Hash : '}${object.digest_value}
+${'Forma Pago : '}${(object.payment_term_id.name or "")}
+${'Vecha Vcto : '}${(object.date_due or "")}
+${'Vendedor : '}${("" or object.user_id.name)}
+${'Referencia : '}${(object.origin or '')} 
+
+${object.monto_en_letras}
+${'Representación impresa del Comprobante electrónico'}
+${'consulte su documento en http://distgal.inex.business/consulta'}
+${'-*-*-'}
+]]></field>
+</record>
+
+</odoo>

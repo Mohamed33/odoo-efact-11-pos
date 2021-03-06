@@ -1,0 +1,339 @@
+.o_chat_composer {
+  background-color: @o-mail-chat-composer-bg;
+  padding: @o-mail-chat-composer-padding-y @o-mail-chat-composer-padding-x;
+
+  .o_composer_container {
+    .o-flex(1, 0, 0);
+    position: relative;
+    padding-left: @_grid-half-gutter-width + @o-mail-avatar-size;
+  }
+
+  .o_thread_message_sidebar {
+    position: absolute;
+    left: 0;
+  }
+
+  .o_composer_subject {
+    background-color: @o-mail-chat-composer-input-bg;
+    border: 1px solid @o-mail-chat-composer-border-color;
+    border-bottom: none;
+    padding: @o-mail-chat-composer-padding-y  @o-mail-chat-composer-padding-x;
+    .o-flex(1, 0, 100%);
+    .o_input {
+      width: 100%;
+      border-bottom: none !important;
+    }
+  }
+
+  .o_composer {
+    background-color: @o-mail-chat-composer-input-bg;
+    border: 1px solid @o-mail-chat-composer-border-color;
+    .o-flex(1, 0, 0);
+    
+    .btn-icon {
+      border: none;
+    }
+
+    .o_composer_input {
+      > textarea {
+        display: block;
+        resize: none;
+        background-color: transparent;
+        border: none;
+        padding: @o-mail-chat-composer-padding-y @o-mail-chat-composer-padding-x;
+        width: 100%;
+      }
+    }
+
+    .o_mail_emoji_container {
+      border-top: 1px solid @o-mail-chat-composer-border-color;
+      padding: @o-mail-chat-composer-padding-y @o-mail-chat-composer-padding-x;
+      min-width: 100%;
+
+      .o_mail_emoji {
+        cursor: pointer; // only in the popover
+      }
+    }
+  
+    .o_composer_mention_dropdown .o_mention_proposition > a {
+      padding: @o-dropdown-item-padding-y @o-dropdown-item-padding-x;
+      width: 100%;
+      .o-text-overflow();
+  
+      .o_mention_info {
+        color: @text-muted;
+        font-style: italic;
+      }
+    }
+  }
+
+  .o_composer_attachments_list .o_attachments {
+    background-color: @o-mail-chat-composer-input-bg;
+    padding: @o-mail-chat-composer-padding-x @o-mail-chat-composer-padding-y;
+    border: 1px solid @o-mail-chat-composer-border-color;
+    border-top: none;
+  }
+
+
+  &.o_chat_inline_composer {
+    .o-flex-display();
+    .o-flex-flow(row, nowrap);
+    .o_composer {
+      border: 1px solid @o-mail-chat-composer-border-color;
+      padding-bottom: 0;
+      .o_composer_input {
+        .o-flex-display();
+        textarea {
+          .o-flex(1, 0, 0);
+        }
+      }
+    }
+
+    .o_chatter_composer_tools {
+      .o-flex-display();
+      .o-align-items(center);
+      border-left: 1px solid @o-mail-chat-composer-border-color;
+    }
+
+    .o_composer_button_send {
+      height: 100%;
+    }
+  }
+
+  &:not(.o_chat_inline_composer) {
+    .o_composer {
+      .o-flex(1, 0, 100%);
+    }
+
+    .o_chatter_composer_tools {
+      border-top: 1px solid @o-mail-chat-composer-border-color;
+      padding: (@o-mail-chat-composer-padding-y - @padding-small-vertical) (@o-mail-chat-composer-padding-x / 2);
+    }
+
+    .o_composer_button_send {
+      margin-left: @_grid-half-gutter-width + @o-mail-avatar-size;
+      margin-top: @o-mail-chat-composer-padding-y;
+    }
+  }
+
+  &.o_chat_mini_composer {
+    padding: 0;
+    .o_thread_message_sidebar, .o_composer_button_send {
+      display: none;
+    }
+
+    .o_composer {
+      border: none;
+      padding: 0;
+    }
+
+    .o_composer_input textarea {
+      padding: @o-mail-chat-composer-mini-padding-y  @o-mail-chat-composer-mini-padding-x;
+    }
+
+    .o_mail_emoji_container {
+      padding: @o-mail-chat-composer-mini-padding-y  @o-mail-chat-composer-mini-padding-x;
+    }
+
+    .o_composer_attachments_list .o_attachments {
+      padding: @o-mail-chat-composer-mini-padding-y  @o-mail-chat-composer-mini-padding-x;
+      border-top: 1px solid @o-mail-chat-composer-border-color;
+      border-left: none;
+      border-right: none;
+    }
+
+    .o_composer_container {
+      padding-left: 0;
+    }
+
+    .o_composer_attachments_list {
+      border: none;
+    }
+  }
+}
+
+.o_mail_emoji {
+  display: inline-block;
+  height: @line-height-computed;
+  width: @line-height-computed;
+  padding: 0;
+
+  > img {
+      width: 100%;
+  }
+}
+
+.o_attachment {
+  display: inline-block;
+  max-width: @o-mail-attachment-size;
+  position: relative;
+  width: @o-mail-attachment-size;
+
+  .o_image_box {
+    position: relative;
+  }
+
+  .o_image, .o_image_overlay, img {
+    height: @o-mail-attachment-size !important;
+    width: @o-mail-attachment-size !important;
+  }
+
+  .o_image_overlay {
+    position: absolute;
+    top: 0;
+  }
+
+  .caption {
+    display: block;
+    max-width: @o-mail-attachment-size;
+    overflow: hidden;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .o_attachment_progress_bar {
+    display: none;
+  }
+
+  .o_attachment_delete, .o_attachment_download {
+    color: @link-color;
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  .o_attachment_delete {
+    padding: @padding-small-vertical @padding-small-horizontal;
+    right: 0;
+    top: 0;
+    transform: translate(50%, -50%);
+  }
+
+  .o_attachment_download {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+  }
+
+  &.o_attachment_uploading {
+    .o_attachment_progress_bar {
+      background: @o-mail-attachment-progress-bar-bg;
+      color: @o-mail-attachment-progress-bar-color;
+      display: block;
+      height: @font-size-base;
+      line-height: @font-size-base;
+      position: absolute;
+      left: 0;
+      right: 0;
+      text-align: center;
+      top: @o-mail-attachment-size / 2;
+      transform: translate(0, -50%);
+      .o-shadow-depth-1();
+    }
+
+    .o_attachment_delete {
+      display: none;
+    }
+  }
+
+  &:hover {
+    .o_image_overlay {
+      background: @o-mail-attachment-hover-overlay-bg;
+    }
+    .o_attachment_delete, .o_attachment_download {
+      opacity: 1;
+    }
+  }
+}
+
+
+.o_modal_fullscreen {
+  .o_viewer_content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+    .o_viewer-header {
+      width: 100%;
+      min-height: @a-navbar-height;
+      max-height: @a-navbar-height;
+      background-color: @a-navbar-bg;
+      color: @a-navbar-color;
+      cursor: auto;
+      padding-left: @_grid-half-gutter-width;
+      padding-right: @_grid-half-gutter-width;
+      .o_image_caption {
+        color: inherit;
+        display: block;
+        float: left;
+        font-size: @_font-size-h3;
+        font-weight: @headings-font-weight;
+        height: @a-navbar-height;
+        line-height: floor((@_font-size-h3 * @_line-height-base));
+        margin: 0 5px 0 0;
+        padding: ((@a-navbar-height - floor((@_font-size-h3 * @_line-height-base))) / 2) 0;
+      }
+      .list-inline.pull-right {
+        height: @a-navbar-height;
+        line-height: floor((@_font-size-h3 * @_line-height-base));
+        margin: 0 5px 0 0;
+        padding: ((@a-navbar-height - floor((@_font-size-h3 * @_line-height-base))) / 2) 0;
+      }
+    }
+    .o_loading_img {
+      .o-position-absolute(@top: 50%);
+      width: 25px;
+      right: 50%;
+      z-index: 1;
+    }
+    .o_viewer_img_wrapper {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      .o_viewer_zoomer {
+        width: 100%;
+        height: 100%;
+        .o-flex-display();
+        justify-content: center;
+        align-items: center;
+        img, video {
+          max-width: 100%;
+          max-height: 100%;
+          transition: 0.3s cubic-bezier(0, 0, 0.49, 1.6) 0s, opacity 0.15s;
+        }
+        .o_viewer_pdf {
+          width: 80%;
+          height: 90%;
+          border: 0px;
+          box-shadow: 1px 1px 20px 1px #000;
+        }
+        .o_viewer_video {
+          height: 80%;
+        }
+      }
+    }
+    .o_viewer_toolbar {
+      .o-position-absolute(@left: 50%);
+      bottom: 15px;
+      transform: translate(-50%, -50%);
+      padding: 8px 10px 0px 10px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 4px;
+    }
+  }
+  .arrow {
+    .o-position-absolute(@top: 50%);
+    color: #FFFFFF;
+  }
+  .arrow-left {
+    left: 0;
+  }
+
+  .arrow-right {
+    right: 0;
+  }
+  i.fa {
+    color: @a-navbar-color;;
+  }
+}

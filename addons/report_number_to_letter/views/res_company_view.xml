@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="report_number_to_letter.add_field_url_consulta_comprobante" model="ir.ui.view">
+            <field name="name">add.field.url_consulta_comprobante</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='website']" position="after">
+                    <field name="url_consulta_comprobante"/>
+                    <field name="mensaje_representacion_impresa"/>
+                </xpath>
+            </field>
+        </record>
+
+        
+    </data>
+</odoo>

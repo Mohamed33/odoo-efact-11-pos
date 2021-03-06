@@ -1,0 +1,132 @@
+<odoo>
+    <data>  
+
+        <record id="customize_naomis.view_form_consolidar_facturas_en_guia_remision" model="ir.ui.view">
+            <field name="name">view.form.consolidar.facturas.en.guia.remision</field>
+            <field name="model">view.guia.remision.consolidado</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button string="Cargar Comprobantes" type="object" name="cargar_comprobantes" class="oe_highlight"/>
+                        <button string="Crear Guía de Remisión" type="object" name="generar_guia_remision" class="oe_highlight"/>
+                        <button string="Imprimir Liquidación de Despacho" type="object" name="imprimir_liquidacion_despacho" class="oe_highlight"/>
+                        <button string="Imprimir Consolidado de Despacho" type="object" name="imprimir_consolidado_despacho" class="oe_highlight"/>
+                        <!--<button type="action" string="Impresión Matricial" icon="fa-print" custom="print"/>-->
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="seleccion_vendedor" widget="radio"/>
+                                <field name="vendedor_ids" widget="many2many_tags" attrs="{'invisible':[('seleccion_vendedor','=','todos_vendedores')]}"/>
+                                <field name="ruta_ids" widget="many2many_checkboxes"/>
+                            </group>
+                            <group>
+                                <field name="transportista_id"/>
+                                <field name="fecha_inicio"/>
+                                <field name="fecha_limite"/>
+                            </group>
+                        </group>  
+                        <notebook>
+                            <page string="Comprobantes" >
+                                <field name="comprobante_ids" mode="tree" options="{'no_create_edit': True,'no_create': True}">
+                                    <tree>
+                                        <field name="user_id"/>
+                                        <field name="state"/>
+                                        <field name="number"/>
+                                        <field name="partner_id"/>
+                                        <field name="date_invoice"/>
+                                        <field name="amount_total"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Impresión">
+                                    <button type="action" string="Imprimir" icon="fa-print" custom="print" class="oe_highlight" style="margin:10px"/>
+                                    <button string="Recargar Datos de Impresión" icon="fa-print" type="object" name="generate_printer_data" class="oe_highlight" style="margin:10px"/>
+                                    <button type="object" string="Impresión Parcial" name="wizard_impresion_parcial" class="oe_highlight" style="margin:10px"/>
+                                <field name="comprobante_secuencia_ids">
+                                    <tree  limit="20">
+                                        <field name="secuencia" string="Orden de Impresión"/>
+                                        <field name="invoice_id" string="Comprobante"/>
+                                        <field name="partner_id" string="Cliente"/>
+                                        <field name="user_id" string="Vendedor"/>
+                                    </tree>
+                                </field>
+                                <pre>
+                                    <field name="printer_data"/>
+                                </pre>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="customize_naomis.view_form_wizard_print_invoice_dot_matrix" model="ir.ui.view">
+            <field name="name">view.form.wizard.print.invoice.dot.matrix</field>
+            <field name="model">wizard.print.invoice.dot.matrix</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="secuencia_inicio"/>
+                            </group>
+                            <group>
+                                <field name="secuencia_fin"/>
+                            </group>
+                            <field name="guia_remision_consolidado_id" invisible="1"/>
+                        </group>
+                        <button string="Cargar Comprobantes" name="cargar_comprobantes" type="object" class="oe_highlight"/>
+                        <button type="action" string="Imprimir" icon="fa-print" custom="print"/>
+                        <notebook>
+                            <page string="Comprobantes" >
+                                <field name="invoice_secuencia_ids">
+                                    <tree  limit="15">
+                                        <field name="secuencia" string="Orden de Impresión"/>
+                                        <field name="invoice_id" string="Comprobante"/>
+                                        <field name="partner_id" string="Cliente"/>
+                                        <field name="user_id" string="Vendedor"/>
+                                    </tree>
+                                </field>        
+                            </page>
+                            <page string="Texto">
+                                <pre>
+                                    <field name="printer_data"/>
+                                </pre>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="customize_naomis.view_tree_consolidar_facturas_en_guia_remision" model="ir.ui.view">
+            <field name="name">view.tree.consolidar.facturas.en.guia.remision</field>
+            <field name="model">view.guia.remision.consolidado</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="fecha_inicio"/>
+                    <field name="fecha_limite"/>
+                    <field name="ruta_ids" widget="many2many_tags"/>
+                    <field name="vendedor_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="customize_naomis.consolidar_facturas_en_guia_remision" model="ir.actions.server">
+            <field name="type">ir.actions.server</field>
+            <field name="name">Consolidar comprobantes en una guía de Remisión</field>
+            <field name="model_id" ref="account.model_account_invoice" />
+            <field name="state">code</field>
+            <field name="code">action = model.action_view_consolidar_comprobantes_gr()</field>
+        </record>
+
+        <menuitem name="Guía de Remisión Masiva"
+            sequence="1" 
+            action="customize_naomis.consolidar_facturas_en_guia_remision"
+            id="customize_naomis.emision_guia_remision_masiva"
+            parent="efact.menu_principal_guia_remision"/>
+                        
+
+    </data>
+</odoo>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+  <div t-name="ShellDialogPane" class="a_shell_pane">
+    <div class="a_dialogs"></div>
+  </div>
+
+  <!-- ShellDialog needs to have the 'modal' class in order for listeditablerender to work -->
+  <div t-name="ShellDialog"  t-attf-class="a_dialog modal#{technical ? ' o_technical_modal' : ''}" t-att-id="_.uniqueId('modal_')">
+    <nav class="a_navbar" role="navigation">
+      <div class="navbar-header">
+        <span class="a_title navbar-title"></span>
+      </div>
+    </nav>
+    <div class="a_dialog_content"/>
+    <div class="a_footer_content"></div>
+  </div>
+
+</templates>

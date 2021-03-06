@@ -1,0 +1,15 @@
+<odoo>
+    <record id="res_users_branch" model="ir.ui.view">
+        <field name="name">res.users.branch</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='access_rights']/group" position="after">
+                <group string="Sucursales disponibles">
+                    <field name="branch_id"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

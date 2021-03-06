@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <template id="services" name="Servicios">
+            <section id="services" class="">
+                <div class="container pb-40">
+                    <div class="section-title text-center">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                        <h2 class="text-uppercase mt-0 line-height-1">Why choose Our University</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem autem voluptatem obcaecati! <br/>ipsum dolor sit Rem autem voluptatem obcaecati</p>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="section-content">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                        <div class="text-center mb-30 p-10">
+                            <a href="#" class="">
+                            <img src="/theme_fullstack/static/src/images/flaticon-png/small/7.png" width="70" alt=""/>
+                            </a>
+                            <h4 class="font-weight-600 mt-20">Qualified Teachers</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia quasi qui inventore, cumque nulla rerum consem!</p>
+                        </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                        <div class="text-center mb-30 p-10">
+                            <a href="#" class="">
+                            <img src="/theme_fullstack/static/src/images/flaticon-png/small/3.png" width="70" alt=""/>
+                            </a>
+                            <h4 class="font-weight-600 mt-20">Online Courses</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia quasi qui inventore, cumque nulla rerum consem!</p>
+                        </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                        <div class="text-center mb-30 p-10">
+                            <a href="#" class="">
+                            <img src="/theme_fullstack/static/src/images/flaticon-png/small/2.png" width="70" alt=""/>
+                            </a>
+                            <h4 class="font-weight-600 mt-20">Graduation Degree</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia quasi qui inventore, cumque nulla rerum consem!</p>
+                        </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                        <div class="text-center mb-sm-30 p-10">
+                            <a href="#" class="">
+                            <img src="/theme_fullstack/static/src/images/flaticon-png/small/6.png" width="70" alt=""/>
+                            </a>
+                            <h4 class="font-weight-600 mt-20">Mastery Learning</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia quasi qui inventore, cumque nulla rerum consem!</p>
+                        </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                        <div class="text-center mb-sm-30 p-10">
+                            <a href="#" class="">
+                            <img src="/theme_fullstack/static/src/images/flaticon-png/small/5.png" width="70" alt=""/>
+                            </a>
+                            <h4 class="font-weight-600 mt-20">Library System</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia quasi qui inventore, cumque nulla rerum consem!</p>
+                        </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                        <div class="text-center mb-sm-30 p-10">
+                            <a href="#" class="">
+                            <img src="/theme_fullstack/static/src/images/flaticon-png/small/4.png" width="70" alt=""/>
+                            </a>
+                            <h4 class="font-weight-600 mt-20">Abundant Labs</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia quasi qui inventore, cumque nulla rerum consem!</p>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </section>
+        </template>
+        
+        <template id="snippet_service" inherit_id="website.snippets" name="Servicios">
+            <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
+                <t t-snippet="theme_fullstack.services"
+                    t-thumbnail="/theme_fullstack/static/src/images/icon_servicios.jpg"/>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

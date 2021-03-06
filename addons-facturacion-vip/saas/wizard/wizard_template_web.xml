@@ -1,0 +1,85 @@
+<odoo>
+    <template id="saas.wizard_template" name="wizard_template_web">
+        <head>
+            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+            <link href="saas/static/src/css/smart_wizard.css" rel="stylesheet" type="text/css" />
+            <link href="saas/static/src/css/smart_wizard_theme_arrows.css" rel="stylesheet" type="text/css" />
+
+
+        </head>
+        <body>
+
+            <div class="container h-100">
+                <div class="row h-100 justify-content-center align-items-center">
+                    <div class="col-12 mx-auto">
+
+        <div class="alert alert-info" role="alert" id="message-box"><strong>Instalando :</strong></div>
+
+
+
+
+
+                        <div id="smartwizard">
+                <ul>
+                    <li><a href="#step-1" >Bienvenido<br /><small>Step description</small></a></li>
+                    <li><a href="#step-2" >Datos de la empresa<br /><small>Step description</small></a></li>
+                    <li><a href="#step-3" >Módulos a instalar<br /><small>Step description</small></a></li>
+                    <li><a href="#step-4" >Confirmar<br /><small>Step description</small></a></li>
+                </ul>
+
+                <div>
+                    <div id="step-1" class="">
+                        bienvenido
+                    </div>
+                    <div id="step-2">
+                        <h2>Describe algunos datos importantes</h2>
+                        <div id="form-step-1" role="form" data-toggle="validator">
+                            <div class="form-group">
+                                <label for="name">Name:</label>
+                                <input type="text" class="form-control" name="name" id="nombre" placeholder="Write your name" required="True"/>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step-3" class="">
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
+                          <label class="form-check-label" for="defaultCheck1">
+                            Default checkbox
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="defaultCheck2"/>
+                          <label class="form-check-label" for="defaultCheck2">
+                            Disabled checkbox
+                          </label>
+                        </div>
+
+                        <button class="btn btn-primary btn-block" onclick="instalar()">instalar </button>
+                    </div>
+                    <div id="step-4" class="">
+                        <button class="btn btn-primary btn-block" onclick="get_status2()"> Crear  </button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                <script type="text/javascript" src="saas/static/src/js/jquery.smartWizard.min.js"></script>
+                <script type="text/javascript">
+                    $(document).ready(function(){
+                    $('#smartwizard').smartWizard();
+                    });
+                </script>
+                <script type="text/javascript" src="/saas/static/src/js/crear_instancia.js"></script>
+        </body>
+
+    </template>
+</odoo>

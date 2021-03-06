@@ -1,0 +1,70 @@
+
+.o_datepicker {
+  position: relative;
+
+  .o_datepicker_input {
+    width: 100%;
+  }
+
+  .o_datepicker_button {
+    cursor: pointer;
+    .o-position-absolute(@top: 2px, @right: 4px);
+
+    &::after {
+      .o-caret-down;
+    }
+  }
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu {
+  padding: 0;
+}
+
+.datepicker {
+  .table-condensed {
+    > thead {
+      background-color: @o-datepicker-header-bg;
+      color: @o-datepicker-header-color;
+
+      // Correctly align prev & next buttons
+      th {
+        &.picker-switch {
+          width: 100%;
+        }
+      }
+
+      > tr {
+        &:first-child {
+          th:hover {
+            background-color: @o-datepicker-header-hover-bg;
+            color: @o-datepicker-header-hover-color;
+          }
+        }
+
+        &:last-child {
+          background-color: @o-datepicker-week-bg;
+          color: @o-datepicker-week-color;
+        }
+
+        > th {
+          border-radius: 0;
+        }
+      }
+    }
+
+    > tbody {
+      > tr {
+        > td {
+          &.active,
+          .active {
+            background-color: @o-datepicker-date-active-bg;
+          }
+
+          &.today::before {
+            border-bottom-color: @o-datepicker-today-border-color;
+          }
+        }
+      }
+    }
+  }
+}

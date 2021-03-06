@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+  <ul t-name="SystrayMenu" class="nav navbar-nav navbar-right a_systray_menu"></ul>
+
+  <ul t-name="UserMenu" class="nav navbar-nav navbar-right a_user_menu">
+    <li class="o_user_menu">
+      <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">
+        <img class="img-circle oe_topbar_avatar" t-att-src="_s + '/web/static/src/img/user_menu_avatar.png'"/>
+        <span class="oe_topbar_name"/>
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu" role="menu">
+        <li t-if="debug != true">
+          <a href="?debug">Activate developer mode</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a href="#" data-menu="settings">Preferences</a>
+        </li>
+        <li>
+          <a href="#" data-menu="logout">Log out</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <t t-name="ControlPanel">
+    <div class="o_control_panel">
+      <div class="a_cp_top">
+        <ol class="breadcrumb"/>
+        <div class="o_cp_searchview"/>
+      </div>
+      <div class="a_cp_bottom">
+        <div class="o_cp_buttons"/>
+        <div class="o_cp_sidebar"/>
+        <div class="btn-group o_search_options"/>
+        <div class="o_cp_pager"/>
+        <div class="btn-group btn-group-sm o_cp_switch_buttons"/>
+      </div>
+    </div>
+  </t>
+
+  <div t-name="SearchView.FilterMenu" class="btn-group o_dropdown">
+    <button class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
+      <span class="fa fa-filter"/>
+      <span class="hidden-xs">
+        Filters
+        <span class="caret"/></span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-right o_filters_menu" role="menu">
+      <li class="o_add_filter o_closed_menu">
+        <a href="#">Add Custom Filter</a>
+      </li>
+      <li class="o_add_filter_menu">
+        <button class="btn btn-primary btn-sm o_apply_filter" type="button">Apply</button>
+        <button class="btn btn-default btn-sm o_add_condition" type="button"><span class="fa fa-plus-circle"/>
+          Add a condition</button>
+      </li>
+    </ul>
+  </div>
+
+  <div t-name="SearchView.GroupByMenu" class="btn-group o_dropdown">
+    <button class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
+      <span class="fa fa-bars"/>
+      <span class="hidden-xs">
+        Group By
+        <span class="caret"/></span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-right o_group_by_menu" role="menu">
+      <li class="divider"/>
+      <li class="o_add_custom_group o_closed_menu">
+        <a href="#">Add custom group</a>
+      </li>
+    </ul>
+  </div>
+
+  <div t-name="SearchView.FavoriteMenu" class="btn-group o_dropdown">
+    <button class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
+        <span class="fa fa-star"/><span class="hidden-xs"> Favorites <span class="caret"/></span>
+    </button>
+    <ul class="dropdown-menu dropdown-menu-right o_favorites_menu" role="menu">
+        <li class="divider user_filter"/>
+        <li class="divider shared_filter"/>
+        <li class="o_save_search o_closed_menu">
+            <a href="#">Save current search</a>
+        </li>
+        <li class="o_save_name">
+            <input type="text"></input>
+        </li>
+        <li class="o_save_name">
+            <span><div class="o_checkbox"><input type="checkbox"/><span/></div> Use by default</span>
+        </li>
+        <li class="o_save_name">
+            <span><div class="o_checkbox"><input type="checkbox"/><span/></div> Share with all users </span><span class="fa fa-users"/>
+        </li>
+        <li class="o_save_name">
+            <button type="button" class="btn btn-primary btn-sm">Save</button>
+        </li>
+    </ul>
+</div>
+
+  <t t-name="FieldStatus.content">
+    <t t-foreach="selection_folded.reverse()" t-as="i">
+        <t t-call="FieldStatus.content.button"/>
+    </t>
+    <t t-foreach="selection_unfolded.reverse()" t-as="i">
+        <t t-call="FieldStatus.content.button"/>
+    </t>
+</t>
+
+</templates>

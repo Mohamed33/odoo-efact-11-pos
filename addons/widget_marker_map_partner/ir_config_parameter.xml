@@ -1,0 +1,7 @@
+<odoo>
+    <record id="api_key_map_partner" model="ir.config_parameter">
+        <field name="key">API_KEY_GOOGLE_MAP</field>
+        <field name="value"></field>
+        <field name="group_ids" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+</odoo>

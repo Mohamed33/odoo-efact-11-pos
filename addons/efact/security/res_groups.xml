@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <!--ACCESO DE LECTURA DE TABLA DE PARÁMETROS DE FACTURACIÓN ELECTRÓNICA PARA EMPLEADOS-->
+
+        <record model="ir.model.access" id="efact.access_model_einvoice_01">
+            <field name="name">efact.access.model.einvoice.01</field>
+            <field name="model_id" ref="odoope_einvoice_base.model_einvoice_catalog_01"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">0</field>
+            <field name="perm_unlink">0</field>
+            <field name="perm_create">0</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_einvoice_06">
+            <field name="name">efact.access.model.einvoice.06</field>
+            <field name="model_id" ref="odoope_einvoice_base.model_einvoice_catalog_06"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">0</field>
+            <field name="perm_unlink">0</field>
+            <field name="perm_create">0</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_einvoice_07">
+            <field name="name">efact.access.model.einvoice.07</field>
+            <field name="model_id" ref="odoope_einvoice_base.model_einvoice_catalog_07"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">0</field>
+            <field name="perm_unlink">0</field>
+            <field name="perm_create">0</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_einvoice_08">
+            <field name="name">efact.access.model.einvoice.08</field>
+            <field name="model_id" ref="odoope_einvoice_base.model_einvoice_catalog_08"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">0</field>
+            <field name="perm_unlink">0</field>
+            <field name="perm_create">0</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_einvoice_09">
+            <field name="name">efact.access.model.einvoice.09</field>
+            <field name="model_id" ref="odoope_einvoice_base.model_einvoice_catalog_09"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">0</field>
+            <field name="perm_unlink">0</field>
+            <field name="perm_create">0</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_einvoice_10">
+            <field name="name">efact.access.model.einvoice.10</field>
+            <field name="model_id" ref="odoope_einvoice_base.model_einvoice_catalog_10"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">0</field>
+            <field name="perm_unlink">0</field>
+            <field name="perm_create">0</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_einvoice_16">
+            <field name="name">efact.access.model.einvoice.16</field>
+            <field name="model_id" ref="odoope_einvoice_base.model_einvoice_catalog_16"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">0</field>
+            <field name="perm_unlink">0</field>
+            <field name="perm_create">0</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_invoice_nota">
+            <field name="name">efact.access.model.invoice.nota</field>
+            <field name="model_id" ref="efact.model_efact_invoice_nota"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_summary_line">
+            <field name="name">efact.access.model.summary.line</field>
+            <field name="model_id" ref="efact.model_account_summary_line"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_summary">
+            <field name="name">efact.access.model.summary</field>
+            <field name="model_id" ref="efact.model_account_summary"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+        <record model="ir.model.access" id="efact.access_model_account_log_status">
+            <field name="name">efact.access.model.account.log.status</field>
+            <field name="model_id" ref="efact.model_account_log_status"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">0</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+        
+        <record model="ir.model.access" id="efact.access_model_efact_comunicacion_baja">
+            <field name="name">efact.access.model.efact.account.comunicacion.baja</field>
+            <field name="model_id" ref="efact.model_efact_account_comunicacion_baja"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+        <record model="ir.model.access" id="efact.access_model_efact_guia_remision_remitente">
+            <field name="name">efact.access.model.efact.guia.remision.remitente</field>
+            <field name="model_id" ref="efact.model_efact_guia_remision"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+        
+        <record model="ir.model.access" id="efact.access_model_efact_guia_remision_line_remitente">
+            <field name="name">efact.access.model.efact.guia.remision.line.remitente</field>
+            <field name="model_id" ref="efact.model_efact_guia_remision_line"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_efact_vehiculo">
+            <field name="name">efact.access.model.efact.vehiculo</field>
+            <field name="model_id" ref="efact.model_efact_vehiculo"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_efact_modalidad_transporte">
+            <field name="name">efact.access.model.efact.modalidad.transporte</field>
+            <field name="model_id" ref="efact.model_efact_modalidad_transporte"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">0</field>
+            <field name="perm_unlink">0</field>
+            <field name="perm_create">0</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+        <record model="ir.model.access" id="efact.access_model_efact_motivo_traslado">
+            <field name="name">efact.access.model.efact.motivo.traslado</field>
+            <field name="model_id" ref="efact.model_efact_motivo_traslado"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">0</field>
+            <field name="perm_unlink">0</field>
+            <field name="perm_create">0</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+        <!--ACCESSO COMPLETO A TABLAS DE PARAMETROS DE FACTURACIÓN ELECTRÓNICA PARA RESPONSABLE DE FACTURACIÓN-->
+
+        <record model="ir.model.access" id="efact.access_model_einvoice_01_admin">
+            <field name="name">efact.access.model.einvoice.01.admin</field>
+            <field name="model_id" ref="odoope_einvoice_base.model_einvoice_catalog_01"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="account.group_account_manager"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_einvoice_06_admin_admin">
+            <field name="name">efact.access.model.einvoice.06.admin</field>
+            <field name="model_id" ref="odoope_einvoice_base.model_einvoice_catalog_06"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="account.group_account_manager"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_einvoice_07_admin">
+            <field name="name">efact.access.model.einvoice.07.admin</field>
+            <field name="model_id" ref="odoope_einvoice_base.model_einvoice_catalog_07"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="account.group_account_manager"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_einvoice_08_admin">
+            <field name="name">efact.access.model.einvoice.08.admin</field>
+            <field name="model_id" ref="odoope_einvoice_base.model_einvoice_catalog_08"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="account.group_account_manager"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_einvoice_09_admin">
+            <field name="name">efact.access.model.einvoice.09.admin</field>
+            <field name="model_id" ref="odoope_einvoice_base.model_einvoice_catalog_09"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="account.group_account_manager"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_einvoice_10_admin">
+            <field name="name">efact.access.model.einvoice.10.admin</field>
+            <field name="model_id" ref="odoope_einvoice_base.model_einvoice_catalog_10"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="account.group_account_manager"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_einvoice_16_admin">
+            <field name="name">efact.access.model.einvoice.16.admin</field>
+            <field name="model_id" ref="odoope_einvoice_base.model_einvoice_catalog_16"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="account.group_account_manager"/>
+        </record>
+        <record model="ir.model.access" id="efact.access_model_account_log_status_admin">
+            <field name="name">efact.access.model.account.log.status.admin</field>
+            <field name="model_id" ref="efact.model_account_log_status"/>
+            <field name="perm_read">1</field>
+            <field name="perm_write">1</field>
+            <field name="perm_unlink">1</field>
+            <field name="perm_create">1</field>
+            <field name="group_id" ref="base.group_user"/>
+        </record>
+
+       
+    </data>
+</odoo>

@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="paperformat_portrait" model="report.paperformat">
+            <field name="name">European A4 Landscape</field>
+            <field name="default" eval="True" />
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">10</field>
+            <field name="margin_bottom">10</field>
+            <field name="margin_left">10</field>
+            <field name="margin_right">10</field>
+            <field name="header_line" eval="False" />
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+
+        <template id="letra_cambio_template">
+
+            <t t-call="web.html_container">
+                <t t-call="letra_cambio.external_layout_vacio_letra">
+                    <div class="page">
+                    <style>
+                    #clausulas p{
+                        line-height: 9 px !important;
+                        }
+
+                    #col_clausula{
+                        top :300px !important;
+                        font-size : 9px !important;
+                        -ms-transform: rotate(-90deg); /* IE 9 */
+                        -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+                        transform: rotate(-90deg);
+                        transform-origin: right bottom;
+
+                        }
+                    #acep{
+                        width : 600px !important;
+                        }
+
+                    #clausulas li{
+                        width : 600px !important;
+                        }
+
+
+                    table  {
+                        border: 1px !important;
+                        border-style: solid !important;
+                        border-color: black !important;
+                        border-radius: 25px !important;
+
+                        background : white !important;
+                        text-color :
+                    }
+                    #direccion{
+                        font-size: 12px;
+                        }
+
+                     #letra_cabezera th , #letra_cabezera td ,#letra_banco th ,#letra_banco td {
+                        color : black !important;
+                        font-size: 10px;
+
+                        border-color: black !important;
+                        border: 1px solid !important;
+                        }
+                     table tbody tr{
+                        background : white !important;
+                        }
+                     #letra_firma{
+                        border-color: black !important;
+                        }
+                     #letra_firma th {
+                        color : black !important;
+                        }
+
+                     #letra_firma td p{
+                        font-size: 9px;
+                        }
+                    </style>
+
+                    <t t-foreach="docs" t-as="doc">
+
+                        <div class="row">
+                            <div id="col_clausula" class="col-xs-3">
+                                <div class="row">
+                                    <ol id="clausulas" class="text-left">
+                                    <li><p>Esta LETRA DE CAMBIO debe ser pagada en la misma moneda que expresa este título valor.</p></li>
+                                    <li><p>A su vencimiento podrá ser prorrogado por su tenedor, por el plazo que éste señale, sin que sea necesario intervención</p>
+
+                                        <p>alguna del obligado principal ni de los obligados solidarios , sin que las prórrogas superen en total (1) año.</p></li>
+                                    <li><p>Desde su último vencimiento, su importe total generará los interes compensatorios más moratorios a las tasas</p>
+
+                                        <p>máximas autorizadas o permitidas a su último Tenedor.</p></li>
+                                    <li><p>La presente LETRA DE CAMBIO no quiere ser protestada por falta de pago procediendo su ejecución por el solo mérito</p>
+
+                                        <p>de haber vencido su plazo y no haber sido prorrogado.</p></li>
+                                    <li><p>En caso de ejecución de prenda alguna en favor del tenedor se hará en forma directa sin intervención de autoridad</p>
+
+                                        <p>judicial al mejor postor.</p></li>
+                                    <li><p>Los Datos aqui consignados serán tomados como declaración jurada y se podrá utilizar como prueba en los casos que</p>
+
+                                        <p>se requieran.</p></li>
+                                    <li><p>Para as diferencias relativas a la relacipon causal entre Tenedor y Girado/Aval, estos se someten a la judisdicción arbitral</p>
+
+                                        <p>de  ..................................................................................</p></li>
+                                    </ol>
+                                </div>
+                                <div class="row" id="acep">
+                                        <div class="col-xs-6">
+                                            <br/>_______________________________________
+                                            <p>Aceptante</p>
+                                        </div>
+                                        <div  class="col-xs-6">
+                                            <br/>_______________________________________
+                                            <p>Aceptante</p>
+                                        </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-xs-9">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <h3><left><p t-esc="company.name"/></left></h3>
+
+                                    </div >
+                                    <div id ="direccion" class="col-xs-6">
+                                        <center><div t-esc="company.street"/>
+                                        <div t-esc="company.phone"/></center>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+                                    <table id="letra_cabezera" class="table" style=" table-layout:fixed;" >
+                                        <thead>
+                                            <tr>
+                                                <th>NÚMERO</th>
+                                                <th>REFERENCIA</th>
+                                                <th>FECHA DE GIRO</th>
+                                                <th>FECHA VENCIMIENTO</th>
+                                                <th>MONEDA E IMPORTE</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div t-field="doc.number"/>
+                                                </td>
+                                                <td>
+                                                    <div t-field="doc.number"/>
+                                                </td>
+                                                <td>
+                                                    <div t-field="doc.date_doc"/>
+                                                </td>
+                                                <td>
+                                                    <div t-field="doc.date_due"/>
+                                                </td>
+                                                <td>
+                                                    <div t-field="doc.amount_total" t-options='{"widget": "monetary", "display_currency": doc.currency_id}'/>
+                                                </td>
+
+                                            </tr>
+                                       </tbody>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <span>Por esta LETRA DE CAMBIO se servirá (n) , pagar incondicionalmente a la Orden de la cantidad de</span>
+                                    <table id="letra_aceptante" style="width:100%">
+                                        <tr>
+                                            <th>
+                                                <p t-esc="to_word(doc.amount_total,doc.currency_id.name)"/>
+                                            </th>
+                                         </tr>
+                                    </table>
+                                    <span>En el siguiente lugar de pago, o con cargo en la cuenta corriente del Banco</span>
+
+                                </div>
+                                <div class="row">
+                                    <table>
+
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <table id="letra_aceptante" style="width:100%; "  >
+                                                <tr>
+                                                    <th width="30%" height ="30px">Aceptante:</th>
+                                                    <td><div t-field="doc.partner_id"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%">Domicilio:</th>
+                                                    <td><div t-field="doc.partner_id.street"/></td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%">RUC:</th>
+                                                    <td><div t-field="doc.partner_id.vat"/></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <p></p>
+                                        <div class="row">
+                                            <table id="letra_aval" style="width:100%">
+                                                <tr>
+                                                    <th width="30%">Aval Permanente:</th>
+                                                    <td><t t-if="doc.partner_id.child_ids">
+                                                        <div t-field="doc.partner_id.child_ids[0].name"/>
+                                                    </t>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%">Domicilio:</th>
+                                                    <td><t t-if="doc.partner_id.child_ids">
+                                                        <div t-field="doc.partner_id.child_ids[0].street"/>
+                                                        </t>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <th width="30%">RUC:</th>
+                                                    <td><div t-field="doc.partner_id.vat"/></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <table  id="letra_banco" class="table" style=" table-layout:fixed;" >
+                                                <thead height ="30px">
+                                                    <tr>
+                                                        <th width="20%">BANCO</th>
+                                                        <th width="20%">OFICINA</th>
+                                                        <th width="40%">NÚMERO DE CUENTA</th>
+                                                        <th>DC</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody height ="30px">
+                                                    <tr>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+
+                                                    </tr>
+                                               </tbody>
+                                            </table>
+
+                                        </div>
+                                        <div class="row">
+                                            <table id="letra_firma" class="table" style=" table-layout:fixed;" >
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            <center><p t-esc="company.name"/></center>
+                                                            <center><p t-esc="company.vat"/></center>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <br></br>
+                                                            <br></br>
+                                                        </td>
+
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <p>Firma</p>
+                                                            <p>Nombre del representante legal</p>
+                                                        </td>
+                                                    </tr>
+                                               </tbody>
+                                            </table>
+
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+
+
+        <template id="external_layout_vacio_letra">
+			<div class="header">
+
+			</div>
+
+			<div class="article o_report_layout_standard">
+				<t t-raw="0" />
+			</div>
+
+			<div class="footer">
+
+        	</div>
+    	</template>
+
+        <report id="letra_cambio.report_letra_cambio"
+                model="letra_cambio.letra"
+                name="letra_cambio.letra_cambio_template"
+                report_type="qweb-pdf"
+                string="Letra de Cambio"
+                paperformat="letra_cambio.paperformat_portrait"
+                />
+
+    </data>
+</odoo>

@@ -1,0 +1,50 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="customize_sale_order_selecim.form_field_incluir_imagenes">
+        <field name="name">form.field.incluir.imagenes</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="incluir_imagenes"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="customize_sale_order_selecim.form_field_modelo">
+        <field name="name">form.field.product.modelo</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='categ_id']" position="after">
+                <field name="modelo"/>
+                <field name="marca"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="customize_sale_order_selecim.form_product_field_modelo">
+        <field name="name">form.field.product.product.modelo</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='type']" position="after">
+                <field name="modelo"/>
+                <field name="marca"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="customize_sale_order_selecim.selecim_company_servicio" model="ir.ui.view">
+        <field name="name">selecim.servicio</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page/group/group/field[@name='report_header']" position="after">
+                <field name="servicio"/>
+            </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>

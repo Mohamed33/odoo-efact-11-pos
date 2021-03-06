@@ -1,0 +1,56 @@
+<odoo>
+  <data>
+    <record id="hlt_sales_profit.add_view_rentabilidad_cotizacion" model="ir.ui.view">
+      <field name="name">hlt.sales.profit.tree</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//page[2]" position="after">
+          <page string="Rentabilidad" >
+              <group>
+                <group>
+                    <field name="forma_pago" widget="radio"/>
+                    <field name="fecha_inicio" attrs="{'invisible':[('forma_pago','=','al_contado')]}"/>
+                    <field name="cantidad_letras" attrs="{'invisible':[('forma_pago','=','al_contado')]}"/>
+                    <field name="tasa" attrs="{'invisible':[('forma_pago','=','al_contado')]}"/>
+                  </group>
+                  <group>
+                    <field name="comision_letra" attrs="{'invisible':[('forma_pago','=','al_contado')]}" />
+                    <field name="periodo" attrs="{'invisible':[('forma_pago','=','al_contado')]}"/>
+                  </group>
+                  <button type="object" 
+                          name="compute_detalle_letras" 
+                          string="Calcular" class="oe_button oe_form_button oe_highlight" 
+                          attrs="{'invisible':[('forma_pago','=','al_contado')]}"/>
+                </group> 
+              <group>
+                
+                <field name="detalle_letra_ids" mode="tree" attrs="{'invisible':[('forma_pago','=','al_contado')]}">
+                    <tree string="Detalle de Letras" create="1" delete="1" edit="1" editable="top">
+                      <field name="fecha_venc"/>                 
+                      <field name="cantidad_dias"/>
+                      <field name="importe_letra"/>
+                      <field name="comision"/>
+                      <field name="tasa" invisible="1"/>
+                      <field name="interes"/>
+                    </tree>
+                </field>
+                <group>
+                  <field name="total_comision"/>
+                  <field name="total_interes" attrs="{'invisible':[('forma_pago','=','al_contado')]}"/>
+                  <field name="total_financiamiento" attrs="{'invisible':[('forma_pago','=','al_contado')]}"/>
+                </group>
+                <group>
+                  <field name="margen"/>
+                  <field name="costo_financiamiento" attrs="{'invisible':[('forma_pago','=','al_contado')]}"/>
+                  <field name="costo_comision_vendedor"/>
+                  <field name="costo_administrativo"/>
+                  <field name="rentabilidad_neta"/>
+                </group>
+              </group>  
+          </page>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

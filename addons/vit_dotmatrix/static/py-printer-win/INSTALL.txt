@@ -1,0 +1,10 @@
+1. Install flask and flask-cors module:
+
+    pip install flask
+    pip install flask-core
+
+2. install py32win from https://github.com/mhammond/pywin32/releases
+
+2. Run the script:
+
+    start.bat

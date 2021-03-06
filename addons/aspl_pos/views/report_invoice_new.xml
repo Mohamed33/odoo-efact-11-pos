@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+    <template id="report_invoice_document_inherit" inherit_id="account.report_invoice_document">
+           <xpath expr="//t//div//table//thead//tr//th[@class='hidden']" position="before">
+               <th>Serial</th>
+           </xpath>
+            <xpath expr="//t//div//table//tbody[@class='invoice_tbody']//tr//td[@class='hidden']" position="after">
+                <td><span t-field="l.prodlot_id"/></td>
+           </xpath>
+       </template>
+
+</data>
+</odoo>

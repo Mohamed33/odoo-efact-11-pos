@@ -1,0 +1,71 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="letra_cambio.emision_list">
+            <field name="name">lista letra cambio</field>
+            <field name="model">letra_cambio.emision_letra</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="partner_id"/>
+                    <field name="cantidad_letras"/>
+                    <field name="date_letra"/>
+                    <field name="monto_emitir"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="letra_cambio.emision_form" model="ir.ui.view">
+            <field name="name">letra_cambio_emision_letra_form</field>
+            <field name="model">letra_cambio.emision_letra</field>
+            <field name="arch" type="xml">
+                <form string="Invoice">
+                <header>
+
+                </header>
+
+                <sheet string="Invoice">
+                    <group>
+                        <group>
+
+
+                        </group>
+                        <group>
+                            <field name="date_letra"/>
+
+                        </group>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Documentos">
+
+                            <group class="oe_subtotal_footer oe_right">
+
+                            </group>
+                            <field name="comment" placeholder="Terminos y condiciones"/>
+                        </page>
+                        <page string="Letras">
+
+                        </page>
+                    </notebook>
+                </sheet>
+
+                </form>
+            </field>
+        </record>
+
+
+
+
+
+
+        <record id="action_emision_letra_view" model="ir.actions.act_window">
+            <field name="name">emision letra</field>
+            <field name="res_model">letra_cambio.emision_letra</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem  parent="account.menu_finance_reports" name="LETRA DE CAMBIO" id="letra_cambio_menu" />
+        <menuitem  parent="letra_cambio.letra_cambio_menu" name="Emisión de letras" id="letra_cambio_menu_emision" action="action_emision_letra_view"/>
+
+    </data>
+</odoo>

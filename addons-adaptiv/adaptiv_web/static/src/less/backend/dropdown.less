@@ -1,0 +1,115 @@
+.ui-autocomplete {
+  background-color: @dropdown-bg;
+  border: 1px solid @dropdown-border;
+  border-radius: @border-radius-base;
+  font-size: @_font-size-base;
+  padding: 5px 0;
+  // Ensures proper alignment if parent has it changed
+  text-align: left;
+
+  .o-shadow-depth-3();
+
+  .ui-menu-item {
+    padding: 0;
+
+    > a {
+      color: @dropdown-link-color;
+      display: block;
+      padding: @o-dropdown-item-padding-y @o-dropdown-item-padding-x;
+    }
+
+    &.ui-state-focus {
+      background-color: @o-autocomplete-item-focus-bg;
+      border: none;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    &.o_m2o_dropdown_option {
+      padding-left: @o-dropdown-item-padding-x;
+
+      > a {
+        color: @o-autcomplete-item-option-color;
+      }
+    }
+
+    &.ui-state-focus > a,
+    &.ui-state-focus.o_m2o_dropdown_option > a {
+      color: @o-autocomplete-item-focus-color;
+    }
+  }
+}
+
+.dropdown-menu {
+  padding: @o-dropdown-padding-y 0;
+
+  .divider {
+    margin: @o-dropdown-padding-y 0;
+  }
+
+  .o_inline_dropdown {
+    position: relative;
+
+    & > .dropdown-menu {
+      left: 100%;
+      top: 0;
+    }
+
+    &:hover > .dropdown-menu {
+      display: block;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.navbar-nav .open .dropdown-menu {
+  &.dropdown-scrollable {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}
+
+.open .dropdown-menu > li,
+.navbar-nav .open .dropdown-menu > li {
+  // to allow absolute positionning inside the li
+  position: relative;
+
+  > a {
+    padding: @o-dropdown-item-padding-y @o-dropdown-item-padding-x;
+
+    &:active,
+    &:focus,
+    &:focus:active {
+      outline: none;
+    }
+  }
+
+  &.dropdown-header {
+    border-bottom: 1px solid @dropdown-divider-bg;
+    color: @o-dropdown-header-color;
+    font-size: @_font-size-small;
+    font-weight: bold;
+    padding: @o-dropdown-item-padding-y @o-dropdown-item-padding-x;
+    
+    @media (max-width: @screen-xs-max) {
+      color: white;
+      text-decoration: underline;
+    }
+  }
+}
+
+.o_dropdown_toggler_btn {
+  .btn-default;
+}
+
+.o_dropdown {
+  cursor: pointer;
+  display: inline-block;
+  white-space: nowrap;
+
+  // Prevent text selection when toggling the dropdowns
+  .user-select(none);
+}

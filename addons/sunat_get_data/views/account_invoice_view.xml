@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record model="ir.ui.view" id="sunat_get_data.view_account_add_fields_res_partner">
+            <field name="name">view.account.invoice.add.fields.res.partner</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="after">
+                        <button name="actualizar_datos_cliente" 
+                            string="Actualizar Datos de Cliente" 
+                            type="object" 
+                            class="oe_highlight"/>
+                        <field name="tipo_documento_sunat" 
+                                required="1" 
+                                attrs="{'readonly':[['state','not in',['draft']]]}"/>
+                        <field name="numero_documento" 
+                                required="1" 
+                                attrs="{'readonly':[['state','not in',['draft']]]}"/>
+                        <field name="direccion_completa" 
+                                attrs="{'readonly':[['state','not in',['draft']]]}"/>
+                        <field name="estado_contribuyente" 
+                                attrs="{'readonly':[['state','not in',['draft']]]}"/>
+                        <field name="estado_habido" 
+                        attrs="{'readonly':[['state','not in',['draft']]]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

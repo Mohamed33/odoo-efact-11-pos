@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        
+        <record id="efact.view_account_tax_tipo_afectacion_igv" model="ir.ui.view">
+            <field name="name">Tipo Afectación al IGV</field>
+            <field name="model">account.tax</field>
+            <field name="inherit_id" ref="account.view_tax_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='type_tax_use']" position="after">
+                    <field name="tipo_afectacion_igv"/>
+                </xpath>
+            </field>
+        </record> 
+        
+            
+
+    </data>
+</odoo>

@@ -1,0 +1,43 @@
+<odoo>
+  <data>
+    <record id="corte_lotes.view_form_corte_report_wizard" model="ir.ui.view">
+            <field name="name">view.form.corte.report.wizard</field>
+            <field name="model">lot.corte.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="parent_id"/>
+                        <field name="product_id"/>
+                        <field name="uom_id"/>
+                        <field name="product_cantidad" string="Cantidad Maxima"/>
+                        <field name="cantidad_porciones"/>
+                    </group>
+                    <group>
+                      <field name="porciones_ids">
+                            <tree editable='top'>
+                              <field name="nombre_porcion" readonly="1" force_save="1"/>
+                              <field name="cantidad"/>
+                            </tree>
+                          </field>
+                    </group>
+                    <footer>
+                      <button name="ejecutar_corte" string="Ejecutar Corte" type="object"  class="oe_highlight"/>
+                    </footer>
+                </form>
+            </field>
+    </record>
+    <record id="corte_lotes.view_form_extend_stock_production_lot" model="ir.ui.view">
+            <field name="name">view.form.extend.stock.production.lot</field>
+            <field name="model">stock.production.lot</field>
+            <!--Vista a la cual se le va a a agregar nuevos campos y/o botones-->
+            <field name="inherit_id" ref="stock.view_production_lot_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='ref']" position="after">
+                    <field name="parent_id"/>
+                    <button name="realizar_corte" string="Realizar Corte" type="object" class="oe_highlight"/>
+                    <!--field name="active"/-->
+                </xpath>
+            </field>
+        </record>
+  </data>
+</odoo>

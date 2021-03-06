@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="assets_frontend" name="frontend assets" inherit_id="website.assets_frontend">
+    <script type="text/javascript" src="/website/static/src/js/website.js" position="after">
+      <script type="text/javascript" src="/adaptiv_website/static/src/js/website.js"></script>
+    </script>
+  </template>
+
+  <template id="layout" inherit_id="website.layout">
+    <t t-call-assets="web.assets_common" t-js="false" position="attributes">
+      <attribute name="t-theme">adaptiv_get_theme()</attribute>
+    </t>
+    <t t-call-assets="web.assets_frontend" t-js="false" position="attributes">
+      <attribute name="t-theme">adaptiv_get_theme()</attribute>
+    </t>
+  </template>
+
+</odoo>

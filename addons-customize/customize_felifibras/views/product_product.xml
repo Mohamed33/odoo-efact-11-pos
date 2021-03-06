@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        
+        <record id="customize_felifibras.add_detail_html_product" model="ir.ui.view">
+            <field name="name">view.add.detail.html.product</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='variants']" position="after">
+                    <page string="Detalle de Producto" >
+                        <group>
+                            <field name="detail"/>        
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="customize_felifibras.add_detail_html_product_product" model="ir.ui.view">
+            <field name="name">view.add.detail.html.product.product</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view" />
+            <field name="arch" type="xml">
+                <xpath expr="//notebook/page[@name='general_information']" position="after">
+                    <page string="Detalle de Producto" >
+                        <group>
+                            <field name="detail"/>        
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        
+ 
+    </data>
+</odoo>

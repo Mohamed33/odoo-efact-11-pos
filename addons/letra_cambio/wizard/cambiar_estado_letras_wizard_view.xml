@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+        <record id="cambiar_estado_letras_view" model="ir.ui.view">
+            <field name="name">Cambiar estado de letras</field>
+            <field name="model">cambiar_estado_letras_wizard</field>
+            <field name="arch" type="xml">
+                <form string="Cambiar estado de letras">
+                    <p class="oe_grey">
+                        Cambiar el estado de las siguientes letras
+                    </p>
+                    <separator string="LETRAS" colspan="4" />
+
+                    <field name="letra_ids" widget="many2many_tags" readonly="1" />
+
+                    <separator string="ESTADO" colspan="4" />
+                    <field name="state"/>
+                    <footer>
+                        <button string="Cambiar estado" name="cambiar_estado_letras" type="object"
+                            default_focus="1" class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <act_window id="action_cambiar_estado_letra" multi="True"
+            name="Cambiar Estado" res_model="cambiar_estado_letras_wizard" src_model="letra_cambio.letra"
+            view_mode="form" target="new" view_type="form" />
+    </data>
+</odoo>

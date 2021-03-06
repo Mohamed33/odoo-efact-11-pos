@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <menuitem name="Guía de Remisión"
+                    id="efact.menu_principal_guia_remision"
+                    parent="account.menu_finance"/>
+
+            <menuitem name="Documentos"
+                        sequence="1" 
+                        id="efact.menu_documentos"
+                        parent="efact.menu_principal_guia_remision"/>
+                        
+                <menuitem name="Guía de Remisión Remitente" 
+                            id="efact.menu_guia_remision" 
+                            action="efact.action_view_guia_remision_electronica" 
+                            parent="efact.menu_documentos" 
+                            sequence="4" />
+
+            <menuitem name="Datos Principales"
+                        sequence="10" 
+                        id="efact.menu_guia_remision_datos_principales"
+                        parent="efact.menu_principal_guia_remision"/>
+
+                <menuitem name="Empresas de Transporte" 
+                            id="efact.menu_transportistas" 
+                            action="efact.action_view_empresas_transporte" 
+                            parent="efact.menu_guia_remision_datos_principales" 
+                            sequence="5" />
+
+                <menuitem name="Vehículos privados" 
+                            id="efact.menu_vehiculos_privados" 
+                            action="efact.action_server_vehiculos_privados" 
+                            parent="efact.menu_guia_remision_datos_principales" 
+                            sequence="6" />
+
+                <menuitem name="Conductores privados" 
+                            id="efact.menu_conductores_privados" 
+                            action="efact.action_server_conductores_privados" 
+                            parent="efact.menu_guia_remision_datos_principales" 
+                            sequence="7" />
+        
+        <menuitem name="Catalog 20 - Motivo de Traslado" 
+                    id="efact.menu_motivo_traslado_cat_20" 
+                    parent="odoope_einvoice_base.einvoice_configuration_menu" 
+                    action="efact.action_view_motivo_traslado_cat_20" 
+                    sequence="20"/>
+    </data>
+</odoo>

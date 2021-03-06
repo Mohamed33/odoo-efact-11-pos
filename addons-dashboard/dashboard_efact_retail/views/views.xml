@@ -1,0 +1,10 @@
+<odoo>
+  <data>
+    <!--record id="dashboard_ventas" model="ks_dashboard_ninja.board">
+      <field name="name">Dashboard Creado</field>
+      <field name="ks_dashboard_menu_name">TODO</field>
+      <field name="ks_dashboard_menu_sequence"></field>
+      <field name="name">Test 1</field>
+    </record-->
+  </data>
+</odoo>

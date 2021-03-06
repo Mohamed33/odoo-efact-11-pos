@@ -1,0 +1,208 @@
+.o_calendar_container {
+  overflow: hidden; // Prevent parent from ever overflowing and showing the scrollbar
+
+  .o-flex(1, 0, 0);
+  .o-flex-display();
+  .o-align-items(stretch);
+
+  .calendar_color_loop(@index: length(@o-calendar-colors)) when (@index > 0) {
+    @color: extract(@o-calendar-colors, @index);
+    .o_calendar_color_@{index} {
+      background-color: @color;
+      border-color: darken(@color, 10%);
+        opacity: 0.7;
+        &.o_event_hightlight {
+            font-weight: bold;
+            opacity: 1;
+        }
+        &.o_event_inamovible{
+            font-weight: bold;
+            background: repeating-linear-gradient( 45deg, @color, @color 10px, lighten(@color, 20%) 10px, lighten(@color, 20%) 20px );
+        }
+      color: contrast(@color, shade(@color, 60%), tint(@color, 90%));
+
+      &:hover {
+        color: contrast(@color, shade(@color, 70%), tint(@color, 100%));
+        border-color: darken(@color, 25%);
+      }
+    }
+
+    .o_underline_color_@{index} {
+      border-bottom: @o-calendar-underline-width solid @color;
+    }
+
+    .calendar_color_loop(@index - 1);
+  }
+  .calendar_color_loop();
+
+  .o_calendar_view {
+    .o-flex(1, 0, 0);
+    .o-flex-display();
+    .o-flex-flow(column, nowrap);
+
+    .o_calendar_widget {
+      background-color: @o-calendar-bg;
+      .o-flex(1, 1, 0);
+
+      .fc-week-number,
+      .fc-widget-header {
+        background-color: @o-calendar-header-bg;
+      }
+
+      .fc-day-grid-event {
+        .fc-content {
+          white-space: initial;
+        }
+      }
+
+      .fc-event {
+        .fc-bg {
+          background: transparent;
+        }
+      }
+
+      .fc-today {
+        background-color: @o-calendar-today-bg;
+      }
+
+      .o_field_type_char:first-child {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .o_calendar_avatars {
+    img {
+      height: @o-calendar-attendee-head-size;
+      width: @o-calendar-attendee-head-size;
+    }
+  }
+
+  .o_calendar_sidebar_container {
+    background-color: @o-calendar-sidebar-bg;
+    color: @o-calendar-sidebar-color;
+    width: @o-calendar-sidebar-width;
+    .o-flex-display();
+    .o-flex-flow(column, nowrap);
+
+    &.o_sidebar_hidden {
+      width: auto;
+    }
+  }
+
+  .o_calendar_sidebar {
+    border-top: 1px solid @o-calendar-sidebar-border-color;
+    overflow-y: auto;
+    .o-flex(1, 0, 0);
+  }
+
+  .o_calendar_filter {
+    padding: 0 @o-calendar-sidebar-padding-x;
+  }
+
+  .o_cal_avatar {
+    width: @_line-height-computed;
+    height: @_line-height-computed;
+  }
+
+  .o_calendar_sidebar_toggler {
+    cursor: pointer;
+    padding: @padding-small-vertical @padding-small-horizontal;
+    .o-align-self(flex-end);
+  }
+
+  .ui-datepicker {
+    background-color: inherit;
+    border-radius: 0;
+    border: none;
+    color: inherit;
+    padding: 0;
+    width: 100%;
+
+    .ui-widget-header {
+      .o-flex-display();
+      background: none;
+      border: none;
+      border-radius: 0;
+      color: inherit;
+
+      .ui-datepicker-prev, .ui-datepicker-next {
+        color: inherit;
+        cursor: pointer;
+        height: auto;
+        padding: @padding-small-vertical @padding-small-horizontal;
+        position: static;
+        text-align: center;
+        width: auto;
+        &.ui-state-hover {
+          background: none;
+          border: none;
+        }
+        .ui-icon {
+          display: none;
+        }
+      }
+
+      .ui-datepicker-prev {
+        order: 1;
+        &:after {
+          font-family: FontAwesome;
+          content: "";
+        }
+      }
+
+      .ui-datepicker-next {
+        order: 3;
+        &:before {
+          font-family: FontAwesome;
+          content: "";
+        }
+      }
+
+      .ui-datepicker-title {
+        .o-flex(1, 0, 0);
+        padding: @padding-small-vertical 0;
+        color: inherit;
+        order: 2;
+        margin: 0 @_grid-half-gutter-width;
+      }
+    }
+
+    table {
+      td {
+        background: @o-calendar-mini-bg;
+        a {
+          border: none;
+          background: @o-calendar-mini-date-bg;
+          text-align: center;
+        }
+
+        &.ui-datepicker-today {
+          a {
+            background: @o-calendar-mini-date-today-bg;
+            color: @o-calendar-mini-date-today-color;
+          }
+        }
+      }
+
+      .ui-state-default {
+        color: @o-calendar-mini-date-color;
+        &:hover {
+          background: @o-calendar-mini-date-hover-bg;
+          color: @o-calendar-mini-date-hover-color;
+        }
+      }
+
+      .ui-state-active, .o_selected_range.o_color {
+        background: @o-calendar-mini-date-active-bg;
+        color: @o-calendar-mini-date-active-color;
+      }
+    }
+  }
+}
+
+.o_dashboard {
+  .o_calendar_container .o_calendar_sidebar_container {
+    display: none;
+  }
+}

@@ -1,0 +1,81 @@
+<odoo>
+    <record id="view_form_vehicle" model="ir.ui.view">
+        <field name="name">view.form.vehicle</field>
+        <field name="model">res.vehicle</field>
+        <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="placa"/>
+                            <field name="marca"/>
+                            <field name="modelo"/>
+                            <field name="anio_fabricacion"/>
+                            <field name="km"/>
+                            <field name="fecha_ultimo_servicio"/>
+                            <field name="km_ultimo_servicio"/>
+                            <field name="partner_ids"/>
+                        </group>
+                    </sheet>
+                </form>
+            
+        </field>
+    </record>
+
+    <record id="view_tree_vehicle" model="ir.ui.view">
+        <field name="name">view.tree.vehicle</field>
+        <field name="model">res.vehicle</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="placa"/>
+                <field name="marca"/>
+                <field name="modelo"/>
+                <field name="anio_fabricacion"/>
+                <field name="km"/>
+                <field name="fecha_ultimo_servicio"/>
+                <field name="km_ultimo_servicio"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="view_res_partner_add_vehicle" model="ir.ui.view">
+        <field name="name">view.res.partner.add.vehicle</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page" position="after">
+                <page string="Vehículos">
+                    <group>
+                        <field name="vehicle_ids" string="Vehículos"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_pos_order_tree" model="ir.ui.view">
+        <field name="name">view.pos.order.tree.field.vehicle</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_order_tree"></field>
+        <field name="arch" type="xml">
+            <field name="company_id" position="after">
+                <field name="vehicle_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="action_view_tree_vehicle" model="ir.actions.act_window">
+        <field name="name">Vehículo de clientes</field>
+        <field name="view_mode">tree,form</field>
+        <field name="res_model">res.vehicle</field>
+    </record>
+
+    <menuitem name="Vehículo de clientes" 
+            id="menuitem_vehiculo_clientes" 
+            parent="point_of_sale.menu_point_of_sale"
+            action="pos_vehicle.action_view_tree_vehicle"/> 
+    
+    <menuitem name="Clientes" 
+            id="menuitem_pos_clientes" 
+            parent="point_of_sale.menu_point_of_sale"
+            action="base.action_partner_form"/>
+</odoo>

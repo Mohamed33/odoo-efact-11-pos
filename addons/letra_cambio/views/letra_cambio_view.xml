@@ -1,0 +1,121 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="letra_cambio.letra_tree">
+            <field name="name">lista letra cambio</field>
+            <field name="model">letra_cambio.letra</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="number"/>
+                    <field name="partner_id"/>
+                    <field name="date_doc"/>
+                    <field name="date_due"/>
+                    <field name="currency_id"/>
+                    <field name="amount_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                    <field name="cuenta_banco"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="letra_cambio.letra_form" model="ir.ui.view">
+            <field name="name">letra_cambio_form</field>
+            <field name="model">letra_cambio.letra</field>
+            <field name="arch" type="xml">
+                <form string="Letra Cambio">
+                <header>
+                    <button name="cambio_estado" string="Cambiar estado" type="object" class="oe_highlight"/>
+                    <field name ="state" widget="statusbar"/>
+                </header>
+                    <sheet string="letra">
+                    <group>
+                            <group>
+                                <field name = "emision_id"/>
+                                <field string="Cliente" name="partner_id"
+                                    context="{'search_default_customer':1, 'show_address': 1, 'default_company_type': 'company'}"
+                                    options='{"always_reload": True, "no_quick_create": True}'
+                                    domain="[('customer', '=', True)]"/>
+                                <field name = "partner_aceptante_id" context="{'default_parent_id':partner_id}" domain="[('parent_id', '=', partner_id)]"/>
+                                <field name = "partner_aval_id" context="{'default_parent_id':partner_id}" domain="[('parent_id', '=', partner_id)]"/>
+                                <field name = "number"/>
+                                <field name = "date_doc"/>
+                                <field name = "date_due"/>
+                                <field name = "date_doc_con"/>
+                                <field name = "date_due_con"/>
+                                <field name = "currency_id"/>
+                                <field name = "amount_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+
+                            </group>
+                            <group>
+                                <field name = "canjeado_id"/>
+                                <field name = "renovacion_id"/>
+                                <field name = "state_end"/>
+                                <field name = "cuenta_banco" invisible='1'/>
+                                <field name = "cuenta_banco_journal"/>
+                                <field name = "monto_en_letras"/>
+                            </group>
+                        </group>
+
+
+
+                    </sheet>
+
+                </form>
+
+            </field>
+        </record>
+
+        <record id="view_letra_cambio_search" model="ir.ui.view">
+            <field name="name">letra_cambio.letra_cambio_select</field>
+            <field name="model">letra_cambio.letra</field>
+            <field name="arch" type="xml">
+                <search string="letra cambio">
+                    <filter name="state_draft" string="Borrador"
+                            domain="[('state','=','draft')]"
+                            help="Letra en borrador"/>
+                    <filter name="state_aceptada" string="Aceptado"
+                            domain="[('state','=','ACE')]"
+                            help="Letras aceptadas en cartera"/>
+                    <filter name="state_cobranza" string="Cobranza"
+                            domain="[('state','=','COB')]"
+                            help="Letras en cobranza"/>
+                    <filter name="state_descuento" string="En descuento"
+                            domain="[('state','=','DES')]"
+                            help="Letras en descuento"/>
+                    <filter name="state_des_ace" string="En descuento aceptada"
+                            domain="[('state','=','DEA')]"
+                            help="Letras de descuento aceptada"/>
+                    <filter name="state_protestada" string="Protestada"
+                            domain="[('state','=','PRO')]"
+                            help="Letras protestada"/>
+                    <filter name="state_renovadas" string="Renovadas"
+                            domain="[('state','=','REN')]"
+                            help="Letras renovadas"/>
+                    <filter name="state_canjeada" string="Canjeadas"
+                            domain="[('state','=','CJE')]"
+                            help="Letras canjeadas"/>
+                    <separator/>
+                    <filter name="vencidas" string="Vencidas"
+                            domain="[('date_due','&lt;', (context_today()).strftime('%Y-%m-%d') )]"
+                            help="Letras vencidas a la fecha"/>
+
+                    <group expand="0" string="Agrupado por">
+                        <filter string="Estados" icon="terp-personal"
+                                domain="[]"
+                                context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_letra_cambio_view" model="ir.actions.act_window">
+            <field name="name">Letra de Cambio</field>
+            <field name="res_model">letra_cambio.letra</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem  parent="letra_cambio.letra_cambio_menu" name="Administración de Letras de Cambio" id="letra_cambio_menu_letra" action="action_letra_cambio_view"/>
+
+    </data>
+</odoo>

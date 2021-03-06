@@ -1,0 +1,222 @@
+<odoo>
+    <data>
+        <!-- DEFINIMOS LOS ELEMENTOS DE LA PLANTILLA RETAIL -->
+        <record id="ks_default_item_facturacion" model="ks_dashboard_ninja.item">
+            <field name="name">Facturacion</field>
+            <field name="ks_dashboard_item_type">ks_tile</field>
+            <field name="ks_record_count_type">sum</field>
+            <!-- CAMPO QUE DEFINE EL MODELO -->
+            <field name="ks_model_id" ref="account.model_account_invoice"/>
+            <field name="ks_record_field" ref="account.field_account_invoice_amount_total"/>
+            <field name="ks_date_filter_field" ref="account.field_account_invoice_date_invoice"/>
+            <field name="ks_domain">[["invoice_type_code","=","01"]]</field>
+            <field name="ks_default_icon">money</field>
+            <field name="ks_dashboard_item_theme">blue</field>
+            <field name="ks_background_color">#337ab7,0.99</field>
+            <field name="ks_font_color">#ffffff,0.99</field>
+            <field name="ks_default_icon_color">#ffffff,0.99</field>
+            <field name="ks_layout">layout3</field>
+            <field name="ks_company_id" eval="0"/>
+        </record>
+        <record id="ks_default_item_utilidad" model="ks_dashboard_ninja.item">
+            <field name="name">Utilidad de Venta</field>
+            <field name="ks_dashboard_item_type">ks_tile</field>
+            <field name="ks_record_count_type">sum</field>
+            <!-- CAMPO QUE DEFINE EL MODELO -->
+            <field name="ks_model_id" ref="point_of_sale.model_report_pos_order"/>
+            <field name="ks_record_field" ref="bi_pos_margin.field_report_pos_order_margin"/>
+            <field name="ks_date_filter_field" ref="point_of_sale.field_report_pos_order_date"/>
+            <field name="ks_actions" ref="point_of_sale.action_report_pos_order_all"/>
+            <field name="ks_default_icon">money</field>
+            <field name="ks_dashboard_item_theme">green</field>
+            <field name="ks_background_color">#f0ad4e,0.99</field>
+            <field name="ks_font_color">#ffffff,0.99</field>
+            <field name="ks_default_icon_color">#ffffff,0.99</field>
+            <field name="ks_layout">layout3</field>
+            <field name="ks_company_id" eval="0"/>
+        </record>
+        <record id="ks_default_item_nota_credito" model="ks_dashboard_ninja.item">
+            <field name="name">Nota de Credito</field>
+            <field name="ks_dashboard_item_type">ks_tile</field>
+            <field name="ks_record_count_type">sum</field>
+            <!-- CAMPO QUE DEFINE EL MODELO -->
+            <field name="ks_model_id" ref="account.model_account_invoice"/>
+            <field name="ks_record_field" ref="account.field_account_invoice_amount_total"/>
+            <field name="ks_date_filter_field" ref="account.field_account_invoice_date_invoice"/>
+            <field name="ks_domain">[["invoice_type_code","=","07"]]</field>
+            <field name="ks_default_icon">money</field>
+            <field name="ks_dashboard_item_theme">blue</field>
+            <field name="ks_background_color">##12c8a3,0.99</field>
+            <field name="ks_font_color">#ffffff,0.99</field>
+            <field name="ks_default_icon_color">#ffffff,0.99</field>
+            <field name="ks_layout">layout3</field>
+            <field name="ks_company_id" eval="0"/>
+        </record>
+        <record id="point_of_sale.action_report_pos_order_all" model="ir.actions.act_window">
+            <field name="name">Orders Analysis</field>
+            <field name="res_model">report.pos.order</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">pivot</field>
+            <field name="search_view_id" ref="point_of_sale.view_report_pos_order_search"/>
+            <field name="context">{'group_by_no_leaf':1,'group_by':[]}</field>
+        </record>
+        <record id="ks_default_item_pedido_medio" model="ks_dashboard_ninja.item">
+            <field name="name">Pedido Medio</field>
+            <field name="ks_dashboard_item_type">ks_tile</field>
+            <field name="ks_record_count_type">average</field>
+            <field name="ks_model_id" ref="point_of_sale.model_report_pos_order"/>
+            <field name="ks_record_field" ref="point_of_sale.field_report_pos_order_price_total"/>
+            <field name="ks_date_filter_field" ref="point_of_sale.field_report_pos_order_date"/>
+            <field name="ks_actions" ref="point_of_sale.action_report_pos_order_all"/>
+            <field name="ks_default_icon">money</field>
+            <field name="ks_dashboard_item_theme">blue</field>
+            <field name="ks_background_color">#337ab7,0.99</field>
+            <field name="ks_font_color">#ffffff,0.99</field>
+            <field name="ks_default_icon_color">#ffffff,0.99</field>
+            <field name="ks_layout">layout3</field>
+            <field name="ks_company_id" eval="0"/>
+        </record>
+        <record id="ks_default_item_ventas" model="ks_dashboard_ninja.item">
+            <field name="name">Punto de Venta</field>
+            <field name="ks_dashboard_item_type">ks_tile</field>
+            <field name="ks_record_count_type">sum</field>
+            <!-- CAMPO QUE DEFINE EL MODELO -->
+            <field name="ks_model_id" ref="point_of_sale.model_report_pos_order"/>
+            <field name="ks_record_field" ref="point_of_sale.field_report_pos_order_price_total"/>
+            <field name="ks_date_filter_field" ref="point_of_sale.field_report_pos_order_date"/>
+            <field name="ks_actions" ref="point_of_sale.action_report_pos_order_all"/>
+            <field name="ks_domain">[["product_qty","&gt;",0]]</field>
+            <field name="ks_default_icon">money</field>
+            <field name="ks_dashboard_item_theme">blue</field>
+            <field name="ks_background_color">#198a14,0.99</field>
+            <field name="ks_font_color">#ffffff,0.99</field>
+            <field name="ks_default_icon_color">#ffffff,0.99</field>
+            <field name="ks_layout">layout3</field>
+            <field name="ks_company_id" eval="0"/>
+        </record>
+        <record id="ks_default_item_devolucion" model="ks_dashboard_ninja.item">
+            <field name="name">Devoluciones</field>
+            <field name="ks_dashboard_item_type">ks_tile</field>
+            <field name="ks_record_count_type">sum</field> 
+            <field name="ks_model_id" ref="point_of_sale.model_report_pos_order"/>
+            <field name="ks_record_field" ref="point_of_sale.field_report_pos_order_price_total"/>
+            <field name="ks_date_filter_field" ref="point_of_sale.field_report_pos_order_date"/>
+            <field name="ks_actions" ref="point_of_sale.action_report_pos_order_all"/>
+            <field name="ks_domain">[["product_qty","&lt;",0]]</field>
+            <field name="ks_default_icon">money</field>
+            <field name="ks_dashboard_item_theme">blue</field>
+            <field name="ks_background_color">#d9534f,0.99</field>
+            <field name="ks_font_color">#ffffff,0.99</field>
+            <field name="ks_default_icon_color">#ffffff,0.99</field>
+            <field name="ks_layout">layout3</field>
+            <field name="ks_company_id" eval="0"/>
+        </record>
+        <record id="ks_default_item_ventas_semana" model="ks_dashboard_ninja.item">
+            <field name="name">Ventas por Semana</field>
+            <field name="ks_model_id" ref="point_of_sale.model_report_pos_order"/>
+            <field name="ks_chart_data_count_type">sum</field>
+            <field name="ks_chart_groupby_type">relational_type</field>
+            <field name="ks_chart_measure_field" eval="[(6, 0, [ref('point_of_sale.field_report_pos_order_price_total')])]"/>
+            <field name="ks_dashboard_item_type">ks_bar_chart</field>
+            <field name="ks_chart_relation_groupby" ref="point_of_sale.field_report_pos_order_date"/>
+            <field name="ks_chart_date_groupby">week</field>
+            <field name="ks_chart_item_color">neon</field>
+            <field name="ks_show_data_value">True</field>
+            <field name="ks_unit">True</field>
+            <field name="ks_unit_selection">monetary</field>
+            <field name="ks_goal_enable">True</field>
+            <field name="ks_goal_bar_line">True</field>
+            <field name="ks_standard_goal_value">25000.00</field>
+            <field name="ks_company_id" eval="0"/>
+        </record>
+        <record id="ks_default_item_productos_mas_vendidos" model="ks_dashboard_ninja.item">
+            <field name="name">10 Productos mas vendidos</field>
+            <field name="ks_model_id" ref="point_of_sale.model_report_pos_order"/>
+            <field name="ks_chart_data_count_type">sum</field>
+            <field name="ks_chart_groupby_type">relational_type</field>
+            <field name="ks_chart_measure_field" eval="[(6, 0, [ref('point_of_sale.field_report_pos_order_price_total'),ref('bi_pos_margin.field_report_pos_order_margin')])]"/>
+            <field name="ks_dashboard_item_type">ks_horizontalBar_chart</field>
+            <field name="ks_chart_relation_groupby" ref="point_of_sale.field_report_pos_order_product_id"/>
+            <field name="ks_sort_by_field" ref="point_of_sale.field_report_pos_order_price_total"/>
+            <field name="ks_sort_by_order">DESC</field>
+            <field name="ks_record_data_limit">10</field>
+            <field name="ks_chart_item_color">cool</field>
+            <field name="ks_show_data_value">True</field>
+            <field name="ks_unit">True</field>
+            <field name="ks_unit_selection">monetary</field>
+            <field name="ks_company_id" eval="0"/>
+        </record>
+        <record id="ks_default_item_categorias_mas_vendidas" model="ks_dashboard_ninja.item">
+            <field name="name">10 Categorias mas vendidas</field>
+            <field name="ks_model_id" ref="point_of_sale.model_report_pos_order"/>
+            <field name="ks_chart_data_count_type">sum</field>
+            <field name="ks_chart_groupby_type">relational_type</field>
+            <field name="ks_chart_measure_field" eval="[(6, 0, [ref('point_of_sale.field_report_pos_order_price_total'),ref('bi_pos_margin.field_report_pos_order_margin')])]"/>
+            <field name="ks_dashboard_item_type">ks_horizontalBar_chart</field>
+            <field name="ks_chart_relation_groupby" ref="point_of_sale.field_report_pos_order_product_categ_id"/>
+            <field name="ks_sort_by_field" ref="point_of_sale.field_report_pos_order_price_total"/>
+            <field name="ks_domain">[["product_categ_id","!=","All"]]</field>
+            <field name="ks_sort_by_order">DESC</field>
+            <field name="ks_record_data_limit">10</field>
+            <field name="ks_chart_item_color">cool</field>
+            <field name="ks_show_data_value">True</field>
+            <field name="ks_unit">True</field>
+            <field name="ks_unit_selection">monetary</field>
+            <field name="ks_company_id" eval="0" />
+        </record>
+        <record id="ks_default_item_ventas_y_utilidades" model="ks_dashboard_ninja.item">
+            <field name="name">Ventas vs Utilidades</field>
+            <field name="ks_model_id" ref="point_of_sale.model_report_pos_order"/>
+            <field name="ks_chart_data_count_type">sum</field>
+            <field name="ks_chart_groupby_type">relational_type</field>
+            <field name="ks_chart_measure_field" eval="[(6, 0, [ref('point_of_sale.field_report_pos_order_price_total'),ref('bi_pos_margin.field_report_pos_order_margin')])]"/>
+            <field name="ks_dashboard_item_type">ks_area_chart</field>
+            <field name="ks_chart_relation_groupby" ref="point_of_sale.field_report_pos_order_date"/>
+            <field name="ks_chart_date_groupby">month</field>
+            <field name="ks_chart_item_color">cool</field>
+            <field name="ks_show_data_value">True</field>
+            <field name="ks_unit">True</field>
+            <field name="ks_unit_selection">monetary</field>
+            <field name="ks_company_id" eval="0" />
+        </record>
+        <record id="ks_default_item_envios_sunat" model="ks_dashboard_ninja.item">
+            <field name="name">Envios a Sunat</field>
+            <field name="ks_model_id" ref="account.model_account_invoice"/>
+            <field name="ks_chart_data_count_type">count</field>
+            <field name="ks_chart_groupby_type">relational_type</field>
+            <field name="ks_chart_relation_groupby" ref="efact.field_account_invoice_estado_comprobante_electronico"/>
+            <field name="ks_dashboard_item_type">ks_pie_chart</field>
+            <field name="ks_chart_item_color">neon</field>
+            <field name="ks_show_data_value">True</field>
+            <field name="ks_company_id" eval="0" />
+        </record>
+        <!-- DEFINIMOS LA PLANTILLA DE LA PIZARRA RETAIL-->
+        <record id="ks_template_retail" model="ks_dashboard_ninja.board_template">
+            <field name="name">RETAIL</field>
+            <field name="ks_gridstack_config">[
+                {"item_id":"dashboard_efact_retail.ks_default_item_facturacion", "data": {"x": 0, "y": 0, "width": 5, "height": 2}},
+                {"item_id":"dashboard_efact_retail.ks_default_item_nota_credito", "data": {"x": 6, "y": 0, "width": 5, "height": 2}},
+                {"item_id":"dashboard_efact_retail.ks_default_item_utilidad", "data": {"x": 12, "y": 0, "width": 5, "height": 2}},
+                {"item_id":"dashboard_efact_retail.ks_default_item_ventas", "data": {"x": 0, "y": 3, "width": 5, "height": 2}},
+                {"item_id":"dashboard_efact_retail.ks_default_item_devolucion", "data": {"x": 6, "y": 3, "width": 5, "height": 2}},
+                {"item_id":"dashboard_efact_retail.ks_default_item_pedido_medio", "data": {"x": 12, "y": 3, "width": 5, "height": 2}},
+                {"item_id":"dashboard_efact_retail.ks_default_item_productos_mas_vendidos", "data": {"x": 18, "y": 0, "width": 18, "height": 6}},
+                {"item_id":"dashboard_efact_retail.ks_default_item_categorias_mas_vendidas", "data": {"x": 18, "y": 0, "width": 18, "height": 6}},
+                {"item_id":"dashboard_efact_retail.ks_default_item_ventas_semana", "data": {"x": 0, "y": 4, "width": 18, "height": 6}},
+                {"item_id":"dashboard_efact_retail.ks_default_item_ventas_y_utilidades", "data": {"x": 0, "y": 10, "width": 18, "height": 6}},
+                {"item_id":"dashboard_efact_retail.ks_default_item_envios_sunat", "data": {"x": 18, "y": 15, "width": 18, "height": 5}}
+                ]</field>
+            <field name="ks_item_count">10</field>
+        </record>
+        <!-- DEFINIMOS LA PIZARRA RETAIL -->
+        <record id="ks_my_default_dashboard_board_facturacion" model="ks_dashboard_ninja.board">
+            <field name="ks_dashboard_top_menu_id" ref="ks_dashboard_ninja.board_menu_root"/>
+            <field name="ks_dashboard_default_template" ref="ks_template_retail"/>
+            <field name="name">RETAIL</field>
+            <field name="ks_dashboard_state">Locked</field>
+            <field name="ks_dashboard_menu_name">RETAIL</field>
+            <field name="ks_dashboard_active">1</field>
+            <field name="ks_dashboard_group_access" eval="False"/>
+        </record>
+    </data>
+</odoo>

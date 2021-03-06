@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record id="wizard_protestar_letras_view" model="ir.ui.view">
+            <field name="name">Protestar letras</field>
+            <field name="model">protestar_letras_wizard</field>
+            <field name="arch" type="xml">
+                <form string="Protestar letras">
+                    <p class="oe_grey">
+                        Protestar las siguientes letras
+                    </p>
+                    <separator string="LETRAS" colspan="4" />
+
+                    <field name="letra_ids" widget="many2many_tags" readonly="1" />
+                    <group>
+                        <field name="currency_id"/>
+                        <field name="gastos" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+
+                    </group>
+                    <footer>
+                        <button string="Aceptar" name="protestar_letras" type="object"
+                            default_focus="1" class="oe_highlight" />
+                        or
+                        <button string="Cancelar" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <act_window id="action_protestar_letra_wizard" multi="True"
+            name="Protestar Letras" res_model="protestar_letras_wizard" src_model="letra_cambio.letra"
+            view_mode="form" target="new" view_type="form" />
+
+    </data>
+</odoo>

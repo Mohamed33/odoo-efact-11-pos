@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+		<record model="ir.ui.view" id="ace_view_pos_config_form">
+           <field name="name">pos.config.form.view.inherit</field>
+           <field name="model">pos.config</field>
+           <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+           <field name="arch" type="xml">
+               <div id="category_reference" position="after">
+                  <div class="col-xs-12 col-md-9 o_setting_box" id="trans_stock">
+                       <div class="o_setting_left_pane">
+                           <field name="enable_int_trans_stock"/>
+                       </div>
+                      <div class="o_setting_right_pane">
+                           <label for="enable_int_trans_stock"/>
+                       </div>
+                  </div>
+               </div>
+           </field>
+       </record>
+	</data>
+</openerp>

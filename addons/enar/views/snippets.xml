@@ -1,0 +1,932 @@
+<odoo>
+    <!-- Slider -->
+    <template id="enar.slider" name="Slider">
+        <section>
+            <div id="myQuoteCarouselzoom" class="carousel slide s_banner oe_custom_bg" data-interval="10000" style="height: 500px;">
+                <ol class="carousel-indicators red-indicators">
+                    <li data-target="#myQuoteCarouselzoom" data-slide-to="0" class="active"></li>
+                    <li data-target="#myQuoteCarouselzoom" data-slide-to="1"></li>
+                    <li data-target="#myQuoteCarouselzoom" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                   <div class="item oe_img_bg oe_custom_bg active ken-burns img-responsive" style="background-image: url('/enar/static/src/images/bg16.jpg')">
+                       <div class="row ">
+                           <div class="carousel-content mt64 ml64">
+                               
+                               <p><font class="o_default_snippet_text text-primary" style="background-color: rgb(255, 255, 255); font-size: 36px; color: #1ccdca;">Enar</font></p>
+                               <p><font class="bg-primary o_default_snippet_text" style="font-size: 24px; background-color: #1ccdca;">100% Responsive</font></p>
+                               <p><font style="background-color: rgb(99, 99, 99); color: rgb(247, 247, 247); font-size: 24px;" class="o_default_snippet_text">Full Responsive Multipurpose HTML5 Template</font></p>
+                                
+                           </div>
+                       </div>
+                   </div>
+                   <div class="item oe_img_bg oe_custom_bg ken-burns img-responsive" style="background-image: url('/enar/static/src/images/bg14.jpg')">
+                       <div class="row ">
+                           <div class="carousel-content mt64 ml64">
+                               
+                               <p><font class="o_default_snippet_text text-primary " style="background-color: rgb(255, 255, 255); font-size: 36px; color: #1ccdca;">Quality</font></p>
+                               <p><font class="bg-primary o_default_snippet_text" style="font-size: 24px; background-color: #1ccdca;">Creative Unique Design</font></p>
+                               <p><font style="background-color: rgb(99, 99, 99); color: rgb(247, 247, 247); font-size: 24px;" class="o_default_snippet_text">Super Design - Clean Code  - Creative Theme</font></p>
+                               <p><a href="/page/website.contactus" class="btn btn-primary">Contact us</a></p>
+                                
+                           </div>
+                       </div>
+                   </div>
+                   <div class="item oe_img_bg oe_custom_bg ken-burns img-responsive" style="background-image: url('/enar/static/src/images/bg15.jpg')">
+                       <div class="row ">
+                           <div class="carousel-content mt64 ml64">
+                               
+                               <p><font style="font-size: 36px;">OUR FREEDOM</font></p>
+                               <p><font style="font-size: 14px;">"Freedom is not worth having if it does not include<br/> the freedom to make mistakes." <br></br>
+                                - Mahatma Gandhi</font></p>
+                                
+                           </div>
+                       </div>
+                   </div>
+               </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- About enar Section -->
+    <template id="enar.about" name="About Enar">
+        <section class="content_section" id="aboutus">
+            <div class="container icons_spacer">
+                <div class="main_title centered upper">
+                    <h2><span class="line"><span class="dot"></span></span>About Enar</h2>
+                </div>
+                <div class="icon_boxes_con style1 clearfix">
+                <div class="container">
+                   <div class="row"> 
+                    <div class="col-md-3">
+                        <div class="service_box">
+                            <span class="icon"><span class="fa fa-wrench"></span></span>
+                            <div class="service_box_con centered">
+                                <h3>Super Coding</h3>
+                                <span class="desc">There are many variations of demo text passed sages of Lorem Ipsum available the majority.</span>
+                                <a href="#" class="ser-box-link"><span></span>Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="service_box">
+                            <span class="icon"><span class="fa color1 fa-mobile"></span></span>
+                            <div class="service_box_con centered">
+                                <h3>Best User Interface</h3>
+                                <span class="desc">There are many variations of demo text passed sages of Lorem Ipsum available the majority.</span>
+                                <a href="#" class="ser-box-link"><span></span>Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="service_box">
+                            <span class="icon"><span class="fa color2 fa-heart"></span></span>
+                            <div class="service_box_con centered">
+                                <h3>Unique Design</h3>
+                                <span class="desc">There are many variations of demo text passed sages of Lorem Ipsum available the majority.</span>
+                                <a href="#" class="ser-box-link"><span></span>Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="service_box">
+                            <span class="icon"><span class="fa color3 fa-key"></span></span>
+                            <div class="service_box_con centered">
+                                <h3>Easy to Customize</h3>
+                                <span class="desc">There are many variations of demo text passed sages of Lorem Ipsum available the majority.</span>
+                                <a href="#" class="ser-box-link"><span></span>Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="enar.featurebox" name="Feature Box">
+        <section class="content_section bg_fixed white_section bg1" id="featurebox">
+            <div class="bg_overlay">
+            <div class="content no_padding clearfix">
+                <div class="col-md-6 row_spacer">
+                <h2 class="title2"><span class="red"><i class="ico-globe3"></i></span>Unique And Modern Design</h2>
+                <p>Lorem Ipsum is simply dummy text of the printing and typeseting industry Lorem in text Ipsum has been the industry standar dummyy text ever since the when an iunesi known printer of took a galley of type.</p>
+                    <p>and scrambled it to make a typea specimen book There are many variations of the paes sages the Lorem Ipsum available, but the majority have to suffered alteration iner some form with injected randomised words which.</p>
+                <ul class="list1 black list_circle clearfix">
+                    <li>Multiple Layout</li>
+                    <li>Awesome Shortcodes</li>
+                    <li>Browser Compatibility</li>
+                    <li>Easy to Edit Animations</li>
+                    <li>Parallax Effect</li>
+                    <li>Responsive Design</li>
+                    <li>Many Home Page Versions</li>
+                    <li>Many Blog Pages</li>
+                </ul>
+                <div>
+                    <a class="btn_b white_btn italic" href="#">
+                        <span class="hidden_element" data-text="Purchase Now">Purchase Now</span>
+                    </a>
+                    <a class="btn_b italic" href="#">
+                        <span class="hidden_element" data-text="Read More">Read More</span>
+                    </a>
+                </div>
+                </div>
+                <div class="has_col_img on_desktop">
+                    <img class="" src="/enar/static/src/images/tab1.png" alt="Image Description" height="453px" width="614px"/>
+                </div>
+            </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="enar.whyus" name="Why US?">
+        <section class="content_section bg_gray border_t_n" id="whyus">
+            <div class="content row_spacer">
+            <div class="main_title centered upper">
+                <h2><span class="line"><span class="dot"></span></span>Why Choose Us?</h2>
+            </div>
+            <div class="hm-tabs tabs2 upper_title">
+            <div class="container">
+                <div class="row"> 
+                <nav class="clearfix">
+                    <ul class="tabs-navi">
+                    <li><a data-content="vission" class="selected" href="#"><span><i class="fa fa-star"></i></span>Vission</a></li>
+                    <li><a data-content="mession" href="#"><span><i class="fa fa-heart"></i></span>Mession</a></li>
+                    <li><a data-content="goals" href="#"><span><i class="fa fa-paper-plane"></i></span>Goals</a></li>
+                    <li><a data-content="solutions" href="#"><span><i class="fa fa-lightbulb-o"></i></span>Solutions</a></li>
+                    </ul> <!-- tabs-navi -->
+                </nav>
+                </div>
+                <div class="row">
+                <ul class="tabs-body">
+                    <li data-content="vission" class="selected clearfix">
+                    
+                    <div class="tab_img">
+                        <a class="magnific-popup img_popup" href="/enar/static/src/images/home2.jpg" >
+                        <span><i class="ico-maximize"></i></span>
+                        <img class="popup_img" src="/enar/static/src/images/home2.jpg" alt="vission" height="223" width="334"/>
+                        </a>
+                    </div>
+                    <h6>Our Vission</h6>
+                    <p>Inbox Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum recusandae rem animi accusamus quisquam reprehenderit sed voluptates, numquam, quibusdam velit dolores repellendus tempora corrupti accusantium obcaecati voluptate totam eveniet laboriosam?</p>
+                
+                    <p>Inbox Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum recusandae rem animi accusamus quisquam reprehenderit sed voluptates, numquam, quibusdam velit dolores repellendus tempora corrupti accusantium obcaecati voluptate totam eveniet laboriosam?</p>
+                    </li>
+                
+                    <li data-content="mession">
+                    <p>New Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non a voluptatibus, ex odit totam cumque nihil eos asperiores ea, labore rerum. Doloribus tenetur quae impedit adipisci, laborum dolorum eaque ratione quaerat, eos dicta consequuntur atque ex facere voluptate cupiditate incidunt.</p>
+                
+                    <p>New Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non a voluptatibus, ex odit totam cumque nihil eos asperiores ea, labore rerum. Doloribus tenetur quae impedit adipisci, laborum dolorum eaque ratione quaerat, eos dicta consequuntur atque ex facere voluptate cupiditate incidunt.</p>
+                    </li>
+                
+                    <li data-content="goals">
+                    <p>Gallery Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque tenetur aut, cupiditate, libero eius rerum incidunt dolorem quo in officia.</p>
+                
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ipsa vero, culpa doloremque voluptatum consectetur mollitia, atque expedita unde excepturi id, molestias maiores delectus quos molestiae. Ab iure provident adipisci eveniet quisquam ratione libero nam inventore error pariatur optio facilis assumenda sint atque cumque, omnis perspiciatis. Maxime minus quam voluptatum provident aliquam voluptatibus vel rerum. Soluta nulla tempora aspernatur maiores! Animi accusamus officiis neque exercitationem dolore ipsum maiores delectus asperiores reprehenderit pariatur placeat, quaerat sed illum optio qui enim odio temporibus, nulla nihil nemo quod dicta consectetur obcaecati vel. Perspiciatis animi corrupti quidem fugit deleniti, atque mollitia labore excepturi ut.</p>
+                    </li>
+                
+                    <li data-content="solutions">
+                    <p>Store Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum recusandae rem animi accusamus quisquam reprehenderit sed voluptates, numquam, quibusdam velit dolores repellendus tempora corrupti accusantium obcaecati voluptate totam eveniet laboriosam?</p>
+                
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, enim, pariatur. Ab assumenda, accusantium! Consequatur magni placeat quae eos dicta, cum expedita sunt facilis est impedit possimus dolorum sequi nostrum nobis sit praesentium molestias nulla laudantium fugit corporis nam ut saepe harum ipsam? Debitis accusantium, omnis repudiandae modi, distinctio illo voluptatibus aperiam odio veritatis, quam perferendis eaque ullam. Temporibus tempore ad voluptates explicabo ea sit deleniti ipsum quos dolores tempora odio, ab corporis molestiae, eaque optio, perferendis! Cumque libero quia modi! Totam magni rerum id iusto explicabo distinctio, magnam, labore sed nemo expedita velit quam, perspiciatis non temporibus sit minus voluptatum. Iste, cumque sunt suscipit facere iusto asperiores, ullam dolorum excepturi quidem ea quibusdam deserunt illo. Nesciunt voluptates repellat ipsam.</p>
+                    </li>
+                </ul>
+                </div>
+                </div>
+                <!-- Tabs Content -->
+            </div> 
+            <!-- End Tabs Container --> 
+            </div>
+        </section>
+    </template>
+
+    <template id="enar.counter" name="Counter">
+        <section class="content_section white_section bg_color1 enar_parallax bg4" id="counter">
+            <div class="content row_spacer">                            
+                <div class="counter_a clearfix">
+                    <div class="container">
+                    <div class="row"> 
+                    <div class="col-md-3">
+                        <div class="counter animated" data-animation="fadeInDown" data-animation-delay="300">
+                            <span class="icon"><span class="fa fa-users"></span></span>
+                            <span class="value" data-speed="4000" data-from="0" data-to="1500">1500</span>
+                            <span class="title">clients</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="counter animated" data-animation="fadeInDown" data-animation-delay="600">
+                            <span class="icon"><span class="fa fa-trophy"></span></span>
+                            <span class="value" data-speed="4000" data-from="0" data-to="13">13</span>
+                            <span class="title">Awards</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="counter animated" data-animation="fadeInDown" data-animation-delay="900">
+                            <span class="icon"><span class="fa fa-map-marker"></span></span>
+                            <span class="value" data-speed="4000" data-from="0" data-to="564">564</span>
+                            <span class="title">Location</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="counter animated" data-animation="fadeInDown" data-animation-delay="1200">
+                            <span class="icon"><span class="fa fa-list-alt"></span></span>
+                            <span class="value" data-speed="4000" data-from="0" data-to="384">384</span>
+                            <span class="title">Projects</span>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+    </template>
+
+    <template id="enar.team" name="Team">
+        <section class="content_section">
+            <div class="content row_spacer no_padding" id="team"> 
+                <div class="main_title centered upper">
+                    <!-- <h2><span class="line"><span class="ico-user5"></span></span>Meet Our Team</h2> -->
+                    <h2><span class="line"></span>Meet Our Team</h2>
+                </div>
+                <div class="main_desc half_desc centered">
+                    <p>We believe in a diverse range of personel to bring creative skills, thoughts, and ideas to the table.</p>
+                </div>
+                <span class="spacer30"></span>
+                
+                <div class="rows_container clearfix">
+                    <div class="container">
+                       <div class="row"> 
+                    <t t-foreach="website.get_employee()" t-as="employee">
+                        <div class="col-md-3">
+                            <div class="team_block flipp_effect">
+                                <div class="f1_card">
+                                    <div class="front face">
+                                        <span class="team_img" style="height:170px; width:170px;">
+                                            <!-- <img itemprop="image" class="img img-responsive img_size" style="display: inline-block;" t-att-src="'data:image/png;base64,' + employee.image"/> -->
+                                            <span t-field="employee.image" t-options="{'widget': 'image', 'class': 'img img-responsive img_size'}"/>
+                                        </span>
+                                        <span class="person_name"><span t-field="employee.name"/></span>
+                                        <span class="person_jop"><span t-field="employee.job_id.name"/></span>
+                                    </div>
+                                    <div class="back face">
+                                        <span class="person_name"><span t-field="employee.name"/></span>
+                                        <span class="person_jop"><span t-field="employee.job_id.name"/></span>
+                                        <span class="person_desc"><span t-field="employee.notes"/></span>
+                                        <div class="social_media clearfix">
+                                            <a href="#" target="_blank" class="twitter">
+                                                <i class="ico-twitter4"></i>
+                                            </a>
+                                            <a href="#" target="_blank" class="facebook">
+                                                <i class="ico-facebook4"></i>
+                                            </a>        
+                                            <a href="#" target="_blank" class="googleplus">
+                                                <i class="ico-google-plus"></i>
+                                            </a>     
+                                            <a href="#" target="_blank" class="linkedin">
+                                                <i class="ico-linkedin3"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="enar.services" name="Services">
+        <section class="content_section bg_gray" id="service">
+            <div class="content row_spacer">
+                <div class="main_title centered upper">
+                    <h2><span class="line"><i class="fa fa-desktop"></i></span>Our Services</h2>
+                </div>
+                <div class="main_desc half_desc centered">
+                    <p>Our dedicated employees are happy to assist you with know-how and experience in your daily business.</p>
+                </div>
+                <span class="spacer30"></span>
+                
+                <ul class="tree_features clearfix">
+                    <li data-bgcolor="#0072A5">
+                        <span class="leaf_icon"><span class="fa fa-mobile"></span></span>
+                        <div class="leaf_con">
+                            <a href="#" class="tree_features_t">Responsive Design</a>
+                            <span class="tree_features_d">There are many variations of demo text passed sages of Lorem Ipsum available the majority.</span>
+                        </div>
+                    </li>
+                    <li data-bgcolor="#4D4294">
+                        <span class="leaf_icon"><span class="fa fa-desktop"></span></span>
+                        <div class="leaf_con">
+                            <a href="#" class="tree_features_t">Best User Interface</a>
+                            <span class="tree_features_d">There are many variations of demo text passed sages of Lorem Ipsum available the majority.</span>
+                        </div>
+                    </li>
+                    <li data-bgcolor="#F36A71">
+                        <span class="leaf_icon"><span class="fa fa-pencil"></span></span>
+                        <div class="leaf_con">
+                            <a href="#" class="tree_features_t">Easy to Edit Animations</a>
+                            <span class="tree_features_d">There are many variations of demo text passed sages of Lorem Ipsum available the majority.</span>
+                        </div>
+                    </li>
+                    <li data-bgcolor="#B853A3">
+                        <span class="leaf_icon"><span class="fa fa-external-link"></span></span>
+                        <div class="leaf_con">
+                            <a href="#" class="tree_features_t">Browser Compatibility</a>
+                            <span class="tree_features_d">There are many variations of demo text passed sages of Lorem Ipsum available the majority.</span>
+                        </div>
+                    </li>
+                    <li data-bgcolor="#0CAEBF">
+                        <span class="leaf_icon"><span class="fa fa-key"></span></span>
+                        <div class="leaf_con">
+                            <a href="#" class="tree_features_t">Easy to Customize</a>
+                            <span class="tree_features_d">There are many variations of demo text passed sages of Lorem Ipsum available the majority.</span>
+                        </div>
+                    </li>
+                    <li data-bgcolor="#1BBC9B">
+                        <span class="leaf_icon"><span class="fa fa-bar-chart"></span></span>
+                        <div class="leaf_con">
+                            <a href="#" class="tree_features_t">Super Coding</a>
+                            <span class="tree_features_d">There are many variations of demo text passed sages of Lorem Ipsum available the majority.</span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="centered">
+                    <img class="tree_features_parent" src="/enar/static/src/images/icons/archive2.svg" alt="Image Title" height="160px" width="160px"/>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="enar.morefeature" name="More Feature">
+        <section class="content_section bg_fixed white_section bg3" id="morefetures">
+            <div class="bg_overlay">
+                <div class="content row_spacer clearfix">
+                
+                    <div class="main_title centered upper">
+                        <h2><span class="line"></span>Even more Feature Rich</h2>
+                    </div>
+                    
+                    <div class="container">
+                        <div class="row content">
+                            <div class="carousel-content">
+                                <div class="feature_icon_slide">
+                                    <div class="container">
+                                    <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="feature_icon on_right">
+                                            <div class="item">
+                                                <h5>
+                                                    <span class="icon"><span class="fa fa-rocket"></span></span>
+                                                    <span class="title">Easy to customize</span>
+                                                </h5>
+                                                <span>There are many variations of passages of Lorem Text on Ipsum available but the majority.</span>
+                                            </div>
+                                            <div class="item">
+                                                <h5>
+                                                    <span class="icon"><span class="fa fa-laptop"></span></span>
+                                                    <span class="title">Responsive Design</span>
+                                                </h5>
+                                                <span>There are many variations of passages of Lorem Text on Ipsum available but the majority.</span>
+                                            </div>
+                                            <div class="item">
+                                                <h5>
+                                                    <span class="icon"><span class="fa fa-send-o"></span></span>
+                                                    <span class="title">Awesome Shortcodes</span>
+                                                </h5>
+                                                <span>There are many variations of passages of Lorem Text on Ipsum available but the majority.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-4">
+                                        <div class="feature_icon_img">
+                                            <div class="item">
+                                                <div class="f_s_block circle">
+                                                    <a href="/enar/static/src/images/img1.jpg" class="magnific-popup img_popup">
+                                                        <span><i class="ico-maximize" height="340px" width="340px"></i></span>
+                                                        <img src="/enar/static/src/images/img1.jpg" alt="Feature Title" height="340px" width="370px"/>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-4">
+                                        <div class="feature_icon">
+                                            <div class="item">
+                                                <h5>
+                                                    <span class="icon"><span class="fa fa-heart"></span></span>
+                                                    <span class="title">Endless Possibilities</span>
+                                                </h5>
+                                                <span>There are many variations of passages of Lorem Text on Ipsum available but the majority.</span>
+                                            </div>
+                                            <div class="item">
+                                                <h5>
+                                                    <span class="icon"><span class="fa fa-home"></span></span>
+                                                    <span class="title">Boxed and Wide</span>
+                                                </h5>
+                                                <span>There are many variations of passages of Lorem Text on Ipsum available but the majority.</span>
+                                            </div>
+                                            <div class="item">
+                                                <h5>
+                                                    <span class="icon"><span class="fa fa-play-circle"></span></span>
+                                                    <span class="title">HTML5 Video</span>
+                                                </h5>
+                                                <span>There are many variations of passages of Lorem Text on Ipsum available but the majority.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="enar.portfolio" name="Portfolio">
+        <section class="content_section bg_gray" id="portfolio">
+            <div class="row_spacer clearfix">
+            
+                <div class="content">
+                    <div class="main_title centered upper">
+                        <h2><span class="line"><i class="ico-book5"></i></span>Our Portfolio</h2>
+                    </div>
+                </div>
+                
+                <!-- Filter Content -->
+                <div class="hm_filter_wrapper three_blocks project_text_nav boxed_portos has_sapce_portos nav_with_nums upper_title upper_title">
+                    <div id="options" class="sort_options clearfix">
+                        <ul data-option-key="filter" class="option-set clearfix" id="filter-by">
+                            <li><a data-option-value=".all" class="selected" href="#"><span>all</span></a></li>
+                            <li><a data-option-value=".design" class="" href="#"><span>Design</span></a></li>
+                            <li><a data-option-value=".photography" class="" href="#"><span>Photography</span></a></li>
+                            <li><a data-option-value=".video" class="" href="#"><span>Video</span></a></li>
+                            <li><a data-option-value=".printing" class="" href="#"><span>Printing</span></a></li>
+                            <li><a data-option-value=".wordpress" class="" href="#"><span>Wordpress</span></a></li>
+                        </ul>
+                        <div class="sort_list">
+                            <a href="#" class="sort_selecter">
+                                <span class="text">Sort By</span>
+                                <span class="arrow"><i class="ico-arrow-back"></i></span>
+                            </a>
+                            <ul data-option-key="sortBy" class="option-set clearfix" id="sort-by">
+                                <li><a data-option-value="name" href="#" class=""><span class="text">name</span></a></li>
+                                <li><a data-option-value="number" href="#" class=""><span class="text">date</span></a></li>
+                                <li><a data-option-value="like_counter" href="#" class=""><span class="text">like number</span></a></li>
+                                <li><a data-option-value="comm_counter" href="#" class=""><span class="text">comments number</span></a></li>
+                            </ul>
+                        </div>
+                        <ul data-option-key="sortAscending" class="option-set clearfix" id="sort-direction">
+                            <li><a class="selected" data-option-value="true" href="#">
+                                <span><i class="ico-keyboard-arrow-up"></i></span></a>
+                            </li>
+                            <li><a data-option-value="false" href="#" class="">
+                                <span><i class="ico-keyboard-arrow-down"></i></span></a>
+                            </li>
+                        </ul>
+                    </div>   
+                    <div class="container">
+                    <div class="hm_filter_wrapper_con row">
+                        <div class="filter_item_block video all">
+                            <div class="porto_block">
+                                <div class="porto_type">
+                                    <a data-rel="magnific-popup" href="/enar/static/src/images/portfolio/porto1.jpg">
+                                        <img src="/enar/static/src/images/portfolio/porto1.jpg" alt="Portfolio Name" height="360px" width="360px"/>
+                                    </a>
+                                    <div class="porto_nav">
+                                        <a href="#" class="expand_img">View Larger</a>
+                                        <a href="#" class="detail_link">More Details</a>
+                                    </div>
+                                </div>
+                                <div class="porto_desc">
+                                    <h6 class="name">Flat Logo Design</h6>
+                                    <div class="porto_meta clearfix">
+                                    <span class="porto_date"><span class="number">20141213</span>December 13, 2014</span>
+                                    <span class="porto_nums">
+                                        <span class="comm"><i class="ico-comments"></i><span class="comm_counter">45</span></span>
+                                        <span class="like"><i class="ico-heart2"></i><span class="like_counter">120</span></span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="filter_item_block design video printing wordpress all">
+                            <div class="porto_block">
+                                <div class="porto_type">
+                                    <a data-rel="magnific-popup" href="/enar/static/src/images/portfolio/porto2.jpg">
+                                        <img src="/enar/static/src/images/portfolio/porto2.jpg" alt="Portfolio Name" height="360px" width="360px"/>
+                                    </a>
+                                    <div class="porto_nav">
+                                        <a href="#" class="expand_img">View Larger</a>
+                                        <a href="#" class="detail_link">More Details</a>
+                                    </div>
+                                </div>
+                                <div class="porto_desc">
+                                    <h6 class="name">Dawn of Justice</h6>
+                                    <div class="porto_meta clearfix">
+                                    <span class="porto_date"><span class="number">20141215</span>December 15, 2014</span>
+                                    <span class="porto_nums">
+                                        <span class="comm"><i class="ico-comments"></i><span class="comm_counter">12</span></span>
+                                        <span class="like"><i class="ico-heart2"></i><span class="like_counter">100</span></span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                
+                        <div class="filter_item_block design wordpress all">
+                            <div class="porto_block">
+                                <div class="porto_type">
+                                    <a data-rel="magnific-popup" href="/enar/static/src/images/portfolio/porto3.jpg">
+                                        <img src="/enar/static/src/images/portfolio/porto3.jpg" alt="Portfolio Name" height="360px" width="360px"/>
+                                    </a>
+                                    <div class="porto_nav">
+                                        <a href="#" class="expand_img">View Larger</a>
+                                        <a href="#" class="detail_link">More Details</a>
+                                    </div>
+                                </div>
+                                <div class="porto_desc">
+                                    <h6 class="name">Fly On the sky</h6>
+                                    <div class="porto_meta clearfix">
+                                    <span class="porto_date"><span class="number">20141210</span>December 10, 2014</span>
+                                    <span class="porto_nums">
+                                        <span class="comm"><i class="ico-comments"></i><span class="comm_counter">20</span></span>
+                                        <span class="like"><i class="ico-heart2"></i><span class="like_counter">263</span></span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                
+                        <div class="filter_item_block design photography printing all">
+                            <div class="porto_block">
+                                <div class="porto_type">
+                                    <a data-rel="magnific-popup" href="/enar/static/src/images/portfolio/porto4.jpg">
+                                        <img src="/enar/static/src/images/portfolio/porto4.jpg" alt="Portfolio Name" height="360px" width="360px"/>
+                                    </a>
+                                    <div class="porto_nav">
+                                        <a href="#" class="expand_img">View Larger</a>
+                                        <a href="#" class="detail_link">More Details</a>
+                                    </div>
+                                </div>
+                                <div class="porto_desc">
+                                    <h6 class="name">Need For Speed</h6>
+                                    <div class="porto_meta clearfix">
+                                    <span class="porto_date"><span class="number">20141220</span>December 20, 2014</span>
+                                    <span class="porto_nums">
+                                        <span class="comm"><i class="ico-comments"></i><span class="comm_counter">32</span></span>
+                                        <span class="like"><i class="ico-heart2"></i><span class="like_counter">520</span></span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                
+                        <div class="filter_item_block design wordpress all">
+                            <div class="porto_block">
+                                <div class="porto_type">
+                                    <a data-rel="magnific-popup" href="/enar/static/src/images/portfolio/porto5.jpg">
+                                        <img src="/enar/static/src/images/portfolio/porto5.jpg" alt="Portfolio Name" height="360px" width="360px"/>
+                                    </a>
+                                    <div class="porto_nav">
+                                        <a href="#" class="expand_img">View Larger</a>
+                                        <a href="#" class="detail_link">More Details</a>
+                                    </div>
+                                </div>
+                                <div class="porto_desc">
+                                    <h6 class="name">Days of Future</h6>
+                                    <div class="porto_meta clearfix">
+                                    <span class="porto_date"><span class="number">20141122</span>November 22, 2014</span>
+                                    <span class="porto_nums">
+                                        <span class="comm"><i class="ico-comments"></i><span class="comm_counter">423</span></span>
+                                        <span class="like"><i class="ico-heart2"></i><span class="like_counter">40</span></span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                
+                        <div class="filter_item_block design wordpress photography printing all">
+                            <div class="porto_block">
+                                <div class="porto_type">
+                                    <a data-rel="magnific-popup" href="/enar/static/src/images/portfolio/porto6.jpg">
+                                        <img src="/enar/static/src/images/portfolio/porto6.jpg" alt="Portfolio Name" height="360px" width="360px"/>
+                                    </a>
+                                    <div class="porto_nav">
+                                        <a href="#" class="expand_img">View Larger</a>
+                                        <a href="#" class="detail_link">More Details</a>
+                                    </div>
+                                </div>
+                                <div class="porto_desc">
+                                    <h6 class="name">Star Lord</h6>
+                                    <div class="porto_meta clearfix">
+                                    <span class="porto_date"><span class="number">20141110</span>November 10, 2014</span>
+                                    <span class="porto_nums">
+                                        <span class="comm"><i class="ico-comments"></i><span class="comm_counter">23</span></span>
+                                        <span class="like"><i class="ico-heart2"></i><span class="like_counter">256</span></span>
+                                    </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!-- End Filter Content -->
+            </div>    
+        </section>
+    </template>
+
+    <template id="enar.pricing" name="Pricing">
+        <section class="content_section bg9 bg_fixed" id="pricing">
+            <span class="section_icon"><i class="ico-pricetags"></i></span>
+            <div class="content no_padding row_spacer"> 
+                <div class="main_title centered upper">
+                    <h2><span class="line"></span>Pricing</h2>
+                </div>
+                <div class="rows_container clearfix">
+                    <div class="container">
+                    <div class="row">
+                    <div class="col-md-3">
+                        <div class="plan_col plan_column1">
+                            <h6> 
+                                <span class="plan_price_block">
+                                    <span class="plan_price_in" >
+                                        <span class="price">573</span>
+                                        <span class="plan_per">Monthly</span>
+                                    </span>
+                                </span>
+                                <span class="plan_price_name">Starter</span>
+                            </h6>
+                            <ul>
+                                <li><i class="check_icon ico-check3"></i><span>Free setup</span></li>
+                                <li><i class="wrong_icon ico-cross2"></i><span>50 Websites</span></li>
+                                <li><i class="check_icon ico-check3"></i><span>55GBStorage</span></li>
+                                <li><i class="check_icon ico-check3"></i><span>50GB Bandwidth</span></li>
+                                <li><i class="wrong_icon ico-cross2"></i><span>9 months Support</span></li>
+                                <li><i class="check_icon ico-check3"></i><span>Unlimited Subdomains</span></li>
+                            </ul>
+                            <a class="plan_price_btn" href="#"><i class="ico-cart"></i>Order Now</a>
+                        </div>
+                    </div><!-- Grid -->
+                    <div class="col-md-3">
+                        <div class="plan_col plan_column1 active_plan">
+                            <h6>
+                                <span class="plan_price_block">
+                                    <span class="plan_price_in">
+                                        <span class="price">234</span>
+                                        <span class="plan_per">Monthly</span>
+                                    </span>
+                                </span>
+                                <span class="plan_price_name">Standard</span>
+                            </h6>
+                            <ul>
+                                <li><i class="check_icon ico-check3"></i><span>Free setup</span></li>
+                                <li><i class="wrong_icon ico-cross2"></i><span>50 Websites</span></li>
+                                <li><i class="check_icon ico-check3"></i><span>55GBStorage</span></li>
+                                <li><i class="check_icon ico-check3"></i><span>50GB Bandwidth</span></li>
+                                <li><i class="wrong_icon ico-cross2"></i><span>9 months Support</span></li>
+                                <li><i class="check_icon ico-check3"></i><span>Unlimited Subdomains</span></li>
+                            </ul>
+                            <a class="plan_price_btn" href="#"><i class="ico-cart"></i>Order Now</a>
+                        </div>
+                    </div><!-- Grid -->
+                    <div class="col-md-3">
+                        <div class="plan_col plan_column1">
+                            <h6>
+                                <span class="plan_price_block">
+                                    <span class="plan_price_in">
+                                        <span class="price">1234</span>
+                                        <span class="plan_per">Monthly</span>
+                                    </span>
+                                </span>
+                                <span class="plan_price_name">Professional</span>
+                            </h6>
+                            <ul>
+                                <li><i class="check_icon ico-check3"></i><span>Free setup</span></li>
+                                <li><i class="wrong_icon ico-cross2"></i><span>50 Websites</span></li>
+                                <li><i class="check_icon ico-check3"></i><span>55GBStorage</span></li>
+                                <li><i class="check_icon ico-check3"></i><span>50GB Bandwidth</span></li>
+                                <li><i class="wrong_icon ico-cross2"></i><span>9 months Support</span></li>
+                                <li><i class="check_icon ico-check3"></i><span>Unlimited Subdomains</span></li>
+                            </ul>
+                            <a class="plan_price_btn" href="#"><i class="ico-cart"></i>Order Now</a>
+                        </div>
+                    </div><!-- Grid -->
+                    <div class="col-md-3">
+                        <div class="plan_col plan_column1">
+                            <h6>
+                                <span class="plan_price_block">
+                                    <span class="plan_price_in">
+                                        <span class="price">159</span>
+                                        <span class="plan_per">Monthly</span>
+                                    </span>
+                                </span>
+                                <span class="plan_price_name">Premium</span>
+                            </h6>
+                            <ul>
+                                <li><i class="check_icon ico-check3"></i><span>Free setup</span></li>
+                                <li><i class="wrong_icon ico-cross2"></i><span>50 Websites</span></li>
+                                <li><i class="check_icon ico-check3"></i><span>55GBStorage</span></li>
+                                <li><i class="check_icon ico-check3"></i><span>50GB Bandwidth</span></li>
+                                <li><i class="wrong_icon ico-cross2"></i><span>9 months Support</span></li>
+                                <li><i class="check_icon ico-check3"></i><span>Unlimited Subdomains</span></li>
+                            </ul>
+                            <a class="plan_price_btn" href="#"><i class="ico-cart"></i>Order Now</a>
+                        </div>
+                    </div><!-- Grid -->
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="enar.client" name="Client Review">
+        <section class="content_section" id="client">
+            <div class="content row_spacer clearfix">   
+                <div class="main_title centered upper">
+                    <h2><span class="line"><i class="ico-user4"></i></span>Happy Clients</h2>
+                </div> 
+                <div class="normal_text_slider client_say_slider">  
+                    <div id="myQuoteCarouselclient" class="carousel slide s_banner oe_custom_bg" data-interval="10000" style="height: 400px;">
+                        <ol class="carousel-indicators red-indicators">
+                            <li data-target="#myQuoteCarouselclient" data-slide-to="0" class="active"></li>
+                            <li data-target="#myQuoteCarouselclient" data-slide-to="1"></li>
+                            <li data-target="#myQuoteCarouselclient" data-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="item img-responsive oe_img_bg oe_custom_bg active">
+                                <div class="container">
+                                    <div class="row content">
+                                        <div class="carousel-content">
+                                            <center>
+                                                <div class="c_say">
+                                                    <div class="centered">
+                                                        <span class="client_img">
+                                                            <span>
+                                                                <img src="/enar/static/src/images/clients/client1.jpg" alt="client name" height="170px" width="170px"/>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                    <span class="client_details">
+                                                        <span class="name">Alan Snow</span> - 
+                                                        <span class="url">Manager</span>
+                                                    </span>
+                                                    <span class="desc">
+                                                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+                                                    </span>
+                                                </div>
+                                            </center>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item img-responsive oe_img_bg oe_custom_bg active">
+                                <div class="container">
+                                    <div class="row content">
+                                        <div class="carousel-content">
+                                            <center>
+                                                <div class="c_say">
+                                                    <div class="centered">
+                                                        <span class="client_img">
+                                                            <span>
+                                                                <img src="/enar/static/src/images/clients/client2.jpg" alt="client name" height="170px" width="170px"/>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                    <span class="client_details">
+                                                        <span class="name">John Doe</span> - 
+                                                        <span class="url">Programmer</span>
+                                                    </span>
+                                                    <span class="desc">
+                                                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+                                                    </span>
+                                                </div>
+                                            </center>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item oe_img_bg oe_custom_bg active">
+                                <div class="container">
+                                    <div class="row content">
+                                        <div class="carousel-content">
+                                            <center>
+                                                <div class="c_say">
+                                                    <div class="centered">
+                                                        <span class="client_img">
+                                                            <span>
+                                                                <img src="/enar/static/src/images/clients/client3.jpg" alt="client name" height="170px" width="170px"/>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                    <span class="client_details">
+                                                        <span class="name">Jack Smith</span> - 
+                                                        <span class="url">Web Designer</span>
+                                                    </span>
+                                                    <span class="desc">
+                                                        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.
+                                                    </span>
+                                                </div>
+                                            </center>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>             
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="enar.blog" name="Blog">
+        <section class="content_section bg_gray border_b_n" id="blog">
+            <div class="content row_spacer no_padding"> 
+                <div class="main_title centered upper">
+                    <h2><span class="line"><i class="ico-write"></i></span>From The Blog</h2>
+                </div>
+                <a class="blog_detail" href="/blog">
+                        <span data-text="View All Blog">View All Blog</span>
+                    </a>
+                <div class="rows_container clearfix">
+                    <div class="hm_blog_grid">
+                        
+                        <!-- Filter Content -->
+                        <div class="hm_filter_wrapper masonry_grid_posts three_blocks">  
+                            <ul class="hm_filter_wrapper_con">
+                                <t t-foreach="website.get_blog_post()" t-as="blog">    
+                                    <li class="filter_item_block animated" data-animation-delay="300" data-animation="rotateInUpLeft">
+                                        <div class="blog_grid_block">
+                                            <div class="feature_inner">
+                                                <div class="feature_inner_corners">
+                                                    <a t-attf-href="/blog/#{ slug(blog.blog_id) }/post/#{ slug(blog) }">
+                                                        <img src="/enar/static/src/images/blog/blog1.jpg" alt="Post Title" height="231px" width="400px"/>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="blog_grid_con">
+                                                <a t-attf-href="/blog/#{ slug(blog.blog_id) }/post/#{ slug(blog) }" class="blog_grid_format"><span class="fa fa-pencil"></span></a>
+                                                <h6 class="title"><a t-attf-href="/blog/#{ slug(blog.blog_id) }/post/#{ slug(blog) }"><span t-field="blog.name"/></a></h6>
+                                                <span class="meta">
+                                                    <span class="meta_part"><span t-field="blog.write_date"/></span>
+                                                    <span class="meta_slash">/</span>
+                                                    <t t-foreach="blog.tag_ids" t-as="tag">
+                                                        <span class="meta_part"><span t-field="tag.name"/></span>
+                                                    </t>
+                                                </span>
+                                                <p class="desc"><span t-field="blog.subtitle"/></p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </t>
+                            </ul>
+                        </div>
+                        <!-- End Filter Content -->
+                    </div>
+                    <!-- End blog grid -->
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <template id="enar.snippets_inherit" inherit_id="website.snippets" name="Snippets">
+        <xpath expr="//div[@id='snippet_structure']" position="before">
+            <div id="snippet_custom" class="o_panel">
+                <div class="o_panel_header">
+                    <span class="fa-stack">
+                        <i class="fa fa-mercury fa-stack-1x"></i>
+                    </span> Advance
+                </div>
+                <div class="o_panel_body">
+                    <t t-snippet="enar.slider" t-thumbnail="/enar/static/src/images/favicon/favicon.ico" />
+                    <t t-snippet="enar.about" t-thumbnail="/enar/static/src/images/favicon/favicon.ico" />
+                    <t t-snippet="enar.featurebox" t-thumbnail="/enar/static/src/images/favicon/favicon.ico" />
+                    <t t-snippet="enar.whyus" t-thumbnail="/enar/static/src/images/favicon/favicon.ico" />
+                    <t t-snippet="enar.counter" t-thumbnail="/enar/static/src/images/favicon/favicon.ico" />
+                    <t t-snippet="enar.team" t-thumbnail="/enar/static/src/images/favicon/favicon.ico" />
+                    <t t-snippet="enar.services" t-thumbnail="/enar/static/src/images/favicon/favicon.ico" />
+                    <t t-snippet="enar.morefeature" t-thumbnail="/enar/static/src/images/favicon/favicon.ico" />
+                    <t t-snippet="enar.portfolio" t-thumbnail="/enar/static/src/images/favicon/favicon.ico" />
+                    <t t-snippet="enar.pricing" t-thumbnail="/enar/static/src/images/favicon/favicon.ico" />
+                    <t t-snippet="enar.client" t-thumbnail="/enar/static/src/images/favicon/favicon.ico" />
+                    <t t-snippet="enar.blog" t-thumbnail="/enar/static/src/images/favicon/favicon.ico" />
+
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,232 @@
+//== Colors
+@brand-primary: @adaptiv-brand-primary;
+@brand-success: @adaptiv-brand-success;
+@brand-danger: @adaptiv-brand-danger;
+@brand-warning: @adaptiv-brand-warning;
+@brand-info: @adaptiv-brand-info;
+@text-color: @_contrast;
+@body-bg: @_shade;
+
+//== Fonts
+@font-family-base: @_font-family-base;
+@font-size-base: @_font-size-base;
+@font-size-h1: @_font-size-h1;
+@font-size-h2: @_font-size-h2;
+@font-size-h3: @_font-size-h3;
+@font-size-h4: @_font-size-h4;
+@font-size-h5: @_font-size-h5;
+@font-size-h6: @_font-size-h6;
+@font-size-large: @_font-size-large;
+@font-size-small: @_font-size-small;
+@line-height-base: @_line-height-base;
+@line-height-computed: @_line-height-computed;
+
+//== Borders
+@border-radius-base: 0;
+@border-radius-large: 0;
+@border-radius-small: 0;
+
+//== Padding
+@padding-base-vertical: 8px;
+@padding-base-horizontal: 16px;
+
+@padding-large-vertical: 14px;
+@padding-large-horizontal: 20px;
+
+@padding-small-vertical: 6px;
+@padding-small-horizontal: 12px;
+
+@padding-xs-vertical: 1px;
+@padding-xs-horizontal: 5px;
+
+//== Scaffolding
+@link-color: @adaptiv-brand-optional;
+@link-hover-decoration: none;
+
+//== Components
+@component-active-bg: @_shade-2;
+@component-active-color: @adaptiv-brand-optional;
+
+//== Badges
+@badge-bg: @adaptiv-brand-optional;
+@badge-color: white;
+@badge-line-height: @line-height-base;
+@badge-font-weight: normal;
+
+//== Breadcrumbs
+@breadcrumb-active-color: #777;
+@breadcrumb-bg: transparent;
+@breadcrumb-color: #777;
+@breadcrumb-padding-horizontal: 0;
+@breadcrumb-padding-vertical: 0;
+
+//== Buttons
+@btn-font-weight: bold;
+@btn-default-color: @_contrast;
+@btn-default-bg: @_shade;
+@btn-default-border: @_shade-3;
+@btn-primary-bg: @adaptiv-brand-optional;
+@btn-primary-border: @adaptiv-brand-optional;
+@btn-primary-color: white;
+
+//== Dropdowns
+@dropdown-bg: @_shade;
+@dropdown-link-color: @_contrast;
+@dropdown-link-hover-bg: @_shade-2;
+@dropdown-link-hover-color: @_contrast;
+
+//== Modals
+@modal-content-bg: @_shade;
+@modal-header-border-color: @_shade-3;
+@modal-footer-border-color: @_shade-3;
+@modal-sm: 300px;
+@modal-md: 650px;
+@modal-lg: 980px;
+
+//== Navs
+@nav-link-padding: 10px 15px;
+@nav-pills-border-radius: 0;
+@nav-pills-active-link-hover-color: white;
+@nav-pills-active-link-hover-bg: @adaptiv-brand-optional;
+@nav-tabs-active-link-hover-bg: transparent;
+@nav-tabs-border-color: @_shade-3;
+@nav-tabs-active-link-hover-border-color: @_shade-3;
+@nav-tabs-justified-link-border-color: @_shade-3;
+
+//== Pagination
+@pagination-bg: @_shade;
+@pagination-border: @_shade-3;
+@pagination-hover-bg: @_shade-1;
+@pagination-hover-border: @_shade-3;
+@pagination-disabled-bg: @_shade;
+@pagination-disabled-color: @_shade-6;
+@pagination-disabled-border: @_shade-3;
+
+//== Tables
+@table-border-color: @_shade-3;
+@table-bg-accent: @_shade-1;
+
+//== Inputs
+@input-bg: @_shade;
+@input-bg-disabled: @_shade-1;
+@input-border: @_shade-3;
+@input-color: @_shade-6;
+@input-border-focus: @adaptiv-brand-primary;
+@input-color-placeholder: @_shade-5;
+
+//------------------------------------------------------------------------------
+
+//== Buttons
+
+//== Buttons
+
+.o-btn-link-variant(@color, @color-active) {
+  .o-hover-text-color(@default-color: @color, @hover-color: @color-active);
+
+  &, &:hover, &:focus, &:active, &.active {
+      border-color: transparent;
+      background-color: transparent
+  }
+
+  &.text-muted, .text-muted {
+      .o-hover-opacity();
+      .o-hover-text-color(@default-color: @text-muted, @hover-color: @color-active);
+  }
+}
+
+.btn-icon {
+  .button-variant(@btn-default-color; @btn-default-bg; @btn-default-border);
+}
+
+.btn-link {
+  font-weight: @btn-font-weight;
+
+  &.btn-default {
+      .o-btn-link-variant(@text-color, @headings-color);
+  }
+  &.btn-success, &.text-success {
+      .o-btn-link-variant(@text-color, @brand-success);
+  }
+  &.btn-warning, &.text-warning {
+      .o-btn-link-variant(@text-color, @brand-warning);
+  }
+  &.btn-danger, &.text-danger {
+      .o-btn-link-variant(@text-color, @brand-danger);
+  }
+  &.btn-info, &.text-info {
+      .o-btn-link-variant(@text-color, darken(@brand-info, 20%));
+  }
+}
+
+.bg-success-full {
+  background-color: @brand-success;
+}
+.bg-warning-full {
+  background-color: @brand-warning;
+}
+.bg-danger-full {
+  background-color: @brand-danger;
+}
+.bg-info-full {
+  background-color: @brand-info;
+}
+
+.btn {
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+
+//== Tabs
+
+.nav-tabs {
+  border-bottom: 2px solid @nav-tabs-border-color;
+
+  > li.active > a,
+  > li.active > a:focus,
+  > li.active > a:hover {
+    border-width: 0;
+  }
+
+  > li > a {
+    border: none;
+    color: @_shade-5;
+    text-transform: uppercase;
+  }
+
+  > li.active > a,
+  > li > a:hover {
+    background: transparent;
+    border: none;
+    color: @adaptiv-brand-primary !important;
+  }
+
+  > li > a::after {
+    background: @adaptiv-brand-primary;
+    bottom: -1px;
+    content: "";
+    height: 2px;
+    left: 0;
+    position: absolute;
+    transform: scale(0);
+    transition: all 250ms ease 0s;
+    width: 100%;
+  }
+
+  > li.active > a::after,
+  > li:hover > a::after {
+    transform: scale(1);
+  }
+}
+
+.text-info {
+  color: @adaptiv-brand-primary !important;
+}
+
+.badge {
+  // Should be dynamic.
+  // Badge lineheight becomes 17, we want
+  // them to be 20px high
+  padding-bottom: 1px;
+  padding-top: 1px;
+}

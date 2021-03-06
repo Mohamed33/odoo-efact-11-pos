@@ -1,0 +1,112 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="letra_cambio.archivo_list">
+            <field name="name">archivo_lista</field>
+            <field name="model">letra_cambio.archivo</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="fecha"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="letra_cambio.archivo_form" model="ir.ui.view">
+            <field name="name">letra_cambio_archivo_form</field>
+            <field name="model">letra_cambio.archivo</field>
+            <field name="arch" type="xml">
+                <form string="Invoice">
+                <header>
+
+                </header>
+
+                <sheet string="Invoice">
+                    <group>
+                        <group>
+
+                            <field name="name"/>
+
+                        </group>
+                        <group>
+                            <field name ="fecha"/>
+
+                        </group>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="pestaña1">
+                            <field name = "doc1"/>
+
+
+                        </page>
+
+                        <page string="pestaña2">
+                            <field name = "doc2"/>
+
+
+                        </page>
+
+
+                    </notebook>
+
+                </sheet>
+
+                </form>
+
+            </field>
+        </record>
+
+
+
+        <record id="action_archivo_view" model="ir.actions.act_window">
+            <field name="name">archivo</field>
+            <field name="res_model">letra_cambio.archivo</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem  parent="letra_cambio.letra_cambio_menu" name="archivos" id="letra_cambio_archivo" action="action_archivo_view"/>
+
+        <record model="ir.ui.view" id="letra_cambio.documento">
+            <field name="name">documento</field>
+            <field name="model">letra_cambio.documento</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="pest1"/>
+                    <field name="pest2"/>
+                    <field name="name"/>
+                    <field name="fecha"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="letra_cambio.documento_form">
+            <field name="name">documento form</field>
+            <field name="model">letra_cambio.documento</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="pest1"/>
+                        <field name="pest2"/>
+                        <field name="name"/>
+                        <field name="fecha"/>
+
+                    </group>
+
+
+                </form>
+            </field>
+        </record>
+
+        <record id="action_documento_view" model="ir.actions.act_window">
+            <field name="name">documento action</field>
+            <field name="res_model">letra_cambio.documento</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem  parent="letra_cambio.letra_cambio_menu" name="documentos" id="letra_cambio_documento" action="action_documento_view"/>
+
+    </data>
+</odoo>

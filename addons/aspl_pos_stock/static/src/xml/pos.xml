@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- vim:fdl=1:
+-->
+<templates id="template" xml:space="preserve"> 
+
+    <t t-name="ProductQtyPopupWidget">
+        <div class="modal-dialog">
+            <div class="popup popup-textinput">
+                <p class="title">Product Quantity</p>
+                <div><t t-esc="widget.prod_info"/></div>
+                <table style="width:100%;font-size: 16px;">
+                    <tr style="background: #CCC; border-top: 1px solid gray;border-bottom: 1px solid gray;">
+                        <th>Warehouse</th>
+                        <th>Quantity</th>
+                        <th>Qty</th>
+                    </tr>
+                    <t t-if="widget.prod_info_data">
+                        <t t-foreach="widget.prod_info_data" t-as="data">
+                            <t t-if="data[2] != widget.pos.config.stock_location_id[0]">
+                                <tr >
+                                    <td style='color:gray;font-weight: initial !important;padding:5px;padding-left: 15px;'>
+                                      <t t-esc="data[0]"/></td>
+                                    <td style='color:gray;font-weight: initial !important;padding:5px;padding-right: 15px;'>
+                                      <t t-esc="data[1]"/></td>
+                                    <td style='color:gray;font-weight: initial !important;padding:5px;padding-right: 15px;'>
+                                        <input t-att-id="data[2]" class="input_qty" t-att-loaction-data='data' type="text" style="width:80px" name="qty"/>
+                                    </td>
+                                </tr>
+                            </t>
+		                </t>
+                    </t>
+                    <tr style="border-top: 1px solid gray;border-bottom: 1px solid gray;">
+                        <th style="text-align: left;padding-left: 15px;">Total</th>
+                        <td style="text-align: right;padding-right: 15px;"><t t-esc="widget.total_qty"/></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div class="footer">
+                    <div class="button confirm">
+                        Add to Cart
+                    </div>
+                    <div class="button cancel">
+                        Cancel
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+    
+    <t t-extend="Product" name="ProductStockWidget">
+        <t t-jquery="div.product-img" t-operation="replace">
+            <div class="product-img">
+                <img t-att-src='image_url' />
+                <t t-if="!product.to_weight">
+                    <span class="price-tag">
+                        <t t-esc="widget.format_currency(product.list_price)"/>
+                    </span>
+                    <t t-if="widget.pos.config.show_qty">
+                        <t t-if="product.qty_available >= 0 and product.type != 'service'">
+                            <span class="product-qty" >
+                                <t t-esc="product.qty_available"/>
+                            </span>
+                        </t>
+                        <t t-if="product.qty_available &lt;= 0 and product.type != 'service'">
+                            <span class="product-qty-low" >
+                                <t t-esc="product.qty_available"/>
+                            </span>
+                        </t>
+                    </t>
+                </t>
+                <t t-if="product.to_weight">
+                    <span class="price-tag">
+                        <t t-esc="widget.format_currency(product.list_price)+'/Kg'"/>
+                    </span>
+                    <t t-if="widget.pos.config.show_qty">
+                        <t t-if="product.qty_available >= 0" >
+                            <span class="product-qty" >
+                                <t t-esc="product.qty_available + ' Kgs'"/>
+                            </span>
+                        </t>
+                        <t t-if="product.qty_available &lt;= 0">
+                            <span class="product-qty-low" >
+                                <t t-esc="product.qty_available + ' Kgs'"/>
+                            </span>
+                        </t>
+                    </t>
+                </t>
+            </div>
+        </t>
+    </t>
+
+    <t t-extend="Orderline">
+		<t t-jquery=".info-list>t:first-child">
+            this.attr('t-if', "line.get_quantity_str() !== '1' || line.selected || line.get_product().qty_available lt line.quantity ");
+        </t>
+		<t t-jquery="t[t-esc='line.get_quantity_str()']" t-operation="after">
+            <t t-if="widget.pos.config.show_qty">
+                <t t-set='cur_product' t-value='line.get_product()'/>
+                <t t-set='unit_id' t-value='cur_product.uom_id[0]'/>
+                <t t-if="unit_id">
+                    <t t-set='qty_available_round' t-value='Math.ceil(Math.log(1.0 / widget.pos.units_by_id[unit_id].rounding) / Math.log(10))'/>
+                </t>
+                <t t-if="!unit_id">
+                     <t t-set='qty_available_round' t-value='2'/>
+                </t>
+                <t t-if="cur_product and !line.get_location_name()">
+                	<t t-set='qty_available' t-value='cur_product.qty_available.toFixed(2)'/>
+                    <!--(of <span t-attf-class="qty-info #{qty_available lt line.quantity ? 'not-available':''}"><t t-esc="qty_available"/></span>)-->
+                </t>
+            </t>
+		</t>
+        <t t-jquery="ul.info-list li:first" t-operation="append">
+            <t t-if="(cur_product and line.get_location_name())">
+            <t t-set='qty_available' t-value='cur_product.qty_available.toFixed(2)'/>
+                <li class="info">
+                    <span t-attf-class="loc-info"><t t-esc="line.get_location_name()"/></span>
+                </li>
+            </t>
+        </t>
+    </t>
+
+</templates>

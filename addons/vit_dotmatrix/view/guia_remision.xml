@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="view_dotmatrix_guia_remision" model="ir.ui.view">
+            <field name="name">view_dotmatrix_guia_remision</field>
+            <field name="model">efact.guia_remision</field>
+            <field name="inherit_id" ref="efact.view_form_guia_remision"/>
+            <field name="arch" type="xml">
+                <header position="inside">
+                    <button type="action" string="Impresión Matricial" icon="fa-print" custom="print"/>
+                </header>
+
+                <notebook position="inside">
+                    <page string="Impresión Matricial">
+                        <button string="Refrescar Datos de Impresión" icon="fa-print" type="object" name="generate_printer_data"/>
+                        <pre>
+                            <field name="printer_data"/>
+                        </pre>
+                    </page>
+                </notebook>
+
+            </field>
+        </record>
+
+    </data>
+</openerp>

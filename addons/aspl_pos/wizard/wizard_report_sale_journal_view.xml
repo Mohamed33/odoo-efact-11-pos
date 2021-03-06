@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="wizard_report_sale_journal_form_view" model="ir.ui.view">
+            <field name="name">wizard.report.sale.journal.form</field>
+            <field name="model">wizard.report.sale.journal</field>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="state" invisible="1"/>
+                    <field name="name" invisible="1"/>
+                    <group col="4" states="choose">
+                        <field name="session_id"/>
+                        <field name="location_id" domain="[('usage','=','internal')]" />
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                    <div states="get">
+                        <h2>Report Complete</h2>
+                        <p>Here is the Xls File : <field name="data" readonly="1" filename="name"/></p>
+                    </div>
+                    <footer states="choose">
+                        <button string="Print" name="generate_xls_report" type="object"/>
+                        or
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                    <footer states="get">
+                        <button special="cancel" string="Close" type="object" class="btn-primary"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_report_sale_journal" model="ir.actions.act_window">
+            <field name="name">Sales Journal</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.report.sale.journal</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem action="action_wizard_report_sale_journal" id="menuitem_wizard_report_sale_journal"
+            parent="point_of_sale.menu_point_rep" sequence="10"/>
+
+    </data>
+</odoo>

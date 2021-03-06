@@ -1,0 +1,88 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="report_invoice_efact.list">
+      <field name="name">report_invoice_efact list</field>
+      <field name="model">report_invoice_efact.report_invoice_efact</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="report_invoice_efact.action_window">
+      <field name="name">report_invoice_efact window</field>
+      <field name="res_model">report_invoice_efact.report_invoice_efact</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="report_invoice_efact.action_server">
+      <field name="name">report_invoice_efact server</field>
+      <field name="model_id" ref="model_report_invoice_efact_report_invoice_efact"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="report_invoice_efact" id="report_invoice_efact.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="report_invoice_efact.menu_1" parent="report_invoice_efact.menu_root"/>
+    <menuitem name="Menu 2" id="report_invoice_efact.menu_2" parent="report_invoice_efact.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="report_invoice_efact.menu_1_list" parent="report_invoice_efact.menu_1"
+              action="report_invoice_efact.action_window"/>
+    <menuitem name="Server to list" id="report_invoice_efact" parent="report_invoice_efact.menu_2"
+              action="report_invoice_efact.action_server"/>
+    -->
+    <record id="report_invoice_efact.view_wizard_form_report_pos" model="ir.ui.view">
+      <field name="name">view.wizard.form.report.pos</field>
+      <field name="model">wizard.pos.order.report</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <field name="fecha_inicio"/>
+            <field name="fecha_fin"/>
+          </group>
+          <footer>
+            <button name="btn_generate_xlsx" string="Imprimir XlXS" type="object"/>
+          </footer>
+        </form>
+      </field>
+    </record>
+
+    
+    <record id="report_invoice_efact.action_view_wizard_form_report_pos" model="ir.actions.act_window">
+        <field name="name">Reporte XLSX</field>
+        <field name="res_model">wizard.pos.order.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem name="Report POS xlsx" 
+              id="report_invoice_efact.menuitem_report_pos" 
+              parent="point_of_sale.menu_point_rep"
+              action="report_invoice_efact.action_view_wizard_form_report_pos"/>    
+  </data>
+</odoo>

@@ -1,0 +1,18 @@
+
+#Actualización de permisos de acceso de los directorios de addons
+sudo find addons -type d  -exec sudo chmod 755 {} \;
+#Actualización de permisos de acceso de los archivos
+sudo find addons -type f  -exec sudo chmod 664 {} \;
+#cambio de permiso al archivo entrypoint.sh en docker-efact-11/docker
+chmod 777 entrypoint.sh
+
+#Levantar una instancia
+
+#copiar el contenido del archivo copy-docker-compose.yaml con el nombre docker-compose.yaml
+cp copy-docker-compose.yaml docker-compose.yaml
+#copiar el contenido del archivo copy.env con el nombre .env
+cp copy.env .env
+#Editar los parémetros del archivo .env
+
+#Levantar los servicios de odoo y postgres
+docker-compose up -d

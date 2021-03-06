@@ -1,0 +1,78 @@
+<odoo>
+  <data>
+
+    <record id="jsreport_efact.credentials_jsreport_view_form" model="ir.ui.view">
+      <field name="name">credentials.jsreport.view.form</field>
+      <field name="model">res.company</field>
+      <field name="inherit_id" ref="base.view_company_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//page" position="after">
+          <page string="JsReport" >
+              <group>
+                <field name="jsreport_username"/>
+                <field name="jsreport_password"/>
+                <field name="jsreport_endpoint"/>
+                <field name="jsreport_template_invoice_short_id"/>
+              </group>
+          </page>
+        </xpath>
+      </field>
+    </record>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="jsreport_efact.list">
+      <field name="name">jsreport_efact list</field>
+      <field name="model">jsreport_efact.jsreport_efact</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="jsreport_efact.action_window">
+      <field name="name">jsreport_efact window</field>
+      <field name="res_model">jsreport_efact.jsreport_efact</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="jsreport_efact.action_server">
+      <field name="name">jsreport_efact server</field>
+      <field name="model_id" ref="model_jsreport_efact_jsreport_efact"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="jsreport_efact" id="jsreport_efact.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="jsreport_efact.menu_1" parent="jsreport_efact.menu_root"/>
+    <menuitem name="Menu 2" id="jsreport_efact.menu_2" parent="jsreport_efact.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="jsreport_efact.menu_1_list" parent="jsreport_efact.menu_1"
+              action="jsreport_efact.action_window"/>
+    <menuitem name="Server to list" id="jsreport_efact" parent="jsreport_efact.menu_2"
+              action="jsreport_efact.action_server"/>
+    -->
+  </data>
+</odoo>

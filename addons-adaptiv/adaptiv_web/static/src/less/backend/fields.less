@@ -1,0 +1,428 @@
+//------------------------------------------------------------------------------
+// Fields
+//------------------------------------------------------------------------------
+
+@_colored-tag-width: 45px;
+
+input.o_input, select.o_input, textarea.o_input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid @o-field-border-color;
+  border-radius: 0;
+  display: inline-block;
+  margin: 0;
+  max-width: 100%;
+  padding: 0;
+  text-align: inherit;
+  
+  &:focus {
+    border-color: @o-field-focus-border-color !important;
+    outline: none;
+  }
+}
+
+textarea.o_input {
+  border: 1px solid @o-field-border-color;
+}
+
+select.o_input {
+  background: transparent;
+  padding-bottom: 2px; // line-height won't work on a select
+}
+
+.o_field_widget {
+
+  &.o_field_empty {
+    display: none !important;
+  }
+
+  // Dropdowns input (many2one, ...)
+  .o_input_dropdown {
+    position: relative;
+    .o-flex(1, 1, auto);
+  
+    > input {
+      cursor: pointer;
+      width: 100%;
+      padding-right: 15px;
+    }
+  
+    .o_dropdown_button {
+      pointer-events: none;
+      .o-position-absolute(2px, 4px);
+  
+      &::after {
+        .o-caret-down;
+      }
+    }
+  }
+
+  &.o_field_boolean {
+    width: auto;
+  }
+
+  // Block fields
+  &.note-editor,
+  &.oe_form_field_html,
+  &.oe_form_field_html_text,
+  &.oe_form_field_text {
+    display: block;
+  }
+
+  // Flex fields (inline)
+  &.o_field_binary_file,
+  &.o_field_many2manytags,
+  &.o_field_many2one,
+  &.o_field_monetary,
+  &.o_field_percent_pie,
+  &.o_field_radio {
+    .o-inline-flex-display();
+    > button,
+    > span {
+      .o-flex(0, 0, auto);
+    }
+  }
+
+  // Text
+  &.o_field_text,
+  &.oe_form_field_text .oe_form_text_content {
+    white-space: pre-wrap;
+    width: 100%;
+  }
+
+  // Number & monetary
+  &.o_field_number,
+  &.o_field_monetary {
+    > span {
+      margin-right: 4px;
+    }
+
+    + span {
+      margin-left: 4px;
+    }
+
+    &.o_input {
+      .o-align-items(baseline);
+
+      > input {
+        width: 100px;
+        .o-flex(1, 0, auto);
+      }
+    }
+  }
+
+  // Many2one
+  &.o_field_many2one {
+    &.o_with_button {
+      .o_input_dropdown {
+        .o-flex(1, 1, auto);
+      }
+    }
+
+    > button,
+    > span {
+      .o-flex(0, 0, auto);
+    }
+
+    > .o_external_button {
+      background-color: transparent;
+      border: none;
+      color: @o-field-external-button-color;
+      margin-left: 5px;
+      padding: 0;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+
+  // Many2many tags
+  &.o_field_many2manytags {
+    .o-flex-flow(row, wrap);
+    .o-align-items(baseline);
+
+    .tag_color_loop(@index) when (@index < @o-colors+1) {
+      .o_tag_color_@{index} {
+        background-color: ~"@{o-color-@{index}}";
+      }
+      
+      .tag_color_loop(@index + 1);
+    }
+    .tag_color_loop(1);
+
+    > .o_field_widget {
+      max-width: 100%;
+      position: initial;
+      .o-flex(1, 0, @o-field-min-width);
+    }
+
+    @color-width: @_line-height-computed * 2 + 2;
+    .dropdown-menu {
+      ul {
+        .list-unstyled;
+        padding: @o-dropdown-item-padding-y @o-dropdown-item-padding-x;
+        margin-bottom: 0;
+        width: @color-width * 3 + @o-dropdown-item-padding-x * 2;
+        .o-flex-display();
+        .o-flex-flow(row, wrap);
+      }
+
+      li {
+        a {
+          display: block;
+          width: @color-width - 2px;
+          height: @_line-height-computed;
+          margin: 1px;
+          &.o_tag_color_0 {
+            background-color: gray;
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,.5) 2px, rgba(255,255,255,.5) 4px);
+          }
+        }
+      }
+    }
+
+    > .badge {
+      border: 0;
+      color: @o-field-badge-color;
+      cursor: pointer;
+      margin-right: 2px;
+
+      .o-flex(0, 0, auto);
+
+      > .o_badge_text {
+        max-width: @o-field-badge-max-width;
+        .o-text-overflow(inline-block);
+      }
+
+      .o_delete {
+        cursor: pointer;
+      }
+
+      > ul {
+        color: @text-color;
+        width: 5 * (@_colored-tag-width + 2px) + 2px;
+
+        > li {
+          float: left;
+
+          > span {
+            border-radius: @_line-height-computed / 2;
+            cursor: pointer;
+            display: inline-block;
+            height: @_line-height-computed;
+            margin: 1px;
+            padding: 0;
+            width: @_colored-tag-width;
+
+            &:hover {
+              opacity: 0.8;
+            }
+          }
+        }
+
+        > li:last-child {
+          cursor: auto;
+        }
+      }
+    }
+  }
+
+  // Stars
+  &.o_priority {
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    .o-inline-flex-display();
+    
+    > .o_priority_star {
+      display: inline-block;
+      font-size: @_font-size-large;
+
+      &:focus,
+      &:hover {
+        outline: none;
+        text-decoration: none;
+      }
+
+      + .o_priority_star {
+        padding-left: 5px;
+      }
+
+      &.fa-star-o {
+        color: @o-field-star-unchecked-color;
+      }
+
+      &.fa-star {
+        color: @o-field-star-checked-color;
+      }
+    }
+  }
+
+  // Specific success color for toggle_button widget
+  .fa.o_toggle_button_success {
+    color: @o-field-success-color;
+  }
+
+  // Handle widget
+  &.o_row_handle {
+    cursor: ns-resize;
+  }
+
+  // Radio buttons
+  &.o_field_radio {
+    .o_radio_input {
+      outline: none;
+    }
+
+    .o_radio_item {
+      .o-flex(0, 0, auto);
+      .o-flex-display();
+      .o-align-items(center);
+
+      > input {
+        margin: 0 @_grid-half-gutter-width / 2 0 0;
+        .o-flex(0, 0, auto);
+      }
+
+      > label {
+        margin: 0;
+      }
+    }
+
+    &.o_horizontal {
+      .o_radio_item {
+        margin-right: @_grid-half-gutter-width;
+      }
+    }
+
+    &.o_vertical {
+      .o-flex-flow(column, nowrap);
+
+      .o_radio_item {
+        margin-bottom: @o-form-field-margin-y * 2;
+      }
+    }
+  }
+  
+  // Percent pie
+  &.o_field_percent_pie {
+    .o-align-items(center);
+
+    > .o_pie {
+      background-color: @o-field-percent-pie-bg;
+      border-radius: 100%;
+      height: @o-field-percent-pie-dimension;
+      margin-right: 10px;
+      overflow: hidden;
+      position: relative;
+      width: @o-field-percent-pie-dimension;
+
+      .o_pie_value {
+        background-color: @o-field-percent-pie-value-bg;
+        border: 1px solid @o-field-percent-pie-value-border-color;
+        border-radius: 100%;
+        color: @o-field-percent-pie-value-color;
+        font-weight: bold;
+        height: @o-field-percent-pie-dimension - 2 * @o-field-percent-pie-ring-width;
+        width: @o-field-percent-pie-dimension - 2 * @o-field-percent-pie-ring-width;
+        .o-position-absolute(@o-field-percent-pie-ring-width, @o-field-percent-pie-ring-width);
+        .o-flex-display();
+        .o-justify-content(center);
+        .o-align-items(center);
+      }
+
+      &::after {
+        border: 1px solid @o-field-percent-pie-border-color;
+        border-radius: 100%;
+        // Outside pie border to go over border-radius irregularities
+        content: " ";
+        height: 100%;
+        width: 100%;
+        .o-position-absolute(0, 0);
+      }
+
+      .o_mask {
+        background-color: @o-field-percent-pie-value-bg;
+        height: 100%;
+        width: 50%;
+        .o-position-absolute(0, 0);
+        .o-transform-origin(0);
+
+        &.o_full {
+          background-color: inherit;
+        }
+      }
+    }
+  }
+
+  // Ace editor
+  &.o_ace_view_editor {
+    width: 100%;
+
+    .ace-view-editor {
+      height: 300px;
+      padding: 0 1em;
+    }
+  }
+
+  // Image
+  &.o_field_image {
+    position: relative;
+    width: auto;
+
+    .o_form_image_controls {
+      background-color: @o-field-image-controls-bg;
+      color: @o-field-image-controls-color;
+      opacity: 0;
+      position: absolute;
+      left: 0;
+      top: 0;
+      transition: opacity ease 400ms;
+      width: 100%;
+
+      > .fa {
+        cursor: pointer;
+        margin: 5px;
+      }
+    }
+
+    &:hover .o_form_image_controls {
+      opacity: 0.8;
+    }
+
+    @media (max-width: @screen-xs-min) {
+      .o_form_image_controls {
+        opacity: 1;
+        position: initial;
+
+        > .fa {
+          margin: 0;
+          padding: 6px;
+          text-align: center;
+          width: 50%;
+
+          &.o_select_file_button {
+            background: @o-field-image-controls-bg;
+          }
+
+          &.o_clear_file_button {
+            background: @o-field-image-clear-bg;
+          }
+        }
+      }
+    }
+  }
+
+  &.o_field_domain {
+    .o_field_domain_panel {
+      margin-top: @o-form-field-margin-y * 2;
+    }
+  }
+
+  // Input loading/file
+  .o_form_binary_progress,
+  .o_hidden_input_file .o_input_file {
+    display: none;
+  }
+}

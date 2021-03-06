@@ -1,0 +1,875 @@
+.o_form_view {
+  background-color: @o-form-bg;
+  position: relative;
+
+  &:not(.o_form_nosheet) {
+    .o-flex(1, 0, auto);
+    .o-flex-display();
+    .o-flex-flow(column, nowrap);
+  }
+
+  .oe_form_box_info {
+    background: @o-form-info-bg;
+    border-bottom: 1px solid @o-form-info-border-color;
+    color: @o-form-info-color;
+    padding: @o-form-info-padding-y @o-form-info-padding-x;
+    text-align: center;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .oe_text_center {
+    text-align: center;
+  }
+
+  .oe_link {
+    .btn-link;
+  }
+
+  .oe_grey {
+    opacity: 0.5;
+  }
+
+  .oe_inline {
+    &.o_inner_group {
+      width: 1px !important;
+    }
+  }
+
+  .oe_left {
+    float: left !important;
+    .oe_inline;
+  }
+
+  .oe_right {
+    float: right !important;
+    .oe_inline;
+  }
+
+  .oe_clear {
+    clear: both !important;
+  }
+
+  .o_row {
+    .o-flex-display();
+    .o-align-items(center);
+    
+    > div {
+      + * {
+        margin-left: @o-form-row-item-margin-x;
+      }
+    }
+  }
+
+  // Readonly specific rules
+  &.o_form_readonly {
+    .oe_edit_only {
+      display: none !important;
+    }
+  }
+
+  // Editable specific rules
+  &.o_form_editable {
+
+    .o_field_boolean, .oe_avatar, .o_statusbar_status {
+      width: auto; // Reset width 100% from o_field_widget
+    }
+
+    .o_field_monetary > .o_form_input {
+      border-style: solid !important;
+    }
+
+    .oe_read_only {
+      display: none !important;
+    }
+
+    .o_field_translate {
+      margin-left: -15px;
+    }
+
+    .o_group, .o_row {
+      .o_field_widget {
+        width: 100%;
+      }
+    }
+
+    .o_group {
+      .o_field_widget {
+        margin-bottom: @o-form-field-margin-y;
+      }
+    }
+
+    .o_row {
+      > div,
+      > .o_field_widget {
+        width: 0 !important; // 3rd flex argument does not work with input (must be auto and real width 0)
+        .o-flex(1, 1, auto);
+
+        &.o_field_boolean,
+        &.o_priority {
+          width: auto !important;
+          .o-flex(0, 0, auto);
+        }
+      }
+    }
+  }
+
+  // Button box
+  .oe_button_box {
+    background-color: @o-form-button-box-bg;
+    border-bottom: 1px @o-form-button-box-border-color solid;
+    margin: -@o-form-sheet-padding-y -@o-form-sheet-padding-y @o-form-sheet-padding-y;
+    overflow: hidden;
+    text-align: right;
+    .o-flex-display();
+    .o-flex-flow(row-reverse, wrap);
+
+    .oe_stat_button {
+      background-color: @o-form-button-box-bg;
+      border-left: 1px @o-form-button-box-border-color solid;
+      border-bottom: 1px @o-form-button-box-border-color solid;
+      margin-bottom: -1px;
+      display: block;
+      font-size: @o-form-button-box-font-size;
+      height: @o-form-button-box-height;
+      outline: none;
+      padding: 0 @o-form-button-box-padding-x;
+      text-align: left;
+      width: 50%;
+      .o-text-overflow();
+
+      &:not(:hover) .o_stat_info > .o_hover {
+        display: none !important;
+      }
+
+      &:hover .o_stat_info > .o_not_hover {
+        display: none !important;
+      }
+
+      &:hover {
+        background: @o-form-button-box-hover-bg;
+      }
+
+      .o_button_icon {
+        color: @o-form-button-box-color;
+        display: inline-block;
+        font-size: @o-form-button-box-icon-size;
+        text-align: center;
+        vertical-align: middle;
+      }
+      // Some buttons only display text and directly use the WidgetButton template instead of StatInfo
+      > span,
+      .o_stat_info {
+        // contains the value and text
+        display: inline-block;
+        line-height: 1.2;
+        max-width: 70%;
+
+        .o_stat_value {
+          color: @o-form-button-box-color;
+          font-weight: bold;
+          .o-text-overflow(block);
+        }
+
+        .o_stat_text {
+          font-size: @_font-size-small;
+          .o-text-overflow(block);
+
+          .o_stat_value {
+            display: inline;
+          }
+        }
+      }
+
+      > span {
+        font-size: @_font-size-small;
+        white-space: normal; // text on several lines if needed
+      }
+
+      > div {
+        line-height: 120%;
+        padding: 0;
+        text-align: left;
+        vertical-align: middle;
+      }
+
+      &:nth-child(1n+3) {
+        margin-top: 1px;
+      }
+
+      &:nth-child(2n) {
+        border-left: none;
+      }
+
+      @media (min-width: @screen-md-min) {
+        width: 25%;
+        &:nth-child(1n+3) {
+          margin-top: 0;
+        }
+        &:nth-child(1n+5) {
+          margin-top: 1px;
+        }
+        &:nth-child(2n) {
+          border-left: 1px @o-form-button-box-border-color solid
+        }
+        &:nth-child(4n) {
+          border-left: none;
+        }
+      }
+
+      @media (min-width: @screen-lg-min) {
+        width: 12.5%;
+        &:nth-child(1n+5) {
+          margin-top: 0;
+        }
+        &:nth-child(1n+9) {
+          margin-top: 1px;
+        }
+        &:nth-child(4n) {
+          border-left: 1px @o-form-button-box-border-color solid
+        }
+        &:nth-child(8n) {
+          border-left: none;
+        }
+      }
+    }
+  }
+
+  // Title
+  .oe_title {
+    > h2,
+    > h3,
+    > h1 {
+      line-height: inherit;
+      margin-bottom: (@_line-height-computed / 4);
+      margin-top: 0;
+      width: 100%; // Needed because inline-block when is a hx.o_row
+      > .o_input {
+        width: 100%;
+      }
+    }
+
+    .o_priority > .o_priority_star {
+      font-size: inherit;
+    }
+  }
+
+  // Groups
+  .o_group {
+    margin: @o-form-group-margin-y 0;
+    width: 100%;
+
+    .o-flex-display();
+    .o-flex-flow(row, wrap);
+    .o-generate-groups(12);
+
+    .o-generate-groups(@n, @i:1) when (@i =< @n) {
+      .o_group_col_@{i} {
+        @media (min-width: @screen-xs-min) {
+          flex-basis: floor(100% / 12 * @i) !important;
+          max-width: floor(100% / 12 * @i);
+
+          > tbody > tr > td {
+            &.o_td_label + td {
+              padding-right: @grid-gutter-width;
+            }
+          }
+        }
+      }
+      .o-generate-groups(@n, @i + 1);
+    }
+
+    &.o_inner_group {
+      display: table;
+      .o-flex(1, 0, auto);
+
+      > tbody > tr > td {
+        vertical-align: top;
+        + td.o_td_label {
+          padding-left: @grid-gutter-width;
+        }
+      }
+    }
+
+    .o_form_label {
+      font-weight: normal;
+      margin-bottom: @o-form-field-margin-y;
+    }
+
+    .o_field_widget {
+      &.o_text_overflow {
+        // This is needed to get text overflows to
+        // work inside table cells
+        width: 1px !important;
+        min-width: 100%;
+      }
+      > .btn {
+        .o-flex(0, 0, auto);
+      }
+    }
+
+    &.o_label_nowrap .o_form_label {
+      white-space: nowrap;
+    }
+
+    .o_td_label .o_form_label {
+      font-weight: bold;
+      margin-right: 0;
+    }
+  }
+
+  .o_inner_group {
+    .o_td_label {
+      border-right: 1px solid @o-form-label-border-color;
+      min-width: @o-form-label-xs-min-width;
+      padding-right: @_grid-half-gutter-width;
+      width: 0;
+
+      + td {
+        padding-left: @_grid-half-gutter-width;
+      }
+    }
+  }
+
+  // Separators
+  .o_horizontal_separator {
+    color: @o-form-horizontal-separator-color;
+    font-size: @_font-size-h4;
+    margin: @o-form-horizontal-separator-margin-y 0;
+    width: 100%;
+
+    &:empty {
+      height: @o-form-horizontal-separator-margin-y * 2;
+    }
+  }
+
+  // Notebooks
+  .o_notebook {
+    clear: both; // For the notebook not to have alongside floating elements
+    margin-top: @o-form-notebook-margin-top;
+
+    .nav-tabs > .tab-pane {
+      min-height: @o-form-notebook-min-height;
+    }
+  }
+
+  // Labels
+  .o_form_label {
+    font-size: @_font-size-base;
+    line-height: @_line-height-base;
+    margin: 0;
+    &:first-child {
+       margin-right: @_grid-half-gutter-width;
+    }
+  }
+  
+  .o_field_boolean + .o_form_label,
+  .o_checkbox + .o_form_label {
+    margin-left: @_grid-half-gutter-width / 2;
+  }
+
+  // Translate icon
+  .o_field_translate {
+    cursor: pointer;
+    padding: 0;
+    vertical-align: top;
+    width: 12px !important;
+
+    &::before {
+      // seems to be useful for some old browser
+      position: relative;
+    }
+  }
+
+  // Boolean
+  .o_form_boolean {
+    margin: 0 @_grid-half-gutter-width 0 0;
+  }
+
+  // Timezone widget warning
+  .o_tz_warning {
+    color: @o-field-invalid-color;
+    cursor: help;
+    margin-left: @_grid-half-gutter-width;
+  }
+
+  // One2Many Kanban views
+  .o_field_widget .o_kanban_view.o_kanban_ungrouped {
+    padding: 0;
+
+    .o_kanban_record {
+      box-shadow: none;
+    }
+  }
+  // One2Many List views
+  .o_field_widget .o_list_view {
+    margin-bottom: @o-form-field-margin-y * 2;
+
+    > tfoot > tr > td {
+      color: @text-color;
+      padding: 3px;
+    }
+  }
+
+  &.o_form_readonly .o_field_widget .o_list_view .o_row_handle {
+    display: none;
+    // Hide the handler in non-edit mode
+  }
+
+  // Attachments
+  .oe_attachment {
+    border: 1px solid @o-form-attachment-border-color;
+    display: inline-block;
+  }
+
+  &.oe_form_configuration {
+    .o_group .o_form_label {
+      white-space: nowrap;
+    }
+  }
+
+  .o_form_sheet_bg {
+    background: @o-form-sheet-bg;
+    border-bottom: 1px solid @o-form-sheet-border-color;
+    padding: @o-form-sheet-margin-y 0;
+    position: relative;
+
+    .o_form_sheet {
+      background: @_shade;
+      margin: 0 auto;
+      padding: @o-form-sheet-padding-y @o-form-sheet-padding-x;
+      
+      .clearfix();
+      .o-shadow-depth-2();
+
+      .ui-tabs {
+        margin: 0 -@o-form-sheet-padding-x;
+      }
+
+      .oe_notebook_page {
+        padding: 0 @o-form-sheet-padding-x;
+      }
+    }
+
+    .o_form_statusbar {
+      position: relative;
+      top: -@o-form-sheet-margin-y;
+    }
+
+    > .alert {
+      border-left-width: 0;
+      border-right-width: 0;
+      border-top-width: 0;
+      margin-bottom: 0;
+    }
+    
+    > .oe_form_box_info, > .alert {
+      position: relative;
+      top: -@o-form-sheet-margin-y;
+    }
+  }
+
+  &.o_form_nosheet {
+    padding: @o-form-sheet-padding-y @o-form-sheet-padding-x;
+
+    .o_form_statusbar {
+      position: relative;
+      top: -@o-form-sheet-padding-y;
+      margin: 0 -@o-form-sheet-padding-x (@o-form-sheet-padding-y - @o-form-statusbar-height);
+    }
+
+    &.oe_form_nomargin {
+      margin: 0;
+    }
+  }
+
+  // Avatar
+  .oe_avatar {
+    float: left;
+    margin-right: @_grid-half-gutter-width;
+
+    > img {
+      border: none;
+      height: @o-avatar-size;
+      width: @o-avatar-size;
+      .o-shadow-depth-1();
+    }
+
+    + .oe_title {
+      padding-left: @o-avatar-size + @_grid-half-gutter-width;
+    }
+
+    .o_form_image_controls {
+      width: @o-avatar-size;
+    }
+  }
+
+  // Chatter
+  .o_chatter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: @o-form-sheet-padding-y @o-form-sheet-padding-x;
+  }
+
+  // Header containing status buttons and status bar
+  .o_form_statusbar {
+    background: @o-form-statusbar-bg;
+    border-bottom: 1px solid @o-form-statusbar-border-color;
+    overflow-y: auto; // Enable horizontal scroll on smaller screen sizes
+    padding: 0 @o-form-statusbar-padding-x;
+
+    .o-flex-display();
+    .o_statusbar_buttons {
+      .o-flex-display();
+      
+      button {
+        margin: @o-form-statusbar-padding-y 0;
+      }
+      button + button {
+        margin-left: @o-form-statusbar-padding-y;
+      }
+    }
+  }
+
+  .o_statusbar_status {
+    height: @o-form-statusbar-height;
+    margin: 0;
+    margin-left: auto;
+    margin-right: -@o-form-statusbar-padding-x;
+    overflow: hidden;
+    padding-right: @o-form-statusbar-padding-x;
+    
+    
+    .o-flex(0, 0, auto);
+    .o-flex-display();
+    .o-flex-flow(row-reverse, nowrap);
+
+    > button {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      color: @o-form-status-color;
+      display: block;
+      float: left;
+      font-size: @_font-size-small;
+      font-weight: @btn-font-weight;
+      height: @o-form-statusbar-height;
+      margin-right: 1px;
+      padding-left: 30px + @o-form-status-padding-x;
+      padding-right: 0;
+      position: relative;
+      outline: none !important;
+      text-transform: uppercase;
+
+      &::after {
+        border-bottom: 50px inset transparent;
+        border-left: 30px solid @o-form-status-bg;
+        border-top: 50px inset transparent;
+        content: " ";
+        display: block;
+        height: 0;
+        left: 100%;
+        margin-top: -50px;
+        position: absolute;
+        top: 50%;
+        width: 0;
+      }
+
+      &::before {
+        border-bottom: 50px inset transparent;
+        border-left: 30px solid @o-form-status-border-color;
+        border-top: 50px inset transparent;
+        content: " ";
+        display: block;
+        height: 0;
+        left: 100%;
+        margin-left: 1px;
+        margin-top: -50px;
+        position: absolute;
+        top: 50%;
+        width: 0;
+      }
+
+      &.btn-primary {
+        background: @o-form-status-active-bg;
+        color: @o-form-status-active-color;
+        opacity: 1; // Override disabled state
+
+        &::after {
+          border-left-color: @o-form-status-active-bg;
+        }
+      }
+
+      &:active {
+        box-shadow: none;
+      }
+
+      &:hover {
+        background: @o-form-status-hover-bg;
+        color: @o-form-status-hover-color;
+
+        &::after {
+          border-left-color: @o-form-status-hover-bg;
+        }
+      }
+
+      &:last-child {
+        border-left: 1px solid @o-form-status-border-color;
+        padding-left: @o-form-status-padding-x !important;
+      }
+
+      &:first-child {
+        border-right: none;
+      }
+    }
+  }
+
+  .o_required_modifier.o_input {
+    border-color: @o-field-required-border-color;
+  }
+
+  .o_field_invalid.o_input {
+    border-color: @o-field-invalid-border-color !important;
+  }
+
+  @media (max-width: @screen-xs-max) {
+    .o_form_sheet_bg {
+      padding: 0;
+      .o_form_statusbar {
+        top: 0;
+      }
+      .o_form_sheet {
+        box-shadow: none;
+      }
+    }
+  }
+
+  // Specific style classes
+  .o_group.o_inner_group.oe_subtotal_footer {
+    > tbody > tr > td {
+      padding: 0;
+
+      &.o_td_label {
+        text-align: right;
+      }
+
+      .o_form_label {
+        min-width: 0;
+        padding-right: 20px;
+        white-space: nowrap;
+
+        &::after {
+          content: ":";
+        }
+      }
+
+      .o_field_widget {
+        text-align: right;
+      }
+    }
+
+    .o_td_label {
+      border-right: none;
+    }
+
+    .oe_subtotal_footer_separator {
+      border-top: 1px solid #cacaca;
+      font-size: @_font-size-large;
+      font-weight: bold;
+      text-align: right;
+      width: 100%;
+    }
+  }
+
+  .o_address_format {
+    width: 100%;
+
+    .o_address_country,
+    .o_address_street {
+      .o-flex-display;
+    }
+
+    .o_address_city {
+      margin-right: 2%;
+    }
+
+    .o_address_state {
+      margin-right: 2%;
+    }
+
+    &.o_zip_city {
+      .o_address_zip {
+        margin-right: 2%;
+      }
+
+      .o_address_city {
+        margin-right: 0;
+      }
+
+      .o_address_state {
+        display: block;
+        margin-right: 0;
+      }
+    }
+
+    &.o_city_state {
+      .o_address_state {
+        margin-right: 0;
+      }
+
+      .o_address_zip {
+        display: block;
+        margin-right: 0;
+      }
+    }
+
+    > span.o_field_widget {
+      width: auto;
+    }
+  }
+
+  &.o_form_editable .o_address_format {
+    .o_address_city {
+      width: 38%;
+    }
+
+    div.o_address_state {
+      width: 33%;
+    }
+
+    input.o_address_zip {
+      width: 25%;
+    }
+
+    &.o_zip_city {
+      .o_address_zip {
+        width: 38%;
+      }
+
+      .o_address_city {
+        width: 60%;
+      }
+
+      .o_address_state {
+        width: 100%;
+      }
+    }
+
+    &.o_city_state {
+      .o_address_city {
+        width: 50%;
+      }
+
+      .o_address_state {
+        width: 48%;
+      }
+
+      .o_address_zip {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Overriden style when form view in modal
+.modal .modal-dialog,
+.a_shell_pane {
+  .o_form_view {
+
+    .ui-autocomplete {
+      z-index: @zindex-modal + 1;
+    }
+
+    .o_form_sheet_bg {
+      border: none;
+      padding: 0;
+
+      > .o_form_statusbar {
+        top: 0;
+      }
+
+      > .o_form_sheet {
+        border: none;
+        box-shadow: none;
+        max-width: none;
+        width: 100%;
+      }
+    }
+
+    .o_chatter {
+      display: none;
+    }
+  }
+
+  &:not(.modal-lg) .o_form_view {
+    .o_group {
+      width: 100%;
+    }
+  }
+}
+
+@media (min-width: @screen-sm-min) {
+  .o_form_view {
+    .o_form_sheet,
+    .o_chatter {
+      width: @container-sm;
+    }
+
+    .o_inner_group {
+      .o_td_label {
+        min-width: @o-form-label-sm-min-width;
+      }
+    }
+  }
+}
+
+@media (min-width: @screen-md-min) {
+  .o_form_view {
+    .o_form_sheet,
+    .o_chatter {
+      width: @container-md;
+    }
+
+    .o_inner_group {
+      .o_td_label {
+        min-width: @o-form-label-md-min-width;
+      }
+    }
+  }
+}
+
+@media (min-width: @screen-lg-min) {
+  .o_form_view {
+    .o_form_sheet,
+    .o_chatter {
+      width: @container-lg;
+    }
+
+    .o_inner_group {
+      .o_td_label {
+        min-width: @o-form-label-lg-min-width;
+      }
+    }
+  }
+}
+
+.o_control_panel .o_form_buttons_view {
+  // Fix bounce effect
+  > button:first-child {
+    float: left;
+    margin-right: 4px;
+  }
+}
+
+.o_form_invisible,
+.o_form_invisible + .o_field_translate {
+  display: none !important;
+}
+
+// Change password form is a special case ugh
+form[name=change_password_form] {
+  padding: @o-form-sheet-padding-y @o-form-sheet-padding-x;
+}

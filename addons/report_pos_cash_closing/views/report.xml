@@ -1,0 +1,24 @@
+<odoo>
+    <record id="report_pos_cash_closing.paperformat_ticket" model="report.paperformat">
+        <field name="name">Ticket</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">500</field>
+        <field name="page_width">80</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">10</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">35</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report id="report_pos_cash_closing.report_cash_closing"
+            model="pos.session"
+            name="report_pos_cash_closing.template_report_cash_closing"
+            report_type="qweb-pdf"
+            string="Reporte de Cierre de Caja"
+            paperformat="report_pos_cash_closing.paperformat_ticket"/>
+</odoo>

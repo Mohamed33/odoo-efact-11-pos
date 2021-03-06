@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="PaymentScreen-Paymentmethods">
+        <t t-jquery=".paymentmethod" t-operation="replace">
+            <div class="button paymentmethod" t-att-data-id="cashregister.journal_id[0]" t-att-data-shortcut="cashregister.payment_meth_sc">
+                <t t-esc="cashregister.journal_id[1]" />
+            </div>
+        </t>
+    </t>
+</templates>

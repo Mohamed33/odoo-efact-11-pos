@@ -1,0 +1,63 @@
+//------------------------------------------------------------------------------
+// Compatibility
+// Variables and mixins for other modules
+//------------------------------------------------------------------------------
+
+@odoo-font-size-base: @_font-size-base;
+@odoo-main-color-muted: @text-muted;
+@odoo-main-text-color: @text-color;
+@odoo-shadow-color: @gray-dark;
+@odoo-horizontal-padding: @_grid-half-gutter-width;
+@odoo-dropdown-hpadding: 20px;
+@odoo-avatar-size: @o-avatar-size;
+@odoo-brand-primary: @adaptiv-brand-primary;
+@odoo-brand-optional: @adaptiv-brand-optional;
+@odoo-brand-secondary: @_shade;
+@odoo-brand-lightsecondary: @_shade-2;
+@odoo-view-background-color: @_shade;
+@odoo-webclient-background-color: @_shade-2;
+@odoo-control-panel-background-color: @o-control-panel-bg;
+@odoo-navbar-height: @a-navbar-height;
+@odoo-navbar-inverse-link-hover-bg: @a-navbar-link-hover-color;
+@odoo-sheet-vpadding: @o-form-sheet-padding-y;
+
+@o-kanban-inside-hgutter: @o-kanban-record-padding-x;
+@o-kanban-inside-vgutter: @o-kanban-record-padding-y;
+
+@screen-xxs-max: (@screen-xs-min - 1);
+@gray-lighter-dark: mix(@gray-lighter, @gray-light, 50%);
+@gray-lighter-darker: mix(@gray-lighter, @gray-light, 75%);
+
+.o-webclient-padding(@top: 0px, @right: @odoo-horizontal-padding, @bottom: 0px, @left: @odoo-horizontal-padding) {
+  padding: @top @right @bottom @left;
+}
+
+.o_text_overflow {
+  .o-text-overflow();
+}
+
+.o_hidden {
+  display: none !important;
+}
+
+// Dashboard module 
+.o-search-options-dropdown-custom-li() {
+  margin: 3px 25px;
+  width: auto;
+  max-width: 250px;
+}
+
+// Is used by /web/static/lib/bootstrap-datetimepicker/src/less/_bootstrap-datetimepicker.less
+// Odoo declares this in /addons/web/static/src/less/datepicker.less
+// It is already declared in Bootstrap, but these mixins are not loaded.
+// ?? For now keep it here.
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}

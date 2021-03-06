@@ -1,0 +1,222 @@
+.o_searchview {
+  height: @_line-height-computed + 8px;
+  position: relative;
+
+  .o_searchview_facet {
+    background: @o-search-facet-bg;
+    border: 1px solid @o-search-facet-border-color;
+    color: @o-search-facet-color;
+    margin: 1px 3px 0 0;
+    max-width: 100%;
+    position: relative;
+
+    .o_searchview_facet_label {
+      background-color: @o-search-facet-label-bg;
+      color: @o-search-facet-label-color;
+      padding: 0 3px;
+      .o-flex(0, 0, auto);
+      .o-text-overflow();
+      .o-flex-display();
+      .o-align-items(center);
+    }
+
+    .o_facet_remove {
+      color: @o-search-facet-remove-color;
+      cursor: pointer;
+      width: 18px;
+      .o-flex(0, 0, auto);
+      .o-flex-display();
+      .o-justify-content(center);
+      .o-align-items(center);
+
+      &:hover {
+        color: @o-search-facet-remove-hover-color;
+      }
+    }
+    .o-flex(0, 0, auto);
+    .o-flex-display();
+
+    .o_facet_values {
+      padding: 0 0 0 5px;
+
+      .o_facet_values_sep {
+        font-style: italic;
+      }
+    }
+  }
+
+  .o_searchview_input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding: 4px 0 0;
+    width: 100px;
+    .o-flex(1, 0, auto);
+  }
+
+  .o_searchview_more {
+    cursor: pointer;
+    .o-position-absolute(@top: 6px, @right: 5px);
+  }
+
+  .o_searchview_autocomplete li.o-selection-focus {
+    background-color: @o-search-autocomplete-bg;
+
+    > a {
+      color: @o-search-autocomplete-color;
+    }
+  }
+  .o-flex-display();
+  .o-flex-flow(row, wrap);
+  .o-align-items(flex-end);
+
+  .o_searchview_autocomplete {
+    width: 100%;
+    .o-position-absolute(100%, @left: auto);
+
+    li {
+      padding-left: 25px;
+      position: relative;
+
+      &.o-indent {
+        padding-left: 50px;
+      }
+
+      a {
+        display: inline-block;
+        padding-left: 0;
+        padding-right: 0;
+
+        &:hover {
+          background-color: inherit;
+        }
+
+        &.o-expand,
+        &.o-expanded {
+          &::before {
+            .o-position-absolute(@top: 50%, @left: (@o-dropdown-item-padding-x - @caret-width-base) / 2);
+          }
+        }
+
+        &.o-expand::before {
+          transform: translateY(-@caret-width-base);
+          .o-caret-right;
+        }
+
+        &.o-expanded::before {
+          transform: translate(-@caret-width-base / 2, -@caret-width-base / 2);
+          .o-caret-down;
+        }
+      }
+    }
+  }
+
+  input.o_searchview_input {
+    border-bottom: 1px solid @input-border;
+  }
+}
+// Search options: inputs and selects style
+.o_search_options {
+  input[type="text"],
+  select {
+    .form-control();
+    .input-sm();
+  }
+  // Open and closed carets in dropdowns
+  .o_closed_menu,
+  .o_open_menu {
+    a::before {
+      .o-position-absolute(@top: 50%, @left: (@o-dropdown-item-padding-x - @caret-width-base) / 2);
+    }
+  }
+
+  .o_closed_menu a::before {
+    transform: translateY(-@caret-width-base);
+    .o-caret-right;
+  }
+
+  .o_open_menu a::before {
+    transform: translate(-@caret-width-base / 2, -@caret-width-base / 2);
+    .o-caret-down;
+  }
+
+  .o_add_filter_menu,
+  .o_add_group,
+  .o_save_name {
+    display: none;
+    margin: @o-dropdown-item-padding-y @o-dropdown-item-padding-x;
+    width: auto;
+    max-width: 280px;
+  }
+
+  // Filters
+  .o_filters_menu {
+    .o-selected-li;
+
+    .o_filter_condition {
+      margin: @o-dropdown-item-padding-y @o-dropdown-item-padding-x;
+
+      .o_or_filter {
+        // or between conditions
+        display: none;
+        // hidden for the first condition
+        .o-position-absolute(@top: 50%, @left: (-@o-dropdown-item-padding-x - 10px) / 2);
+      }
+    }
+
+    .o_filter_condition + .o_filter_condition {
+      .o_or_filter {
+        display: block; // displayed from second condition
+      }
+    }
+
+    .o_searchview_extended_prop_op {
+      margin: @o-search-filter-item-margin-y 0; // vertical gap between selects
+    }
+
+    .o_searchview_extended_delete_prop {
+      cursor: pointer;
+      position: absolute;
+      right: -@o-dropdown-item-padding-x * 0.75;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  // Group By
+  .o_group_by_menu {
+    .o-selected-li;
+
+    .divider {
+      // hide the divider by default (no group)
+      display: none;
+    }
+  }
+
+  // Favorites
+  .o_favorites_menu {
+    .o-selected-li;
+
+    .divider {
+      display: none;
+    }
+    
+    // hide the divider by default (no favorite)
+    .o-searchview-custom-private,
+    .o-searchview-custom-public {
+      .o-remove-filter {
+        cursor: pointer;
+        position: absolute;
+        right: @o-dropdown-item-padding-x / 2;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    .o-searchview-custom-public a::after {
+      content: "\f0c0";
+      font-family: FontAwesome;
+      font-weight: normal;
+    }
+  }
+}

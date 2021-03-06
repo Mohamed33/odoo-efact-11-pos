@@ -1,0 +1,129 @@
+<odoo>
+  <data>
+    <record id="customize_multilogistica.view_form_reporte_transaccion" model="ir.ui.view">
+      <field name="name">customize_multilogistica.view.form.reporte.transaccion</field>
+      <field name="model">cm.reporte_transaccion</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <group string="OPERACIONES">
+              <group>
+                <field name="fecha_servicio"/>
+                <field name="mes_servicio"/>
+                <field name="tipo_carga"/>
+                <field name="numero_placa"/>
+              </group>
+              <group>
+                <field name="conductor_id"
+                        context = "{
+                                  'default_es_conductor':True,
+                                  'form_view_ref':'customize_multilogistica.view_form_partner_conductor',
+                                  'defaul_country_id':173
+                                }"
+                        domain = "[('es_conductor','=',True)]"/>
+
+                <field name="agencia_id"/>
+                <field name="destinatario_id" 
+                        domain="[('es_destinatario','=',True)]"
+                        context="{
+                          'defaul_country_id':173,
+                          'default_es_destinatario':True,
+                          'form_view_ref':'customize_multilogistica.view_form_partner_destinatario',
+                        }"/>
+                <field name="distrito_id" 
+                        context="{'ubigeo_search':True}" 
+                        domain="[
+                            ('country_id','=',173),
+                            ('state_id','!=',False),
+                            ('province_id','!=',False)]"
+                        />
+              </group>
+
+            </group>
+            <group string="FACTURACIÓN">
+              <group>
+                <field name="emitido_desde"/>
+                <field name="comprobante_pago" 
+                        attrs="{'invisible':[('emitido_desde','=','see')]}"/>
+                <field name="account_invoice_id"
+                        attrs="{'invisible':[('emitido_desde','=','sunat')]}"/>
+                <field name="cliente_id"/>
+                <field name="currency_id"/>
+                <field name="monto_servicio" options="{'currency_field': 'currency_id'}"/>
+                <field name="monto_adicional" options="{'currency_field': 'currency_id'}"/>
+                <field name="monto_igv" options="{'currency_field': 'currency_id'}"/>
+                <field name="monto_total" options="{'currency_field': 'currency_id'}"/>
+                <field name="currency_soles_id" string="Moneda en Soles"/>
+                <field name="monto_servicio_soles"  
+                        attrs="{'invisible':[('currency_soles_id','=','currency_id')]}" 
+                        options="{'currency_field': 'currency_soles_id'}"/>
+              </group>
+              <group>
+                <field name="fecha_emision_comprobante"/>
+                <field name="periodo_cobro"/>
+                <field name="fecha_vencimiento_factura"/>
+                <field name="dias_trasncurridos"/>
+                <field name="guia_remision"/>
+                <field name="contenedor"/>
+                <field name="dua"/>
+                <!--<field name="fecha_emision_comprobante"/>-->
+                <field name="tipo_cambio"/>
+                <field name="observacion"/>
+              </group>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="customize_multilogistica.view_tree_reporte_transaccion" model="ir.ui.view">
+      <field name="name">customize_multilogistica.view.tree.reporte.transaccion</field>
+      <field name="model">cm.reporte_transaccion</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="cliente_id"/>
+          <field name="comprobante_pago"/>
+          <field name="guia_remision"/>
+          <field name="monto_servicio"/>
+          <!--<field name="fecha_emision_comprobante"/>-->
+        </tree>
+      </field>
+    </record>
+    
+    <record id="customize_multilogistica.action_view_reporte_transaccion" model="ir.actions.act_window">
+      <field name="name">Transacciones</field>
+      <field name="res_model">cm.reporte_transaccion</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!---MENÚ PRINCIPAL: MULTILOGÍSTICA-->
+    <record id="customize_multilogistica.menu_multilogistica" model="ir.ui.menu" >
+        <field name="name">Multilogística</field>
+        <field name="sequence" eval="10" />
+        <field name="parent_id" ref="" />
+    </record> 
+
+        <!---SUBMENÚ: DOCUMENTOS-->
+        <record id="customize_multilogistica.menu_documento" model="ir.ui.menu" >
+            <field name="name">Documento</field>
+            <field name="sequence" eval="10" />
+            <field name="parent_id" ref="customize_multilogistica.menu_multilogistica" />
+        </record>
+
+            <!--SUBMENÚ: REPORTE TRANSACCIÓN-->
+            <record id="customize_multilogistica.reporte_transaccion" model="ir.ui.menu" >
+                <field name="name">Documento</field>
+                <field name="sequence" eval="10" />
+                <field name="action" ref="customize_multilogistica.action_view_reporte_transaccion" />
+                <field name="parent_id" ref="customize_multilogistica.menu_documento" />
+            </record>
+
+        <!---SUBMENÚ: DATOS PRINCIPALES-->
+        <record id="customize_multilogistica.menu_datos_principales" model="ir.ui.menu" >
+            <field name="name">Datos Principales</field>
+            <field name="sequence" eval="10" />
+            <field name="parent_id" ref="customize_multilogistica.menu_multilogistica" />
+        </record>
+
+  </data>
+</odoo>

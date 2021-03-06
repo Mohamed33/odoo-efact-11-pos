@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!--BAJA BEGIN-->
+        <record id="efact.account_comunicacion_baja_tree" model="ir.ui.view">
+            <field name="name">efact.account_comunicacion_baja.tree</field>
+            <field name="model">efact.account_comunicacion_baja</field>
+            <field name="arch" type="xml">
+                <tree decoration-info="state == 'draft'" decoration-muted="state == 'cancel'" string="Invoice">
+                    <field name="date_invoice"/>
+                    <field name="contador"/>
+                    <field name="user_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="efact.view_document_baja_select" model="ir.ui.view">
+            <field name="name">efact.account_comunicacion_baja.select</field>
+            <field name="model">efact.account_comunicacion_baja</field>
+            <field name="arch" type="xml">
+                <search string="Search Invoice">
+                    <filter name="draft" string="Draft" domain="[('state','in',('draft'))]"/>
+                    <!--
+                    <field name="number" string="Invoice" filter_domain="['|','|','|', ('number','ilike',self), ('origin','ilike',self), ('reference', 'ilike', self), ('partner_id', 'child_of', self)]"/>
+                    <field name="journal_id" />
+
+                    <filter name="proforma" string="Proforma" domain="[('state','=','proforma2')]" groups="account.group_proforma_invoices"/>
+                    <filter name="invoices" string="Invoices" domain="['&amp;', ('state','in',['open','paid']),('type','in',('out_invoice','in_invoice'))]"/>
+                    <filter name="refunds" string="Refunds" domain="['&amp;', ('state','in',['open','paid']),('type','in',('','in_refund'))]"/>
+                    <separator/>
+                    <filter name="unpaid" string="Not Paid" domain="[('state','=','open')]"/>
+                    <filter name="late" string="Overdue" domain="['&amp;', ('date_due', '&lt;', time.strftime('%%Y-%%m-%%d')), ('state', '=', 'open')]" help="Overdue invoices, maturity date passed"/>
+                    <separator/>
+                      -->
+                    <field name="user_id" string="Salesperson"/>
+                    <field name="date_invoice" string="Date invoice"/>
+                    <separator/>
+                    <filter domain="[('user_id','=',uid)]" help="My Invoices"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Salesperson" context="{'group_by':'user_id'}"/>
+                        <filter name="status" string="Status" context="{'group_by':'state'}"/>
+                        <separator/>
+                        <filter string="Invoice Date" context="{'group_by':'date_invoice'}"/>
+                    </group>
+
+               </search>
+            </field>
+        </record>
+
+        <record id="efact.view_comunicacion_baja_form" model="ir.ui.view">
+            <field name="name">efact.account_comunicacion_baja.form</field>
+            <field name="model">efact.account_comunicacion_baja</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="consulta_estado_comunicacion_baja"
+                                type="object"
+                                states="E"
+                                string="Estado de Comunicación de Baja"
+                                class="oe_highlight"/>
+
+                        <button name="action_summary_sent" 
+                                type="object" 
+                                states="B" 
+                                string="Enviar" 
+                                class="oe_highlight" 
+                                groups="account.group_account_invoice"/>
+
+                        <button name="action_summary_cancel" 
+                                type="object" 
+                                states="N,R,P" 
+                                string="Cancelar" 
+                                groups="base.group_no_one"/>
+
+                        <button name="action_summary_draft" 
+                                states="C,N,R,P" 
+                                string="Convertir a Borrador" 
+                                type="object" 
+                                groups="account.group_account_invoice"/>
+
+                        <field name="state" 
+                                widget="statusbar" />
+                    </header>
+                    <sheet>
+                    <!--
+                        <label string="Refund" 
+                                attrs="{'invisible': [('state','=','draft')]}"/>
+                        <h1 class="mt0">
+                            <label string="Draft Invoice" 
+                                    attrs="{'invisible': [('state','=','draft')]}"/>
+                            <label string="Draft Refund" 
+                                    attrs="{'invisible': [('state','=','draft')]}"/>
+                        </h1>
+                        -->
+                        <group>
+                            <group>
+                                <!--<field name="estado_emision" />-->
+                                <field name="date_invoice"/>
+                                <field name="issue_date"/>
+                                <field name="contador"/>
+                            </group>
+                            <group>
+                                <field name="user_id" 
+                                        groups="base.group_user"/>
+                                        <!--
+                                <label for="currency_id" 
+                                        groups="base.group_multi_currency"/>-->
+                            </group>
+                        </group>
+                        <group>
+                            <field name="invoice_type_code_id"/>
+                            <field name="motivo" 
+                                    placeholder="Motivo de baja"/>
+                            <field name="ticket" attrs="{'readonly':[['ticket','!=',False]],'invisible':[['ticket','=',False]]}"/>
+                        </group>
+                        <notebook >
+                            <page string="Documentos a enviar">
+                                <field name="invoice_ids"
+                                        widget="many2many_tags"  
+                                        domain="[['date_invoice','=',date_invoice],['type','=','out_invoice'],['status_envio','=',True],['state','not in',['draft','cancel']],['invoice_type_code','=',invoice_type_code_id]]">
+
+                                </field>
+                            </page>
+                            <page string="Comprobante" groups="base.group_no_one">
+                                <group>
+                                    <!--<field name="status_envio"/>-->
+                                    <field name="json_comprobante"/>
+                                    <field name="json_respuesta"/>
+                                    <field name="json_estado_comunicacion_baja"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            <!--
+                <form string="Comunicación de Baja">
+                    <header>
+                        <button name="action_invoice_sent" 
+                                type="object" 
+                                states="draft" 
+                                string="Sent" 
+                                class="oe_highlight" 
+                                groups="account.group_account_invoice"/>
+
+                        <button name="action_invoice_cancel" 
+                                type="object" 
+                                states="draft,open" 
+                                string="Cancel Invoice" 
+                                groups="base.group_no_one"/>
+
+                        <button name="action_invoice_draft" 
+                                states="cancel" 
+                                string="Reset to Draft" 
+                                type="object" 
+                                groups="account.group_account_invoice"/>
+
+                        <field name="state" 
+                                widget="statusbar" 
+                                statusbar_visible="draft,sent"/>
+                    </header>
+                    <sheet>
+                        <label string="Refund" 
+                                attrs="{'invisible': [('state','=','draft')]}"/>
+                        <h1 class="mt0">
+                            <label string="Draft Invoice" 
+                                    attrs="{'invisible': [('state','=','draft')]}"/>
+                            <label string="Draft Refund" 
+                                    attrs="{'invisible': [('state','=','draft')]}"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="estado_emision" />
+                                <field name="date_invoice"/>
+                                <field name="contador"/>
+                            </group>
+                            <group>
+                                <field name="user_id" 
+                                        groups="base.group_user"/>
+                                <label for="currency_id" 
+                                        groups="base.group_multi_currency"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="invoice_type_code_id"/>
+                            <field name="motivo" 
+                                    placeholder="Motivo de baja"/>
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Documentos a enviar">
+                                <field name="invoice_ids" 
+                                        nolabel="1" 
+                                        widget="many2many_tags"  
+                                        domain="[['date_invoice','=',date_invoice],['type','=','out_invoice'],['status_envio','=',True],['state','not in',['draft','cancel']],['invoice_type_code','=',invoice_type_code_id]]">
+
+                                </field>
+                            </page>
+                            <page string="Comprobante" groups="base.group_no_one">
+                                <field name="status_envio"/>
+                                <field name="json_comprobante"/>
+                                <field name="json_respuesta"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+                -->
+            </field>
+        </record>
+
+
+
+
+
+        <record id="efact.action_baja_document" model="ir.actions.act_window">
+            <field name="name">COMUNICACIÓN DE BAJA</field>
+            <field name="res_model">efact.account_comunicacion_baja</field>
+            <field name="view_mode">tree,kanban,form,pivot,graph</field>
+            <field name="view_id" ref="efact.account_comunicacion_baja_tree"/>
+            <field name="search_view_id" ref="efact.view_document_baja_select"/>
+        </record>
+        <record id="action_document_baja_tree" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="act_window_id" ref="efact.action_baja_document"/>
+        </record>
+
+        <!--
+        <record id="action_document_baja_form" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="efact.view_document_baja_form"/>
+            <field name="act_window_id" ref="efact.action_baja_document"/>
+        </record>-->
+        <menuitem name="Comunicación de baja"
+                  id="menu_document_baja"
+                  action="efact.action_baja_document"
+                  parent="account.menu_finance_receivables_documents"/>
+
+        <!--BAJA END-->
+
+    </data>
+</odoo>

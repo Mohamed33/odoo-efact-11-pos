@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <menuitem id="admin_api_fe.menu_main_api_fe" 
+                    name="ADMIN API FE"
+                    string="ADMIN API FE"
+                    parent=""/>
+
+        <menuitem id="menu_api_fe_clientes" 
+                    name="Clientes FE"
+                    string="Clientes FE"
+                    action="admin_api_fe.action_view_res_partner_cliente"
+                    parent="admin_api_fe.menu_main_api_fe"/>
+
+        <menuitem id="menu_api_fe_consulta_comprobantes" 
+                    name="Consulta Comprobantes"
+                    string="Consulta Comprobantes"
+                    action="admin_api_fe.action_view_consulta_comprobante"
+                    parent="admin_api_fe.menu_main_api_fe"/>
+    </data>
+</odoo>

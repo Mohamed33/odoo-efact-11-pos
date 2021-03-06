@@ -1,0 +1,59 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="tipocambio.list">
+      <field name="name">tipocambio list</field>
+      <field name="model">tipocambio.tipocambio</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="tipocambio.action_window">
+      <field name="name">tipocambio window</field>
+      <field name="res_model">tipocambio.tipocambio</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="tipocambio.action_server">
+      <field name="name">tipocambio server</field>
+      <field name="model_id" ref="model_tipocambio_tipocambio"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="tipocambio" id="tipocambio.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="tipocambio.menu_1" parent="tipocambio.menu_root"/>
+    <menuitem name="Menu 2" id="tipocambio.menu_2" parent="tipocambio.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="tipocambio.menu_1_list" parent="tipocambio.menu_1"
+              action="tipocambio.action_window"/>
+    <menuitem name="Server to list" id="tipocambio" parent="tipocambio.menu_2"
+              action="tipocambio.action_server"/>
+    -->
+  </data>
+</odoo>

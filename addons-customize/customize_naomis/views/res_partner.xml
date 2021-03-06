@@ -1,0 +1,22 @@
+<odoo>
+    <record id="base.action_partner_form" model="ir.actions.act_window">
+        <field name="domain">[['user_id','=',uid]]</field>
+    </record>
+    
+    <record id="partner_groups_responsable" model="ir.ui.view">
+        <field name="name">partner.groups.responsable</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="replace">
+                <field name="user_id" groups="sales_team.group_sale_salesman_all_leads,sales_team.group_sale_manager"/> 
+                <field name="objetivo_venta_mensual" string="Objetivo de venta mensual"/>
+                <field name="segmento" string="Segmento"/>
+                <field name="longitud" string="Longitud"/>
+                <field name="latitud" string="Latitud"/>
+                <field name="ism_identificador" string="Identificador de ISM"/>
+            </field>
+            
+        </field>
+    </record>
+</odoo>

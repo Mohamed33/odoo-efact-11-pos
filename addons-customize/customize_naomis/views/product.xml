@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="customize_naomis.view_form_product_add_supplier" model="ir.ui.view">
+            <field name="name">view.form.product.add.supplier</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="supplier_id" domain="[('supplier','=',True)]" string="Proveedor"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

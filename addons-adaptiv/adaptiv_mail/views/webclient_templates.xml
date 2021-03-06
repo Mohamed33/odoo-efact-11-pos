@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+    <template id="assets_backend" name="Adaptiv Backend Theme" inherit_id="mail.assets_backend">
+      <!-- Remove all Odoo stylesheets -->
+      <link rel="stylesheet" href="/mail/static/src/less/announcement.less" position="replace"/>
+      <link rel="stylesheet" href="/mail/static/src/less/client_action.less" position="replace"/>
+      <link rel="stylesheet" href="/mail/static/src/less/chat_window.less" position="replace"/>
+      <link rel="stylesheet" href="/mail/static/src/less/extended_chat_window.less" position="replace"/>
+      <link rel="stylesheet" href="/mail/static/src/less/composer.less" position="replace"/>
+      <link rel="stylesheet" href="/mail/static/src/less/chatter.less" position="replace"/>
+      <link rel="stylesheet" href="/mail/static/src/less/followers.less" position="replace"/>
+      <link rel="stylesheet" href="/mail/static/src/less/mail_activity.less" position="replace"/>
+      <link rel="stylesheet" href="/mail/static/src/less/thread.less" position="replace"/>
+      <link rel="stylesheet" href="/mail/static/src/less/systray.less" position="replace"/>
+
+      <xpath expr="link[last()]" position="after">
+        <link rel="stylesheet" type="text/less" href="/adaptiv_mail/static/src/less/variables.less"/>
+        <link rel="stylesheet" type="text/less" href="/adaptiv_mail/static/src/less/announcement.less"/>
+        <link rel="stylesheet" type="text/less" href="/adaptiv_mail/static/src/less/client_action.less"/>
+        <link rel="stylesheet" type="text/less" href="/adaptiv_mail/static/src/less/chat_window.less"/>
+        <link rel="stylesheet" type="text/less" href="/adaptiv_mail/static/src/less/composer.less"/>
+        <link rel="stylesheet" type="text/less" href="/adaptiv_mail/static/src/less/chatter.less"/>
+        <link rel="stylesheet" type="text/less" href="/adaptiv_mail/static/src/less/followers.less"/>
+        <link rel="stylesheet" type="text/less" href="/adaptiv_mail/static/src/less/mail_activity.less"/>
+        <link rel="stylesheet" type="text/less" href="/adaptiv_mail/static/src/less/thread.less"/>
+        <link rel="stylesheet" type="text/less" href="/adaptiv_mail/static/src/less/systray.less"/>
+      </xpath>
+    </template>
+  </data>
+</odoo>

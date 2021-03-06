@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <template id="pos_customize_increnta" inherit_id="point_of_sale.assets">
+            <xpath expr="." position="inside">}
+                <script src="/customize_increnta/static/src/js/customize_increnta.js" type="text/javascript"/>
+            </xpath>
+        </template>
+    </data>
+</odoo>

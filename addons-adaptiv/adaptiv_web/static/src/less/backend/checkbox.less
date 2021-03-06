@@ -1,0 +1,52 @@
+.o_checkbox {
+  display: inline-block;
+  line-height: 1;
+  position: relative;
+  vertical-align: sub;
+
+  > input {
+    bottom: auto;
+    cursor: pointer;
+    height: @o-checkbox-size;
+    left: auto;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    right: auto;
+    top: auto;
+    width: @o-checkbox-size;
+
+    &:checked + span {
+      border-color: @o-checkbox-checked-border-color;
+
+      &::after {
+        background-color: @o-checkbox-checked-bg;
+        content: " ";
+        display: block;
+        height: @o-checkbox-checked-size;
+        margin: (@o-checkbox-size - @o-checkbox-checked-size) / 2 - 1px;
+        width: @o-checkbox-checked-size;
+      }
+    }
+
+    &:checked:disabled + span {
+      border-color: @o-checkbox-disabled-border-color;
+
+      &::after {
+        background-color: @o-checkbox-checked-disabled-bg;
+      }
+    }
+
+    &:focus + span {
+      outline: 1px solid @o-checkbox-focus-border-color;
+    }
+
+    + span {
+      background-color: @o-checkbox-bg;
+      border: 1px solid @o-checkbox-border-color;
+      display: inline-block;
+      height: @o-checkbox-size;
+      width: @o-checkbox-size;
+    }
+  }
+}

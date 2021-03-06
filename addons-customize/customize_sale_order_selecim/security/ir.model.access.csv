@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_customize_sale_order_selecim_customize_sale_order_selecim,customize_sale_order_selecim.customize_sale_order_selecim,model_customize_sale_order_selecim_customize_sale_order_selecim,,1,0,0,0

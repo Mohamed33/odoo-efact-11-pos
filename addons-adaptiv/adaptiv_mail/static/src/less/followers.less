@@ -1,0 +1,138 @@
+.o_followers {
+  float: right;
+
+  .dropdown-menu {
+    left: auto;
+    right: 0;
+  }
+
+  .o_followers_actions {
+    float: right;
+    position: relative;
+
+    .dropdown-toggle {
+      border: none;
+      display: none;
+      opacity: 0.3;
+
+      &:focus,
+      &:hover,
+      &[aria-expanded="true"] {
+        opacity: 1;
+      }
+
+      > .fa {
+        font-size: inherit;
+      }
+
+      &.o_followers_following {
+        display: block;
+      }
+    }
+
+    &:hover .dropdown-toggle {
+      opacity: 1;
+    }
+
+    .o_followers_follow_button {
+      color: @text-color;
+      font-weight: bold;
+      padding-right: 0;
+
+      .o_follow,
+      .o_followers_following,
+      .o_followers_unfollow {
+        display: none;
+      }
+      // when following, show 'following'
+      &.o_followers_following .o_followers_following {
+        display: inline;
+      }
+      // when following and hovering, show 'unfollow'
+      &.o_followers_following:hover .o_followers_following {
+        display: none;
+      }
+
+      &.o_followers_following:hover .o_followers_unfollow {
+        display: inline;
+      }
+      // when not following  show 'follow'
+      &.o_followers_notfollow .o_follow {
+        display: inline;
+      }
+
+      .fa {
+        &.fa-times {
+          color: @adaptiv-brand-warning;
+        }
+
+        &.fa-check {
+          color: @adaptiv-brand-success;
+        }
+      }
+    }
+
+    .o_subtype {
+      padding-left: 10px;
+    }
+  }
+
+  .o_followers_title_box {
+    float: right;
+    margin-left: 25px;
+    position: relative;
+
+    .dropdown-toggle {
+      .o_followers_count {
+        font-weight: bold;
+        padding-right: 5px;
+      }
+    }
+
+    .o_followers_list {
+      font-size: small;
+
+      .o_partner {
+        position: relative; // required for old design compatibility
+
+        > a {
+          height: @partner_avatar_size;
+          max-width: 160px;
+          overflow: hidden;
+          padding: 3px @partner_avatar_size + 8px;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        > img {
+          width: @partner_avatar_size;
+          .o-position-absolute();
+        }
+
+        .o_remove_follower {
+          cursor: pointer;
+          .o-position-absolute(6px, 5px);
+        }
+
+        .o_edit_subtype {
+          cursor: pointer;
+          .o-position-absolute(6px, 18px);
+        }
+        @partner_avatar_size: 24px;
+      }
+    }
+  }
+  @media (max-width: @screen-xs-max) {
+    display: none !important; // Hide the followers in mobile
+  }
+}
+
+// Edit subtypes in dialog
+.modal .modal-body > ul {
+  padding-left: 0;
+  list-style: none;
+
+  > li.o_subtype {
+    list-style: none;
+  }
+}

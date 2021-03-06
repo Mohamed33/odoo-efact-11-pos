@@ -1,0 +1,115 @@
+<odoo>
+    <template id="report_pos_cash_closing.template_report_cash_closing">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+                    <div class="page">
+
+                        <!-- <t t-if="doc.state=='closed'"> -->
+                        <p>===============================</p>
+                        <span t-field="doc.state"/>
+                        <p>===============================</p>
+                        <div class="pt-3 pb-3 d-flex flex-row justify-content-center">
+                            <span class="text-center">RESUMEN DE VENTAS Y EFECTIVO DEL DÍA</span>
+                        </div>
+                        <p>===============================</p>
+                        <div class="pt-3 pb-3 d-flex flex-row justify-content-center">
+                            <span class="text-center">Reporte de Ventas: <t t-esc="doc.name"/></span>
+                        </div>
+                        <div class="pt-3 pb-3 d-flex flex-row justify-content-between">
+                            <span class="font-weight-bold">Responsable: </span>
+                            <span t-field="doc.user_id.name"></span>
+                        </div>
+                        <div class="pt-3 pb-3 d-flex flex-row justify-content-between">
+                            <span class="font-weight-bold">Punto de Venta: </span>
+                            <span> <t t-esc="doc.config_id.name"/></span>
+                        </div>
+                        <t t-set="detalle_venta" t-value="doc.detalle_venta()"/>
+                        
+                        <div class="pt-3 pb-3 d-flex flex-row justify-content-between">
+                            <span class="font-weight-bold">Venta Facturada: </span>
+                            <span> <t t-esc="detalle_venta['total_invoices']"/></span>
+                        </div>
+                        <div class="pt-3 pb-3 d-flex flex-row justify-content-between">
+                            <span class="font-weight-bold">Notas de Venta: </span>
+                            <span> <t t-esc="detalle_venta['total_sales_without_invoice']"/></span>
+                        </div>
+                        <div class="pt-3 pb-3 d-flex flex-row justify-content-between">
+                            <span class="font-weight-bold">Devoluciones: </span>
+                            <span> <t t-esc="detalle_venta['total_sales_refund']"/></span>
+                        </div>
+                        <p>===============================</p>
+                        <div class="pt-3 pb-3 d-flex flex-row justify-content-center">
+                            <span class="text-center">CONTROL DE EFECTIVO</span>
+                        </div>
+                        <p>===============================</p>
+                        <div class="pt-3 pb-3 d-flex flex-row justify-content-between">
+                            <span class="font-weight-bold">Caja Inicial: </span>
+                            <span> <t t-esc="detalle_venta['cash_start']"/></span>
+                        </div>
+                        <div class="pt-3 pb-3 d-flex flex-row justify-content-between">
+                            <span class="font-weight-bold">Total Ventas [Efectivo]: </span>
+                            <span> <t t-esc="detalle_venta['total_sale_cash']"/></span>
+                        </div>
+                        <div class="pt-3 pb-3 d-flex flex-row justify-content-between">
+                            <span class="font-weight-bold">Devoluciones [Efectivo]: </span>
+                            <span> <t t-esc="detalle_venta['total_refund_sale_cash']"/></span>
+                        </div>
+                        <div class="pt-3 pb-3 d-flex flex-row justify-content-between">
+                            <span class="font-weight-bold">Otro Ingreso de Efectivo: </span>
+                            <span> <t t-esc="detalle_venta['total_in_cash']"/></span>
+                            <div>
+                                <ul>
+                                    <t t-foreach="detalle_venta['in_cash']" t-as="in_c">
+                                        <li>
+                                            <span t-field="in_c.name"/>:
+                                            <span t-field="in_c.amount"></span>
+                                        </li>
+                                    </t>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pt-3 pb-3 d-flex flex-row justify-content-between">
+                            <span class="font-weight-bold">Otro Egreso de Efectivo: </span>
+                            <span> <t t-esc="detalle_venta['total_out_cash']"/></span>
+                            <div>
+                                <ul>
+                                    <t t-foreach="detalle_venta['out_cash']" t-as="out_c">
+                                        <li>
+                                            <span t-field="out_c.name"/>:
+                                            <span t-field="out_c.amount"></span>
+                                        </li>
+                                    </t>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pt-3 pb-3 d-flex flex-row justify-content-between">
+                            <span class="font-weight-bold">Cierre de Caja: </span>
+                            <span> <t t-esc="detalle_venta['cash_end']"/></span>
+                        </div>
+                        <p>===============================</p>
+                        <div class="pt-3 pb-3 d-flex flex-row justify-content-center">
+                            <span class="text-center">DETALLE DE DEVOLUCIONES</span>
+                        </div>
+                        <p>===============================</p>
+                        <div>
+                            <t t-foreach="detalle_venta['sales_refund']" t-as="ref">
+                                <span t-field="ref.name"/>
+                                <span t-field="ref.partner_id"/>
+                                <ul>
+                                    <t t-foreach="ref.lines" t-as="line">
+                                        <li>
+                                            <span t-field="line.product_id"/>
+                                            [<span t-field="line.price_subtotal_incl"/>]
+                                        </li>
+                                    </t>
+                                </ul>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

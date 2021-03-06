@@ -1,0 +1,244 @@
+@_avatar-size: @navbar-height - @navbar-padding-vertical;
+
+html,
+body {
+  overflow: hidden;
+  position: relative;
+}
+
+@keyframes fade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@-webkit-keyframes fade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.o_web_client {
+  background-color: @body-bg;
+  color: @text-color;
+
+  &::after {
+    display: none;
+  }
+
+  .oe_topbar_avatar {
+    display: inline-block;
+    margin-top: -(@_avatar-size - @_line-height-computed) / 2;
+    max-height: @_avatar-size;
+    vertical-align: top;
+    width: @_avatar-size;
+  }
+
+  .oe_topbar_name {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  @media (max-width: @screen-sm-max) {
+    .oe_topbar_name {
+      display: none;
+    }
+  }
+
+  .a_navbar {
+    color: @navbar-default-color;
+
+    .nav.a_systray_menu,
+    .nav.a_user_menu {
+      > li > a {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+  }
+
+  .a_canvas {
+    .a-canvas();
+    .o-flex-display();
+    .o-flex-flow(column, nowrap);
+
+    .navbar {
+      .o-flex(0, 0, auto);
+    }
+
+    > .o_main {
+      height: 100%;
+      min-height: 0; // Allow flex to shrink this element as much as it wants
+      .o-flex(1, 0, 0);
+      .o-flex-display();
+
+      .o_main_content {
+        width: 100%;
+
+        .o-flex-display();
+        .o-flex-flow(column, nowrap);
+        .o-flex(1, 0, 0);
+
+        .o_content {
+          position: relative;
+          width: 100%;
+
+          .o-flex-display();
+          .o-flex-flow(column, nowrap);
+          .o-flex(1, 0, 0);
+
+          > .container-fluid,
+          > div:not([class]),
+          > .o_view_manager_content {
+            position: relative;
+            width: 100%;
+
+            .o-flex-display();
+            .o-flex-flow(column, nowrap);
+            .o-flex(1, 0, 0);
+          }
+
+          > .o_view_manager_content {
+            > div {
+              position: relative;
+              overflow: auto;
+              width: 100%;
+
+              .o-flex-display();
+              .o-flex-flow(column, nowrap);
+              .o-flex(1, 0, 0);
+              
+              > div:not([class]) {
+                .o-flex-display();
+                .o-flex-flow(column, nowrap);
+                .o-flex(1, 0, auto);
+              }
+
+              > .table-responsive {
+                // Special case for listviews
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                overflow: auto;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.o_fullscreen {
+    .a_navbar {
+      display: none;
+    }
+  }
+
+  @media (max-width: @screen-xs-max) {
+    &::after {
+      content: "mobile";
+    }
+  }
+}
+
+.o_notification_manager {
+  max-width: 100%;
+  width: @o-notification-width;
+  z-index: @zindex-popover;
+  .o-position-absolute(@top: @navbar-height + @_grid-half-gutter-width, @right: @_grid-half-gutter-width);
+
+  .o_notification {
+    background-color: @o-notification-bg;
+    color: @o-notification-color;
+    margin-bottom: 10px;
+    opacity: 0;
+    padding: 10px;
+    position: relative;
+
+    .o-shadow-depth-2();
+
+    .o_close {
+      color: rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+      .o-position-absolute(5px, 5px);
+    }
+
+    .o_notification_title {
+      .o-flex-display();
+      .o-align-items(center);
+      .h5();
+
+      .o_icon {
+        display: none;
+      }
+    }
+
+    &.o_error {
+      background-color: @o-notification-error-bg;
+      color: @o-notification-error-color;
+    }
+  }
+}
+
+// Buttons
+.o_icon_button {
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  padding: 0;
+}
+
+.oe_highlight {
+  .btn-primary;
+}
+
+//------------------------------------------------------------------------------
+// Loading
+//------------------------------------------------------------------------------
+
+.o_loading {
+  background: transparent;
+  position: fixed;
+  text-align: center;
+}
+
+#nprogress {
+  .bar {
+    background: @a-loading-bar-bg;
+    height: @a-loading-bar-height;
+  }
+
+  .peg {
+    box-shadow: 0 0 10px @a-loading-bar-bg, 0 0 5px @a-loading-bar-bg;
+  }
+
+  .spinner-icon {
+    border-left-color: @a-loading-bar-bg;
+    border-top-color: @a-loading-bar-bg;
+  }
+}
+
+//------------------------------------------------------------------------------
+// User menu in navbar
+//------------------------------------------------------------------------------
+
+#oe_main_menu_navbar .oe_user_menu_placeholder .o_user_menu .oe_topbar_name {
+  max-width: 150px;
+  .o-text-overflow();
+}
+
+.blockUI {
+  &.blockOverlay {
+    background: #000 !important;
+  }
+}
+
+//------------------------------------------------------------------------------
+// Browser overrides
+//------------------------------------------------------------------------------
+
+a {
+  &:focus {
+    outline: none;
+  }
+}

@@ -1,0 +1,41 @@
+<odoo>
+  <data>
+    
+    <record id="historico_costo_producto.add_button_action_view_costo_historico" model="ir.ui.view">
+        <field name="name">add.button.action.view.costo.historico</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="purchase.view_product_template_purchase_buttons_from" />
+        <field name="arch" type="xml">
+            <xpath expr="//button[@class='oe_stat_button']" position="before">
+              <button class="oe_stat_button" name="action_view_listar_historico_precio" type="object" icon="fa-shopping-cart" modifiers="{}" options="{}">
+                <span>Precio Histórico</span>
+              </button>    
+            </xpath>
+            
+        </field>
+    </record>
+    
+    <record id ="historico_costo_producto.view_tree_invoice_line_compra" model="ir.ui.view">
+      <field name="name">view.tree.invoice.line.compra</field>
+      <field name="model">account.invoice.line</field>
+      <field name="arch" type="xml">
+          <tree string="Costo Histórico Facturado" create="0" delete="0" edit="0" >
+              <field name="partner_id"/>
+              <field name="reference"/>
+              <field name="date_invoice"/>
+              <field name="invoice_id"/>
+              <field name="name"/>
+              <field name="account_id" groups="account.group_account_user"/>
+              <field name="quantity"/>
+              <field name="uom_id" groups="product.group_uom"/>
+              <field name="price_unit"/>
+              <field name="discount" groups="base.group_no_one"/>
+              <field name="price_subtotal"/>
+              <field name="currency_id" invisible="1"/>
+              <field name="create_date"/>
+          </tree>
+      </field>
+    </record>
+      	
+  </data>
+</odoo>

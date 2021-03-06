@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="pos_gestor_concesionario_assets_backend" inherit_id="point_of_sale.assets" name="pos_gestor_concesionario_assets_backend">
+		<xpath expr="." position="inside">}
+			<script src="/gestor_concesionario/static/src/js/pos_concesionariov2.js" type="text/javascript"/>
+		</xpath>
+	</template>
+    <template id="index" name="pos_gestor_concesionario index" inherit_id="point_of_sale.index">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/css" href="/gestor_concesionario/static/src/css/pos.css"/>
+        </xpath>
+    </template>
+
+    <template id="pos_index" inherit_id="point_of_sale.index">
+        <xpath expr="//title" position="replace">
+            <title>RoomiesFour</title>
+        </xpath>
+    </template>
+
+</odoo>

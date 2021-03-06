@@ -1,0 +1,147 @@
+openapi: "3.0.0"
+info:
+  description: "Documentacion para la api de facturacion."
+  version: "1.0.0"
+  title: "API Facturacion Electronica"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "ingvcueva@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+# host: ""
+# basePath: "/webservice"
+tags:
+- name: "Factura"
+  description: "Todo sobre las facturas"
+  externalDocs:
+    description: "Find out more"
+    url: "http://swagger.io"
+# schemes:
+# - "https"
+# - "http"
+paths:
+  /web/session/authenticate:
+    post:
+      tags:
+      - "Autenticacion"
+      summary: "Iniciar session"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                db:
+                  type: string
+                login:
+                  type: string
+                password:
+                  type: string
+            example:
+              jsonrpc: '2.0'
+              method: call
+              params:
+                db: creexdb
+                login: admin        
+                password: admin
+      responses:
+        200:
+          description: "Ok"
+  /api/factura/create:
+    post:
+      tags:
+      - "Factura"
+      summary: "Crear una nueva factura"
+      description: ""
+      operationId: "factura-new"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/factura"
+            example:
+              jsonrpc: '2.0'
+              method: call
+              params:
+                data:
+                  cliente_id: 7
+                  lines:
+                    - id: 1
+                      descripción: "Producto 1"
+                      cantidad: 2
+                      precio: 80.0
+                      descuento: 0.0
+                    - id: 2
+                      descripcion: "Producto 2"
+                      precio: 100
+                  moneda: PEN
+                  journal_id: 1
+                  tipo_operacion: "01"
+                  pago:
+                    monto: 260.0
+                    procedencia: culqi
+                    detalle: detalle
+                    id_transaccion: 12312312
+      responses:
+        200:
+          description: "successful operation"
+components:
+  schemas:
+    factura:
+      type: object
+      properties:
+        cliente_id:
+          type: integer
+        lines:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                description: "Id del producto en la base de datos de odoo. El producto debe existir, caso contrario se detendra la operacion."
+              descipcion:
+                type: string
+                description: "Se toma como valor por defecto el nombre del producto registrado en la base de datos, pero se puede sobreescribir enviando este campo con algun contenido."
+              cantidad:
+                type: integer
+                minimum: 1
+                default: 1
+              precio:
+                type: number
+                format: double
+                minimum: 0.01
+              descuento:
+                type: number
+                format: double
+                default: 0.0
+        moneda:
+          type: string
+          enum: ["PEN", "USD"]
+        journal_id:
+          type: integer
+          enum: [1, 4]
+          description: "1 para facturas y 4 para boletas"
+        tipo_operacion:
+          type: string
+          enum: ["01", "02"]
+          description: "01 para ventas locales y 02 para exportacion"
+        pago:
+          type: object
+          properties:
+            monto:
+              type: number
+              format: double
+            procedencia: 
+              type: string
+              enum: ["culqi", "coinbase"]
+              default: "culqi"
+              description: "El valor por defecto es culqi"
+            detalle:
+              type: string
+              description: "Detalle adicionales que se deseen guardar para dicha transaccion."
+            id_transaccion: 
+              type: string
+              description: "Id de transaccion desde sistema externo a odoo que se desee guardar."
+    

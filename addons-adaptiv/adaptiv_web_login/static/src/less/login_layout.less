@@ -1,0 +1,43 @@
+@login-bg-0: mix(@adaptiv-brand-primary, #fff, 80%);
+@login-bg-1: @adaptiv-brand-primary;
+
+.a_login {
+  .o-flex-display();
+  .o-flex-flow(column, nowrap);
+  .o-justify-content(center);
+  background: radial-gradient(ellipse at center, @login-bg-0 0%, @login-bg-1 100%);
+}
+
+.a_login_card {
+  .o-shadow-depth-3();
+  background: @_shade;
+
+  > .header {
+    border-bottom: 1px solid @_shade-3;
+    text-align: center;
+
+    > img {
+      max-height: @_font-size-h1;
+      max-width: 100%;
+    }
+  }
+
+  > .footer {
+    border-top: 1px solid @_shade-3;
+    text-align: center;
+  }
+
+  > .header,
+  > .content,
+  > .footer {
+    padding: @_grid-half-gutter-width;
+  }
+}
+
+.oe_login_buttons {
+  text-align: center;
+  > .btn {
+    display: block;
+    width: 100%;
+  }
+}

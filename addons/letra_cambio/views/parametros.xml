@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="res_config_settings_letras_form">
+            <field name="name">parametros de letra de cambio</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <div id="business_documents" position="before">
+                    <div id="setting_letras">
+                        <h2>Letra de Cambio</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <label for="cuenta_por_cobrar"/>
+                                    <field name="cuenta_por_cobrar"/>
+                                    <p></p>
+                                    <label for="letra_aceptada"/>
+                                    <field name="letra_aceptada"/>
+                                    <p></p>
+                                    <label for="letra_cobranza"/>
+                                    <field name="letra_cobranza"/>
+                                    <p></p>
+                                    <label for="letra_descuento"/>
+                                    <field name="letra_descuento"/>
+                                    <p></p>
+                                    <label for="letra_descontada_aceptada"/>
+                                    <field name="letra_descontada_aceptada"/>
+                                    <p></p>
+                                    <label for="letra_protestada"/>
+                                    <field name="letra_protestada"/>
+                                    <p></p>
+                                    <label for="gasto_descontada_aceptada"/>
+                                    <field name="gasto_descontada_aceptada"/>
+                                    <p></p>
+                                    <label for="gasto_cobranza_libre"/>
+                                    <field name="gasto_cobranza_libre"/>
+                                    <p></p>
+                                    <label for="gasto_protestada"/>
+                                    <field name="gasto_protestada"/>
+                                    <p></p>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                 </div>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

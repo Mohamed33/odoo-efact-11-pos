@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_customize_highlandtec_customize_highlandtec,customize_highlandtec.customize_highlandtec,model_customize_highlandtec_customize_highlandtec,,1,0,0,0

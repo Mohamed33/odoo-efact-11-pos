@@ -1,0 +1,111 @@
+/*
+.hoja{
+    width: 225mm;
+    height: 200mm;
+    border:solid gray 1px;
+    position: absolute;;
+    font-size:10px
+}*/
+
+.fecha_emision{
+    position: absolute;
+    left: 35mm;
+    top:30mm;
+    font-size:10px;
+    font-family:sans-serif;
+}
+.punto_partida{
+    position: absolute;
+    left:50mm ;
+    top: 34mm;
+    font-size:10px;;
+    font-family:sans-serif;
+}
+.datos_destino{
+    position: absolute;
+    left: 35mm;
+    top:39mm;
+    font-size:10px;
+    font-family:sans-serif;
+}
+.razon_social{
+    position: absolute;
+    left: 42mm;
+    top:50mm;
+    font-size:10px;
+    font-family:sans-serif;
+}
+.punto_llegada{
+    position: absolute;
+    left: 50mm;
+    top: 48mm;
+    font-size:10px;
+    font-family:sans-serif;
+}
+.ruc{
+    position: absolute;
+    left: 25mm;
+    top: 52mm;
+    font-size:10px;
+    font-family:sans-serif;
+}
+.marca_numero_vehiculo{
+    position: absolute;
+    left: 47mm;
+    top: 181mm;;
+    font-size:10px;
+    font-family:sans-serif;
+}
+.licencia_conducir{
+    position: absolute;
+    left: 43mm;
+    top: 186mm;
+    font-size:10px;
+    font-family:sans-serif;
+}
+.razon_social{
+    position: absolute;
+    left: 40mm;
+    top: 190mm;
+    font-size:10px;
+    font-family:sans-serif;
+}
+.ruc_transportista{
+    position: absolute;
+    left: 27mm;
+    top: 194mm;
+    font-size:10px;
+    font-family:sans-serif;
+}
+.body_report{
+    position: absolute;
+    left: 13mm;
+    top: 57mm;
+    font-size:10px;
+    font-family:sans-serif;
+}
+.fila{
+    display: -webkit-box;;
+    font-size:10px;
+    font-family:sans-serif;
+}
+.codigo{
+    width: 21mm;
+    font-size:10px;
+    font-family:sans-serif;
+}
+.descripcion{
+    width: 130mm;
+    font-size:10px;
+    font-family:sans-serif;
+}
+.unidad{
+    width: 25mm;
+    font-size:10px;
+    font-family:sans-serif;
+}
+.cantidad{
+    width: 27mm;
+    font-size:10px;
+    font-family:sans-serif;
+}

@@ -1,0 +1,35 @@
+.o_progressbar {
+  .o-flex-display();
+
+  .o_progressbar_title {
+    padding-right: @o-progressbar-progress-margin-x;
+    white-space: nowrap;
+    .o-flex(0, 0, auto);
+  }
+
+  .o_progressbar_value {
+    padding-left: @o-progressbar-progress-margin-x;
+    text-align: right;
+    white-space: nowrap;
+    .o-flex(0, 0, auto);
+  }
+
+  .o_progress {
+    background-color: @o-progressbar-progress-bg;
+    border: 1px solid @o-progressbar-progress-border-color;
+    height: @o-progressbar-progress-height;
+    margin-top: (@_line-height-computed - @o-progressbar-progress-height) / 2;
+    overflow: hidden;
+    vertical-align: middle;
+    .o-flex(1, 1, auto);
+
+    &.o_progress_overflow {
+      background-color: @o-progressbar-progress-overflow-bg;
+    }
+
+    .o_progressbar_complete {
+      background-color: @o-progressbar-progress-complete-bg;
+      height: 100%;
+    }
+  }
+}

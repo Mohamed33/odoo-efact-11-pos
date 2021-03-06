@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <!-- Server Views -->
+  <record model="ir.ui.view" id="oim_server_form_view">
+    <field name="name">servers.form</field>
+    <field name="model">oimadmin.servers</field>
+    <field name="view_mode">form</field>
+    <field name="arch" type="xml">
+      <form string="OimServer Form">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="url"/>
+            <field name="api_key"/>
+            <field name="api_secret"/>
+          </group>
+
+          <group>
+            <button string="Test Connection" type="object" name="action_test_connection"/>
+            <button string="Sincronizar" type="object" name="action_syncronize"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="oim_server_tree_view">
+    <field name="name">servers.tree</field>
+    <field name="model">oimadmin.servers</field>
+    <field name="view_mode">tree</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="url"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- DB Server Views -->
+  <record model="ir.ui.view" id="bd_server_form_view">
+    <field name="name">dbservers.form</field>
+    <field name="model">oimadmin.dbservers</field>
+    <field name="view_mode">form</field>
+    <field name="arch" type="xml">
+      <form string="OimServer Form">
+        <sheet>
+          <group>
+            <field name="code" readonly="1"/>
+            <field name="host"/>
+            <field name="port"/>
+            <field name="username"/>
+            <field name="password"/>
+            <field name="limit"/>
+            <field name="conn_test" readonly="1"/>
+            <field name="oim_server_id"/>
+          </group>
+
+          <group>
+            <button string="Test Connection" type="object" name="action_test_connection"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="db_server_tree_view">
+    <field name="name">dbservers.tree</field>
+    <field name="model">oimadmin.dbservers</field>
+    <field name="view_mode">tree</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="code"/>
+        <field name="host"/>
+        <field name="oim_server_id"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- Instances Views -->
+  <record model="ir.ui.view" id="odooinstances_form_view">
+    <field name="name">odooinstances.form</field>
+    <field name="model">oimadmin.odooinstances</field>
+    <field name="view_mode">form</field>
+    <field name="arch" type="xml">
+      <form string="OimServer Form">
+        <sheet>
+          <group>
+            <field name="code" readonly="1"/>
+            <field name="domain"/>
+            <field name="ssl_enabled" readonly="1"/>
+            <!-- <field name="docker_server"/> -->
+            <field name="port" readonly="1"/>
+            <field name="port_chat" readonly="1"/>
+            <field name="docker_instance_name" readonly="1"/>
+            <field name="docker_image"/>
+            <field name="docker_tag"/>
+            <field name="odoo_conf_template"/>
+            <field name="database_name" readonly="1"/>
+
+            <field name="oim_server_id"/>
+            <field name="database_server_id"/>
+          </group>
+
+          <group>
+            <button string="Sincronizar" type="object" name="action_syncronize"/>
+          </group>
+
+          <notebook>
+            <page string="Instance Control">
+              <group>
+                <button string="Start" type="object" name="action_start"/>
+                <button string="Stop" type="object" name="action_stop"/>
+                <button string="Restart" type="object" name="action_restart"/>
+              </group>
+              <group>
+                <field name="reboot_command"/>
+                <button string="Reboot" type="object" name="action_reboot" />
+              </group>
+            </page>
+
+            <page string="Nginx">
+              <group>
+                <button string="Configure nginx" type="object" name="action_configure_nginx"/>
+                <button string="Enable SSL" type="object" name="action_ssl_enable"/>
+                <button string="Disable SSL" type="object" name="action_ssl_disable"/>
+              </group>
+              <group>
+                <field name="cert_crt" />
+                <field name="cert_key" />
+                <button string="Upload SSL Cetificate" type="object" name="action_upload_ssl" />
+              </group>
+            </page>
+          </notebook>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="odooinstances_search_view">
+    <field name="name">odooinstances.search</field>
+    <field name="model">oimadmin.odooinstances</field>
+    <field name="view_mode">search</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="domain"/>
+        <field name="code"/>
+      </search>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="odooinstances_tree_view">
+    <field name="name">odooinstances.tree</field>
+    <field name="model">oimadmin.odooinstances</field>
+    <field name="view_mode">tree</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="code"/>
+        <field name="domain"/>
+        <field name="docker_image"/>
+        <field name="docker_tag"/>
+        <field name="oim_server_id"/>
+      </tree>
+    </field>
+  </record>
+</odoo>

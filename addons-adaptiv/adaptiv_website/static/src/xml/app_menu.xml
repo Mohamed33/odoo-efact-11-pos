@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+  <ul t-name="AppMenu" class="nav sidebar-nav">
+    <li t-foreach="widget.menu_tree['children']" t-as="child">
+      <t t-call="AppMenu.menu_link">
+        <t t-set="display_icon" t-value="true"/>
+        <t t-set="menu" t-value="child"/>
+      </t>
+    </li>
+  </ul>
+
+  <a
+    t-name="AppMenu.menu_link"
+    t-att-data-action-id="menu.action ? menu.action.split(',')[1] : ''"
+    t-att-data-action-model="menu.action ? menu.action.split(',')[0] : ''"
+    t-att-data-menu="menu.id"
+    t-att-data-menu-xmlid="menu.xmlid"
+    t-attf-href="/web#menu_id=#{menu.id}&amp;action=#{menu.action ? menu.action.split(',')[1] : ''}">
+    <img t-if="display_icon &amp;&amp; menu.web_icon_data" t-attf-src="data:image/png;base64,#{menu.web_icon_data}" class="img" t-att-alt="menu.name" t-att-title="menu.name"/>
+    <t t-esc="menu.name"/>
+  </a>
+
+</templates>

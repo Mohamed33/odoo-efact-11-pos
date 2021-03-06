@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="ClientDetailsEdit">
+        <section class='client-details edit'>
+            <div class='client-picture'>
+                <t t-if='!partner.id'>
+                    <i class='fa fa-camera'></i>
+                </t>
+                <t t-if='partner.id'>
+                    <img t-att-src='widget.partner_icon_url(partner.id)' />
+                </t>
+                <input type='file' class='image-uploader'></input>   
+            </div>
+            <input class='detail client-name' name='name' t-att-value='partner.name' placeholder='Name'></input>
+            <div class='edit-buttons'>
+                <div class='button undo'><i class='fa fa-undo' /></div>
+                <div class='button save'><i class='fa fa-floppy-o' /></div>
+            </div>
+            <div class='client-details-box clearfix'>
+                <div class='client-details-left'>
+                    <div class='client-detail'>
+                    
+                        <span class='label'>Tipo doc.</span>
+                        <t t-if="!partner.tipo_documento">
+                            <div class='detail'>
+                                <label>
+                                    <input class="tipo_doc_group detail" 
+                                            name='tipo_documento' 
+                                            type='radio' 
+                                            value='0' 
+                                            checked='true'
+                                            style="width:50px"/> Venta Menor a S/ 700.00
+                                </label>
+                                <label>
+                                    <input class="tipo_doc_group detail" 
+                                            name='tipo_documento' 
+                                            type='radio' 
+                                            value='1' 
+                                            style="width:50px"/> DNI
+                                </label>
+                                <label>
+                                    <input  class="tipo_doc_group detail" 
+                                            name='tipo_documento' 
+                                            type='radio' 
+                                            value='6' 
+                                            style="width:50px"/> RUC
+                                </label>
+                            </div>
+                       </t>
+                        <t t-if="partner.tipo_documento">
+                            <div class='detail'>
+                                <label>
+                                    <input class="tipo_doc_group detail" 
+                                            name='tipo_documento' 
+                                            type='radio' 
+                                            value='0' 
+                                            t-att-checked="partner.tipo_documento==='0'?true:undefined"
+                                            style="width:50px"/> Venta Menor a S/ 700.00
+                                </label>
+                                <label>
+                                    <input class="tipo_doc_group detail" 
+                                            name='tipo_documento' 
+                                            type='radio' 
+                                            value='1' 
+                                            t-att-checked="partner.tipo_documento==='1'?true:undefined"
+                                            style="width:50px"/> DNI
+                                </label>
+                                <label>
+                                    <input  class="tipo_doc_group detail" 
+                                            name='tipo_documento' 
+                                            type='radio' 
+                                            value='6' 
+                                            t-att-checked="partner.tipo_documento==='6'?true:undefined"
+                                            style="width:50px"/> RUC
+                                </label>
+                            </div>
+                       </t>
+                        <!--
+                        <span class='label'>Tipo doc.</span>
+                        <t t-if="!partner.tipo_documento">
+                            <select class='detail tipo_doc' name='tipo_doc'>
+                                <option value='-'  selected="selected">Venta Menor a S/.700.00</option>
+                                <option value='1'>DNI</option>
+                                <option value='6'>RUC</option>
+                            </select>
+                        </t>
+                        
+                        <t t-if="partner.tipo_documento">
+                            <select class='detail tipo_doc' name='tipo_doc'>
+                                <option value='-' t-att-selected="partner.tipo_documento==='-'?true:undefined">Venta Menor a S/.700.00</option>
+                                <option value='1' t-att-selected="partner.tipo_documento==='1'?true:undefined">DNI</option>
+                                <option value='6' t-att-selected="partner.tipo_documento==='6'?true:undefined">RUC</option>
+                            </select>
+                        </t>
+                        -->
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Dirección</span>
+                        <input class='detail client-address-street' name='street'       t-att-value='partner.street || ""' placeholder='Street'></input>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Ciudad</span>
+                        <input class='detail client-address-city'   name='city'         t-att-value='partner.city || ""' placeholder='City'></input>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Ubigeo</span>
+                        <input class='detail client-address-zip'    name='zip'          t-att-value='partner.zip || ""' placeholder='ZIP'></input>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>País</span>
+                        <select class='detail client-address-country needsclick' name='country_id'>
+                            <option value=''>None</option>
+                            <t t-foreach='widget.pos.countries' t-as='country'>
+                                <option t-att-value='country.id' t-att-selected="partner.country_id ? ((country.id === partner.country_id[0]) ? true : undefined) : undefined"> 
+                                    <t t-esc='country.name'/>
+                                </option>
+                            </t>
+                        </select>
+                    </div>
+                </div>
+                <div class='client-details-right'>
+                    <div class='client-detail'>
+                        <span class='label'>Documento</span>
+                        <input class='detail vat'           name='vat'     t-att-value='partner.vat || ""'></input>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Correo</span>
+                        <input class='detail client-email'  name='email'    type='email'    t-att-value='partner.email || ""'></input>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Teléfono</span>
+                        <input class='detail client-phone'  name='phone'    type='tel'      t-att-value='partner.phone || ""'></input>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Barcode</span>
+                        <input class='detail barcode'       name='barcode'    t-att-value='partner.barcode || ""'></input>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    </t>
+    <t t-name="ClientDetails">
+        <section class='client-details'>
+            <div class='client-picture'>
+                <img t-att-src='widget.partner_icon_url(partner.id)' />
+            </div>
+            <div class='client-name'><t t-esc='partner.name' /></div>
+            <div class='edit-buttons'>
+                <div class='button edit'><i class='fa fa-pencil-square' /></div>
+            </div>
+            <div class='client-details-box clearfix'>
+                <div class='client-details-left'>
+                    <div class='client-detail'>
+                        <span class='label'>Tipo Doc.</span>
+                        <t t-if='partner.tipo_documento==="-"'>
+                            <span class='detail client-address'>Varios - Ventas menores a S/.700.00 y otros</span>
+                        </t>
+                        <t t-if='partner.tipo_documento==="1"'>
+                            <span class='detail client-address'>DNI</span>
+                        </t>
+                        <t t-if='partner.tipo_documento==="6"'>
+                            <span class='detail client-address'>RUC</span>
+                        </t>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Dirección</span>
+                        <t t-if='partner.address'>
+                            <span class='detail client-address'><t t-esc='partner.address' /></span>
+                        </t>
+                        <t t-if='!partner.address'>
+                            <span class='detail client-address empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Correo</span>
+                        <t t-if='partner.email'>
+                            <span class='detail client-email'><t t-esc='partner.email' /></span>
+                        </t>
+                        <t t-if='!partner.email'>
+                            <span class='detail client-email empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Teléfono</span>
+                        <t t-if='partner.phone'>
+                            <span class='detail client-phone'><t t-esc='partner.phone' /></span>
+                        </t>
+                        <t t-if='!partner.phone'>
+                            <span class='detail client-phone empty'>N/A</span>
+                        </t>
+                    </div>
+                </div>
+                <div class='client-details-right'>
+                    
+                    <div class='client-detail'>
+                        <span class='label'>Documento</span>
+                        <t t-if='partner.vat'>
+                            <span class='detail vat'><t t-esc='partner.vat'/></span>
+                        </t>
+                        <t t-if='!partner.vat'>
+                            <span class='detail vat empty'>N/A</span>
+                        </t>
+                    </div>
+                    <div class='client-detail'>
+                        <span class='label'>Barcode</span>
+                        <t t-if='partner.barcode'>
+                            <span class='detail client-id'><t t-esc='partner.barcode'/></span>
+                        </t>
+                        <t t-if='!partner.barcode'>
+                            <span class='detail client-id empty'>N/A</span>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </t>
+    <t t-extend="ClientDetailsEdit">
+        <!-- <t t-jquery=".client-details-right div:last" t-operation="replace"/> -->
+        <t t-jquery=".save" t-operation="after">
+            <div class='button consultaDatos'><i class='fa fa-file-text-o' /></div>
+        </t>
+    </t>
+    <!--
+    <t t-extend="ClientDetailsEdit">
+        <t t-jquery=".client-details-right div:last" t-operation="replace"/>
+        <t t-jquery=".save" t-operation="after">
+            <div class='button consulta-datos'><i class='fa fa-file-text-o' /></div>
+        </t>
+        <t t-jquery=".client-details-left div:nth-child(1)" t-operation="replace">
+            <div class='client-detail'>
+                <span class='label'>Dirección</span>
+                <input class='detail client-address-street' name='street'       t-att-value='partner.street || ""' placeholder='Dirección'></input>
+            </div>
+        </t>
+        <t t-jquery=".client-details-left div:nth-child(2)" t-operation="replace">
+            <div class='client-detail'>
+                <span class='label'>Ciudad</span>
+                <input class='detail client-address-city'   name='city'         t-att-value='partner.city || ""' placeholder='Ciudad'></input>
+            </div>
+        </t>
+
+        <t t-jquery=".client-details-left div:nth-child(4)" t-operation="replace">
+            <div class='client-detail'>
+                <span class='label'>País</span>
+                <select class='detail client-address-country needsclick' name='country_id'>
+                    <option t-att-value="175"  selected="selected">Perú</option>
+                    <t t-foreach='widget.pos.countries' t-as='country'>
+                        <option t-att-value='country.id'>
+                            <t t-esc='country.name'/>
+                        </option>
+                    </t>
+                </select>
+            </div>
+        </t>
+        <t t-jquery=".client-details-left div:nth-child(3)" t-operation="replace"/>
+
+        <t t-jquery=".client-details-left div:first" t-operation="before">
+            <div class='client-detail'>
+                <span class='label'>Tipo doc.</span>
+                <select class='detail tipo_doc' name='tipo_doc'>
+                    <option value='1' selected="selected">DNI</option>
+                    <option value='6'>RUC</option>
+                </select>
+            </div>
+        </t>
+        <t t-jquery=".client-details-right div:first" t-operation="before">
+            <div class='client-detail'>
+                <span class='label'>Nro. de Documento</span>
+                <input class='detail vat' name='vat' t-att-value='partner.vat || ""'></input>
+            </div>
+        </t>
+        <t t-jquery=".client-details-right div:nth-child(4)" t-operation="replace"/>
+    </t>
+    
+   
+    -->
+    <t t-extend="ClientListScreenWidget">
+        <t t-jquery=".client-list thead tr" t-operation="append">
+            <td><b>Tipo. doc.</b></td>
+        </t>
+        <t t-jquery=".client-list thead tr" t-operation="append">
+            <td><b>Nro. doc.</b></td>
+        </t>
+    </t>
+     <t t-extend="ClientLine">
+        <t t-jquery=".client-line" t-operation="append">
+            <t t-if='partner.tipo_documento==="-"'>
+                <td>Varios - Ventas menores a S/.700.00 y otros</td>
+            </t>
+            <t t-if='partner.tipo_documento==="1"'>
+                <td>DNI</td>
+            </t>
+            <t t-if='partner.tipo_documento==="6"'>
+                <td>RUC</td>
+            </t>
+        </t>
+        <t t-jquery=".client-line" t-operation="append">
+            <td><t t-esc='partner.vat' /></td>
+        </t>
+    </t>
+</templates>

@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="pos_config_concesionario">
+            <field name="name">pos.config.concesionario</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+                
+                <div id="inventory_location" position="after">
+                    <h2>Empresa Cliente</h2>
+                    <div class="row mt16 o_settings_container" >
+                        <div class="col-xs-12 col-md-6 o_setting_box" title="Set default view of POS Product screen.">
+                            <div class="o_setting_right_pane">
+                                <label for="company_con_id" string="Empresa"/>
+                                <div class="text-muted">
+                                    Empresa cliente a la que se le da el servicio de Conceción de alimentos.
+                                </div>
+                                <div class="content-group mt16">
+                                    <field name="company_con_id"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="pos_session_form_concesionario">
+            <field name="name">pos.session.form.concesionario</field>
+            <field name="model">pos.session</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='config_id']" position="after">
+                    <field name="company_con_id"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="pos_session_tree_concesionario">
+            <field name="name">pos.session.tree.concesionario</field>
+            <field name="model">pos.session</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_session_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='config_id']" position="after">
+                    <field name="company_con_id"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

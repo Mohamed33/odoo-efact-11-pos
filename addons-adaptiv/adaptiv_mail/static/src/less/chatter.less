@@ -1,0 +1,36 @@
+.o_chatter {
+  width: 100%;
+
+  .o_chat_composer {
+    margin-top: @o-mail-chatter-padding-y;
+
+    .o_chatter_composer_info {
+      color: @odoo-main-color-muted;
+      display: inline-block;
+      font-style: italic;
+      margin-bottom: @o-mail-chat-composer-padding-y;
+    }
+
+    .o_composer {
+      margin-top: @o-mail-chatter-padding-y;
+
+      .o_composer_input {
+        resize: vertical;
+        width: 100%;
+      }
+    }
+  }
+
+  .o_mail_thread {
+    margin-top: @o-mail-chatter-padding-y;
+
+    .o_spinner {
+      font-size: @font-size-large;
+      text-align: center;
+    }
+  }
+}
+
+.o_chatter_avatar {
+  max-width: @o-mail-avatar-size;
+}

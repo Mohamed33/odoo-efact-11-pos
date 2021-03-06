@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <template id="snippet_curso_item" name="Curso Item">
+            <section class="snippet_course_item">
+                <div class="item">
+                    <div class="campaign bg-white maxwidth500 mb-30">
+                        <div class="thumb">
+                            <img src="/theme_fullstack/static/src/images/icon_curso_item.jpg" alt="" class="img-fullwidth"/>
+                        </div>
+                        <div class="campaign-details clearfix p-15 pt-10 pb-10">
+                            <h5 class="text-theme-colored font-weight-500 mb-0">Subtitle place here</h5>
+                            <h4 class="font-weight-700 mt-0"><a href="#">Accounting Technologie</a></h4>
+                            <ul class="review_text list-inline">
+                            <li>
+                                <div class="star-rating" title="Rated 4.50 out of 5"><span style="width: 90%;">4.50</span></div>
+                            </li>
+                            </ul>
+                            <p>Lorem ipsum dolor adipisicing elit. Praesent quossit sit amet consect adipisicing elit quossit <a class="text-theme-colored ml-5" href="#"> →</a></p>
+                            <div class="campaign-bottom border-top clearfix mt-20">
+                            <ul class="list-inline font-weight-600 pull-left flip pr-0 mt-10">
+                                <li class="text-theme-color-2 pr-0 mr-5">Couse Fee: <span class="text-theme-colored">$890</span></li>
+                            </ul>
+                            <a class="btn btn-xs btn-theme-colored font-weight-600 font-11 pull-right flip mt-10" href="#">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>    
+        </template>
+
+        <template id="snippet_course_item" inherit_id="website.snippets" name="Grid Bar">
+            <xpath expr="//div[@id='snippet_structure']/div[@class='o_panel_body']" position="inside">
+                <t t-snippet="theme_fullstack.snippet_curso_item" 
+                    t-thumbnail="/theme_fullstack/static/src/images/icon_curso_item.jpg"/>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

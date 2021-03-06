@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="jsreport_efact.view_form_account_invoice_add_buttom_print_invoice" model="ir.ui.view">
+            <field name="name">view.form.account.invoice.add.buttom.print.invoice</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='invoice_print']" position="after">
+                    <button name="action_print_invoice_jsreport"    
+                            string="Imprimir Comprobante" 
+                            type="object" 
+                            class="oe_highlight" 
+                            attrs="{'invisible':[('state', 'not in', ('open','paid'))]}"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

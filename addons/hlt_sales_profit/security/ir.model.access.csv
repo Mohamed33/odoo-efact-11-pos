@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hlt_sales_profit_hlt_sales_profit,hlt_sales_profit.hlt_sales_profit,model_hlt_sales_profit_hlt_sales_profit,,1,0,0,0

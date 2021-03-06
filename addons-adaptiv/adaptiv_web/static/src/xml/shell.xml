@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+  <div t-name="Shell" class="a_shell">
+    <div class="a_panes"/>
+    <div class="a_overlay"/>
+  </div>
+
+  <div t-name="ShellPane" class="a_shell_pane">
+    <div class="a_pane_content"/>
+  </div>
+
+  <div t-name="ShellSidebarPane" class="a_shell_pane">
+    <div class="a_sidebar">
+      <div t-if="widget.options.displayLogo" class="sidebar-brand">
+        <a href="/web"><img t-attf-src="/web/binary/logo_inverse#{widget.options.company ? '?company=' + widget.options.company : ''}"/></a>
+      </div>
+      <div class="a_pane_content"/>
+    </div>
+  </div>
+
+</templates>

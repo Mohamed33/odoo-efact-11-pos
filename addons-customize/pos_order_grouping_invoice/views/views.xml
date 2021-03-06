@@ -1,0 +1,38 @@
+<odoo>
+    <record id="wizard_posorder_invoice_form" model="ir.ui.view">
+        <field name="name">view.form.wizard.posorder.invoice</field>
+        <field name="model">wizard.posorder.invoice</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="pos_order_ids"  widget="many2many_tags" string="Ventas"/>
+                    <field name="line_ids" string="Detalle">
+                        <tree editable="top">
+                            <field name="product_id" string="Producto"/>
+                            <field name="qty"/>
+                            <field name="price_unit"/>
+                            <field name="uom_id" string="UM"/>
+                            <field name="tax_ids" widget="many2many_tags" string="Impuesto"/>
+                            <field name="price_subtotal" string="Total"/>
+                        </tree>
+                    </field>
+                    <field name="amount_total"/>
+                    <field name="company_id" readonly="1" force_save="1" string="Compañía"/>
+                </group>
+                <footer>
+                    <button string="Crear Factura" name="action_create_invoice_factura" type="object" class="oe_highlight"/>
+                    <button string="Crear Boleta" name="action_create_invoice_boleta" type="object" class="oe_highlight"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_form_wizard_pos_order" model="ir.actions.act_window">
+        <field name="name">Agrupación de órdenes</field>
+        <field name="res_model">wizard.posorder.invoice</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem name="POS Órdenes a Facturas" id="menu_item_view_form_wizard" parent="point_of_sale.menu_point_of_sale" action="action_view_form_wizard_pos_order"/>
+</odoo>

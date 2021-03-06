@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="aces_pos_partial index" name="aspl_pos_credit index" inherit_id="point_of_sale.index">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/aspl_pos_credit/static/src/js/models.js"></script>
+            <script type="text/javascript" src="/aspl_pos_credit/static/src/js/popups.js"></script>
+            <script type="text/javascript" src="/aspl_pos_credit/static/src/js/screens.js"></script>
+            <script type="text/javascript" src="/aspl_pos_credit/static/src/js/db.js"></script>
+            <script type="text/javascript" src="/aspl_pos_credit/static/src/js/jquery.simplePagination.js"></script>
+            <link rel="stylesheet" type="text/css" href="/aspl_pos_credit/static/src/css/pos.css"/>
+            <link rel="stylesheet" type="text/css" href="/aspl_pos_credit/static/src/css/datepicker.css"/>
+        </xpath>
+    </template>
+</odoo>

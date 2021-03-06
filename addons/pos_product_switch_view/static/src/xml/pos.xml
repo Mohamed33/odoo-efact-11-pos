@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <!--t t-extend="ProductCategoriesWidget">
+        <t t-jquery="span.breadcrumb" t-operation="append">
+            <span class=" breadcrumb-button breadcrumb-home js-list-switch">
+                <i class='fa fa-list-alt'></i>
+            </span>
+            <span class=" breadcrumb-button breadcrumb-home js-form-switch">
+                <i class='fa fa-th'></i>
+            </span>
+        </t>
+    </t-->
+    <t t-name="ProductListWidget">
+        <t t-jquery="div.product-list-container" t-operation="replace">
+            <t t-if="widget.pos.config.pos_product_view == 'product_list_view'">
+                <div class='product-list-container'>
+                    <div class="product-list-scroller touch-scrollable">
+                        <table class="product-list">
+                        <thead>
+                            <tr>
+                                <th>Cantidad Disponible</th>
+                                <th>Nombre</th>
+                                <!--
+                                <th>Unidad de Medida</th>
+                                -->
+                                <th>Precio de Venta</th>
+                                <!--<th class="text-center">Available Qty</th>-->
+                            </tr>
+                        </thead>
+                        <tbody class='product-list-contents'>
+                        </tbody>
+                        </table>
+                    </div>
+                    <span class="placeholder-ScrollbarWidget" />
+                </div>
+            </t>
+            <t t-if="widget.pos.config.pos_product_view == 'product_form_view'">
+                <div class='product-list-container'>
+                    <div class="product-list-scroller touch-scrollable">
+                        <div class="product-list">
+                        </div>
+                    </div>
+                    <span class="placeholder-ScrollbarWidget" />
+                </div>
+            </t>
+        </t>
+    </t>
+    <t t-extend="Product">
+        <t t-jquery="span.product" t-operation="replace">
+            <t t-if="widget.pos.config.pos_product_view == 'product_list_view'">
+                <tr class='product-list' t-att-data-product-id="product.id" style="color:black;font-weight:bold;line-height: 25px;">
+                    <td>
+                        <t t-if="widget.pos.config.show_qty">
+                            <t t-if="product.qty_available >= 0 and product.type != 'service'">
+                                <span class="product-qty" style="background-color: green;color: white;padding: 2px 20px;border-radius: 5px;">
+                                    <t t-esc="product.qty_available"/> 
+                                </span>
+                            </t>
+                            <t t-if="product.qty_available &lt; 0 and product.type != 'service'" >
+                                <span class="product-qty-low"   style="background-color: red;color: white;padding: 2px 20px;border-radius: 5px;">
+                                    <t t-esc="product.qty_available"/>
+                                </span>
+                            </t>
+                        </t>
+                    </td>
+                    <td>
+                        <t t-esc="product.display_name"/>
+                    </td>
+                    <!--
+                    <td>
+                        <span t-if="!product.to_weight">
+                           <t t-esc="widget.pos.units_by_id[product.uom_id[0]].name"/>
+                        </span>
+                        
+                    </td>
+                    -->
+                    <td class="text-right">
+                        <span class="price-tag text-right">
+                            <t t-esc="widget.format_currency(product.list_price,'Product Price')"/>
+                        </span>
+                    </td>
+                </tr>
+            </t>
+            <t t-if="widget.pos.config.pos_product_view == 'product_form_view'">
+                <span class='product' t-att-data-product-id="product.id">
+                    <div class="product-img">
+                        <img t-att-src='image_url' />
+                        <t t-if="!product.to_weight">
+                            <span class="price-tag">
+                                <t t-esc="widget.format_currency(product.price,'Product Price')"/>
+                            </span>
+                            <t t-if="widget.pos.config.show_qty">
+                                <t t-if="product.qty_available >= 0 and product.type != 'service'">
+                                    <span class="product-qty" >
+                                        <t t-esc="product.qty_available"/> 
+                                    </span>
+                                </t>
+                                <t t-if="product.qty_available &lt;= 0 and product.type != 'service'">
+                                    <span class="product-qty-low" >
+                                        <t t-esc="product.qty_available"/>
+                                    </span>
+                                </t>
+                            </t>
+                        </t>
+                        <t t-if="product.to_weight">
+                            <span class="price-tag">
+                                <t t-esc="widget.format_currency(product.price,'Product Price')+'/'+widget.pos.units_by_id[product.uom_id[0]].name"/>
+                            </span>
+                        </t>
+                    </div>
+                    <div class="product-name">
+                        <t t-esc="product.display_name"/>
+                    </div>
+                </span>
+            </t>
+        </t>
+    </t>
+</templates>

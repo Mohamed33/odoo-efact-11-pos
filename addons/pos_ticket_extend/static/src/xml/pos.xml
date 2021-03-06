@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+	<!--
+    <t t-extend="PosTicket">
+    	<t t-jquery=".pos-center-align" t-operation="after">
+        	<div class="pos-company-logo" style="text-align:center;">
+                <img t-if="widget.pos.company.logo"  t-attf-src="data:image/jpeg;base64,#{widget.pos.company.logo}" 
+                style="width: 70%; margin-left: auto;margin-right: auto;"/>
+            </div>
+        </t>
+        <t t-jquery='div[class="receipt-phone"]' t-operation="before">
+	        <div class="receipt-vat">
+	            RUT: <t t-esc="widget.pos.company.vat || ''"/><br />
+	        </div>
+	        <div class="receipt-street">
+	            Street: <t t-esc="widget.pos.company.street || ''"/><br />
+	        </div>
+	    </t>
+	    <t t-jquery='div[class="receipt-user"]' t-operation="after">
+	    	<div class="receipt-partner" t-if="order.get('client')">
+	    		<br />
+	    		<t t-esc="order.get('client').name"/><br />
+	            <t t-if="order.get('client').vat">
+	                RUT: <t t-esc="order.get('client').vat"/><br />
+	            </t>
+	            <t t-if="order.get('client').street">
+	                Street: <t t-esc="order.get('client').street"/><br />
+	            </t>
+	            
+	        </div>
+	    </t>
+    </t>-->
+</templates>

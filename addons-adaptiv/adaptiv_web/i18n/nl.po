@@ -1,0 +1,261 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* adaptiv_web
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-03-14 10:36+0000\n"
+"PO-Revision-Date: 2018-03-14 10:36+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: adaptiv_web
+#: model:ir.ui.view,arch_db:adaptiv_web.webclient_bootstrap
+msgid "<span class=\"sr-only\">Toggle App Menu</span>\n"
+"            <i class=\"fa fa-th fa-lg app-drawer-icon-open\"/>"
+msgstr "<span class=\"sr-only\">Toggle App Menu</span>\n"
+"            <i class=\"fa fa-th fa-lg app-drawer-icon-open\"/>"
+
+#. module: adaptiv_web
+#: model:ir.ui.view,arch_db:adaptiv_web.webclient_bootstrap
+msgid "<span class=\"sr-only\">Toggle Menu</span>\n"
+"            <i class=\"fa fa-bars fa-lg\"/>"
+msgstr "<span class=\"sr-only\">Toggle Menu</span>\n"
+"            <i class=\"fa fa-bars fa-lg\"/>"
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/base.xml:15
+#, python-format
+msgid "Activate developer mode"
+msgstr "Activeer ontwikkelaars modus"
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/kanban.xml:10
+#, python-format
+msgid "Add"
+msgstr "Toevoegen"
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/base.xml:53
+#, python-format
+msgid "Add Custom Filter"
+msgstr "Voeg aangepaste filter toe"
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/base.xml:57
+#, python-format
+msgid "Add a condition"
+msgstr "Conditie toevoegen"
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/base.xml:73
+#, python-format
+msgid "Add custom group"
+msgstr "Aangepaste groep toevoegen"
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/kanban.xml:6
+#, python-format
+msgid "Add new Column"
+msgstr "Nieuwe kolom toevoegen"
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/base.xml:56
+#, python-format
+msgid "Apply"
+msgstr "Toepassen"
+
+#. module: adaptiv_web
+#: model:ir.ui.view,arch_db:adaptiv_web.view_company_form_inherit
+msgid "Branding"
+msgstr "Branding"
+
+#. module: adaptiv_web
+#: model:ir.ui.view,arch_db:adaptiv_web.view_company_form_inherit
+msgid "Colors"
+msgstr "Kleuren"
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/kanban.xml:9
+#, python-format
+msgid "Column title"
+msgstr "Kolom titel"
+
+#. module: adaptiv_web
+#: model:ir.model,name:adaptiv_web.model_res_company
+msgid "Companies"
+msgstr "Bedrijven"
+
+#. module: adaptiv_web
+#: model:ir.model.fields,field_description:adaptiv_web.field_res_company_color_danger
+msgid "Danger color"
+msgstr "Gevaar kleur"
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/base.xml:80
+#, python-format
+msgid "Favorites"
+msgstr "Favorieten"
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/base.xml:47
+#, python-format
+msgid "Filters"
+msgstr "Filters"
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/base.xml:66
+#, python-format
+msgid "Group By"
+msgstr "Groepeer op"
+
+#. module: adaptiv_web
+#: model:ir.model.fields,field_description:adaptiv_web.field_res_company_color_info
+msgid "Info color"
+msgstr "Info kleur"
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/base.xml:22
+#, python-format
+msgid "Log out"
+msgstr "Afmelden"
+
+#. module: adaptiv_web
+#: model:ir.ui.view,arch_db:adaptiv_web.view_company_form_inherit
+msgid "Logo"
+msgstr "Logo"
+
+#. module: adaptiv_web
+#: model:ir.model.fields,field_description:adaptiv_web.field_res_company_png_logo
+msgid "Logo (png)"
+msgstr "Logo (png)"
+
+#. module: adaptiv_web
+#: model:ir.model.fields,field_description:adaptiv_web.field_res_company_svg_logo
+msgid "Logo (svg)"
+msgstr "Logo (svg)"
+
+#. module: adaptiv_web
+#: model:ir.model.fields,field_description:adaptiv_web.field_res_company_png_logo_inverse
+msgid "Logo inverse (png)"
+msgstr "Logo omgekeerd (png)"
+
+#. module: adaptiv_web
+#: model:ir.model.fields,field_description:adaptiv_web.field_res_company_svg_logo_inverse
+msgid "Logo inverse (svg)"
+msgstr "Logo omgekeerd (svg)"
+
+#. module: adaptiv_web
+#: model:ir.ui.view,arch_db:adaptiv_web.debrand_login_layout
+msgid "Manage Databases"
+msgstr "Beheer databases"
+
+#. module: adaptiv_web
+#: code:addons/adaptiv_web/models/res_company.py:13
+#, python-format
+msgid "Not a valid color"
+msgstr "Ongeldidge kleur"
+
+#. module: adaptiv_web
+#: model:ir.model.fields,field_description:adaptiv_web.field_res_company_color_optional
+msgid "Optional color"
+msgstr "Optionele kleur"
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/base.xml:19
+#, python-format
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+#. module: adaptiv_web
+#: model:ir.model.fields,field_description:adaptiv_web.field_res_company_color_primary
+msgid "Primary color"
+msgstr "Hoofdkleur"
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/base.xml:98
+#, python-format
+msgid "Save"
+msgstr "Opslaan"
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/base.xml:86
+#, python-format
+msgid "Save current search"
+msgstr "Huidige zoekopdracht opslaan"
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/base.xml:95
+#, python-format
+msgid "Share with all users"
+msgstr "Deel met alle gebruikers"
+
+#. module: adaptiv_web
+#: model:ir.model.fields,field_description:adaptiv_web.field_res_company_color_success
+msgid "Success color"
+msgstr "Succes kleur"
+
+#. module: adaptiv_web
+#: model:ir.model.fields,help:adaptiv_web.field_res_company_png_logo
+msgid "This field holds the PNG image used as a logo."
+msgstr "This field holds the PNG image used as a logo."
+
+#. module: adaptiv_web
+#: model:ir.model.fields,help:adaptiv_web.field_res_company_png_logo_inverse
+msgid "This field holds the PNG image used as an inverse logo. This logo is displayed in the sidebar."
+msgstr "This field holds the PNG image used as an inverse logo. This logo is displayed in the sidebar."
+
+#. module: adaptiv_web
+#: model:ir.model.fields,help:adaptiv_web.field_res_company_svg_logo
+msgid "This field holds the SVG file used as a logo."
+msgstr "This field holds the SVG file used as a logo."
+
+#. module: adaptiv_web
+#: model:ir.model.fields,help:adaptiv_web.field_res_company_svg_logo_inverse
+msgid "This field holds the SVG file used as an inverse logo. The inverse logo is displayed in the sidebar."
+msgstr "This field holds the SVG file used as an inverse logo. The inverse logo is displayed in the sidebar."
+
+#. module: adaptiv_web
+#. openerp-web
+#: code:addons/adaptiv_web/static/src/xml/base.xml:92
+#, python-format
+msgid "Use by default"
+msgstr "Gebruik als standaard"
+
+#. module: adaptiv_web
+#: model:ir.model.fields,field_description:adaptiv_web.field_res_company_color_warning
+msgid "Warning color"
+msgstr "Waarschuwings kleur"
+
+#. module: adaptiv_web
+#: model:ir.model,name:adaptiv_web.model_ir_qweb
+msgid "ir.qweb"
+msgstr "ir.qweb"
+
+#. module: adaptiv_web
+#: model:ir.model,name:adaptiv_web.model_ir_ui_view
+msgid "ir.ui.view"
+msgstr "ir.ui.view"
+

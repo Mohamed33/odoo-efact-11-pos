@@ -1,0 +1,68 @@
+<odoo>
+            <record id="vit_dotmatrix.template_dotmatrix_invoice" model="mail.template">
+            <field name="name">Dot Matrix Invoice</field>
+            <field name="model_id" ref="account.model_account_invoice"/>
+            <field name="subject">Dot Matrix Template for Invoice</field>
+            <field name="body_html"><![CDATA[% set tramas = object.get_tramas()
+% set c_tramas = len(tramas)
+% set cnt = 0
+% for trama in tramas:
+${''.rjust(80)}
+${''.rjust(80)}
+${''.rjust(80)}
+% set cnt = cnt +1
+% if object.number[0] == 'F':
+${'FACTURA ELECTRÓNICA'.rjust(133)}
+% endif 
+% if object.number[0] == 'B':
+${'BOLETA ELECTRÓNICA'.rjust(132)}
+% endif
+${"".rjust(7)}${((object.partner_id.name or "")+" - "+ (object.partner_id.vat or "")).ljust(110) } ${(object.number or "")}
+% if object.partner_shipping_id:
+% if object.partner_shipping_id.street:
+${"".rjust(9)}${(object.partner_shipping_id.street or "")}
+% endif
+% if not object.partner_shipping_id.street:
+${"".rjust(9)}${(object.partner_id.street or "")}
+% endif 
+% endif
+% if not object.partner_shipping_id:
+${"".rjust(9)}${(object.partner_id.street or "")}
+% endif 
+${''.rjust(80)}
+${''.ljust(24)}${(object.payment_term_id.name or "").ljust(24)}${(object.date_invoice or "").ljust(23)}${(object.date_due or "")[:24].ljust(24)}${("" or object.user_id.name)[:23].ljust(23)}${(object.origin or '')[:19].ljust(19)} 
+${''.rjust(80)}
+% for l in trama:
+% if l:
+${(l.product_id.default_code or "").ljust(14)}${l.product_id.name[:60].ljust(62)}${("{:4,.0f}".format(l.quantity)+" "+l.uom_id.name)[:13].ljust(13)}${"{:4,.2f}".format(l.price_unit).ljust(13)}${"{:4,.2f}".format(l.price_subtotal).ljust(13)}${"".ljust(12)}${"{:4,.2f}".format(l.price_total).ljust(10)}
+% endif
+% if l==False:
+${''.rjust(80)}
+% endif
+% endfor
+% if cnt == c_tramas:
+${"".rjust(10)}${object.monto_en_letras.ljust(98)}${ "{:20,.2f}".format(object.total_venta_gratuito).rjust(20)}
+${''.rjust(108)}${"{:20,.2f}".format(object.total_venta_gravado).rjust(20)}
+${''.rjust(80)}
+${(object.digest_value or "").rjust(98)}${"".ljust(10)}${"{:20,.2f}".format(object.amount_tax).rjust(20)}
+${''.rjust(108)}${"{:20,.2f}".format(object.amount_total).rjust(20)}
+${''.rjust(108)}${"{:20,.2f}".format(object.total_descuentos).rjust(20)}
+% endif
+% if cnt < c_tramas:
+${''.rjust(80)}
+${''.rjust(80)}
+${''.rjust(80)}
+${(object.digest_value or "").rjust(98)}
+${''.rjust(80)}
+${''.rjust(80)}
+% endif
+${'Representación impresa del Comprobante electrónico'}
+${'consulte su documento en http://gruponaomis.inex.business/consulta'}
+${''.rjust(80)}
+${''.rjust(80)}
+${''.rjust(80)}
+${''.rjust(80)}
+% endfor]]></field>
+</record>
+
+</odoo>

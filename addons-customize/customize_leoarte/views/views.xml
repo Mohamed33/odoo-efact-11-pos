@@ -1,0 +1,15 @@
+<odoo>
+  <data>
+    <record id="customize_leoarte.view_form_add_medidas_sale_order" model="ir.ui.view">
+      <field name="name">view.form.add.medidas.sale.order</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//tree/field[@name='price_unit']" position="after">
+            <field name="medidas"/>
+        </xpath>
+         
+      </field>
+    </record>
+  </data>
+</odoo>

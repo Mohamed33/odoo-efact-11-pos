@@ -1,0 +1,42 @@
+<odoo>
+	<!-- PUT FILTER IN SALE ORDER -->
+	<record id="invoice_inherit_filters" model="ir.ui.view">
+		<field name="name">invoice.inherit.so.filters</field>
+		<field name="model">account.invoice</field>
+		<field name="inherit_id" ref="account.view_account_invoice_filter"/>
+		<field name="arch" type="xml">
+			<xpath expr="//filter" position="before">		
+				
+				<filter string="Hoy" name="today" 
+					domain="[('date_invoice', '&gt;=', datetime.datetime.now().strftime('%m/%d/%Y 00:00:00')),('date_invoice', '&lt;=', datetime.datetime.now().strftime('%m/%d/%Y 23:23:59'))]"/>
+			
+			     <filter string="Ayer"  name="Yesterday" 
+                         domain="[('date_invoice','&gt;=', ((context_today()+datetime.timedelta(days=-1)).strftime('%Y-%m-%d'))), ('date_invoice','&lt;=', ((context_today()+datetime.timedelta(days=-1)).strftime('%Y-%m-%d')))]"
+                           help="Ayer"/>				
+
+				<filter 
+			        string="Esta Semana"
+			        name="this_week"
+			        domain="[('date_invoice', '&gt;=', ((context_today()+ relativedelta(weeks=-1,weekday=0)).strftime('%Y-%m-%d'))), ('date_invoice', '&lt;=', ((context_today()+ relativedelta(weeks=-1,days=5,weekday=6)).strftime('%Y-%m-%d')))]"
+			       /> 				
+
+				
+				<filter string="Semana Pasada" name="prev_week"
+				domain="[('date_invoice', '&gt;=', ((context_today()+relativedelta(weeks=-2, weekday=0)).strftime('%Y-%m-%d'))),('date_invoice', '&lt;=', ((context_today()+relativedelta(weeks=-1,weekday=6)).strftime('%Y-%m-%d')))]"/>
+	
+				<filter string="Este Mes" name="this_month" 
+				domain="[('date_invoice','&lt;',(context_today()+relativedelta(months=1)).strftime('%%Y-%%m-01')), ('date_invoice','&gt;=',time.strftime('%%Y-%%m-01'))]"/>				
+	
+				<filter string="Mes Pasado" name="prev_month" domain="[('date_invoice','&gt;=',(context_today()-relativedelta(months=1)).strftime('%%Y-%%m-01')),('date_invoice','&lt;',time.strftime('%%Y-%%m-01'))]"/>
+
+			    <filter string="Este año" name="year" domain="[('date_invoice','&lt;=', time.strftime('%%Y-12-31')),('date_invoice','&gt;=',time.strftime('%%Y-01-01'))]"/>
+
+				<filter string="Año Pasado"
+                	domain="[('date_invoice', '&gt;=' ,(context_today()-relativedelta(years=1)).strftime('%Y-01-01')),('date_invoice','&lt;=',time.strftime('%Y-01-01'))]" help="last year"/>
+
+
+			 </xpath>
+		</field>
+	</record>    
+	
+</odoo>

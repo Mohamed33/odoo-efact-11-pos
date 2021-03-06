@@ -1,0 +1,52 @@
+@o-web-settings-dashboard-padding-y: 16px;
+@o-web-settings-dashboard-bg: @_shade-2;
+@o-web-settings-dashboard-card-bg: @_shade;
+@o-web-settings-dashboard-card-padding-x: @_grid-half-gutter-width;
+@o-web-settings-dashboard-card-padding-y: 16px;
+@o-web-settings-dashboard-spacing-y: 12px;
+@o-web-settings-dashboard-seperator-color: @_shade-3;
+
+.o_web_settings_dashboard {
+
+  background: @o-web-settings-dashboard-bg;
+  padding-bottom: @o-web-settings-dashboard-padding-y;
+  padding-top: @o-web-settings-dashboard-padding-y;
+
+  .o_web_settings_dashboard_card() {
+    .o-shadow-depth-1();
+    background: @o-web-settings-dashboard-card-bg;
+    padding: @o-web-settings-dashboard-card-padding-y @o-web-settings-dashboard-card-padding-x;
+    .o_web_settings_dashboard_header {
+      font-size: @font-size-h3;
+      margin-bottom: @o-web-settings-dashboard-spacing-y;
+    }
+  }
+
+  .o_web_settings_dashboard_col {
+    > div > hr {
+      margin: @o-web-settings-dashboard-spacing-y -@o-web-settings-dashboard-card-padding-x @o-web-settings-dashboard-spacing-y -@o-web-settings-dashboard-card-padding-x;
+      border-color: @o-web-settings-dashboard-seperator-color;
+    }
+
+    > div {
+      .o_web_settings_dashboard_card();
+    }
+
+    .btn.o_browse_apps, .btn.o_web_settings_dashboard_invitations {
+      margin-top: @o-web-settings-dashboard-spacing-y;
+    }
+    .o_web_settings_dashboard_compact_subtitle {
+      line-height: 1;
+      display: block;
+    }
+    .o_web_settings_dashboard_invitations {
+      .o_web_settings_dashboard_invitation_form {
+          text-align: left;
+          > textarea {
+            resize: vertical;
+            width: 100%;
+          }
+      }
+    }
+  }
+}

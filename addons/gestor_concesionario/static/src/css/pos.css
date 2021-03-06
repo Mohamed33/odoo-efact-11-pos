@@ -1,0 +1,69 @@
+
+.payment_screen {
+    min-height: 150px;
+    height: 100%;
+    width: 100%;
+    font-size: 13px;
+}
+
+
+.screen .left-content {
+    top: 0px;
+}
+
+.screen .right-content {
+    top: 0px;
+}
+
+.pos .payment-buttons{
+    width: 100%;
+}
+.pos .paymentmethods .button {
+    font-size: 13px;
+    line-height: 50px;
+}
+
+.pos .payment-buttons .button {
+    font-size: 13px;
+    line-height: 50px;
+}
+
+.pos .payment-buttons .button .fa {
+    width: 10%;
+}
+
+.pos .searchbox_2 {
+    position: relative;
+    right: 2px;
+}
+.pos .searchbox_2 input {
+    width: 300px;
+    border: 1px solid #cecbcb;
+    padding: 10px 20px;
+    padding-left: 38px;
+    margin: 6px;
+    background: url("../img/search.png") no-repeat 15px;
+    background-color: white;
+    border-radius: 20px;
+    font-family: "Lato","Lucida Grande", Helvetica, Verdana, Arial;
+    font-size: 13px;
+}
+.pos .searchbox_2 input:focus {
+    outline: none;
+    box-shadow: 0px 0px 0px 2px rgb(153, 153, 255) inset;
+    color: rgb(153, 153, 255);
+}
+/*
+.pos .searchbox {
+    position: relative;
+}
+.customersearch_screen {
+    min-height: 100px;
+    height: 100%;
+    width: 100%;
+    font-size: 13px;
+}
+
+.ui-autocomplete {
+    left: 163px !important;
+}*/

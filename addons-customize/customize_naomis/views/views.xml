@@ -1,0 +1,182 @@
+<odoo>
+  <data>
+    <record id="customize_naomis.view_form_res_partner" model="ir.ui.view">
+      <field name="name">customize.naomis.view.form.res.partner</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <field name="function" position="after">
+          <field name="tipo_establecimiento_id" required="1"/>
+          <field name="zona_id" required="1"/>
+          <field name="ruta_id" required="1"/>
+          <field name="vitrina"/>
+          <field name="compra"/>
+          <field name="linea_credito"/>
+          <field name="branch_id"/>
+        </field>
+
+        <xpath expr="//field[@name='street']" position="attributes">
+          <attribute name="required">1</attribute>
+        </xpath>
+        <!--
+        <xpath expr="//field[@name='street2']" position="attributes">
+          <attribute name="required">1</attribute>
+        </xpath>
+
+        <xpath expr="//field[@name='district_id']" position="attributes">
+          <attribute name="required">1</attribute>
+        </xpath>-->
+      </field>
+    </record>
+    
+    
+    <record id="customize_naomis.view_tree_cn_zona" model="ir.ui.view">
+        <field name="name">view.tree.cn.zona</field>
+        <field name="model">cn.zona</field>
+        <field name="arch" type="xml">
+            <tree>
+              <field name="code"/>
+              <field name="name"/>
+              <field name="branch_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="customize_naomis.view_tree_cn_ruta" model="ir.ui.view">
+        <field name="name">view.tree.cn.ruta</field>
+        <field name="model">cn.ruta</field>
+        <field name="arch" type="xml">
+            <tree>
+              <field name="code"/>
+              <field name="name"/>
+              <field name="branch_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="customize_naomis.view_tree_cn_tipo_establecimiento" model="ir.ui.view">
+        <field name="name">view.tree.cn.tipo.establecimiento</field>
+        <field name="model">cn.tipo.establecimiento</field>
+        <field name="arch" type="xml">
+            <tree>
+              <field name="code"/>
+              <field name="name"/>
+              <field name="branch_id"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="customize_naomis.view_tree_cn_programacion_ruta" model="ir.ui.view">
+        <field name="name">view.tree.cn.programacion.ruta</field>
+        <field name="model">cn.programacion.ruta</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+              <field name="ruta_id"/>
+              <field name="zona_id" readonly="1"/>
+              <field name="dia_visita"/>
+              <field name="user_id"/>
+              <field name="company_id" readonly="1" force_save="1"/>
+              <field name="branch_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="customize_naomis.view_tree_res_branch" model="ir.ui.view">
+        <field name="name">view.tree.res.branch</field>
+        <field name="model">res.branch</field>
+        <field name="arch" type="xml">
+            <tree>
+              <field name="name"/>
+              <field name="supplier_ids" widget="many2many_tags" domain="[('supplier','=',True)]"/>
+              <field name="company_id" readonly="1" force_save="1"/>
+              <field name="user_id"/>
+            </tree>
+        </field>
+    </record>
+    
+    <record id="customize_naomis.view_form_res_branch" model="ir.ui.view">
+        <field name="name">view.form.res.branch</field>
+        <field name="model">res.branch</field>
+        <field name="arch" type="xml">
+            <form>
+              <group>
+                <field name="name"/>
+                <field name="supplier_ids" widget="many2many_tags"  domain="[('supplier','=',True)]"/>
+                <field name="company_id" readonly="1" force_save="1"/>
+                <field name="user_id"/>
+              </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="customize_naomis.action_view_cn_zona" model="ir.actions.act_window">
+        <field name="name">Zonas</field>
+        <field name="res_model">cn.zona</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="customize_naomis.action_view_cn_ruta" model="ir.actions.act_window">
+        <field name="name">Rutas</field>
+        <field name="res_model">cn.ruta</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="customize_naomis.action_view_cn_tipo_establecimiento" model="ir.actions.act_window">
+        <field name="name">Tipos de Establecimiento</field>
+        <field name="res_model">cn.tipo.establecimiento</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="customize_naomis.action_view_cn_programacion_ruta" model="ir.actions.act_window">
+        <field name="name">Programación de Rutas</field>
+        <field name="res_model">cn.programacion.ruta</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="customize_naomis.action_view_res_branch" model="ir.actions.act_window">
+        <field name="name">Sucursal</field>
+        <field name="res_model">res.branch</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <record id="customize_naomis.submenu_sucursal" model="ir.ui.menu">
+      <field name="name">0. Sucursal</field>
+      <field name="parent_id" ref="sale.prod_config_main"/>
+      <field name="action" ref="customize_naomis.action_view_res_branch"/>
+      <field name="sequence" eval="59"/>
+    </record>
+
+    <record id="customize_naomis.submenu_zona" model="ir.ui.menu">
+      <field name="name">1. Zona</field>
+      <field name="parent_id" ref="sale.prod_config_main"/>
+      <field name="action" ref="customize_naomis.action_view_cn_zona"/>
+      <field name="sequence" eval="60"/>
+    </record>
+
+    <record id="customize_naomis.submenu_ruta" model="ir.ui.menu">
+      <field name="name">2. Ruta</field>
+      <field name="parent_id" ref="sale.prod_config_main"/>
+      <field name="action" ref="customize_naomis.action_view_cn_ruta"/>
+      <field name="sequence" eval="61"/>
+    </record>
+    
+    <record id="customize_naomis.submenu_tipo_establecimiento" model="ir.ui.menu">
+      <field name="name">3. Tipo Establecimiento</field>
+      <field name="parent_id" ref="sale.prod_config_main"/>
+      <field name="action" ref="customize_naomis.action_view_cn_tipo_establecimiento"/>
+      <field name="sequence" eval="62"/>
+    </record>
+    
+    <record id="customize_naomis.submenu_programacion_ruta" model="ir.ui.menu">
+      <field name="name">4. Programación de Rutas</field>
+      <field name="parent_id" ref="sale.prod_config_main"/>
+      <field name="action" ref="customize_naomis.action_view_cn_programacion_ruta"/>
+      <field name="sequence" eval="63"/>
+    </record>
+
+    <template id="customize_naomis.report_assets_common" 
+                    name="Report Assets Common - Customize Naomis" 
+                    inherit_id="web.report_assets_common">
+        <xpath expr="//link[last()]" position="after">
+            <link href="/customize_naomis/static/src/css/report.css" rel="stylesheet" type="text/css"/>
+        </xpath>
+    </template>
+  </data>
+</odoo>

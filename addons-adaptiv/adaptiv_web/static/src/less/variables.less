@@ -1,0 +1,538 @@
+// DEFAULT ODOO VARIABLES
+
+///
+/// This file regroups the LESS variables that style odoo components.
+/// They are available in every asset bundle.
+///
+
+// Font sizes
+@odoo-font-size-base: 13px;
+
+// Colors
+@odoo-brand-primary: #7c7bad;
+@odoo-brand-optional: #7c7bad;
+@odoo-brand-secondary: #f0eeee;
+@odoo-brand-lightsecondary: #e2e2e0;
+@odoo-color-silver: #F9F9F9;
+@odoo-color-silver-dark: #E5E5E5;
+@odoo-color-silver-darker: #d9d7d7;
+
+// Define @gray-lighter-dark as a minor bootstrap @gray-lighter variation used
+// for design purposes only (e.g. cards' borders). We avoid to overwrite the
+// default @gray-light because it is deeply used by bootstrap to define muted
+// elements.
+@gray-lighter-dark: @odoo-color-silver-dark;
+@gray-lighter-darker: @odoo-color-silver-darker;
+
+@odoo-color-pink: #875A7B; // Enterprise @odoo-brand-primary
+@odoo-main-color-muted: #a8a8a8;
+@odoo-main-text-color: #4c4c4c;
+
+@odoo-view-background-color: white;
+@odoo-shadow-color: #303030;
+
+@odoo-webclient-background-color: @odoo-color-silver;
+@odoo-control-panel-background-color: @odoo-color-silver;
+@odoo-form-lightsecondary: #ccc;
+
+@odoo-list-footer-color: @odoo-main-text-color;
+@odoo-list-footer-bg-color: #eee;
+@odoo-list-footer-font-weight: bold;
+
+@odoo-tooltip-background-color: black;
+@odoo-tooltip-color: white;
+@odoo-tooltip-arrow-color: black;
+
+// UI custom colors for tags, kanban records' colors, ...)
+@odoo-nb-ui-color: 12;
+@odoo-color-0: @gray-light;
+@odoo-color-1: #F06050;
+@odoo-color-2: #F4A460;
+@odoo-color-3: #F7CD1F;
+@odoo-color-4: #6CC1ED;
+@odoo-color-5: #814968;
+@odoo-color-6: #EB7E7F;
+@odoo-color-7: #2C8397;
+@odoo-color-8: #475577;
+@odoo-color-9: #D6145F;
+@odoo-color-10: #30C381;
+@odoo-color-11: #9365B8;
+
+// Layout
+@screen-xs-min: 475px;
+@screen-xxs-max: (@screen-xs-min - 1);
+
+@odoo-form-group-cols: 12;
+@odoo-form-spacing-unit: 5px;
+@odoo-horizontal-padding: 16px;
+@odoo-innergroup-rpadding: 45px;
+@odoo-dropdown-hpadding: 20px;
+
+@border-radius-base: 3px;
+
+@odoo-sheet-vpadding: 24px;
+
+@odoo-avatar-size: 90px;
+
+@odoo-statusbar-height: 33px;
+@odoo-statusbar-arrow-width: @odoo-statusbar-height/3;
+@odoo-statusbar-disabled-bg: lighten(@odoo-brand-lightsecondary, 7%);
+
+@odoo-label-font-size-factor: 0.8;
+@odoo-navbar-height: 34px;
+@odoo-navbar-inverse-link-hover-bg: @navbar-inverse-link-active-bg;
+
+// END ODOO VARIABLES
+
+//------------------------------------------------------------------------------
+// Variables
+// @adaptiv- variables are externalized for controlling the global style
+//  Note:
+//  They are applied to bootstrap in the backend only
+// @_ variables are for internal use
+// @a- variables are for controlling all Adaptiv components
+// @o- variables are for controlling all Odoo components
+//------------------------------------------------------------------------------
+
+@black: black;
+@white: white;
+
+@adaptiv-brand-primary: #6325C6;
+@adaptiv-brand-optional: #FF3B84;
+@adaptiv-brand-success: #2bd371;
+@adaptiv-brand-warning: #ffde4a;
+@adaptiv-brand-danger: #f1294a;
+@adaptiv-brand-info: #26bffc;
+@adaptiv-brand-inverse: @black;
+@adaptiv-brand-shade: @white;
+@adaptiv-brand-shade-mix: 0%;
+
+@adaptiv-font-size-base: 14px;
+@adaptiv-line-height-base: 1.428571429; // 20/14
+@adaptiv-font-family: 'Roboto', sans-serif;
+
+@_inverse: mix(@adaptiv-brand-primary, @adaptiv-brand-inverse, @adaptiv-brand-shade-mix);
+@_shade: mix(@adaptiv-brand-primary, @adaptiv-brand-shade, @adaptiv-brand-shade-mix);
+
+@_shade-1: mix(@_inverse, @_shade, 4%);   //#eee
+@_shade-2: mix(@_inverse, @_shade, 10%);
+@_shade-3: mix(@_inverse, @_shade, 20%);
+@_shade-4: mix(@_inverse, @_shade, 30%);
+@_shade-5: mix(@_inverse, @_shade, 40%);
+@_shade-6: mix(@_inverse, @_shade, 60%);
+
+@_contrast: mix(@_shade, @_inverse, 10%);
+
+@_primary-1: hardlight(@adaptiv-brand-primary, #222);
+@_primary-2: hardlight(@adaptiv-brand-primary, #666);
+@_primary-3: softlight(@adaptiv-brand-primary, #666); 
+
+@_optional-1: hardlight(@adaptiv-brand-optional, #222);
+@_optional-2: hardlight(@adaptiv-brand-optional, #666);
+@_optional-3: softlight(@adaptiv-brand-optional, #666);
+
+// Should be used by components that need to have exactly the same style
+// in both front and backend.
+//
+// Will be applied by bootstrap_overrides for backend overrides.
+// All components included in the backend bundle can use the regular
+// bootstrap variables.
+//
+// Components shared across frontend and backend that want to have an
+// identical style should not use bootstrap variables. And should prefer
+// the underscored variables instead.
+//------------------------------------------------------------------------------
+
+@_font-family-base: @adaptiv-font-family;
+@_font-size-base: @adaptiv-font-size-base;
+@_font-size-large: ceil((@adaptiv-font-size-base * 1.25)); // ~18px
+@_font-size-small: ceil((@adaptiv-font-size-base * 0.85)); // ~12px
+@_font-size-h1: floor((@adaptiv-font-size-base * 2.3)); // ~32px
+@_font-size-h2: floor((@adaptiv-font-size-base * 2)); // ~28px
+@_font-size-h3: ceil((@adaptiv-font-size-base * 1.7)); // ~24px
+@_font-size-h4: ceil((@adaptiv-font-size-base * 1.42)); // ~20px
+@_font-size-h5: @adaptiv-font-size-base;
+@_font-size-h6: ceil((@adaptiv-font-size-base * 0.85)); // ~12px
+@_line-height-base: @adaptiv-line-height-base;
+@_line-height-computed: floor((@adaptiv-font-size-base * @adaptiv-line-height-base)); // ~20px
+
+// Additional helper variables
+//------------------------------------------------------------------------------
+
+@_grid-half-gutter-width: floor(@grid-gutter-width / 2); // Controller by bootstrap
+
+// Adaptiv Components
+//------------------------------------------------------------------------------
+
+@a-loading-bar-bg: @adaptiv-brand-optional;
+@a-loading-bar-height: 3px;
+
+@a-shell-z-index: 98; // Needs to be below 100 for jquery ui to work
+@a-shell-pane-bg: @_shade;
+@a-shell-pane-width: 600px;
+@a-shell-pane-sm-width: 280px;
+@a-shell-pane-lg-width: 1200px;
+
+@a-sidebar-bg: @_primary-1;
+@a-sidebar-hover-bg: @adaptiv-brand-primary;
+@a-sidebar-dropdown-menu-bg: @_primary-2;
+@a-sidebar-dropdown-menu-link-color: @white;
+@a-sidebar-link-color: @white;
+@a-sidebar-brand-color: @white;
+@a-sidebar-icon-size: 40px;
+
+@a-navbar-height: 56px;
+@a-navbar-bg: @_primary-3;
+@a-navbar-color: @white;
+@a-navbar-link-color: @white;
+@a-navbar-link-hover-bg: @adaptiv-brand-primary;
+@a-navbar-link-hover-color: @white;
+@a-navbar-link-active-bg: @adaptiv-brand-primary;
+@a-navbar-link-active-color: hsl(hue(@adaptiv-brand-primary), saturation(@adaptiv-brand-primary), lightness(@_shade-2));
+@a-navbar-link-disabled-bg: transparent;
+@a-navbar-link-disabled-color: shade(@adaptiv-brand-primary, 15%);
+
+@a-dialog-footer-bg: @_shade-1;
+@a-dialog-header-bg: transparent;
+@a-dialog-header-border-color: @_shade-3;
+
+// Odoo Components
+//------------------------------------------------------------------------------
+
+@o-colors: 11;
+@o-color-0: @_shade-3;
+@o-color-1: #F06050;
+@o-color-2: #F4A460;
+@o-color-3: #F7CD1F;
+@o-color-4: #6CC1ED;
+@o-color-5: #814968;
+@o-color-6: #EB7E7F;
+@o-color-7: #2C8397;
+@o-color-8: #475577;
+@o-color-9: #D6145F;
+@o-color-10: #30C381;
+@o-color-11: #9365B8;
+
+//== Avatar - Used by form widgets
+
+@o-avatar-size: 90px;
+
+//== Webclient notification dialog in right top corner
+
+@o-notification-bg: @_shade;
+@o-notification-color: @text-color;
+@o-notification-error-bg: @adaptiv-brand-danger;
+@o-notification-error-color: @_inverse;
+@o-notification-width: 300px;
+
+//== Progress widget used primarily in kanban views
+
+@o-progressbar-progress-height: 16px;
+@o-progressbar-progress-margin-x: 8px;
+@o-progressbar-progress-bg: @_shade;
+@o-progressbar-progress-border-color: @_shade-3;
+@o-progressbar-progress-overflow-bg: @_shade-1;
+@o-progressbar-progress-complete-bg: @adaptiv-brand-success;
+
+//== Tooltip
+
+@o-tooltip-bg: @_contrast;
+@o-tooltip-color: @_shade;
+@o-tooltip-padding: 5px;
+
+//== Modal
+
+@o-modal-header-padding-y: 16px;
+@o-modal-dialog-padding-y: 40px;
+
+//== Control panel - contains breadcrumbs, search controls, etc.
+
+@o-control-panel-bg: @_shade;
+@o-control-panel-border-color: @_shade-4;
+@o-control-panel-padding-x: @_grid-half-gutter-width;
+@o-control-panel-padding-y: 8px;
+@o-control-panel-item-margin: 8px;
+@o-control-panel-breadcrumb-color: @adaptiv-brand-optional;
+@o-control-panel-breadcrumb-hover-color: lighten(@adaptiv-brand-optional, 10%);
+
+//== View: search
+
+@o-search-facet-bg: lighten(@adaptiv-brand-info, 20%);
+@o-search-facet-color: darken(@adaptiv-brand-info, 20%);
+@o-search-facet-border-color: @adaptiv-brand-info;
+@o-search-facet-label-bg: @adaptiv-brand-info;
+@o-search-facet-label-color: @white;
+@o-search-facet-remove-color: darken(@adaptiv-brand-info, 20%);
+@o-search-facet-remove-hover-color: @white;
+@o-search-autocomplete-bg: @adaptiv-brand-primary;
+@o-search-autocomplete-color: @white;
+@o-search-filter-item-margin-y: 4px;
+
+//== View: kanban
+
+@o-kanban-bg: @_shade-1;
+@o-kanban-group-padding: 16px;
+@o-kanban-group-width: 300px;
+@o-kanban-group-bg: @_shade-2;
+@o-kanban-group-odd-bg: @_shade-1;
+@o-kanban-group-create-bg: @_shade;
+@o-kanban-group-create-color: @_shade-6;
+@o-kanban-group-color: @_shade-6;
+@o-kanban-group-icon-color: @_shade-6;
+@o-kanban-group-icon-hover-color: @_contrast;
+@o-kanban-folded-width: 30px;
+@o-kanban-folded-hover-bg: @adaptiv-brand-primary;
+@o-kanban-folded-hover-color: @_shade;
+@o-kanban-image-width: 64px;
+@o-kanban-record-bg: @_shade;
+@o-kanban-record-color: @_contrast;
+@o-kanban-record-margin: 8px;
+@o-kanban-sm-record-width: 280px;
+@o-kanban-md-record-width: 320px;
+@o-kanban-lg-record-width: 400px;
+@o-kanban-record-padding-y: 16px;
+@o-kanban-record-padding-x: 16px;
+@o-kanban-header-color: @_shade-6;
+@o-kanban-header-height: 50px;
+@o-kanban-colorpicker-item-size: 15px;
+@o-kanban-counter-progress-bg: @_shade;
+@o-kanban-counter-progress-border-color: @_shade-3;
+@o-kanban-card-header-bg: @_shade-1;
+@o-kanban-card-header-color: @_shade-5;
+@o-kanban-card-content-min-height: 80px;
+@o-kanban-card-footer-bg: @_shade-1;
+@o-kanban-card-footer-color: @_shade-5;
+@o-kanban-card-border-color: @_shade-3;
+@o-kanban-card-title-color: @text-color;
+@o-kanban-card-manage-pane-width: 95%;
+@o-kanban-card-manage-pane-max-width: 500px;
+@o-kanban-dashboard-dropdown-link-hover-color: @adaptiv-brand-primary;
+@o-kanban-dashboard-dropdown-link-hover-bg: @_shade-1;
+@o-kanban-mobile-tabs-height: 40px;
+@o-kanban-mobile-tabs-bg:  @_shade-2;
+@o-kanban-mobile-tabs-color:  @_contrast;
+@o-kanban-mobile-tabs-border-color: @_shade-3;
+@o-kanban-mobile-tabs-current-tab-border-color: @adaptiv-brand-primary;
+@o-kanban-avatar-size: 40px;
+
+//== View: list
+
+@o-list-bg: @_shade;
+@o-list-header-border-color: @_shade-3;
+@o-list-header-bg: @_shade;
+@o-list-header-color: @text-color;
+@o-list-header-hover-bg: @adaptiv-brand-primary;
+@o-list-header-hover-color: @white;
+@o-list-group-header-bg: softlight(@_shade-2, @adaptiv-brand-primary);
+@o-list-group-header-border-color: softlight(@_shade-3, @adaptiv-brand-primary);
+@o-list-group-header-color: @text-color;
+@o-list-footer-border-color: @_shade-3;
+@o-list-footer-bg: @_shade-1;
+@o-list-footer-color: @_contrast;
+
+//== View: calendar
+
+@o-calendar-bg: @_shade;
+@o-calendar-header-bg: @_shade;
+@o-calendar-colors: #e6194b,
+                    #3cb44b,
+                    #ffe119,
+                    #0082c8,
+                    #f58231,
+                    #911eb4,
+                    #46f0f0,
+                    #f032e6,
+                    #d2f53c,
+                    #fabebe,
+                    #008080,
+                    #e6beff,
+                    #aa6e28,
+                    #fffac8,
+                    #800000,
+                    #aaffc3,
+                    #808000,
+                    #ffd8b1,
+                    #000080;
+
+@o-calendar-underline-width: 4px;
+@o-calendar-attendee-head-size: 18px;
+@o-calendar-today-bg: softlight(@_shade-1, @adaptiv-brand-optional);
+@o-calendar-sidebar-width: 300px;
+@o-calendar-sidebar-padding-x: 16px;
+@o-calendar-sidebar-padding-y: 8px;
+@o-calendar-sidebar-bg: @_shade-1;
+@o-calendar-sidebar-color: @text-color;
+@o-calendar-sidebar-border-color: @_shade-3;
+@o-calendar-mini-bg: transparent;
+@o-calendar-mini-color: @_shade-6;
+@o-calendar-mini-date-bg: @_shade-2;
+@o-calendar-mini-date-color: @_shade-6;
+@o-calendar-mini-date-hover-bg: @adaptiv-brand-primary;
+@o-calendar-mini-date-hover-color: @white;
+@o-calendar-mini-date-active-bg: softlight(@_shade-3, @adaptiv-brand-primary);
+@o-calendar-mini-date-active-color: @white;
+@o-calendar-mini-date-today-bg: @_optional-3;
+@o-calendar-mini-date-today-color: @white;
+
+//== View: graph
+
+@o-graph-bg: @_shade;
+
+//== View: pivot
+
+@o-pivot-bg: @_shade;
+@o-pivot-hover-color: @_contrast;
+@o-pivot-header-bg: @_shade-1;
+@o-pivot-header-color: @_contrast;
+@o-pivot-header-hover-bg: @adaptiv-brand-primary;
+@o-pivot-header-hover-color: @white;
+
+//== View: form
+
+@o-form-bg: @_shade;
+@o-form-sheet-bg: @_shade-2;
+@o-form-sheet-border-color: @_shade-4;
+@o-form-statusbar-height: 40px;
+@o-form-statusbar-bg: @_shade-1;
+@o-form-statusbar-border-color: @_shade-4;
+@o-form-statusbar-padding-x: @_grid-half-gutter-width;
+@o-form-statusbar-padding-y: 4px;
+@o-form-info-padding-x: @alert-padding;
+@o-form-info-padding-y: @alert-padding;
+@o-form-info-bg: @alert-info-bg;
+@o-form-info-border-color: @alert-info-border;
+@o-form-info-color: @alert-info-text;
+@o-form-sheet-padding-x: 16px;
+@o-form-sheet-padding-y: 16px;
+@o-form-sheet-margin-y: 0px;
+@o-form-group-margin-y: 8px;
+@o-form-notebook-margin-top: 16px;
+@o-form-notebook-min-height: 100px;
+@o-form-label-xs-min-width: 100px;
+@o-form-label-sm-min-width: 100px;
+@o-form-label-md-min-width: 150px;
+@o-form-label-lg-min-width: 150px;
+@o-form-label-border-color: @_shade-3;
+@o-form-horizontal-separator-margin-y: 16px;
+@o-form-horizontal-separator-color: @adaptiv-brand-optional;
+@o-form-button-box-height: 50px;
+@o-form-button-box-padding-x: 16px;
+@o-form-button-box-bg: @_shade-1;
+@o-form-button-box-hover-bg: @_shade;
+@o-form-button-box-border-color: @_shade-3;
+@o-form-button-box-font-size: @font-size-small;
+@o-form-button-box-icon-size: @font-size-h3;
+@o-form-button-box-color: @adaptiv-brand-primary;
+@o-form-status-padding-x: 16px;
+@o-form-status-bg: @_shade-1;
+@o-form-status-border-color: @_shade-3;
+@o-form-status-color: @text-color;
+@o-form-status-hover-bg: hsl(hue(@adaptiv-brand-primary), 20%, lightness(@_shade-1));
+@o-form-status-hover-border-color: darken(@o-form-status-hover-bg, 15%);
+@o-form-status-hover-color: @adaptiv-brand-primary;
+@o-form-status-active-bg: hsl(hue(@adaptiv-brand-primary), 20%, lightness(@_shade-1));
+@o-form-status-active-border-color:  darken(@o-form-status-hover-bg, 15%);
+@o-form-status-active-color: @adaptiv-brand-primary;
+@o-form-attachment-border-color: @_shade-4;
+@o-form-row-item-margin-x: 4px;
+@o-form-field-margin-y: 4px;
+
+//== Form fields
+
+@o-field-border-color: @_shade-4;
+@o-field-invalid-border-color: @adaptiv-brand-danger;
+@o-field-invalid-color: @adaptiv-brand-danger;
+@o-field-required-border-color: @adaptiv-brand-primary;
+@o-field-focus-border-color: @adaptiv-brand-primary;
+@o-field-external-button-color: @adaptiv-brand-primary;
+@o-field-min-width: 100px;
+@o-field-badge-color: @white;
+@o-field-badge-max-width: 200px;
+@o-field-success-color: @adaptiv-brand-success;
+@o-field-star-unchecked-color: inherit;
+@o-field-star-checked-color: gold;
+@o-field-percent-pie-bg: @adaptiv-brand-primary;
+@o-field-percent-pie-border-color: @adaptiv-brand-primary;
+@o-field-percent-pie-value-bg: @_shade;
+@o-field-percent-pie-value-color: @adaptiv-brand-primary;
+@o-field-percent-pie-value-border-color: @white;
+@o-field-percent-pie-dimension: 34px;
+@o-field-percent-pie-ring-width: 4px;
+@o-field-image-controls-bg: @adaptiv-brand-primary;
+@o-field-image-controls-color: @white;
+@o-field-image-clear-bg: @adaptiv-brand-danger;
+
+//== Export dialog
+
+@o-export-item-padding-left: 10px;
+@o-export-item-selected-bg: @adaptiv-brand-primary;
+@o-export-item-selected-color: white;
+@o-export-panel-border-color: @_shade-1;
+
+//== Widget: dropdown
+
+@o-dropdown-padding-y: 6px;
+@o-dropdown-item-padding-x: 20px;
+@o-dropdown-item-padding-y: 3px;
+@o-dropdown-header-color: @adaptiv-brand-primary;
+
+//== Widget: autocomplete
+
+@o-autocomplete-item-focus-bg: @adaptiv-brand-primary;
+@o-autcomplete-item-option-color: @adaptiv-brand-primary;
+@o-autocomplete-item-focus-color: @white;
+
+//== Widget: datepicker
+
+@o-datepicker-header-bg: @adaptiv-brand-primary;
+@o-datepicker-header-color: @white;
+@o-datepicker-header-hover-bg: darken(@adaptiv-brand-primary, 10%);
+@o-datepicker-header-hover-color: @white;
+@o-datepicker-week-bg: @_shade-3;
+@o-datepicker-week-color: contrast(@o-datepicker-week-bg);
+@o-datepicker-date-active-bg: @adaptiv-brand-optional;
+@o-datepicker-today-border-color: @adaptiv-brand-optional;
+
+//== Widget: checkbox
+
+@o-checkbox-bg: @_shade;
+@o-checkbox-size: 15px;
+@o-checkbox-checked-size: 9px;
+@o-checkbox-border-color: @_shade-3;
+@o-checkbox-focus-border-color: @adaptiv-brand-primary;
+@o-checkbox-checked-bg: @adaptiv-brand-primary;
+@o-checkbox-checked-border-color: @adaptiv-brand-primary;
+@o-checkbox-disabled-border-color: @_shade-2;
+@o-checkbox-checked-disabled-bg: @_shade-2;
+
+// == Widget: Status
+
+@o-status-size: @font-size-base;
+@o-status-bg: @_shade-3;
+@o-status-green-bg: @adaptiv-brand-success;
+@o-status-red-bg: @adaptiv-brand-danger;
+
+//== Widget: Domain selector
+
+@o-domain-selector-indent: @_grid-half-gutter-width;
+@o-domain-animation-bar-bg: @brand-primary;
+@o-domain-animation-bar-height: 15px;
+@o-domain-leaf-bg: @_shade-1;
+@o-domain-leaf-border-color: @_shade-3;
+
+//== Extra: settings
+
+@o-settings-icon-size: 30px;
+@o-settings-tab-padding-y: @padding-base-vertical;
+@o-settings-tab-bg: @_shade-1;
+@o-settings-tab-border-color: @_shade-3;
+@o-settings-tab-item-padding-x: @_grid-half-gutter-width;
+@o-settings-tab-item-padding-y: @padding-base-vertical;
+@o-settings-tab-item-color: @text-color;
+@o-settings-tab-item-selected-bg: @adaptiv-brand-primary;
+@o-settings-tab-item-selected-color: @white;
+@o-settings-tab-width: 300px;
+@o-settings-box-margin-y: @padding-base-vertical;
+@o-settings-box-border-color: @_shade-3;
+@o-settings-highlighter-bg: @adaptiv-brand-info;
+@o-settings-mobile-tab-height: 40px;

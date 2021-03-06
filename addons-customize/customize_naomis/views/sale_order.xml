@@ -1,0 +1,144 @@
+<odoo>
+    <data>
+        <record id="customize_naomis.view_cotizacion" model="ir.ui.view">
+            <field name="name">view.cotizacion</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree"/>
+            <field name="arch" type="xml">
+                <field name="date_order" position="replace">
+                    <field name="fecha_hora" string="Fecha de pedido"/>
+                    <field name="tipo_documento"/>
+                </field>
+            </field>
+        </record>
+        
+        <record id="customize_naomis.view_orde_de_venta" model="ir.ui.view">
+            <field name="name">view.ordenes.venta</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <field name="confirmation_date" position="replace">
+                    <field name="fecha_hora_confirmacion" string="Fecha de pedido"/>
+                    <field name="tipo_documento"/>
+                </field>
+            </field>
+        </record>
+        
+        <record id="customize_naomis.view_form_cotizacion" model="ir.ui.view">
+            <field name="name">view.form.cotizacion</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="date_order" position="replace">
+                    <field name="fecha_hora" string="Fecha de pedido"/>
+                </field>
+                <field name="partner_id" position="replace">
+                    <!-- <field name="company_id" invisible="1"/> -->
+                    <!-- <field name="partner_id" 
+                            domain="['|',
+                                        '&amp;','&amp;',
+                                            ('customer','=',True),('company_id','=',1),('user_id','=',uid),
+                                        '&amp;','&amp;',
+                                            ('company_id','=',3),('customer','=',True),('ruta_id','in',ruta_ids)
+                                    ]" 
+                            context="{'search_default_customer':'1', 'show_address': 1}" 
+                            options="{'always_reload': True,'no_quick_create': True}" 
+                            on_change="1" 
+                            modifiers="{'readonly':[['state','not in',['draft','sent']]],'required':true}"
+                            /> -->
+                    <field name="partner_id" 
+                            domain="['|',
+                                        '&amp;',
+                                            ('customer','=',True),('user_id','=',uid),
+                                        '&amp;',
+                                            ('customer','=',True),('ruta_id','in',ruta_ids)
+                                    ]" 
+                            context="{'search_default_customer':'1', 'show_address': 1}" 
+                            options="{'always_reload': True,'no_quick_create': True}" 
+                            on_change="1" 
+                            modifiers="{'readonly':[['state','not in',['draft','sent']]],'required':true}"
+                            />
+                    <field name="ruta_ids" readonly="1" force_save="1" widget="many2many_tags"/>
+                </field>
+                <field name="user_id" position="replace">
+                    <field name="user_id" groups="sales_team.group_sale_salesman_all_leads,sales_team.group_sale_manager"/> 
+                </field>
+
+                <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="replace">
+                    <field name="price_unit" groups="sales_team.group_sale_manager" attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}" force_save="1"/>
+                    <field name="price_unit" groups="sales_team.group_sale_salesman" readonly="1" force_save="1"/>
+                    <field name="qty_available" force_save="True" readonly="1"/>
+                    <field name="line_available" force_save="True" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/kanban" position="attributes">
+                </xpath> 
+            </field>
+        </record>
+
+        <record id="customize_naomis.sale_margin_sale_order" model="ir.ui.view">
+            <field name="name">sale.margin.sale.order</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_margin.sale_margin_sale_order"/>
+            <field name="arch" type="xml">
+                <field name="margin" position="attributes">
+                    <attribute name="groups">sales_team.group_sale_manager</attribute>
+                </field>
+            </field>
+        </record>
+        
+        <record id="customize_naomis.sale_margin_sale_order_line" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="name">customize.naomis.sale.order.margin.view.form</field>
+            <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='purchase_price']" position="attributes">
+                    <attribute name="groups">sales_team.group_sale_manager</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="customize_naomis.sale_margin_sale_order_line_form" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="name">customize.naomis.sale.order.line.tree.margin.view.form</field>
+            <field name="inherit_id" ref="sale_margin.sale_margin_sale_order_line_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="replace">
+                    <field name="price_unit" groups="sales_team.group_sale_manager" attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}" force_save="1"/>
+                    <field name="price_unit" groups="sales_team.group_sale_salesman" readonly="1" force_save="1"/>
+                    <field name="qty_available" force_save="True" readonly="1"/>
+                    <field name="line_available" force_save="True" invisible="1"/>
+                </xpath>
+                <field name="purchase_price" position="attributes">
+                    <attribute name="groups">sales_team.group_sale_manager</attribute>
+                </field>
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-danger">line_available == False</attribute>
+                    <attribute name="decoration-primary">line_available == True</attribute>
+                </xpath>
+            </field>
+        </record> 
+        <!-- <record id="sale_margin.sale_margin_sale_order_line" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/form//field[@name='price_unit']" position="after">
+                    <field name="purchase_price" groups="sales_team.group_sale_manager"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sale_margin.sale_margin_sale_order_line_form" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree//field[@name='price_unit']" position="after">
+                    <field name="purchase_price" groups="sales_team.group_sale_manager"/>
+                    <field name="qty_available" force_save="True" readonly="1"/>
+                    <field name="line_available" force_save="True" invisible="1"/>
+                </xpath>
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-danger">line_available == False</attribute>
+                    <attribute name="decoration-primary">line_available == True</attribute>
+                </xpath>
+            </field>
+        </record> -->
+    </data>
+</odoo>

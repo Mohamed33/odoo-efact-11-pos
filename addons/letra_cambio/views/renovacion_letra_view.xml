@@ -1,0 +1,109 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="letra_cambio.renovacion_list">
+            <field name="name">lista renovacion letra cambio</field>
+            <field name="model">letra_cambio.renovacion_letra</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="partner_id"/>
+                    <field name="payment_term_id"/>
+                    <field name="cantidad_letras"/>
+                    <field name="date_doc"/>
+                    <field name="monto_emitir"/>
+                    <field name ="state"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="letra_cambio.renovacion_form" model="ir.ui.view">
+            <field name="name">letra_cambio_renovacion_letra_form</field>
+            <field name="model">letra_cambio.renovacion_letra</field>
+            <field name="arch" type="xml">
+                <form string="Invoice">
+                <header>
+                    <field name ="state" widget="statusbar"/>
+                    <button name="crear_letras" string="Crear Letras" type="object" class="oe_highlight"/>
+                    <button name="set_date_due" string="Crear fechas" type="object" class="oe_highlight"/>
+                </header>
+
+                <sheet string="Renovacion">
+                    <group>
+                        <group>
+                            <field string="Cliente" name="partner_id"
+                                context="{'search_default_customer':1, 'show_address': 1, 'default_company_type': 'company'}"
+                                options='{"always_reload": True, "no_quick_create": True}'
+                                domain="[('customer', '=', True)]"/>
+                            <field name="payment_term_id"/>
+                            <field name = "number"/>
+                            <field name ="cantidad_letras"/>
+                            <field name = "monto_emitir"/>
+
+                        </group>
+                        <group>
+                            <field name ="date_doc"/>
+                            <field name ="journal_id"/>
+                            <field name = "currency_id"/>
+                            <field name = "tipo_cambio" attrs="{'invisible': [('currency_id','=','PEN')]}"/>
+
+                        </group>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Letras a renovar">
+                            <field name = "letra_anterior_line_ids"/>
+
+
+                        </page>
+                        <page string="Documentos">
+                            <field name = "invoice_line_ids"/>
+
+
+                        </page>
+                        <page string="Letras a emitir">
+                            <field name = "letra_line_ids">
+                                <tree editable="bottom">
+                                    <field name = "number"/>
+                                    <field name = "partner_id"/>
+                                    <field name = "journal_id"/>
+                                    <field name = "date_doc"/>
+                                    <field name = "date_due"/>
+                                    <field name = "currency_id"/>
+                                    <field name = "amount_total" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name = "state"/>
+
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <group>
+                        <group>
+                            <field name="comment" placeholder="Terminos y condiciones"/>
+                        </group>
+
+                        <group class="oe_subtotal_footer oe_right">
+
+                        </group>
+
+                    </group>
+
+
+                </sheet>
+
+                </form>
+
+            </field>
+        </record>
+
+
+
+        <record id="action_renovacion_letra_view" model="ir.actions.act_window">
+            <field name="name">renovacion letra</field>
+            <field name="res_model">letra_cambio.renovacion_letra</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem  parent="letra_cambio.letra_cambio_menu" name="Renovacion de letras" id="letra_cambio_menu_renovacion" action="action_renovacion_letra_view"/>
+
+    </data>
+</odoo>

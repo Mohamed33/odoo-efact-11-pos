@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<template id="assets_editor" name="editor assets" inherit_id="web_editor.assets_editor">
+			<xpath expr="link[last()]" position="after">
+				<link href="/adaptiv_web_editor/static/src/less/ex/web_editor.variables.less" rel="stylesheet" type="text/less"/>
+				<link href="/adaptiv_web_editor/static/src/less/ex/web_editor.ui.less" rel="stylesheet" type="text/less"/>
+			</xpath>
+		</template>
+	</data>
+</odoo>

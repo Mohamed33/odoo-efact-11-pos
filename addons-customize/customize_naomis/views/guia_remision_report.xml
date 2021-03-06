@@ -1,0 +1,81 @@
+<odoo>
+    <data>
+
+        <record id="customize_naomis.cn_paperformat_guia_remision" model="report.paperformat" >
+            <field name="name">Formato de Papel - Horizontal - Guía Remisión</field>
+            <field name="format">custom</field>
+            <field name="orientation">Landscape</field>
+            <field name="default" eval="False" />
+            <field name="dpi" eval="77" />
+            <field name="margin_top" eval="0" />
+            <field name="page_width" eval="200" />
+            <field name="page_height" eval="225" />
+            <field name="margin_right" eval="0" />
+            <field name="margin_bottom" eval="0" />
+            <field name="margin_left" eval="0" />
+            <field name="header_line" eval="False" />
+            <field name="header_spacing" eval="0" />
+        </record>
+
+
+        <report id="customize_naomis.report_guia_remision_naomis" 
+            name="customize_naomis.report_guia_remision" 
+            model="efact.guia_remision"
+            string="Guía de Remisión - Reporte"
+            report_type="qweb-pdf"
+            paperformat="customize_naomis.cn_paperformat_guia_remision"/>
+
+        <template id="customize_naomis.report_guia_remision" name="report_guia_remision">
+			<t t-call="web.external_layout">
+                <!--
+				<t t-set="o" t-value="o.with_context({'lang':o.partner_id.lang})"/>
+                -->
+				<div class="page" style="top:0px;left:0px;position:absolute;width:100%">
+                        <div class="header_report">
+                            <div class="fecha_emision">24/01/2018</div>
+                            <div class="punto_partida">Jr. Los asbestos Nr 482 Lahuayrona san juan de lurigancho</div>
+                            <div class="datos_destino">Distrito Varios</div>
+                            <div class="razon_social">*</div>
+                            <div class="punto_llegada">*</div>
+                            <div class="ruc">*</div>
+                        </div>
+                        <div class="body_report">
+                            <div class="fila">
+                                <div class="codigo">39393000</div>
+                                <div class="descripcion">WAFER BON O BON 120X30UNIDX33GR</div>
+                                <div class="unidad">DIS</div>
+                                <div class="cantidad">5</div>
+                            </div>
+                            <div class="fila">
+                                <div class="codigo">39393000</div>
+                                <div class="descripcion">WAFER BON O BON 120X30UNIDX33GR</div>
+                                <div class="unidad">DIS</div>
+                                <div class="cantidad">5</div>
+                            </div>
+                            <div class="fila">
+                                <div class="codigo">39393000</div>
+                                <div class="descripcion">WAFER BON O BON 120X30UNIDX33GR</div>
+                                <div class="unidad">DIS</div>
+                                <div class="cantidad">5</div>
+                            </div>
+                            <div class="fila">
+                                <div class="codigo">39393000</div>
+                                <div class="descripcion">WAFER BON O BON 120X30UNIDX33GR</div>
+                                <div class="unidad">DIS</div>
+                                <div class="cantidad">5</div>
+                            </div>
+                        </div>
+                        <div class="comprobantes">
+                            
+                        </div>
+                        <div class="footer_report">
+                            <div class="marca_numero_vehiculo">CMTA N1 PU/CS AUMARK BLANCO 2015 AHH-792</div>
+                            <div class="licencia_conducir">0078995151</div>
+                            <div class="razon_social">TRANSPORTISTA sac</div>
+                            <div class="ruc_transportista">20098665333</div>
+                        </div>
+                </div>
+			</t>
+		</template>
+    </data>
+</odoo>

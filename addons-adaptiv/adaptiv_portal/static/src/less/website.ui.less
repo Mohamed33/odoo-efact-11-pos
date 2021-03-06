@@ -1,0 +1,61 @@
+.o_connected_user {
+  &.editor_enable {
+    .a_navbar {
+      display: none;
+    }
+  }
+
+  &:not(.editor_enable) {
+    #wrapwrap {
+      .a-canvas();
+    }
+
+    height: auto;
+
+    .a_navbar {
+      .a-canvas();
+      overflow: visible;
+      position: fixed;
+      z-index: 1;
+
+      #o_new_content_menu_choices {
+        height: ~"calc(100vh - "@a-navbar-height~")";
+      }
+    }
+  }
+}
+
+.a_navbar {
+  .navbar-nav > li > a {
+    > .fa:not(.fa-mobile) {
+      margin-right: 10px;
+    }
+  }
+
+  .o_planner_systray {
+    display: none;
+  }
+}
+
+
+// Fix padding caused by this rule
+#oe_main_menu_navbar {
+  .o_menu_systray {
+    margin-right: -@_grid-half-gutter-width;
+    > li > {
+      > a {
+        padding-bottom: (@a-navbar-height - @_line-height-computed) / 2;
+        padding-top: (@a-navbar-height - @_line-height-computed) / 2;
+      }
+    }
+  }
+
+  // Fix the dropdown
+  a.css_edit_dynamic {
+    border-radius: 0;
+    padding-bottom: (@a-navbar-height - @_line-height-computed) / 2 !important;
+    padding-top: (@a-navbar-height - @_line-height-computed) / 2 !important;
+  }
+  
+}
+

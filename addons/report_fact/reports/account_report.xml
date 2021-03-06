@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <function name="write" model="ir.config_parameter">
+            <function name="search" model="ir.config_parameter">
+                <value eval="[('key', '=', 'report.url')]"/>
+            </function>
+            <value eval="{'value': 'http://localhost:8069'}" />
+        </function>
+
+        <function name="create" model="ir.config_parameter">
+            <value eval="{'key':'report.url','value': 'http://localhost:8069'}" />
+        </function>
+
+        <function name="unlink_action" model="ir.actions.report" >
+            <function name="search" model="ir.actions.report">
+                <value eval="[('report_name','=','account.report_invoice_with_payments')]"/>
+            </function>
+        </function>
+
+        <function name="unlink_action" model="ir.actions.report">
+            <function name="search" model="ir.actions.report">
+                <value eval="[('report_name','=','account.report_invoice')]"/>
+            </function>
+        </function>
+
+    </data>
+</odoo>

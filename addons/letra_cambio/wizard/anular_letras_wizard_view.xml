@@ -1,0 +1,35 @@
+<odoo>
+    <data>
+        <record id="wizard_anular_letras_view" model="ir.ui.view">
+            <field name="name">Anular letras</field>
+            <field name="model">anular_letras_wizard</field>
+            <field name="arch" type="xml">
+                <form string="Aceptar letras">
+                    <p class="oe_grey">
+                        Anular las siguientes letras
+                    </p>
+                    <separator string="LETRAS" colspan="4" />
+
+                    <field name="letra_ids" widget="many2many_tags" readonly="1" />
+
+                    <footer>
+                        <button string="Anularr" name="anular_letras" type="object"
+                            default_focus="1" class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <act_window id="action_anular_letra_wizard" multi="True"
+            name="Anular Letras" res_model="anular_letras_wizard" src_model="letra_cambio.letra"
+            view_mode="form" target="new" view_type="form" />
+
+
+
+
+
+    </data>
+</odoo>

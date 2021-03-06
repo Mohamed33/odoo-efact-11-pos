@@ -1,0 +1,142 @@
+<odoo>
+  <data>
+    
+    <record id="customize_grupoblas.view_form_add_porcentaje_descuento" model="ir.ui.view">
+      <field name="name">view.form.account.invoice.add.porcentaje.descuento</field>
+      <field name="inherit_id" ref="account.invoice_form"/>
+      <field name="model">account.invoice</field>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='payment_term_id']" position="after">
+            <field name="porcentaje_descuento" widget="radio"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="customize_grupoblas.view_form_sale_order_add_porcentaje_descuento" model="ir.ui.view">
+      <field name="name">view.form.sale.order.add.porcentaje.descuento</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="model">sale.order</field>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='payment_term_id']" position="after">
+            <field name="tiempo_reserva" groups="base.group_no_one"/>
+            <field name="venta_confirmada" groups="base.group_no_one"/>
+            <field name="fecha_actualizacion_a_venta_confirmada" groups="base.group_no_one"/>
+            <field name="porcentaje_descuento" widget="radio"/>
+        </xpath>
+        <xpath expr="//button[@name='action_confirm']" position="after">
+          <button name="accion_confirmar_venta" 
+                  string="Confirmar" 
+                  type="object"
+                  groups="sales_team.group_sale_manager" 
+                  class="btn-primary" 
+                  attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+        </xpath>
+        <xpath expr="//button[@name='action_draft']" position="attributes">
+            <attribute name="groups">sales_team.group_sale_manager</attribute>
+        </xpath>
+        <xpath expr="//button[@id='action_confirm']" position="attributes">
+            <attribute name="string">Reservar</attribute>
+        </xpath>
+        <xpath expr="//button[@name='action_confirm']" position="attributes">
+            <attribute name="string">Reservar</attribute>
+        </xpath>
+        
+      </field>
+    </record>
+
+
+    <record id="customize_grupoblas.view_form_res_partner_invisible_user_id" model="ir.ui.view">
+      <field name="name">view.form.res.partner.invisible.user.id</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="model">res.partner</field>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='user_id']" position="attributes">
+          <attribute name="groups">sales_team.group_sale_manager</attribute>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="sale_management.sale_order_view_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='sale_pay']/field[@name='invoice_status']" position="attributes">
+                <attribute name="invisible" eval="False"/>
+            </xpath>
+            <xpath expr="//button[@name='action_quotation_send']" position="before">
+                <button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"
+                    type="action" class="btn-primary"
+                    attrs="{'invisible': [('invoice_status', '!=', 'to invoice')]}"
+                    groups="sales_team.group_sale_manager"/>
+                <button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"
+                    type="action" context="{'default_advance_payment_method': 'percentage'}"
+                    attrs="{'invisible': ['|',('invoice_status', '!=', 'no'), ('state', '!=', 'sale')]}"
+                    groups="sales_team.group_sale_manager"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="customize_grupoblas.cgb_product_template_kanban_view" model="ir.ui.view">
+      <field name="name">customize_grupoblas.cgb_product_template_kanban_view</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_kanban_view"/>
+      <field name="arch" type="xml">
+          <xpath expr="//field[@name='lst_price']" position="after">
+              <field name="virtual_available"/>
+          </xpath>
+          <xpath expr="//ul" position="inside">
+            <li t-if="record.type.raw_value == 'product'">Disponible: <field name="virtual_available"/><field name="uom_id"/></li>
+          </xpath>
+      </field>
+    </record>
+
+    <record id="customize_grupoblas.view_res_config_settings_view_form" model="ir.ui.view">
+      <field name="name">customize.grupoblas.res.config.settings.view.form</field>
+      <field name="model">res.config.settings</field>
+      <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//div[@data-key='sale_management']" position="inside">
+          <h2>Reserva de órdenes de Venta</h2>
+          <div class="row mt16 o_settings_container">
+            <div class="col-xs-12 col-md-6 o_setting_box">
+                <div class="o_setting_right_pane">
+                    <div class="text-muted">
+                      Tiempo en días de reserva de stock al confirmar una órden de venta.
+                    </div>
+                    <label for="default_tiempo_reserva"/>
+                    <field name="default_tiempo_reserva"/>
+                </div>
+            </div>
+            
+          </div>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="customize_grupoblas.view_form_res_partner_add_courier" model="ir.ui.view">
+      <field name="name">customize_grupoblas.view_form_res_partner_add_courier</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='category_id']" position="replace">
+          <field name="courier_ids" widget="many2many_tags" options="{'no_create_edit': True}" placeholder="Couriers..."/>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="customize_grupoblas.view_form_sale_order_add_courier" model="ir.ui.view">
+      <field name="name">customize_groupblas.view.form_sale_order_add_courier</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='confirmation_date']" position="before">
+          <field name="courier_id" string="Courier"  
+          options="{'no_create': True, 'no_open': True, 'no_create_edit': True}"
+          />
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>

@@ -1,0 +1,96 @@
+<odoo>
+  <data>
+    <!--
+    <record id="quinto_sale.view_form_inherit_product_template" model="ir.ui.view">
+      <field name="name">view.form.inherit.product.template</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_only_form_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='categ_id']"  position="after">
+          <field name="marca_id"/>
+        </xpath>
+        <xpath expr="//field[@name='list_price']" position="after">
+            <field name="margen"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="quinto_sale.view_tree_inherit_product_template" model="ir.ui.view">
+      <field name="name">view.tree.inherit.product.template</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_tree_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='categ_id']"  position="after">
+          <field name="marca_id"/>
+        </xpath>
+      </field>
+    </record>
+    	
+
+    <record id="quinto_sale.view_form_quinto_marca" model="ir.actions.act_window">
+        <field name="name">Marcas</field>
+        <field name="res_model">quinto.marca</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+    <menuitem name="Marcas" parent="sale.prod_config_main" action="quinto_sale.view_form_quinto_marca"/>
+    -->
+
+    
+    <!-- explicit list view definition -->
+    <!--
+    <record model="ir.ui.view" id="quinto_sale.list">
+      <field name="name">quinto_sale list</field>
+      <field name="model">quinto_sale.quinto_sale</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+    -->
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="quinto_sale.action_window">
+      <field name="name">quinto_sale window</field>
+      <field name="res_model">quinto_sale.quinto_sale</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="quinto_sale.action_server">
+      <field name="name">quinto_sale server</field>
+      <field name="model_id" ref="model_quinto_sale_quinto_sale"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="quinto_sale" id="quinto_sale.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="quinto_sale.menu_1" parent="quinto_sale.menu_root"/>
+    <menuitem name="Menu 2" id="quinto_sale.menu_2" parent="quinto_sale.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="quinto_sale.menu_1_list" parent="quinto_sale.menu_1"
+              action="quinto_sale.action_window"/>
+    <menuitem name="Server to list" id="quinto_sale" parent="quinto_sale.menu_2"
+              action="quinto_sale.action_server"/>
+    -->
+  </data>
+</odoo>

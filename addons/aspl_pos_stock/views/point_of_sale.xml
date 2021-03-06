@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<record id="aspl_view_pos_config_form" model="ir.ui.view">
+			<field name="name">pos.config.form.view</field>
+			<field name="model">pos.config</field>
+			<field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+			<field name="arch" type="xml">
+				<xpath expr="//div[@id='inventory_location']" position="after">
+					<div class="row mt16 o_settings_container">
+						<div class="col-xs-12 col-md-6 o_setting_box" id="product_prices">
+							<div class="o_setting_left_pane">
+							  <field name="show_qty"/>
+							</div>
+							<div class="o_setting_right_pane">
+								<label for="show_qty" string="Display Stock"/>
+								<div>
+									Display Stock
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-6 o_setting_box" id="product_prices">
+							<div class="o_setting_left_pane">
+							  <field name="restrict_order"/>
+							</div>
+							<div class="o_setting_right_pane">
+								<label for="restrict_order" string="Restrict Order"/>
+								<div>
+									Restrict Order when Out of Stock
+								</div>
+								<div class="content-group mt16" attrs="{'invisible': [('restrict_order', '=', False)]}" style="width: 300px;">
+                                    <div>
+										<label for="custom_msg" string="Custom Message"/><br />
+										<field name="custom_msg"/>
+                                    </div>
+                                </div>
+								<div class="content-group mt16" attrs="{'invisible': [('restrict_order', '=', False)]}" style="width: 300px;">
+                                    <div>
+										<label for="prod_qty_limit" string="Restrict when Product quantity remains"/>
+										<field name="prod_qty_limit"/>
+                                    </div>
+                                </div>
+							</div>
+						</div>
+					</div>
+				</xpath>
+			</field>
+		</record>
+
+		<record id="stock_view_pos_form" model="ir.ui.view" >
+            <field name="name">ret.pos.order.form</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+            <field name="arch" type="xml">
+                <field name="picking_id" position="after">
+                    <field name="picking_ids" widget="many2many_tags" readonly="1"/>
+                </field>
+                <field name="picking_id" position="replace"/>
+            </field>
+        </record>
+
+	</data>
+</odoo>

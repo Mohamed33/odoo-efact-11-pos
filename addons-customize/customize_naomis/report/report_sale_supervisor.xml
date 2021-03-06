@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report 
+            id="sale_supervisor_report_report"
+            string="Reporte de Supervisor"
+            model="sale.supervisor.report"
+            report_type="qweb-pdf"
+            file="customize_naomis.sale_supervisor_report_template"
+            name="customize_naomis.sale_supervisor_report_template"
+        />
+        
+        <template id="sale_supervisor_report_template">
+            <t t-call="web.html_container"> 
+                <t t-call="web.external_layout">
+                    <div class="page">
+                    <t t-foreach="docs" t-as="o">
+                        <br/>
+                        <div class="row">
+                            <h4 >
+                                <t class="text-left" t-esc="o.env.user.company_id.name"/>
+                                <t class="text-right" t-esc="datetime.date.today().strftime('%d-%m-%Y')"/>
+                            </h4>
+                        </div>
+                        <br/>
+                        <h3 class="text-center">Ventas del <t t-esc="o.date_start"/> al <t t-esc="o.date_end"/></h3>
+                        <br/>
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Cliente</th>
+                                    <th>Venta Facturada</th>
+                                    <th>Minorista</th>
+                                    <th>Mayorista</th>
+                                    <th>Cartera</th>
+                                    <th>Cobertura</th>
+                                    <th>%</th>
+                                    <th>Núm. de Docs</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="total_invoiced" t-value="0.0"/>
+                                <t t-set="total_min" t-value="0.0"/>
+                                <t t-set="total_max" t-value="0.0"/>
+                                <t t-set="total_coverage" t-value="0"/>
+                                <t t-set="total_num_inv" t-value="0"/>
+                                <t t-set="total_cartera" t-value="0"/>
+                                <t t-foreach="o.sale_supervisor_lines" t-as="i">
+                                    <tr>
+                                        <td><t t-esc="i.user_id.name"/></td>
+                                        <td class="text-right"><t t-esc="i.amount_invoiced" t-options='{"widget": "monetary", "display_currency": i.currency_id}'/></td>
+                                        <t t-set="total_invoiced" t-value="total_invoiced + i.amount_invoiced"/>
+
+                                        <td class="text-right"><t t-esc="i.min_amount" t-options='{"widget": "monetary", "display_currency": i.currency_id}'/></td>
+                                        <t t-set="total_min" t-value="total_min + i.min_amount"/>
+
+                                        <td class="text-right"><t t-esc="i.max_amount" t-options='{"widget": "monetary", "display_currency": i.currency_id}'/></td>
+                                        <t t-set="total_max" t-value="total_max + i.max_amount"/>
+
+                                        <td class="text-right"><t t-esc="i.cartera"/></td>
+                                        <t t-set="total_cartera" t-value="total_cartera + i.cartera"/>
+                                        
+                                        <td class="text-right"><t t-esc="i.coverage"/></td>
+                                        <t t-set="total_coverage" t-value="total_coverage + i.coverage"/>
+
+                                        <td class="text-right"><t t-esc="i.average"/></td>
+
+                                        <td class="text-right"><t t-esc="i.num_invoice"/></td>
+                                        <t t-set="total_num_inv" t-value="total_num_inv + i.num_invoice"/>
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td><b>Totales</b></td>
+                                    <td class="text-right"><t t-esc="total_invoiced" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                    <td class="text-right"><t t-esc="total_min" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                    <td class="text-right"><t t-esc="total_max" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                                    <td class="text-right"><t t-esc="total_cartera"/></td>
+                                    <td class="text-right"><t t-esc="total_coverage"/></td>
+                                    <td></td>
+                                    <td class="text-right"><t t-esc="total_num_inv"/></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

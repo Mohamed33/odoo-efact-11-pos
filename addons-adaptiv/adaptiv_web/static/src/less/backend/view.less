@@ -1,0 +1,32 @@
+.o_invisible_modifier {
+  display: none !important;
+}
+
+// Hide Odoo's no content message and arrow pointing to the create button.
+.oe_view_nocontent,
+.oe_view_nocontent_create {
+  display: none;
+}
+
+.o_cannot_create .oe_view_nocontent_create,
+.o_field_widget .oe_view_nocontent {
+  display: none;
+}
+
+
+// Could belong in fields.less, but is also used elsewhere
+.o_status {
+  display: inline-block;
+  height: @o-status-size;
+  width: @o-status-size;
+  border-radius: @o-status-size / 2;
+  background-color: @o-status-bg;
+
+  &.o_status_green {
+      background-color: @o-status-green-bg;
+  }
+
+  &.o_status_red {
+      background-color: @o-status-red-bg;
+  }
+}

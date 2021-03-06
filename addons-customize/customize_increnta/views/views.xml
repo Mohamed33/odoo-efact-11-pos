@@ -1,0 +1,169 @@
+<odoo>
+  <data>
+    <record id = "customize_increnta.view_picking_type_form_add_fields" model="ir.ui.view">
+      <field name="name">customize.increnta.view.picking.type.forma.add.fields</field>
+      <field name="inherit_id" ref="stock.view_picking_type_form"/>
+      <field name="model">stock.picking.type</field>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='warehouse_id']" position="after">
+          <field name="validar_stock_disponible"/>
+          <field name="transferencia_interna_virtual" attrs="{'invisible':[['code','!=','internal']]}"/>
+        </xpath>
+        <xpath expr="//field[@name='default_location_dest_id']" position="attributes">
+          <attribute name="attrs">{'readonly':[['transferencia_interna_virtual','=',True]]}</attribute>
+          <attribute name="force_save">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='default_location_dest_id']" position="after">
+          <field name="ubicacion_final" 
+                  attrs="{'invisible':[['transferencia_interna_virtual','=',False]],'required':[['transferencia_interna_virtual','=',True]]}"/>
+        </xpath>
+      </field>
+    </record>
+
+
+    <record id="customize_increnta.product_template_form_view_add_fields" model="ir.ui.view">
+      <field name="name">customize.increnta.product.template.form.view.add.fields</field>
+      <field name="inherit_id" ref="product.product_template_form_view"/>
+      <field name="model">product.template</field>
+      <field name="arch" type="xml">
+        <xpath expr="//div[@name='options']" position="inside">
+          <div>
+              <field name="es_producto_maestro"/>
+              <label for="es_producto_maestro"/>
+          </div>
+        </xpath>
+        <xpath expr="//field[@name='type']" position="before">
+          <field name="producto_maestro_referencia_id" 
+                attrs="{'invisible':[['es_producto_maestro','=',True]]}"
+                domain="[['es_producto_maestro','=',True]]"/>
+        </xpath>
+      </field>
+    </record>
+    
+
+    <record id="customize_increnta.view_picking_form_add_fields" model="ir.ui.view">
+      <field name="name">customize.increnta.stock.view.picking.form.add.fields</field>
+      <field name="inherit_id" ref="stock.view_picking_form"/>
+      <field name="model">stock.picking</field>
+      <field name="arch" type="xml">
+        <xpath expr="//group//field[@name='picking_type_id']" position="replace"/>
+        <xpath expr="//field[@name='origin']" position="after">
+          <field name="transferencia_interna_virtual" attrs="{'readonly': [('state', '!=', 'draft')]}" />
+          <field name="picking_type_id" 
+                  attrs="{'readonly': [('state', '!=', 'draft')]}"
+                  domain="[['transferencia_interna_virtual','=',transferencia_interna_virtual]]"/>
+        </xpath>
+        <xpath expr="//field[@name='location_dest_id']" position="after">
+          <field name="location_dest_id" 
+                  string="Ubicación Virtual"
+                  force_save="1"
+                  attrs="{'invisible':[['transferencia_interna_virtual','=',False]],'required':[['transferencia_interna_virtual','=',True]],'readonly':True}"/>
+          <field name="ubicacion_final" 
+                force_save="1"
+                attrs="{'invisible':[['transferencia_interna_virtual','=',False]],'required':[['transferencia_interna_virtual','=',True]],'readonly':True}"/>
+          
+        </xpath>
+        <xpath expr="//field[@name='location_dest_id']" position="attributes">
+          <attribute name="attrs">
+            {'invisible':['|',['transferencia_interna_virtual','=',True],['picking_type_code', '=', 'outgoing']],'required':[['transferencia_interna_virtual','=',False]]}
+          </attribute>>
+        </xpath>
+        
+        <xpath expr="//field[@name='move_lines']" position="replace">
+          <field name="move_lines" attrs="{'readonly': ['|', '&amp;', ('show_operations', '=', True), '|', ('is_locked', '=', True), ('state', '=', 'done'), '&amp;', ('state', '=', 'done'), ('is_locked', '=', True)]}" context="{'picking_type_code': picking_type_code, 'default_picking_id': id, 'form_view_ref':'stock.view_move_picking_form', 'address_in_id': partner_id, 'default_picking_type_id': picking_type_id, 'default_location_id': location_id, 'default_location_dest_id': location_dest_id}">
+            <tree decoration-danger="state != 'done' and quantity_done &gt; reserved_availability and show_reserved_availability" decoration-muted="scrapped == True or state == 'cancel' or (state == 'done' and is_locked == True)" string="Stock Moves" editable="bottom">
+                <field name="name" invisible="1"/>
+                <field name="date_expected" invisible="1"/>
+                <field name="state" invisible="1" readonly="0"/>
+                <field name="picking_type_id" invisible="1"/>
+                <field name="location_id"  invisible="1" />
+                <field name="location_dest_id" invisible="1"  />
+                <field name="scrapped" invisible="1"/>
+                <field name="picking_code" invisible="1"/>
+                <field name="product_type" invisible="1"/>
+                <field name="show_details_visible" invisible="1"/>
+                <field name="show_reserved_availability" invisible="1"/>
+                <field name="show_operations" invisible="1" readonly="1"/>
+                <field name="additional" invisible="1"/>
+                <field name="has_move_lines" invisible="1"/>
+                <field name="is_locked" invisible="1"/>
+                <field name="product_id" required="1" attrs="{'readonly': ['|', '&amp;', ('state', '!=', 'draft'), ('additional', '=', False), ('has_move_lines', '=', True)]}"/>
+                <field name="is_initial_demand_editable" invisible="1"/>
+                <field name="is_quantity_done_editable" invisible="1"/>
+                <field name="product_uom_qty" string="Demanda Inicial" attrs="{'readonly': [('is_initial_demand_editable', '=', False)]}"/>
+                <field name="reserved_availability" string="Reservado" attrs="{'column_invisible': ['|', ('parent.state','=', 'done'), ('parent.picking_type_code', '=', 'incoming')]}"/>
+                <field name="quantity_done" string="Hecho" attrs="{'readonly': [('is_quantity_done_editable', '=', False)]}"/>
+                <field name="product_uom" attrs="{'readonly': [('state', '!=', 'draft'), ('additional', '=', False)]}" options="{'no_open': True, 'no_create': True}" string="UM" groups="product.group_uom"/>
+                <button name="action_show_details" string="Register lots, packs, location" type="object" icon="fa-list" attrs="{'invisible': [('show_details_visible', '=', False)]}" options="{&quot;warn&quot;: true}"/>
+            </tree>
+          </field>
+           <field name="move_lines2" attrs="{'invisible':[['transferencia_interna_virtual','=',False]],'readonly': 1}"
+                force_save="1" 
+                context="{'picking_type_code': picking_type_code, 'default_picking_id': id, 'form_view_ref':'stock.view_move_picking_form', 'address_in_id': partner_id, 'default_picking_type_id': picking_type_id, 'default_location_id': location_id, 'default_location_dest_id': location_dest_id}">
+            <tree decoration-danger="state != 'done' and quantity_done &gt; reserved_availability and show_reserved_availability" decoration-muted="scrapped == True or state == 'cancel' or (state == 'done' and is_locked == True)" string="Stock Moves" editable="bottom">
+                <field name="name" invisible="1"/>
+                <field name="date_expected" invisible="1"/>
+                <field name="state" invisible="1" readonly="0"/>
+                <field name="picking_type_id" invisible="1"/>
+                <field name="location_id" />
+                <field name="location_dest_id" />
+                <field name="scrapped" invisible="1"/>
+                <field name="picking_code" invisible="1"/>
+                <field name="product_type" invisible="1"/>
+                <field name="show_details_visible" invisible="1"/>
+                <field name="show_reserved_availability" invisible="1"/>
+                <field name="show_operations" invisible="1" readonly="1"/>
+                <field name="additional" invisible="1"/>
+                <field name="has_move_lines" invisible="1"/>
+                <field name="is_locked" invisible="1"/>
+                <field name="product_id" required="1" attrs="{'readonly': ['|', '&amp;', ('state', '!=', 'draft'), ('additional', '=', False), ('has_move_lines', '=', True)]}"/>
+                <field name="is_initial_demand_editable" invisible="1"/>
+                <field name="is_quantity_done_editable" invisible="1"/>
+                <field name="product_uom_qty" string="Demanda Inicial" attrs="{'readonly': [('is_initial_demand_editable', '=', False)]}"/>
+                <field name="reserved_availability" string="Reservado" attrs="{'column_invisible': ['|', ('parent.state','=', 'done'), ('parent.picking_type_code', '=', 'incoming')]}"/>
+                <field name="quantity_done" string="Hecho" attrs="{'readonly': [('is_quantity_done_editable', '=', False)]}"/>
+                <field name="product_uom" attrs="{'readonly': [('state', '!=', 'draft'), ('additional', '=', False)]}" options="{'no_open': True, 'no_create': True}" string="UM" groups="product.group_uom"/>
+                <button name="action_show_details" string="Register lots, packs, location" type="object" icon="fa-list" attrs="{'invisible': [('show_details_visible', '=', False)]}" options="{&quot;warn&quot;: true}"/>
+            </tree>
+          </field>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="stock.product_template_action_product" model="ir.actions.act_window">
+      <field name="name">Productos Detallados</field>
+      <field name="domain">[('es_producto_maestro','=',False)]</field>
+      <field name="context">{"search_default_consumable": 1, 'default_type': 'product','es_producto_maestro':False}</field>
+    </record>
+ 
+    <record id="point_of_sale.product_template_action_pos_product" model="ir.actions.act_window">
+      <field name="name">Productos Detallados</field>
+      <field name="domain">[('es_producto_maestro','=',False)]</field>
+      <field name="context">{"search_default_consumable": 1, 'default_type': 'product','es_producto_maestro':False}</field>
+    </record>
+
+    <record id="customize_increnta.action_view_form_filter_productos_maestros" model="ir.actions.act_window">
+      <field name="name">Productos Maestros</field>
+      <field name="res_model">product.template</field>
+      <field name="view_mode">kanban,tree,form</field>
+      <field name="domain">[('es_producto_maestro','=',1)]</field>
+      <field name="context">{"es_producto_maestro":1}</field>
+    </record>
+
+  
+    <!--Menú de productos maestros en Punto de Venta- Catálogo-->
+    <menuitem id="customize_increnta.pos_menu_producto_maestro" 
+              name="Productos Maestros" 
+              string="Productos Maestros" 
+              parent="point_of_sale.pos_config_menu_catalog" 
+              action="customize_increnta.action_view_form_filter_productos_maestros"/>
+
+    <!--Menú de productos maestros en Inventario - Catalogo -->
+    <menuitem id="customize_increnta.stock_menu_producto_maestro" 
+              name="Productos Maestros" 
+              string="Productos Maestros" 
+              parent="stock.menu_stock_inventory_control" 
+              action="customize_increnta.action_view_form_filter_productos_maestros"/>
+
+  </data>
+</odoo>

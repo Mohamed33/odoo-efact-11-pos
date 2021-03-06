@@ -1,0 +1,76 @@
+<odoo>
+    <data>
+        <record id="efact.stock_picking_type_field" model="ir.ui.view">
+            <field name="name">efact.stock.picking.type</field>
+            <field name="model">stock.picking.type</field>
+            <field name="inherit_id" ref="stock.view_picking_type_form"/>
+            <field name="arch" type="xml">
+                <sheet position="inside">
+                    <group>
+                        <field name="is_with_guia"/>
+                    </group>
+                </sheet>
+            </field>
+        </record>
+
+        <record id="efact.stock_picking_field" model="ir.ui.view">
+            <field name="name">efact.stock.picking.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="is_guia_picking" invisible="1"/>
+                    <field name="estado_envio" invisible="1"/>
+                    <button name="action_generar_comprobante_json" string="Enviar comprobante"
+                        class="oe_highlight" type="object"
+                        attrs="{'invisible': ['|', '|', ('is_guia_picking','!=', True), ('state', '!=', 'done'), ('estado_envio','==',1)]}"/>
+                    <button name="action_generar_comprobante_json" string="Enviar comprobante"
+                        class="oe_highlight disabled" type="object" disabled="1"
+                        attrs="{'invisible': [('estado_envio','!=',1)]}"/>
+                </xpath>
+
+                <!-- Falta documento de referencia en caso de cambio de destino -->
+                <!-- Falta documento relacionado -->
+                <xpath expr="//notebook" position="inside">
+                    <page string="Guia SUNAT" attrs="{'invisible': [('is_guia_picking','!=',True)]}">
+                        <group>
+                            <field name="motivo_traslado" />
+                            <field name="desc_motivo_traslado" />
+                            <field name="ind_trans_program" />
+                            <field name="peso_total" />
+                            <field name="peso_unidad_medida" />
+                            <field name="numero_bultos" />
+                            <field name="salida_ubigeo" />
+                            <field name="salida_direccion"/>
+                            <field name="entrega_ubigeo"/>
+                            <field name="entrega_direccion"/>
+                            <field name="id" invisible="1"/>
+                        </group>
+                        <field name="transportes" context="{'default_picking_id': id}">
+                            <tree>
+                                <field name="modoTraslado" />
+                                <field name="fechaInicioTraslado" />
+                                <field name="tipoDocTransportista" />
+                                <field name="numDocTransportista" />
+                                <field name="nombreTransportista" />
+                                <field name="placaVehiculo" />
+                                <field name="tipoDocConductor" />
+                                <field name="numDocConductor" />
+                                <field name="picking_id" invisible="1"/>
+                            </tree>
+                        </field>
+                    </page>
+                    <page string="Documentos electronicos" attrs="{'invisible': [('is_guia_picking','!=',True)]}">
+                        <group>
+                            <field name="json_enviado"/>
+                        </group>
+                        <group>
+                            <field name="digest_value"/>
+                            <field name="xml_generado"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

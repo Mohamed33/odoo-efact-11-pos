@@ -1,0 +1,184 @@
+<odoo>
+    <data>
+        <template id="lms_website.lista_cursos_por_categoria" name="Lista de Cursos">
+            <t t-call="website.layout">
+                <t t-set="pageName" t-value="'Cursos'"/>
+                <div class="container">
+                    
+                    <div id="wrap" class="oe_structure oe_empty">
+                        <ul class="nav nav-tabs">
+                            <t t-set="index" t-value="0"/>
+                            <t t-foreach="categorias" t-as="categoria">
+                                <t t-set="index" t-value="index+1"/>
+                                <li class="nav-item">
+                                    <a t-attf-class="nav-link {{'active' if index==1 else ''}}" data-toggle="tab" t-attf-href="{{'#categoria_'+categoria['id']}}">
+                                        <t t-esc="categoria['name']"/>
+                                    </a>
+                                </li>
+                            </t>
+                        </ul>
+
+                        <div class="tab-content" id="lista_de_cursos">
+                            <t t-set="index" t-value="0"/>
+                            <t t-foreach="categorias" t-as="categoria"> 
+                                <t t-set="index" t-value="index+1"/>
+                                <div t-attf-id="{{'categoria_'+categoria['id']}}" 
+                                    t-attf-class="tab-pane fade {{'in active' if index==1 else ''}}">
+                                    <div class="row">
+                                        <t t-foreach="categoria['cursos']" t-as="curso">
+                                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12    ">
+                                                <div t-attf-id="curso_{{curso[1].id}}">
+                                                    <t t-call="lms_website.curso_card"/>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                            </t>
+                            <div class="modal fade" id="continuar_comprando_modal" tabindex="-1" role="dialog" aria-labelledby="continuar_comprando_modal" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document" id="continuar_comprando_modal_body">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+
+
+        <template id="lms_website.curso_card">
+            <div class="curso_card">
+                <div class="curso_image">
+
+                    <t t-if="curso[1].image">
+                        <span t-field="curso[1].image" t-options="{'widget':'image','class':'img img-responsive'}"></span>
+                    </t>
+                    <span class="duracion">
+                        <i class="fa fa-clock-o fa-x3"></i>
+                        <span t-field="curso[1].duracion" t-options="{'widget':'float_time'}"/>
+                    </span>
+                    
+                </div>
+                <div class="curso_body">
+                    <div class="title">
+                        <b><t t-esc="curso[1].name"/></b>
+                    </div>
+                    <div class="description">
+                        <div class="precios">
+                            <t t-if = "curso[2]['descuento'] != 0">
+                                <div class="precio_ahora">
+                                    <span t-esc="curso[2]['precio_ahora']" t-options="{'widget':'monetary','display_currency':curso[1].currency_id}"/>
+                                </div>
+                            </t>
+                            <t t-if = "curso[2]['descuento'] == 0">
+                                <div class="precio_normal">
+                                    <span t-esc="curso[2]['precio_normal']" t-options="{'widget':'monetary','display_currency':curso[1].currency_id}"/>
+                                </div>
+                            </t>
+                            <t t-if = "curso[2]['descuento'] != 0">
+                                <div class="precio_normal_tachado">
+                                    <span t-esc="curso[2]['precio_normal']" 
+                                        t-options="{'widget':'monetary','display_currency':curso[1].currency_id}"/>
+                                </div>
+                            </t>
+                        </div>
+                        <t t-if = "curso[2]['descuento'] != 0">
+                            <div class="info_adicional">
+                                <div class="estudiante">
+                                    <i class="fa fa-user fa-x3"></i> <span t-esc="curso[1].sales_count"/> Estudiantes
+                                </div>
+                                <div class="descuento">
+                                    Desc. <span t-esc="curso[2]['descuento']"  t-options="{'widget':'float','precision':2}"/>%
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                    <div class="acciones">
+                        <t t-if="not curso[0]">
+                            <button t-attf-class="btn btn_aniadir_al_carrito {{'btn_'+str(curso[1].id)}}" 
+                                    t-attf-id="{{str(curso[1].id)}}"
+                                    data-toggle="modal" 
+                                    data-target="#continuar_comprando_modal">Añadir al Carrito
+                            </button>
+                        </t>
+                        <t t-if="curso[0]">
+                            <button t-attf-class="btn btn_aniadido_al_carrito {{'btn_'+str(curso[1].id)}}"
+                                    t-attf-id="{{str(curso[1].id)}}">
+                                Añadido al Carrito
+                            </button>
+                        </t>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template id="lms_website.continuar_comprando_modal">
+            <div class="modal-content" >
+                <div class="modal-body" >
+                    <div class="modal_curso">
+                        <div class="curso_imagen">
+                            <t t-if="curso.image">
+                                <span t-field="curso.image" t-options="{'widget':'image','class':'img img-responsive'}"></span>
+                            </t>
+                        </div>
+                        <div class="curso_body">
+                            <span class="curso_titulo">
+                                <t t-esc="curso.name"/>
+                            </span>
+                            <div class="curso_content">
+                                <div class="precios">
+                                    <t t-if="descuento != 0">
+                                        <h5 class="precio_ahora">
+                                            <span t-esc="precio_ahora" t-options="{'widget':'monetary','display_currency':curso.currency_id}"/>
+                                        </h5>
+                                    </t>
+                                    <t t-if="descuento != 0">
+                                        <h5 class="precio_normal_tachado">
+                                            <span t-esc="precio_normal"  t-options="{'widget':'monetary','display_currency':curso.currency_id}"/>
+                                        </h5>
+                                    </t>
+                                    <t t-if="descuento == 0">
+                                        <h5 class="precio_normal">
+                                            <span t-esc="precio_normal"  t-options="{'widget':'monetary','display_currency':curso.currency_id}"/>
+                                        </h5>
+                                    </t>
+                                </div>
+                                <div class="info_adicional">
+                                    <t t-if="descuento != 0">
+                                        <h5 class="descuento">
+                                            Desc. <t t-esc="descuento"/>%
+                                        </h5>
+                                    </t>
+                                </div>
+                            </div>
+                             <div class="acciones">
+                                <div class="btn_accion">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Seguir Comprando</button>
+                                </div>
+                                <div class="btn_accion">
+                                    <button type="button" class="btn btn-primary btn_comprar_ahora" t-attf-id="{{curso.id}}">Comprar Ahora</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                        
+                </div>
+                <!--
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Seguir Comprando</button>
+                    <button type="button" class="btn btn-primary btn_comprar_ahora" t-attf-id="{{curso.id}}">Comprar Ahora</button>
+                </div>                    
+                -->
+            </div>
+        </template>
+
+        <template id="lms_website.product_description" name="lms_website.product_description">
+            <span>cursos</span>
+            <t t-if="len(cursos)==1">
+                <span t-field="cursos[0].image" t-options="{'widget':'image','class':'img img-responsive'}"/>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

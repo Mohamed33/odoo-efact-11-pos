@@ -1,0 +1,166 @@
+<odoo>
+    <data>
+        <template id="web_consulta_consumo.template_form">
+			<html>
+				<style>
+					#alerta{
+					margin-top: 5%;
+					margin-bottom: -16%;}
+				</style>
+			<head>
+				<meta charset="utf-8"/>
+				<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+				<link rel="stylesheet" type="text/css" href="web_consulta_consumo/static/src/css/bootstrap.css"/>
+				<link rel="stylesheet" type="text/css" href="web_consulta_consumo/static/src/css/style.css"/>
+				<title>Formulario Comensales</title>
+			</head>
+			<body>
+				<!-- Navegación -->
+				<!--FIN Navigation -->
+				<div class="container">
+						<!--FILA(row) son grupos horizontales de columnas-->
+					<div class="row mt-5">
+							<!--Formulario-->
+						<div class="col-12 d-flex justify-content-center border border-secondary">
+							<div class="text-left mt-3">
+								<div class="form-group mt-6">
+									<div class="row">
+										<label id="label1">Ingrese su DNI oo Código de Empleado:</label>
+										<input type="text" class="form-control" placeholder="Ingrese su codigo" id="identificador"/>
+									</div><br/>
+									<div class="row">
+										<div class="col">
+											<label for="date1">Fecha Inicio</label>
+											<input id="date1" class="form-control" type="date"/>
+										</div>
+										<div class="col">
+											<label for="date2">Fecha Fin</label><br/>
+											<input id="date2" class="form-control" type="date"/>
+										</div>
+										<input type="hidden" id="csrf_token" name="csrf_token" t-att-value="request.csrf_token()"/>
+									</div>
+								</div>
+								<div class="form-group text-right mr-3">
+									<button class="btn btn-primary" onclick="valida_datos()">Mostrar Detalle</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="pos_orders"></div>
+				</div>
+				<script src="/web_consulta_consumo/static/src/js/jquery-3.3.1.js"> </script>
+				<script src="/web_consulta_consumo/static/src/js/bootstrap.js"></script>
+				<script type="text/javascript" src="/web_consulta_consumo/static/src/js/validacion.js"></script>
+			</body>
+			</html>
+		</template>
+		
+		<template id="web_consulta_consumo.template_consulta">
+			<link rel="stylesheet" type="text/css" href="web_consulta_consumo/static/src/css/bootstrap.css"/>
+			<link rel="stylesheet" type="text/css" href="web_consulta_consumo/static/src/css/style.css"/>
+			<div class="row mt-2">
+				<div class="alert alert-primary" role="alert" style="width:100%">
+					<div>
+						<b>Empresa: </b>
+						<span><t t-esc="empresa"/></span>
+					</div>
+					<div>
+						<b>Comensal: </b>
+						<span><t t-esc="comensal"/></span>
+					</div>
+					<div>
+						<b>Monto Total Consumido: </b>
+						<span>S/. <t t-esc="monto_total_consumido"/></span>
+					</div>
+					<div>
+						<b>Total de Pedidos: </b>
+						<span><t t-esc="cantidad_pedidos"/></span>
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="row mt-2">
+					<div class="col">
+						<!--Tabla-->
+						<div class="table-responsive">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+									  	<th scope="col">CODIGO</th>
+										<th scope="col">FECHA Y HORA</th>
+									  	<th scope="col">CONSUMO</th>
+										<th scope="col">TOTAL</th>
+									</tr>
+								</thead>
+								  <tbody>
+								  	<t t-if="len(orders)==0">
+										<h3>No se han encontrado registros para este usuario.</h3>  
+									</t>
+									  <t t-foreach="orders" t-as="order">
+											<tr>
+												<td><t t-esc="order['name']"></t></td>
+												<td><t t-esc="order['date_order']"></t></td>
+												<td>
+													<div class="table-responsive">
+														<table class="table table-bordered">
+															<thead>
+																<tr>
+																	<th scope="col">Nombre</th>
+																	<th scope="col">Cantidad</th>
+																	<th scope="col">Precio unidad</th>
+																	<th scope="col">Sub total</th>
+																	<th scope="col">Desc</th>
+																</tr>
+															</thead>
+															<tbody>
+																<t t-foreach="order['lines']" t-as="line">
+																	<tr>
+																		<td><t t-esc="line.product_id.name"></t></td>
+																		<td><t t-esc="line.qty"></t></td>
+																		<td>S/<t t-esc="line.price_unit"></t></td>
+																		<td><t t-esc="line.price_subtotal_incl"></t></td>
+																		<td><t t-esc="line.discount"></t>%</td>
+																	</tr>
+																</t>
+															</tbody>
+														</table>
+													</div>
+												</td>
+												<td>S/. <t t-esc="order['amount_total']"></t></td>
+											</tr>
+									  </t>
+								  </tbody>
+							</table>
+						</div>
+						<!--Paginacion-->
+						<!--
+						<nav aria-label="Page navigation example">
+							<ul class="pagination justify-content-end">
+							  <li class="page-item disabled">
+								<a class="page-link" href="#" tabindex="-1">Anterior</a>
+							  </li>
+							  <li class="page-item"><a class="page-link" href="#">1</a></li>
+							  <li class="page-item"><a class="page-link" href="#">2</a></li>
+							  <li class="page-item"><a class="page-link" href="#">3</a></li>
+							  <li class="page-item">
+								<a class="page-link" href="#">Siguiente</a>
+							  </li>
+							</ul>
+						  </nav>-->
+					</div>
+			 </div>
+			<script src="/web_consulta_consumo/static/src/js/jquery-3.3.1.js"> </script>
+			<script src="/web_consulta_consumo/static/src/js/bootstrap.js"></script>
+		</template>
+
+		<template id="web_consulta_consumo.template_error">
+
+			<div class="alert alert-danger">
+				<t t-esc="message"></t>
+			</div>
+
+
+		</template>
+	</data>
+</odoo>

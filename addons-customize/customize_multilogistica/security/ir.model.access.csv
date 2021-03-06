@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_customize_multilogistica_customize_multilogistica,customize_multilogistica.customize_multilogistica,model_customize_multilogistica_customize_multilogistica,,1,0,0,0

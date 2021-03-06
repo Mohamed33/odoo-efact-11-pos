@@ -1,0 +1,179 @@
+//------------------------------------------------------------------------------
+// Reimplementation of the bootstrap navbar. Because we want exactly
+// the same navbar on both front and backend without affecting the
+// frontend bootstrap real website navbar.
+//------------------------------------------------------------------------------
+
+@_toggler-icon-offset: 10px;
+
+.a_navbar {
+  .o-flex-display();
+  .o-flex-flow(row, nowrap);
+  .o-align-items(stretch);
+
+  background-color: @a-navbar-bg;
+  font-family: @_font-family-base;
+  max-height: @a-navbar-height;
+  max-width: 100%;
+  min-height: @a-navbar-height;
+
+  .navbar-title {
+    .o-text-overflow();
+    color: @a-navbar-color;
+    display: block;
+    font-size: @_font-size-h3;
+    font-weight: @headings-font-weight;
+    height: @a-navbar-height;
+    line-height: floor((@_font-size-h3 * @_line-height-base));
+    margin-right: 5px;
+    padding: ((@a-navbar-height - floor((@_font-size-h3 * @_line-height-base))) / 2) 0;
+  }
+
+  .navbar-nav {
+    > li > a {
+      color: @a-navbar-link-color;
+      font-weight: @btn-font-weight;
+      height: @a-navbar-height;
+      line-height: @_line-height-computed;
+      margin-top: 0;
+      padding-bottom: (@a-navbar-height - @_line-height-computed) / 2;
+      padding-top: (@a-navbar-height - @_line-height-computed) / 2;
+
+      &:hover,
+      &:focus {
+        background-color: @a-navbar-link-hover-bg;
+        color: @a-navbar-link-hover-color;
+      }
+    }
+
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: @a-navbar-link-active-bg;
+        color: @a-navbar-link-active-color;
+      }
+    }
+
+    > .disabled > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: @a-navbar-link-disabled-bg;
+        color: @a-navbar-link-disabled-color;
+      }
+    }
+
+    // Remove background color from open dropdown
+    > .open > a {
+      &,
+      &:hover,
+      &:focus {
+        background-color: @a-navbar-link-active-bg;
+        color: @a-navbar-link-active-color;
+      }
+    }
+  }
+
+  .a_app_menu_toggler,
+  .a_menu_toggler {
+    background-color: transparent;
+    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    border: none;
+    border-radius: 0;
+    color: @a-navbar-link-color;
+    display: block;
+    height: @a-navbar-height;
+    line-height: 0;
+    margin: 0;
+    position: relative;
+    width: @a-navbar-height;
+    min-width: @a-navbar-height;
+
+    &:focus {
+      outline: 0;
+    }
+
+    .fa-lg {
+      color: inherit;
+      vertical-align: baseline;
+    }
+  }
+
+  .navbar-nav {
+    margin: 0;
+  }
+
+  .nav.a_systray_menu,
+  .nav.a_user_menu {
+    > li > a {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+  }
+
+  .a_menu_placeholder {
+    .o-flex-display();
+    .o-flex-flow(row, nowrap);
+    // Allow menu to shrink
+    .o-flex(1, 1, auto);
+  }
+
+  .navbar-nav:not(.navbar-right) {
+    .o-flex(1, 0, 0);
+  }
+  
+  @media (max-width: @grid-float-breakpoint-max) {
+    .nav > li > a, .navbar-header:only-child {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .navbar-title {
+      .o-flex(1, 0, 0);
+    }
+
+    .navbar-nav:not(.navbar-right) {
+      display: none;
+    }
+
+    .a_menu_placeholder {
+      .o-flex(0, 0, auto);
+      .nav > li {
+        display: inline-block;
+        &.open {
+          .dropdown-menu {
+            .o-flex-display();
+            .o-flex-flow(column, nowrap);
+            background: @_shade;
+            border: none;
+            position: fixed;
+            top: @a-navbar-height;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            width: auto;
+          }
+        }
+      }
+    }
+
+    .nav.a_systray_menu,
+    .nav.a_user_menu {
+      display: inline-block;
+    }
+  }
+
+  @media (min-width: @grid-float-breakpoint) {
+    padding-left: @_grid-half-gutter-width;
+    padding-right: @_grid-half-gutter-width;
+
+    .a_app_menu_toggler {
+      margin-left: -@_grid-half-gutter-width;
+    }
+
+    .a_menu_toggler {
+      display: none;
+    }
+  }
+}

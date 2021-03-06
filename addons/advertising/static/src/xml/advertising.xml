@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates xml:space="preserve">
+    <t t-name="advertising_page">
+        <div class="o_view_manager_content" style="widht:100%;height:100%">
+                <iframe src="http://localhost:3000/" style="width:100%;height:100%"/>
+                <!--<div id="pub_and_prom"/>-->
+                <!--
+                <div id="placa_nombre"/>
+                <div id="fecha_hora"/>
+                <div id="operador"/>
+                <div id="temperatura"/>
+                <div id="numero_lote"/>
+                <div id="cant_kits"/>
+                <div id="cant_negativo_kits"/>
+                <div id="cant_positivo_kits"/>
+                
+                <div class="table-responsive">
+                    <table class=" o_list_view  table table-bordered table-striped">
+                        <thead id="registros_header"> 
+                        </thead>
+                        <tbody id="registros_body">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="alert alert-info" role="alert">
+                    <span>* Significado de Colores:</span><br/>
+                    <span style="color:green">-> Verde: Negativo</span><br/>
+                    <span style="color:red">-> Rojo: Positivo</span><br/>
+                    * Sólo necesitas hacer click en el Kit para cambiar el Resultado.
+                </div>
+                -->
+            
+        </div>
+    </t>
+</templates>

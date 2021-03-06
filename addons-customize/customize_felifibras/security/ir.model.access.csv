@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_customize_felifibras_customize_felifibras,customize_felifibras.customize_felifibras,model_customize_felifibras_customize_felifibras,,1,0,0,0

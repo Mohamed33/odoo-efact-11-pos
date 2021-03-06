@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="assets_frontend" name="frontend assets" inherit_id="portal.assets_frontend">
+    <link rel="stylesheet" type="text/less" href="/portal/static/src/less/website.wrapwrap.less" position="after">
+      <link rel="stylesheet" type="text/less" href="/adaptiv_portal/static/src/less/website.wrapwrap.less" />
+    </link>
+    <link rel="stylesheet" type="text/less" href="/portal/static/src/less/website.ui.less" position="after">
+      <link rel="stylesheet" type="text/less" href="/adaptiv_portal/static/src/less/website.ui.less" />
+    </link>
+  </template>
+</odoo>

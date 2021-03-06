@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="PosTicket">
+        <t t-jquery="div[class='section-customer']" t-operation="after">
+            <t t-if="vehicle">
+                <b>Datos del vehículo</b>
+                <div>
+                    Placa: <t t-esc="vehicle.placa || ''"/>
+                </div>
+                <div>
+                    Marca: <t t-esc="vehicle.marca || ''"/>
+                </div>
+                <div>
+                    Modelo: <t t-esc="vehicle.modelo || ''"/>
+                </div>
+            </t>
+        </t>
+    </t>
+
+    <t t-extend="PosTicket1">
+        <t t-jquery="div[class='section-customer']" t-operation="after">
+            <t t-if="vehicle">
+                <b>Datos del vehículo</b>
+                <div>
+                    Placa: <t t-esc="vehicle.placa"/>
+                </div>
+                <div>
+                    Marca: <t t-esc="vehicle.marca"/>
+                </div>
+                <div>
+                    Modelo: <t t-esc="vehicle.modelo"/>
+                </div>
+            </t>
+        </t>
+    </t>
+</templates>

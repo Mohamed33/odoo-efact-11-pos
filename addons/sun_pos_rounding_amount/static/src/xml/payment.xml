@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-extend="PaymentScreenWidget">
+        <t t-jquery="div.top-content" t-operation="replace">
+            <div class='top-content'>
+                <span class='button back'>
+                    <i class='fa fa-angle-double-left'></i>
+                    Back
+                </span>
+                <h1>Payment</h1>
+                <t t-if="widget.pos.config.enable_rounding">
+                    <span class='button rounding' style="margin-left: 220px;">
+                        Rounding
+                        <i t-att-class="widget.pos.get_order().get_rounding_status() ? 'fa fa-toggle-on' : 'fa fa-toggle-off'" id="pos-rounding" aria-hidden="true" style="color: #ACCE45"></i>
+                    </span>
+                </t>
+                <span class='button next'>
+                    Validate
+                    <i class='fa fa-angle-double-right'></i>
+                </span>
+            </div>
+        </t>
+    </t>
+
+    <t t-extend="PaymentScreen-Paymentlines">
+        <t t-jquery=".total" t-operation="replace">
+            <div class='total'>
+                <t t-esc="widget.format_currency(order.getNetTotalTaxIncluded())"/>
+            </div>
+        </t>
+    </t>
+</templates>

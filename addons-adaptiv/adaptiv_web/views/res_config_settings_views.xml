@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+      <field name="name">res.config.settings.view.form.inherit.adaptiv_web</field>
+      <field name="model">res.config.settings</field>
+      <field name="priority" eval="90"/>
+      <field name="inherit_id" ref="base.res_config_settings_view_form" />
+      <field name="arch" type="xml">
+        <xpath expr="//div[hasclass('settings')]" position="inside" >
+          <div class="app_settings_block" data-string="Backend Theme" string="Backend Theme" data-key="adaptiv_web" groups="base.group_system">
+            <h2>Color palette</h2>
+            <div class="row mt16 o_settings_container">
+              <div class="col-xs-12 col-md-6 o_setting_box">
+                <div class="o_setting_right_pane">
+                  <div class="content-group">
+                    <div class="mt16 row">
+                      <label for="theme_id" string="Theme" class="col-xs-3 col-md-3 o_light_label"/>
+                      <field name="theme_id" class="oe_inline" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2>Logo</h2>
+            <div class="row mt16 o_settings_container">
+              <div class="col-xs-12 col-md-6 o_setting_box">
+                <div class="o_setting_right_pane">
+                  <label string="Default logo"/>
+                  <div class="text-muted">
+                      Set the default logo for use on light backgrounds
+                  </div>
+                  <div class="content-group">
+                    <div class="mt16 row">
+                      <label for="svg_logo" string="SVG" class="col-xs-3 col-md-3 o_light_label"/>
+                      <field name="svg_logo" class="oe_inline"/>
+                    </div>
+                  </div>
+                  <div class="content-group">
+                    <div class="mt16 row">
+                      <label for="png_logo" string="PNG" class="col-xs-3 col-md-3 o_light_label"/>
+                      <field name="png_logo" class="oe_inline"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-6 o_setting_box">
+                <div class="o_setting_right_pane">
+                  <label string="Inverted logo"/>
+                  <div class="text-muted">
+                      Set the inverted logo for use on dark backgrounds
+                  </div>
+                  <div class="content-group">
+                    <div class="mt16 row">
+                      <label for="svg_logo_inverse" string="SVG" class="col-xs-3 col-md-3 o_light_label"/>
+                      <field name="svg_logo_inverse" class="oe_inline"/>
+                    </div>
+                  </div>
+                  <div class="content-group">
+                    <div class="mt16 row">
+                      <label for="png_logo_inverse" string="PNG" class="col-xs-3 col-md-3 o_light_label"/>
+                      <field name="png_logo_inverse" class="oe_inline"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2>Debranding</h2>
+            <div class="row mt16 o_settings_container">
+              <div class="col-xs-12 col-md-6 o_setting_box">
+                <div class="o_setting_right_pane">
+                  <div class="content-group">
+                    <div class="mt16 row">
+                      <label for="debrand_name" string="Title" class="col-xs-3 col-md-3 o_light_label"/>
+                      <field name="debrand_name" class="oe_inline" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xs-12 col-md-6 o_setting_box">
+                <div class="o_setting_right_pane">
+                  <div class="content-group">
+                    <div class="mt16 row">
+                      <label for="debrand_favicon" string="Favicon" class="col-xs-3 col-md-3 o_light_label"/>
+                      <field name="debrand_favicon" widget="image" class="pull-left oe_avatar"/>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>
+

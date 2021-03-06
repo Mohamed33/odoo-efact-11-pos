@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <!-- Secuencia -->
+        <record id="sequence_guia_remision" model="ir.sequence">
+            <field name="name">Secuencia Guia Remision</field>
+            <field name="implementation">standard</field>
+            <field name="code">T001</field>
+            <field name="active">True</field>
+            <field name="prefix">T001-</field>
+            <field name="padding">8</field>
+            <field name="use_date_range">False</field>
+            <field name="number_increment">1</field>
+            <field name="number_next_actual">1</field>
+        </record>
+
+        <!-- Tipo de operacion -->
+        <record id="send_with_guia" model="stock.picking.type">
+            <field name="name">Envio con Guia (Comprobante electronico)</field>
+            <field name="sequence_id" ref="efact.sequence_guia_remision"/>
+            <field name="code">outgoing</field>
+             <field name="return_picking_type_id"></field>
+            <field name="show_operations">False</field>
+            <field name="show_reserved">True</field>
+        </record>
+    </data>
+</odoo>

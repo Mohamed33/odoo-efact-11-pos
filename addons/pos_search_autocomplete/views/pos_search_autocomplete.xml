@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:-->
+<openerp>
+    <data>
+
+        <template id="assets_backend" name="pos_search_autocomplete assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/pos_search_autocomplete/static/src/js/pos.js"></script>
+            </xpath>
+        </template>
+        <template id="index" name="pos_search_autocomplete index" inherit_id="point_of_sale.index">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" type="text/css" href="/pos_search_autocomplete/static/src/css/jquery-ui-1.9.1.custom.css"/>
+                <link rel="stylesheet" type="text/css" href="/pos_search_autocomplete/static/src/css/pos.css"/>
+            </xpath>
+        </template>
+    </data>
+</openerp>

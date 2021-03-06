@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <record id="theme_adaptiv" model="adaptiv_web.theme">
+    <field name="name">Adaptiv</field>
+  </record>
+  <record id="theme_odoo" model="adaptiv_web.theme">
+    <field name="name">Odoo</field>
+    <field name="color_primary">#875A7B</field>
+    <field name="color_optional">#00A09D</field>
+  </record>
+  <record id="theme_industrial" model="adaptiv_web.theme">
+    <field name="name">Industrial</field>
+    <field name="color_primary">#335F6B</field>
+    <field name="color_optional">#F0720F</field>
+  </record>
+  <record id="theme_candy" model="adaptiv_web.theme">
+    <field name="name">Candy</field>
+    <field name="color_primary">#F4795A</field>
+    <field name="color_optional">#ff659b</field>
+  </record>
+  <record id="theme_emerald" model="adaptiv_web.theme">
+    <field name="name">Emerald</field>
+    <field name="color_primary">#00BCA0</field>
+    <field name="color_optional">#006D6B</field>
+  </record>
+  <record id="theme_marine" model="adaptiv_web.theme">
+    <field name="name">Marine</field>
+    <field name="color_primary">#271D7C</field>
+    <field name="color_optional">#35ABD6</field>
+  </record>
+  <record id="theme_brave" model="adaptiv_web.theme">
+    <field name="name">Brave</field>
+    <field name="color_primary">#F2CD5D</field>
+    <field name="color_optional">#3185FC</field>
+    <field name="color_shade">#0A0911</field>
+    <field name="color_inverse">#FFFFFF</field>
+  </record>
+</odoo>

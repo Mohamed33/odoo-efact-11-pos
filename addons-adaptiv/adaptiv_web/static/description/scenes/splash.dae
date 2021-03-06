@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.79.0</authoring_tool>
+    </contributor>
+    <created>2018-04-21T02:26:08</created>
+    <modified>2018-04-21T02:26:08</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_cameras>
+    <camera id="camera-camera" name="Camera">
+      <optics>
+        <technique_common>
+          <perspective>
+            <xfov sid="xfov">50.06825</xfov>
+            <aspect_ratio>2</aspect_ratio>
+            <znear sid="znear">0.1</znear>
+            <zfar sid="zfar">31</zfar>
+          </perspective>
+        </technique_common>
+      </optics>
+      <extra>
+        <technique profile="blender">
+          <YF_dofdist>12.8</YF_dofdist>
+          <shiftx>0</shiftx>
+          <shifty>0</shifty>
+        </technique>
+      </extra>
+    </camera>
+  </library_cameras>
+  <library_images/>
+  <library_geometries>
+    <geometry id="desktop-mesh-mesh" name="desktop-mesh">
+      <mesh>
+        <source id="desktop-mesh-mesh-positions">
+          <float_array id="desktop-mesh-mesh-positions-array" count="12">-2.8 -2 0 2.8 -2 0 -2.8 2 0 2.8 2 0</float_array>
+          <technique_common>
+            <accessor source="#desktop-mesh-mesh-positions-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="desktop-mesh-mesh-normals">
+          <float_array id="desktop-mesh-mesh-normals-array" count="3">0 0 1</float_array>
+          <technique_common>
+            <accessor source="#desktop-mesh-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="desktop-mesh-mesh-map-0">
+          <float_array id="desktop-mesh-mesh-map-0-array" count="8">0 0 1 0 1 1 0 1</float_array>
+          <technique_common>
+            <accessor source="#desktop-mesh-mesh-map-0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="desktop-mesh-mesh-vertices">
+          <input semantic="POSITION" source="#desktop-mesh-mesh-positions"/>
+        </vertices>
+        <polylist material="desktop01-material" count="1">
+          <input semantic="VERTEX" source="#desktop-mesh-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#desktop-mesh-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#desktop-mesh-mesh-map-0" offset="2" set="0"/>
+          <vcount>4 </vcount>
+          <p>0 0 0 1 0 1 3 0 2 2 0 3</p>
+        </polylist>
+      </mesh>
+    </geometry>
+    <geometry id="mobile-mesh-mesh" name="mobile-mesh">
+      <mesh>
+        <source id="mobile-mesh-mesh-positions">
+          <float_array id="mobile-mesh-mesh-positions-array" count="12">-0.9375 -1.6675 0 0.9375 -1.6675 0 -0.9375 1.6675 0 0.9375 1.6675 0</float_array>
+          <technique_common>
+            <accessor source="#mobile-mesh-mesh-positions-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="mobile-mesh-mesh-normals">
+          <float_array id="mobile-mesh-mesh-normals-array" count="3">0 0 1</float_array>
+          <technique_common>
+            <accessor source="#mobile-mesh-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="mobile-mesh-mesh-map-0">
+          <float_array id="mobile-mesh-mesh-map-0-array" count="8">0 0 1 0 1 1 0 1</float_array>
+          <technique_common>
+            <accessor source="#mobile-mesh-mesh-map-0-array" count="4" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="mobile-mesh-mesh-vertices">
+          <input semantic="POSITION" source="#mobile-mesh-mesh-positions"/>
+        </vertices>
+        <polylist material="mobile02-material" count="1">
+          <input semantic="VERTEX" source="#mobile-mesh-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#mobile-mesh-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#mobile-mesh-mesh-map-0" offset="2" set="0"/>
+          <vcount>4 </vcount>
+          <p>0 0 0 1 0 1 3 0 2 2 0 3</p>
+        </polylist>
+      </mesh>
+    </geometry>
+    <geometry id="floor-mesh-mesh" name="floor-mesh">
+      <mesh>
+        <source id="floor-mesh-mesh-positions">
+          <float_array id="floor-mesh-mesh-positions-array" count="12">-1 -1 0 1 -1 0 -1 1 0 1 1 0</float_array>
+          <technique_common>
+            <accessor source="#floor-mesh-mesh-positions-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="floor-mesh-mesh-normals">
+          <float_array id="floor-mesh-mesh-normals-array" count="3">0 0 1</float_array>
+          <technique_common>
+            <accessor source="#floor-mesh-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="floor-mesh-mesh-vertices">
+          <input semantic="POSITION" source="#floor-mesh-mesh-positions"/>
+        </vertices>
+        <polylist material="floor-material" count="1">
+          <input semantic="VERTEX" source="#floor-mesh-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#floor-mesh-mesh-normals" offset="1"/>
+          <vcount>4 </vcount>
+          <p>0 0 1 0 3 0 2 0</p>
+        </polylist>
+      </mesh>
+    </geometry>
+    <geometry id="light-mesh-mesh" name="light-mesh">
+      <mesh>
+        <source id="light-mesh-mesh-positions">
+          <float_array id="light-mesh-mesh-positions-array" count="12">-1 -1 0 1 -1 0 -1 1 0 1 1 0</float_array>
+          <technique_common>
+            <accessor source="#light-mesh-mesh-positions-array" count="4" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="light-mesh-mesh-normals">
+          <float_array id="light-mesh-mesh-normals-array" count="3">0 0 1</float_array>
+          <technique_common>
+            <accessor source="#light-mesh-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="light-mesh-mesh-vertices">
+          <input semantic="POSITION" source="#light-mesh-mesh-positions"/>
+        </vertices>
+        <polylist material="light-material" count="1">
+          <input semantic="VERTEX" source="#light-mesh-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#light-mesh-mesh-normals" offset="1"/>
+          <vcount>4 </vcount>
+          <p>0 0 1 0 3 0 2 0</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="desktop01" name="desktop01" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 -1 0 0 1 0.1 0 0 0 1</matrix>
+        <instance_geometry url="#desktop-mesh-mesh" name="desktop01"/>
+      </node>
+      <node id="mobile02" name="mobile02" type="NODE">
+        <matrix sid="transform">1 0 0 6.305 0 1 0 0.3325 0 0 1 0.1 0 0 0 1</matrix>
+        <instance_geometry url="#mobile-mesh-mesh" name="mobile02"/>
+      </node>
+      <node id="floor" name="floor" type="NODE">
+        <matrix sid="transform">10 0 0 0 0 10 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#floor-mesh-mesh" name="floor"/>
+      </node>
+      <node id="light" name="light" type="NODE">
+        <matrix sid="transform">100 0 0 0 0 100 0 0 0 0 1 25 0 0 0 1</matrix>
+        <instance_geometry url="#light-mesh-mesh" name="light"/>
+      </node>
+      <node id="camera" name="camera" type="NODE">
+        <matrix sid="transform">0.9999756 -0.006980996 -6.09222e-5 3 0.006981262 0.9999375 0.008726327 -0.73 -1.63728e-11 -0.008726539 0.9999619 12.9 0 0 0 1</matrix>
+        <instance_camera url="#camera-camera"/>
+      </node>
+      <node id="desktop02" name="desktop02" type="NODE">
+        <matrix sid="transform">1 0 0 5.935 0 1 0 -3.5575 0 0 1 0.1 0 0 0 1</matrix>
+        <instance_geometry url="#desktop-mesh-mesh" name="desktop02"/>
+      </node>
+      <node id="mobile03" name="mobile03" type="NODE">
+        <matrix sid="transform">1 0 0 4.07 0 1 0 0.3325 0 0 1 0.1 0 0 0 1</matrix>
+        <instance_geometry url="#mobile-mesh-mesh" name="mobile03"/>
+      </node>
+      <node id="mobile01" name="mobile01" type="NODE">
+        <matrix sid="transform">1 0 0 8.54 0 1 0 0.3325 0 0 1 0.1 0 0 0 1</matrix>
+        <instance_geometry url="#mobile-mesh-mesh" name="mobile01"/>
+      </node>
+      <node id="desktop03" name="desktop03" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 -5.25 0 0 1 0.1 0 0 0 1</matrix>
+        <instance_geometry url="#desktop-mesh-mesh" name="desktop03"/>
+      </node>
+      <node id="desktop04" name="desktop04" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 3.25 0 0 1 0.1 0 0 0 1</matrix>
+        <instance_geometry url="#desktop-mesh-mesh" name="desktop04"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

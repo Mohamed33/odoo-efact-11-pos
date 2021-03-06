@@ -1,0 +1,79 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="aws_sns_sms.view_form_credentials">
+      <field name="name">Credenciales AWS-SNS</field>
+      <field name="model">res.company</field>
+      <field name="inherit_id" ref="base.view_company_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook" position="inside">
+          <page name="credentials" string="Configuracion SMS">
+            <separator string="Credenciales AWS-SNS" />
+            <group>
+              <field name="aws_sns_apikey" required="1"/>
+              <field name="aws_sns_apisecret" required="1"/>
+              <field name="aws_sns_region"/>
+            </group>
+            <separator string="Configuracion" />
+            <group>
+              <field name="aws_sns_log_enabled"/>
+            </group>
+            <separator string="Probar envio de mensaje" />
+            <group>
+              <field name="aws_sns_test_number"/>
+              <field name="aws_sns_test_message"/>
+              <button string="Test" type="object" name="send_test_message"/>
+            </group>
+            <separator string="Log de mensajes" attrs="{'invisible': [('aws_sns_log_enabled', '=', False)]}" />
+            <field name="aws_sns_log_ids" attrs="{'invisible': [('aws_sns_log_enabled', '=', False)]}">
+              <tree>
+                <field name="phonenumber"/>
+                <field name="message"/>
+                <field name="create_date"/>
+                <field name="company_id"/>
+              </tree>
+            </field>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+    <record  id="aws_sns_sms.view_form_enviar_mensaje" model="ir.ui.view">
+      <field name="name">aws_sns_sms.enviar_mensaje</field>
+      <field name="model">vista.enviarmensaje</field>
+      <field name="arch" type="xml">
+          <form>
+            <group>
+              <field name="partner_id" invisible="1"/>
+              <field name="company_id" invisible="1"/>
+              <field name="celular"/>
+              <field name="mensaje"/>
+            </group>
+            <footer>
+              <button type="object" name="btn_enviar_mensaje" string="Enviar Mensaje"/>
+            </footer>
+          </form>
+      </field>
+    </record>
+
+    <record  id="aws_sns_sms.view_mensajes_enviados" model="ir.ui.view">
+      <field name="name">aws_sns_sms.view_mensajes_enviados</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//notebook" position="inside">
+          <page name="Mensajes" string="Mensajes">
+              <button name="btn_vista_envio_mensaje" type="object" string="Enviar 1 Mensaje" class="oe_highlight"/>
+              <field name="msg_ids" mode="tree">
+                <tree options="{'no_create': True,'no_edit':True}">
+                  <field name="phonenumber"/>
+                  <field name="message"/>
+                  <field name="state"/>
+                </tree>
+              </field>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>

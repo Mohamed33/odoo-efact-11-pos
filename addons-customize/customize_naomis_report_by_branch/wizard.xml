@@ -1,0 +1,30 @@
+<odoo>
+    <record id="view_form_report_by_branch" model="ir.ui.view">
+        <field name="name">view.form.report.by.branch</field>
+        <field name="model">wizard.report.by.branch</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="fecha_inicio"/>
+                    <field name="fecha_fin"/>
+                    <field name="branch_id"/>
+                </group>
+                <footer>
+                    <button name="btn_generate_xlsx" string="Descargar XLSX" type="object"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_form_report_by_branch" model="ir.actions.act_window">
+        <field name="name">Reporte de ventas por Sucursal</field>
+        <field name="res_model">wizard.report.by.branch</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_report_by_branch" name="Reporte por Sucural" 
+                string="Reporte por Sucural"
+                parent="account.account_reports_management_menu" 
+                action="customize_naomis_report_by_branch.action_view_form_report_by_branch"/>
+</odoo>

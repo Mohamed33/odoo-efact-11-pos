@@ -1,0 +1,30 @@
+<odoo>
+    <record id="lms_website.view_product_add_field_duracion" model="ir.ui.view">
+        <field name="name">view.product.add.field.duracion</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='company_id']" position="after">
+                <field name="duracion"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="lms_website.view_product_kanban_curso" model="ir.ui.view">
+        <field name="name">view.product.kanban.curso</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lst_price']" position="after">
+                <field name="duracion"/>
+            </xpath>
+            
+            <xpath expr="//ul/li" position="after">
+                <li>Duración: 
+                    <field name="duracion" widget="float_time" />
+                </li>
+            </xpath>
+            
+        </field>
+    </record>
+</odoo>

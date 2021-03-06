@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="assets_backend" name="Backend Assets (used in backend interface)" inherit_id="web.assets_backend">
+		<xpath expr="." position="inside">
+			<script type="text/javascript" src="/report_extend_bf/static/src/js/report/qwebactionmanager.js"/>
+		</xpath>
+	</template>
+</odoo>

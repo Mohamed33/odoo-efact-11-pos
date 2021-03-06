@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="letra_cambio.protestar_letra_tree">
+            <field name="name">Protestar letras</field>
+            <field name="model">letra_cambio.letra</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="number"/>
+                    <field name="partner_id"/>
+                    <field name="date_doc"/>
+                    <field name="date_due"/>
+                    <field name="amount_total"/>
+                    <field name="state"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_protestar_letra_cambio" model="ir.actions.act_window">
+            <field name="name">Protestar letras</field>
+            <field name="res_model">letra_cambio.letra</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">["|","|",("state","=","ACE"),("state","=","DEA"),("state","=","COB") ]</field>
+
+        </record>
+
+        <record model="ir.actions.act_window.view" id="action_aceptar_letra_cambio_view">
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="protestar_letra_tree"/>
+            <field name="act_window_id" ref="action_protestar_letra_cambio"/>
+        </record>
+
+
+
+        <menuitem  parent="letra_cambio.letra_cambio_menu" name="Protestar letras" id="letra_cambio_menu_protestar_letra" action="action_protestar_letra_cambio"/>
+
+    </data>
+</odoo>
